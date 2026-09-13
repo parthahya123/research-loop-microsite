@@ -1,0 +1,12 @@
+.env
+credentials.json
+token.json
+.DS_Store
+research_runs/
+research/
+__pycache__/
+*.pyc
+*.pem
+*.key
+synthesis.md
+context/
