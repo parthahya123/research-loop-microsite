@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snakebite — Cause Area Report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --accent: #4a1d00;
+    --accent-light: #fff7ed;
+    --accent-border: #fed7aa;
+    --text: #1a1a1a;
+    --muted: #555;
+    --border: #e0deda;
+    --bg: #fafaf8;
+    --surface: #fff;
+    --surface-alt: #f7f6f4;
+  }
+
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.88; color: var(--text); background: var(--bg); }
+  .layout { display: flex; min-height: 100vh; }
+  nav { width: 232px; flex-shrink: 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 2.25rem 1.5rem; background: var(--surface-alt); border-right: 1px solid var(--border); }
+  nav .home { display: block; font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; color: #999; text-decoration: none; margin-bottom: 1.5rem; }
+  nav .home:hover { color: #333; }
+  nav h5 { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #bbb; margin-bottom: .6rem; margin-top: 1.5rem; }
+  nav ul { list-style: none; }
+  nav ul li a { font-family: system-ui, sans-serif; font-size: 12.5px; color: #666; text-decoration: none; display: block; padding: .22rem .6rem; border-left: 2px solid transparent; }
+  nav ul li a:hover { color: var(--text); }
+  nav ul li a.active { color: var(--text); border-left-color: var(--accent); font-weight: 600; }
+  nav .current { color: var(--accent) !important; font-weight: 600; }
+  nav .sep { height: 1px; background: var(--border); margin: 1.5rem 0; }
+
+  main { flex: 1; max-width: 800px; padding: 4rem 3.5rem 7rem; }
+  .eyebrow { font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin-bottom: .6rem; }
+  h1 { font-size: 2.5rem; line-height: 1.15; font-weight: 700; letter-spacing: -.025em; margin-bottom: .45rem; color: #0f0f0f; }
+  .dek { font-family: system-ui, sans-serif; font-size: 15.5px; color: #666; margin-bottom: 2.75rem; line-height: 1.5; }
+
+  .verdict { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 1.3rem 1.6rem; margin-bottom: 3.25rem; }
+  .verdict .vl { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #aaa; margin-bottom: .5rem; }
+  .verdict p { font-family: system-ui, sans-serif; font-size: 13.5px; color: #333; line-height: 1.65; margin-bottom: .55rem; }
+  .verdict p:last-child { margin-bottom: 0; }
+
+  .metrics { display: flex; gap: 1.25rem; margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .metric { background: var(--surface); border: 1px solid var(--border); padding: 1rem 1.25rem; flex: 1; min-width: 120px; }
+  .metric .mv { font-size: 1.45rem; font-weight: 700; color: #0f0f0f; font-family: system-ui, sans-serif; letter-spacing: -.02em; line-height: 1.1; }
+  .metric .ml { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: #aaa; margin-top: .3rem; }
+
+  h2 { font-size: 1.6rem; font-weight: 700; margin-top: 4rem; margin-bottom: 1.25rem; letter-spacing: -.015em; padding-bottom: .5rem; border-bottom: 1px solid var(--border); scroll-margin-top: 1.5rem; }
+  h3 { font-size: 1.1rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: .7rem; color: #222; }
+
+  p { margin-bottom: 1.2rem; }
+  a { color: #1d4ed8; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:hover { color: #1e3a8a; }
+  sup a { font-size: 0.75em; }
+
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 2.25rem; font-family: system-ui, sans-serif; font-size: 13px; }
+  th { text-align: left; padding: .6rem .85rem; background: var(--surface-alt); border: 1px solid var(--border); font-weight: 600; color: #333; }
+  td { padding: .55rem .85rem; border: 1px solid var(--border); color: #444; vertical-align: top; line-height: 1.5; }
+  tr:nth-child(even) td { background: #faf9f7; }
+
+  .callout { background: var(--accent-light); border: 1px solid var(--accent-border); padding: 1.1rem 1.5rem; margin: 2rem 0; font-size: .94rem; line-height: 1.72; }
+  .callout strong { color: var(--accent); }
+
+  .note { background: #f8f9fa; border: 1px solid #d0d5dd; padding: 1.1rem 1.5rem; margin: 1.75rem 0; font-size: .93rem; font-family: system-ui, sans-serif; line-height: 1.7; }
+  .note .nt { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: #888; margin-bottom: .5rem; }
+
+  details { border: 1px solid var(--border); margin: 1.5rem 0; }
+  details summary { padding: .9rem 1.15rem; font-family: system-ui, sans-serif; font-size: 13.5px; font-weight: 600; color: #333; cursor: pointer; background: var(--surface-alt); list-style: none; display: flex; align-items: center; gap: .6rem; user-select: none; }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::before { content: '▶'; font-size: 10px; color: #aaa; transition: transform .15s; flex-shrink: 0; }
+  details[open] summary::before { transform: rotate(90deg); }
+  details summary:hover { background: #efede9; }
+  .details-body { padding: 1.25rem 1.5rem; font-family: system-ui, sans-serif; font-size: 13.5px; line-height: 1.72; color: #333; border-top: 1px solid var(--border); }
+  .details-body p { font-family: system-ui, sans-serif; font-size: 13.5px; margin-bottom: .9rem; }
+  .details-body table { font-size: 12.5px; }
+  .details-body h4 { font-weight: 700; margin: 1rem 0 .4rem; color: #222; font-size: 13.5px; }
+  .details-body ul, .details-body ol { margin: .4rem 0 .9rem 1.4rem; }
+  .details-body ul li, .details-body ol li { margin-bottom: .3rem; }
+
+  .tier-card { border: 1px solid var(--border); margin: 1.5rem 0 2rem; }
+  .tier-card .th { background: var(--surface-alt); padding: .85rem 1.15rem; border-bottom: 1px solid var(--border); font-family: system-ui, sans-serif; font-weight: 700; font-size: 14px; color: #111; display: flex; align-items: baseline; gap: .75rem; flex-wrap: wrap; }
+  .tier-card .th .cea { font-size: 12px; font-weight: 400; color: #666; }
+  .tier-card .tb { padding: 1.15rem 1.25rem 1rem; font-family: system-ui, sans-serif; font-size: 13.5px; line-height: 1.7; color: #333; }
+  .tier-card .tb p { font-family: system-ui, sans-serif; font-size: 13.5px; margin-bottom: .8rem; }
+  .tier-card .tb p:last-child { margin-bottom: 0; }
+
+  .diagram { background: var(--surface); border: 1px solid var(--border); padding: 1.5rem; margin: 2rem 0; overflow-x: auto; }
+  .diagram-label { font-family: system-ui, sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #999; margin-bottom: 1rem; }
+
+  ul.bl, ol.bl { margin: .5rem 0 1.2rem 1.7rem; }
+  ul.bl li, ol.bl li { margin-bottom: .5rem; }
+
+  .africa-box { background: #fef9f0; border: 2px solid #f59e0b; padding: 1.25rem 1.5rem; margin: 2.5rem 0; }
+  .africa-box .abl { font-family: system-ui, sans-serif; font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #92400e; margin-bottom: .75rem; }
+
+  .primer { background: #f0f4ff; border: 1px solid #c7d2fe; padding: 1.25rem 1.5rem; margin: 2rem 0; font-family: system-ui, sans-serif; font-size: 13.5px; line-height: 1.72; color: #333; }
+  .primer .pt { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: #6366f1; margin-bottom: .5rem; font-weight: 700; }
+
+  .snake-thumb { width: 96px; height: 70px; object-fit: cover; display: block; margin-bottom: .45rem; border-radius: 2px; background: #d1d5db; }
+  .snake-cell { min-width: 130px; }
+
+  .cp-diagram { margin: 2rem 0 2.5rem; }
+  .cp-stage { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 0; }
+  .cp-track { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+  .cp-dot { width: 14px; height: 14px; border-radius: 50%; background: #1a1a1a; flex-shrink: 0; margin-top: .2rem; }
+  .cp-dot.green { background: #059669; }
+  .cp-line { width: 2px; background: #d1d5db; flex: 1; min-height: 30px; }
+  .cp-line.red { background: #fca5a5; }
+  .cp-body { flex: 1; padding-bottom: .75rem; }
+  .cp-label { font-family: system-ui, sans-serif; font-size: 13px; font-weight: 700; color: #111; margin-bottom: .15rem; }
+  .cp-label.green { color: #059669; }
+  .cp-sub { font-family: system-ui, sans-serif; font-size: 11.5px; color: #888; }
+  .cp-bar-wrap { margin: .45rem 0 .5rem; }
+  .cp-bar-bg { height: 9px; background: #f0f0ee; border-radius: 5px; width: 100%; overflow: hidden; }
+  .cp-bar-fill { height: 9px; border-radius: 5px; }
+  .cp-drop { font-family: system-ui, sans-serif; font-size: 12px; color: #b91c1c; line-height: 1.5; background: #fef2f2; border-left: 3px solid #fca5a5; padding: .3rem .65rem; margin-bottom: .25rem; }
+  .cp-note { font-family: system-ui, sans-serif; font-size: 11px; color: #999; margin-top: .6rem; font-style: italic; }
+
+  #expand-all-btn { font-family: system-ui, sans-serif; font-size: 12px; color: #888; background: none; border: 1px solid #ddd; padding: .3rem .7rem; cursor: pointer; float: right; margin-top: 3.8rem; }
+  #expand-all-btn:hover { background: var(--surface-alt); }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav>
+  <a class="home" href="../index.html">← All causes</a>
+  <h5>This report</h5>
+  <ul>
+    <li><a href="#basics">What is snakebite</a></li>
+    <li><a href="#biology">How it kills</a></li>
+    <li><a href="#treatment">The treatment</a></li>
+    <li><a href="#why-fails">Why the treatment fails</a></li>
+    <li><a href="#mismatch">The mismatch problem</a></li>
+    <li><a href="#dead-ends">What failed</a></li>
+    <li><a href="#landscape">Who is doing what</a></li>
+    <li><a href="#rd">R&amp;D pipeline</a></li>
+    <li><a href="#cea">Cost-effectiveness</a></li>
+    <li><a href="#geography">State selection</a></li>
+    <li><a href="#africa">Africa vs India</a></li>
+    <li><a href="#gates">Kill-switches</a></li>
+    <li><a href="#grant">Grant structure</a></li>
+    <li><a href="#verdict">Verdict</a></li>
+  </ul>
+</nav>
+
+<main>
+<button id="expand-all-btn" onclick="toggleAll()">Expand all details</button>
+
+<div class="eyebrow">Cause Area Report · September 2026</div>
+<h1>Snakebite</h1>
+<div class="dek">138,000 deaths per year across South Asia and sub-Saharan Africa. A treatment that works. Delivery systems that fail — differently in India and Africa. An R&amp;D pipeline further away than advertised. The question is what philanthropy can fix, where, and at what cost per life saved.</div>
+
+<div class="verdict">
+  <div class="vl">Bottom line</div>
+  <p><strong>The problem exists at scale in both India (~58,000 deaths/yr) and sub-Saharan Africa (~30,000 deaths/yr), but the delivery failure looks different in each.</strong> India has antivenom, a transport system, and a policy framework — the failure is cold-chain, under-dosing, and late arrival. Africa lost its most effective antivenom in 2014 (Fav-Afrique discontinued), has no 108-equivalent, and faces a product cost problem that still blocks cost-effectiveness at scale. Understanding both geographies requires understanding both failure modes before comparing them.</p>
+  <p><strong>The single most correctable mistake in both geographies is formulation.</strong> Switching from liquid to lyophilized (freeze-dried) antivenom eliminates roughly 19 of a 25 percentage-point field efficacy penalty. Cold-chain failure is endemic in rural India and worse in sub-Saharan Africa. Lyophilized ASV is the prerequisite for any functioning delivery program in either context.</p>
+  <p><strong>The portfolio recommendation is India primary, Africa parallel at modest scale</strong> — but that conclusion comes from comparing delivery probabilities and corrected CEA figures, not from dismissing Africa's burden. The case for India-first is laid out in the cost-effectiveness and geography sections; the Africa analysis stands on its own first.</p>
+</div>
+
+<div class="metrics">
+  <div class="metric"><div class="mv">138,000</div><div class="ml">Global deaths/yr (WHO high estimate)</div></div>
+  <div class="metric"><div class="mv">South Asia</div><div class="ml">~42% of global deaths — India, Bangladesh, Nepal</div></div>
+  <div class="metric"><div class="mv">Sub-Saharan Africa</div><div class="ml">~22% of global deaths — concentrated in West Africa and East Africa</div></div>
+  <div class="metric"><div class="mv">400k</div><div class="ml">Permanent disabilities per year globally</div></div>
+</div>
+
+<h2 id="basics">What is snakebite — and why does it matter?</h2>
+
+<p>Between midnight and dawn, in a rice paddy in Bihar or a cassava field in Benue State, someone steps on a snake. The bite is sometimes painless — especially a krait, which bites at night while the victim sleeps and whose neurotoxin works silently. By the time the family realizes what happened, hours have passed. The nearest facility with functioning antivenom is far away, and the journey costs money the family may not have. This is the shape of most of the 138,000 snakebite deaths that happen every year.</p>
+
+<div class="primer">
+  <div class="pt">For readers new to the space</div>
+  Snakebite is one of the largest neglected killers in global health. It is invisible in most Western philanthropic conversations — because it kills poor agricultural workers in rural South Asia and sub-Saharan Africa, far from data systems and policy attention. The WHO only re-listed it as a priority neglected tropical disease in 2017 (having removed it in 2009 for "insufficient evidence"). As of 2026, WHO's 2030 roadmap target of a 50% reduction in deaths is significantly off-track.
+</div>
+
+<p>Each year, roughly <strong>5.4 million people are bitten by snakes</strong>, of whom 1.8–2.7 million are envenomed (meaning they receive a significant venom dose rather than a dry bite). <a href="https://www.who.int/news-room/fact-sheets/detail/snakebite-envenoming">Between 81,000 and 138,000 die</a>, and approximately <strong>400,000 survivors are left with permanent disability</strong> — amputations from tissue destruction, chronic kidney disease from venom-induced renal injury, contractures, and lasting psychological sequelae including PTSD. The burden is concentrated in two geographies: South Asia (India, Bangladesh, Nepal) accounts for roughly 42% of global deaths; sub-Saharan Africa accounts for roughly 22%. The remaining burden is spread across Southeast Asia and Latin America.</p>
+
+<p>The deaths are overwhelmingly preventable. An effective treatment — antivenom — has existed since the 1890s. The core problem is not scientific ignorance. It is that the treatment requires a functioning cold chain, trained clinical staff, intravenous administration equipment, and an emergency transport system to get patients there in time. Almost every link in that chain fails routinely in the rural areas where snakebite is most common.</p>
+
+<h3>Who gets bitten — and why they die</h3>
+
+<p>Snakebite skews male (64% of victims) and to the 30–39 age band — the prime productive years of a household. Victims are overwhelmingly subsistence agricultural workers in the world's poorest rural communities: a rice farmer transplanting paddy in Bihar during monsoon season; a cassava farmer clearing bunds in Nigeria's Benue valley; a herder walking at dusk in the Ethiopian highlands when snakes are active. The bite happens close to ground level, usually on the ankle or foot of someone working barefoot. Most agricultural tasks — paddy work especially — require footing and feel in the soil that boots make impossible.</p>
+
+<p>The poverty-death connection is direct. Families without money for transport delay seeking care, gambling on traditional remedies. Those who reach a private clinic first are often given inappropriate treatment at catastrophic cost before eventual referral to a public hospital — sometimes arriving too late for antivenom to work. In rural Nigeria, research has documented a "snakebite poverty trap": the medical debt from a single non-fatal bite can push a household below subsistence for an agricultural season. Most snakebite deaths in both South Asia and sub-Saharan Africa occur at home, or in transit, never reaching a facility with functioning antivenom. This is not a disease that generates data — it is a disease that happens in the dark.</p>
+
+<h3>Two geographies, two distinct failure modes</h3>
+
+<p>India and sub-Saharan Africa share the same epidemiological pattern — poor agricultural workers bitten far from functioning antivenom — but the delivery failure looks materially different in each, which is why they require separate analysis before being compared.</p>
+
+<table>
+  <thead><tr><th>Dimension</th><th>India</th><th>Sub-Saharan Africa</th></tr></thead>
+  <tbody>
+    <tr><td>Deaths/yr</td><td>~46,000–58,000 (42% of global, depending on estimate)</td><td>~20,000–50,000 (22%+ of global; wide range due to poor surveillance and out-of-hospital deaths)</td></tr>
+    <tr><td>Key species</td><td>Four species dominate: cobra (<em>Naja naja</em>), krait (<em>Bungarus caeruleus</em>), Russell's viper (<em>Daboia russelii</em>), saw-scaled viper (<em>Echis carinatus</em>)</td><td>Varies by region. West Africa's "Big Three": <em>Echis ocellatus</em> (carpet viper), <em>Bitis arietans</em> (puff adder), <em>Naja nigricollis</em> (spitting cobra). East/Southern Africa: add mambas (<em>Dendroaspis</em> spp.). Different regions need different antivenoms.</td></tr>
+    <tr><td>Antivenom product</td><td>Indian polyvalent ASV — manufactured at scale (millions of vials/yr) by VINS, Bharat Serums, Haffkine, others. Product exists; delivery fails.</td><td>Fav-Afrique (the only pan-African polyvalent) was discontinued by Sanofi in 2014. Stocks ran out by 2016. Replacement products (EchiTAb-Plus-ICP) cover West Africa but at limited volume (~20–30k vials/yr). <strong>Africa has both a product problem and a delivery problem.</strong></td></tr>
+    <tr><td>Community CFR</td><td>5–8% at district hospital level</td><td>10–20% in <em>Echis</em>-dominant poorly served areas; higher for <em>Bitis gabonica</em> (Gaboon viper, untreated CFR 40–80%)</td></tr>
+    <tr><td>Transport infrastructure</td><td>GVK-EMRI / Ziqitza 108 ambulance system (16 states, GPS dispatch, ASV on board in some states)</td><td>No 108-equivalent anywhere in SSA. Community transport = family vehicle, motorcycle, or nothing.</td></tr>
+    <tr><td>Cold chain</td><td>Problematic — summer temperatures 40–48°C, endemic power outages</td><td>Worse — ambient temperatures higher, grid reliability lower, rural facility refrigeration often absent</td></tr>
+    <tr><td>Government policy anchor</td><td>NAPSE (National Action Plan for Snakebite Envenomation, 2024); state-level programs in Odisha, Bihar drafting</td><td>Fragmented national policies; Nigeria FMOH programs; WHO NTD country plans</td></tr>
+  </tbody>
+</table>
+
+<h3>The DALY structure — why it is 90% a mortality problem</h3>
+
+<p>About 90% of snakebite DALYs are years of life lost to premature death; the rest splits between chronic sequelae (kidney disease, amputations, PTSD) and acute morbidity. The sequelae are real — roughly 400,000 survivors per year are left permanently disabled — but they are under-counted in GBD estimates, and correcting that undercount only improves the $/DALY figure by about 4%. The dominant lever in any cost-effectiveness calculation is preventing deaths, not managing long-term complications. This is what makes timing so central: antivenom that arrives too late doesn't prevent death, and that failure dominates the model.</p>
+
+<div class="metrics">
+  <div class="metric"><div class="mv">~90%</div><div class="ml">DALYs from mortality (YLL)</div></div>
+  <div class="metric"><div class="mv">~8%</div><div class="ml">DALYs from chronic sequelae</div></div>
+  <div class="metric"><div class="mv">400k</div><div class="ml">Permanent disabilities per year</div></div>
+  <div class="metric"><div class="mv">~4%</div><div class="ml">CEA improvement from sequelae</div></div>
+</div>
+
+<h2 id="biology">How snakebite kills — the biology of envenomation</h2>
+
+<p>Venom kills through a small number of distinct mechanisms: nerve disruption, blood-clotting collapse, and tissue destruction. Which mechanism is at play determines how fast the patient dies, when antivenom stops working, and what clinical support is needed. India's dominant species and Africa's dominant species use overlapping but distinct mechanisms — this is also what makes Indian antivenom useless in Africa, and why species coverage is a real variable in the cost-effectiveness model.</p>
+
+<h3>India's Big Four — venom mechanisms and therapeutic windows</h3>
+
+<table>
+  <thead><tr><th>Snake</th><th>Venom type</th><th>How it kills</th><th>Therapeutic window</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="snake-cell"><img class="snake-thumb" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Common_krait_.jpg" alt="Common krait"><strong><em>Bungarus caeruleus</em></strong><br>Common krait</td>
+      <td>Neurotoxic (pre-synaptic)</td>
+      <td>β-bungarotoxin destroys nerve terminals at the neuromuscular junction — irreversibly. Descending paralysis: ptosis → ophthalmoplegia → limb weakness → respiratory failure. Krait bites are often painless and noticed only after victim wakes unable to breathe.</td>
+      <td><strong>~6 hours, cliff-shaped.</strong> After paralysis is established, antivenom reverses nothing — the nerve terminal is gone. Mechanical ventilation, not antivenom, saves late arrivals.</td>
+    </tr>
+    <tr>
+      <td class="snake-cell"><img class="snake-thumb" src="https://upload.wikimedia.org/wikipedia/commons/8/8d/Naja_naja_%28Indian_cobra%29.jpg" alt="Indian cobra"><strong><em>Naja naja</em></strong><br>Indian cobra</td>
+      <td>Neurotoxic (post-synaptic) + cytotoxic</td>
+      <td>α-neurotoxins block acetylcholine receptors (partially reversible), causing paralysis. Cytotoxins cause local tissue necrosis that can progress to amputation even with treatment.</td>
+      <td><strong>~180 minutes, partially reversible.</strong> ASV given within 3h reverses receptor block; later ASV still prevents local progression but neuromuscular recovery is slower.</td>
+    </tr>
+    <tr>
+      <td class="snake-cell"><img class="snake-thumb" src="https://upload.wikimedia.org/wikipedia/commons/7/74/Daboia_russelii_A_Chawla01.jpg" alt="Russell's viper"><strong><em>Daboia russelii</em></strong><br>Russell's viper</td>
+      <td>Hemotoxic / vasculotoxic</td>
+      <td>Activates the clotting cascade, causing consumptive coagulopathy: fibrinogen consumed, all clotting factors depleted. The patient bleeds from every wound site including the gums and urine. Also causes acute kidney injury (AKI) in 10–46% of victims, of which 37–41% develop chronic kidney disease.</td>
+      <td><strong>Gradual decay, but AKI threshold at ~2h.</strong> Coagulopathy is reversible even at 24–48h with adequate ASV. But AKI risk is 10× higher if antivenom is delayed >2h — renal damage is an early clock even when the bleeding risk extends longer.</td>
+    </tr>
+    <tr>
+      <td class="snake-cell"><img class="snake-thumb" src="https://upload.wikimedia.org/wikipedia/commons/3/39/Saw_Scaled_Viper_Echis_carinatus.jpg" alt="Saw-scaled viper"><strong><em>Echis carinatus</em></strong><br>Saw-scaled viper</td>
+      <td>Hemotoxic</td>
+      <td>Similar coagulopathy to Russell's. Slow-onset: symptoms can appear as late as 27h after bite. Untreated CFR 10–20% in areas without antivenom access.</td>
+      <td><strong>Extended, gradual.</strong> Coagulopathy reversible at 24h+; slower onset means victims sometimes underestimate severity and delay seeking care.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Africa's medically important species — by region</h3>
+
+<p>Africa's most dangerous snakes share some genera with India (<em>Echis, Naja</em>) but are different species. The venom composition diverges enough between continents that Indian polyvalent ASV has effectively zero neutralizing efficacy against African specimens — yet Indian ASV has been imported into Nigeria and Ethiopia as a gap-fill product. Any patient receiving it is harmed by the delay to appropriate treatment while appearing to be treated.</p>
+
+<p>The species distribution also varies within Africa. West Africa's threat landscape differs from East/Southern Africa — this matters for which antivenom product is needed where.</p>
+
+<table>
+  <thead><tr><th>Snake</th><th>Primary range</th><th>Venom type</th><th>Key clinical features</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="snake-cell"><img class="snake-thumb" src="https://upload.wikimedia.org/wikipedia/commons/2/26/Echis_ocellatus.jpg" alt="West African carpet viper"><strong><em>Echis ocellatus</em></strong><br>West African carpet viper</td>
+      <td><strong>West Africa</strong>: Nigeria, Ghana, Mali, Burkina Faso, Niger. Accounts for ~66% of bites in northeastern Nigeria.</td>
+      <td>Hemotoxic — coagulopathy similar in syndrome to Indian <em>Echis carinatus</em> but distinct venom protein composition; Indian ASV provides zero cross-neutralization.</td>
+      <td>Primary target species for EchiTAb-Plus-ICP. Untreated CFR ~12–20% in communities without antivenom access (Benue valley, Nigeria). The dominant cause of snakebite death in West Africa. Covered well by EchiTAb-Plus-ICP.</td>
+    </tr>
+    <tr>
+      <td class="snake-cell"><img class="snake-thumb" src="https://upload.wikimedia.org/wikipedia/commons/4/48/Bitis_arietans.jpg" alt="Puff adder"><strong><em>Bitis arietans</em></strong><br>Puff adder</td>
+      <td>Pan-African — most geographically widespread dangerous snake on the continent. Savanna, farmland, peri-urban areas across SSA.</td>
+      <td>Cytotoxic / hemotoxic — massive local tissue destruction, systemic coagulopathy. Responsible for more bites than any other African snake due to its abundance and sit-and-wait ambush behavior.</td>
+      <td>Major driver of Africa's ~14,600 amputations/yr. Severe local necrosis; limb loss common even with treatment if antivenom is delayed. Covered by EchiTAb-Plus-ICP and SAIMR Polyvalent.</td>
+    </tr>
+    <tr>
+      <td class="snake-cell"><img class="snake-thumb" src="https://upload.wikimedia.org/wikipedia/commons/d/d8/Naja_nigricollis_%28Warren_Klein%29.jpg" alt="Black-necked spitting cobra"><strong><em>Naja nigricollis</em></strong><br>Black-necked spitting cobra</td>
+      <td><strong>West and East Africa</strong> — a dominant cobra species in Nigeria, Ghana, Kenya, Tanzania.</td>
+      <td>Neurotoxic + cytotoxic. Spits venom up to 2–3 metres, causing ocular injury and potential blindness without a bite. Three-finger toxins (3FTx) are the primary lethal component.</td>
+      <td><strong>Significant product gap:</strong> A 2026 preclinical study found EchiTab-Plus failed to neutralize <em>N. nigricollis</em> venom, despite covering this species nominally. African cobra 3FTx are proving harder to neutralize than hemotoxic viper toxins — this is the central bottleneck for recombinant antivenom R&amp;D targeting Africa.</td>
+    </tr>
+    <tr>
+      <td class="snake-cell"><img class="snake-thumb" src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Dendroaspis_polylepis.jpg" alt="Black mamba"><strong><em>Dendroaspis</em> spp.</strong><br>Mambas (black and green)</td>
+      <td>Primarily <strong>East and Southern Africa</strong>. Less common in West Africa. Black mamba: East/Southern; green mamba: coastal East/West.</td>
+      <td>Neurotoxic — dendrotoxins block potassium channels. Rapid ascending paralysis. Untreated CFR for significant envenomation approaches 100%.</td>
+      <td>Fewer bites than puff adder (mambas avoid humans), but near-certain death without prompt antivenom. Fav-Afrique provided mamba coverage; its 2014 discontinuation created a coverage gap primarily in East/Southern Africa where mambas are clinically significant. EchiTAb-Plus lyophilized formulation covers <em>D. polylepis</em> (black mamba).</td>
+    </tr>
+    <tr>
+      <td class="snake-cell"><img class="snake-thumb" src="https://upload.wikimedia.org/wikipedia/commons/9/98/Bitis_gabonica.jpg" alt="Gaboon viper"><strong><em>Bitis gabonica</em></strong><br>Gaboon viper</td>
+      <td>Forest zones: Central and West Africa, parts of East Africa.</td>
+      <td>Hemotoxic / cytotoxic — largest venom yield of any snake (~9ml). Extremely severe local tissue destruction.</td>
+      <td>Rare but highly lethal. Untreated CFR 40–80% for significant envenomation. Less common than puff adder; clinical management requires very high ASV doses.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="note">
+  <div class="nt">Geographic framing</div>
+  Nigeria's clinically dominant "Big Three" are <em>Echis ocellatus</em>, <em>Bitis arietans</em>, and <em>Naja nigricollis</em> — <em>not</em> mambas, which are primarily East/Southern African. Any West Africa-focused program should be evaluated against these three species. The Fav-Afrique collapse matters most for East/Southern African mamba coverage; West Africa's primary product gap is cobra neutralization, not mamba coverage.
+</div>
+
+<div class="callout">
+  <strong>The Fav-Afrique collapse — why Africa's antivenom problem is structurally different from India's.</strong> Sanofi Pasteur discontinued Fav-Afrique in 2014 — the only polyvalent antivenom covering the full West/Central African species range including mambas — because it was sold at a loss and commercial return was insufficient to justify continued production. This is the same market failure that drives the AMR antibiotic problem: products that save lives in LMICs generate no sustainable revenue. Existing stocks ran out by 2016. In the gap period, MSF field data from Gombe State, Nigeria documented sharply rising mortality. Current replacements — EchiTAb-Plus-ICP (~20–30k vials/yr, West Africa focused) and SAIMR Polyvalent (Southern/Eastern Africa) — cover some species and geographies but leave substantial gaps. <strong>Africa faces a two-part problem India does not: insufficient and mismatched antivenom product, plus a broken delivery system. India's problem is delivery alone.</strong>
+</div>
+
+<h3>The time-efficacy curve — why faster is not just "better" but categorically different</h3>
+
+<p>Antivenom neutralizes only <strong>circulating, unbound venom</strong>. Once venom binds tissue targets, antivenom cannot reverse the damage. This creates a time-varying efficacy that has two distinct shapes — not one:</p>
+
+<div class="diagram">
+  <div class="diagram-label">Antivenom efficacy E(t) by venom syndrome (central estimates from logistic fit to clinical data)</div>
+  <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;font-family:system-ui,sans-serif;font-size:11px;">
+    <!-- Axes -->
+    <line x1="60" y1="20" x2="60" y2="170" stroke="#999" stroke-width="1.5"/>
+    <line x1="60" y1="170" x2="660" y2="170" stroke="#999" stroke-width="1.5"/>
+    <!-- Y-axis labels -->
+    <text x="52" y="25" text-anchor="end" fill="#666">100%</text>
+    <text x="52" y="82" text-anchor="end" fill="#666">67%</text>
+    <text x="52" y="120" text-anchor="end" fill="#666">40%</text>
+    <text x="52" y="158" text-anchor="end" fill="#666">~10%</text>
+    <line x1="58" y1="25" x2="62" y2="25" stroke="#999" stroke-width="1"/>
+    <line x1="58" y1="82" x2="62" y2="82" stroke="#999" stroke-width="1"/>
+    <line x1="58" y1="120" x2="62" y2="120" stroke="#999" stroke-width="1"/>
+    <!-- X-axis labels (hours) -->
+    <text x="60" y="185" text-anchor="middle" fill="#666">0h</text>
+    <text x="172" y="185" text-anchor="middle" fill="#666">2h</text>
+    <text x="284" y="185" text-anchor="middle" fill="#666">4h</text>
+    <text x="396" y="185" text-anchor="middle" fill="#666">6h</text>
+    <text x="508" y="185" text-anchor="middle" fill="#666">12h</text>
+    <text x="640" y="185" text-anchor="middle" fill="#666">24h</text>
+    <!-- X axis label -->
+    <text x="350" y="205" text-anchor="middle" fill="#888" font-size="10">Hours from bite to effective antivenom</text>
+    <!-- Neurotoxic curve — cliff shape — krait -->
+    <polyline points="60,22 172,27 284,42 396,82 508,145 640,155" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+    <!-- Hemotoxic curve — slow decay -->
+    <polyline points="60,22 172,26 284,32 396,36 508,82 640,120" fill="none" stroke="#0369a1" stroke-width="2.5"/>
+    <!-- 6h vertical reference -->
+    <line x1="396" y1="20" x2="396" y2="170" stroke="#888" stroke-width="1" stroke-dasharray="4,3"/>
+    <text x="399" y="18" fill="#888" font-size="10">6h landmark</text>
+    <!-- Labels -->
+    <text x="145" y="40" fill="#dc2626" font-size="11" font-weight="600">Neurotoxic (krait/cobra)</text>
+    <text x="440" y="55" fill="#0369a1" font-size="11" font-weight="600">Hemotoxic (Russell's/Echis)</text>
+    <!-- Floor labels -->
+    <text x="600" y="150" fill="#dc2626" font-size="9.5">floor ~12%</text>
+    <text x="600" y="115" fill="#0369a1" font-size="9.5">floor ~34%</text>
+  </svg>
+</div>
+
+<p>The key empirical fact: <strong>E(6h) ≈ 0.67 for neurotoxic bites but ≈ 0.83 for hemotoxic bites</strong>. Krait envenomation has a cliff at ~6 hours; Russell's viper has a long tail still partially treatable at 24h. For a Bihar/UP patient population — which is neurotoxic-skewed, because kraitbite is common in north India — the realized antivenom efficacy across all patients who reach care is approximately <strong>0.63</strong> (P10–P90: 0.55–0.69). This is not 1.0. The common model assumption of binary (treated = 100% effective) is wrong and inflates the cost-effectiveness estimate by roughly <strong>1.6×</strong>.</p>
+
+<div class="callout">
+  <strong>The realized efficacy correction is the most important single fact in the CEA.</strong> The original model estimated ~$109/DALY for an India antivenom distribution program. Correcting for two factors — effective species coverage (~0.53, because Indian polyvalent ASV fails against regional venom variants) and realized time-varying efficacy (~0.63) — gives a corrected estimate of <strong>~$335/DALY for undifferentiated distribution</strong>. The same $335/DALY result is why this portfolio funds <em>targeted</em> delivery (to reach-capable blocks with verified potent product and trained staff), not spray-everywhere distribution.
+</div>
+
+<h2 id="treatment">The treatment — what antivenom is and how it works</h2>
+
+<p>Antivenom (anti-snake venom, ASV) is the only proven treatment for serious snakebite envenomation. No oral drug exists, no widely available synthetic alternative, and no traditional remedy has any evidence of mortality benefit. The treatment works — case-fatality rates fall sharply when patients receive timely, potent antivenom. The failures are almost all delivery failures, not failures of the underlying medicine.</p>
+
+<h3>How antivenom is made</h3>
+
+<p>Equine polyvalent ASV — the dominant product globally, including all of India's production — is made as follows: horses are immunized with escalating doses of venom from multiple snake species over several months. The horses develop antibodies (immunoglobulins) against the venom proteins. These antibodies are extracted from the horse's blood, purified, and concentrated into a liquid product. The antibodies circulate in a treated patient's bloodstream, bind free venom molecules, and neutralize them before they reach their target tissues.</p>
+
+<p>India's "Big Four" polyvalent ASV contains antibodies against all four species — <em>Naja naja, Bungarus caeruleus, Daboia russelii, Echis carinatus</em>. A single vial covers all four venoms. The critical limitation: the product is only as good as the horses' immune response to the specific venom samples used, and those samples may not match the venom profile of snakes in the patient's region. Russell's viper venom from south India is measurably different from north Indian specimens — the antivenom covering one may be inadequate for the other.</p>
+
+<h3>Why it must be given intravenously</h3>
+
+<p>ASV must be given intravenously — the antibody proteins are too large to be absorbed through the gut or skin in therapeutic quantities. This is the single biggest structural barrier to last-mile delivery. Any setting that administers antivenom must have IV access, trained staff, and monitoring capacity for adverse reactions. This requirement cannot be engineered away with current equine-derived products. It is the floor of clinical capability that every delivery program has to be designed around.</p>
+
+<h3>The anaphylaxis problem — and why the numbers are often misquoted</h3>
+
+<p>Equine antivenom commonly triggers adverse reactions. The published range is wide, and the distinction between reaction types matters enormously for policy:</p>
+
+<ul class="bl">
+  <li><strong>Any adverse reaction (fever, chills, urticaria, rash):</strong> 30–60% of patients. These are expected, manageable, and rarely life-threatening. Standard pre-treatment with paracetamol and antihistamine reduces severity.</li>
+  <li><strong>True early anaphylaxis (hypotension, bronchospasm, angioedema):</strong> 5–20% depending on product and population. Requires adrenaline (epinephrine) and clinical monitoring — treatable, but dangerous without preparation.</li>
+  <li><strong>Severe systemic anaphylaxis requiring ICU:</strong> ~1–3%. The genuinely dangerous tail.</li>
+</ul>
+
+<p>When the literature says "40% adverse reaction rate," it means the first category — fevers and rashes that are expected and manageable. True anaphylaxis requiring adrenaline is 5–20%. The policy implication is simple: <strong>every site administering ASV must have epinephrine and IV access ready</strong>. The cost of pre-positioning an epinephrine kit alongside ASV is about $27/DALY incremental — it eliminates the serious harm tail and is mandatory in this portfolio's design.</p>
+
+<h3>Formulation — why liquid vs. lyophilized is a ~25pp field efficacy difference</h3>
+
+<p>Indian polyvalent ASV is predominantly produced and distributed as a <strong>liquid</strong> formulation. Liquid ASV specification: stable at ≤37°C. India's rural summer ambient temperatures routinely reach 40–48°C. CHC power outages — endemic across Bihar, Odisha, and Jharkhand — mean refrigerators cycle through unpredictable temperature excursions. A facility that nominally stocks liquid ASV may hold thermally compromised product that appears identical to potent product on visual inspection. This invisible failure is the dominant field efficacy penalty.</p>
+
+<p><strong>Lyophilized (freeze-dried) ASV</strong> eliminates this problem entirely. Lyophilized ASV is ambient-stable for 2–3 years at up to ~25°C standard storage, with documented no-significant-potency-loss at 56°C for one year in accelerated testing (<a href="https://journals.plos.org/plosntds/article?id=10.1371/journal.pntd.0006068">Cardoso 2017 PLoS NTD non-inferiority RCT</a>). It can be pre-positioned at facilities without any cold-chain dependency. The switch from liquid to lyophilized ASV is estimated to eliminate roughly <strong>19 of a 25 percentage-point field efficacy penalty</strong> — the remaining ~6pp is from molecular potency variation in the ASV itself (some Indian batches fail WHO minimum potency thresholds on pre-use testing, before any temperature exposure).</p>
+
+<p>Lyophilized procurement is not optional in this portfolio. It is what makes Tier 2 cost-effective.</p>
+
+<h2 id="why-fails">Why the treatment fails</h2>
+
+<p>Antivenom works. The problem is that the chain between bite and effective treatment has about six places it can break — and in rural South Asia and sub-Saharan Africa, most of them break routinely. The failures cluster into four categories, all of which apply in both geographies to varying degrees.</p>
+
+<div class="cp-diagram">
+  <div class="cp-stage">
+    <div class="cp-track"><div class="cp-dot"></div><div class="cp-line"></div></div>
+    <div class="cp-body">
+      <div class="cp-label">Bite happens</div>
+      <div class="cp-sub">1.8–2.7 million significant envenomations per year globally</div>
+      <div class="cp-bar-wrap"><div class="cp-bar-bg"><div class="cp-bar-fill" style="width:100%;background:#1a1a1a;"></div></div></div>
+    </div>
+  </div>
+  <div class="cp-stage">
+    <div class="cp-track"><div class="cp-dot" style="background:#e5e7eb;border:2px solid #9ca3af;"></div><div class="cp-line red"></div></div>
+    <div class="cp-body">
+      <div class="cp-drop">14 of 100 die before reaching care — no transport, can't afford it, or spent hours at a traditional healer first. In Africa: often no ambulance at all.</div>
+    </div>
+  </div>
+  <div class="cp-stage">
+    <div class="cp-track"><div class="cp-dot" style="background:#374151;"></div><div class="cp-line"></div></div>
+    <div class="cp-body">
+      <div class="cp-label">Reaches a health facility</div>
+      <div class="cp-sub">86 of 100 in India (demand is not the problem)</div>
+      <div class="cp-bar-wrap"><div class="cp-bar-bg"><div class="cp-bar-fill" style="width:86%;background:#374151;"></div></div></div>
+    </div>
+  </div>
+  <div class="cp-stage">
+    <div class="cp-track"><div class="cp-dot" style="background:#e5e7eb;border:2px solid #9ca3af;"></div><div class="cp-line red"></div></div>
+    <div class="cp-body">
+      <div class="cp-drop">34 of 86 get no antivenom — not stocked, wrong species, clinician unsure how to use it. In much of Africa: no effective product exists at all since Fav-Afrique's 2014 discontinuation.</div>
+    </div>
+  </div>
+  <div class="cp-stage">
+    <div class="cp-track"><div class="cp-dot" style="background:#1d4ed8;"></div><div class="cp-line"></div></div>
+    <div class="cp-body">
+      <div class="cp-label">Receives antivenom</div>
+      <div class="cp-sub">~52 of 100</div>
+      <div class="cp-bar-wrap"><div class="cp-bar-bg"><div class="cp-bar-fill" style="width:52%;background:#1d4ed8;"></div></div></div>
+    </div>
+  </div>
+  <div class="cp-stage">
+    <div class="cp-track"><div class="cp-dot" style="background:#e5e7eb;border:2px solid #9ca3af;"></div><div class="cp-line red"></div></div>
+    <div class="cp-body">
+      <div class="cp-drop">~19 of 52 treated: arrived too late (krait's 6-hour cliff), or the vial was degraded by heat before it was used — looks fine, delivers nothing.</div>
+    </div>
+  </div>
+  <div class="cp-stage">
+    <div class="cp-track"><div class="cp-dot" style="background:#2563eb;"></div><div class="cp-line"></div></div>
+    <div class="cp-body">
+      <div class="cp-label">Timely + potent antivenom</div>
+      <div class="cp-sub">~33 of 100</div>
+      <div class="cp-bar-wrap"><div class="cp-bar-bg"><div class="cp-bar-fill" style="width:33%;background:#2563eb;"></div></div></div>
+    </div>
+  </div>
+  <div class="cp-stage">
+    <div class="cp-track"><div class="cp-dot" style="background:#e5e7eb;border:2px solid #9ca3af;"></div><div class="cp-line red"></div></div>
+    <div class="cp-body">
+      <div class="cp-drop">~13 of 33 under-dosed — the hospital gives a fixed starter course (8–10 vials) and stops, rather than dosing to clinical endpoint. Patient leaves still envenomed.</div>
+    </div>
+  </div>
+  <div class="cp-stage">
+    <div class="cp-track"><div class="cp-dot green"></div></div>
+    <div class="cp-body">
+      <div class="cp-label green">Full guideline-concordant treatment</div>
+      <div class="cp-sub">~20 of 100 — this patient survives</div>
+      <div class="cp-bar-wrap"><div class="cp-bar-bg"><div class="cp-bar-fill" style="width:20%;background:#059669;"></div></div></div>
+    </div>
+  </div>
+  <p class="cp-note">India data (where surveillance is best): ICMR NTF survey + district CFR studies. Africa's funnel leaks harder at every step — especially "receives antivenom," where much of the continent has no effective product since the 2014 Fav-Afrique collapse.</p>
+</div>
+
+<h3>1. The patient arrives too late</h3>
+
+<p>For krait bites — the dominant mortality source in north India — antivenom only works if it reaches the patient within roughly six hours of the bite. After that, the nerve terminals are destroyed and nothing reverses the paralysis. For viper bites the window is longer, but delay still kills: Russell's viper causes kidney failure that is far more likely to become permanent if treatment is delayed beyond two hours, even if the coagulopathy itself is still reversible at 24 hours.</p>
+
+<p>Most snakebite deaths — roughly half, by the best India estimates — happen before the patient reaches any facility. People delay because they try traditional remedies first, because they cannot afford transport, or because the nearest facility with functioning antivenom is genuinely hours away. In rural Bihar, median time from bite to receiving antivenom in hospital exceeds six hours. In much of West Africa, organized ambulance transport does not exist at all; a family must arrange and pay for transport themselves, in the middle of the night, while watching someone deteriorate.</p>
+
+<p>This is why everything that compresses the journey time — pre-positioned antivenom closer to where people live, ambulance dispatch systems, community training that stops people wasting hours at traditional healers — matters so much more than simply buying more antivenom for central hospitals.</p>
+
+<h3>2. The antivenom is degraded before it is used</h3>
+
+<p>Liquid antivenom must be kept cold — stable at or below 37°C. Rural health facilities in India and Africa regularly see summer temperatures of 40–48°C, and power outages are routine. A refrigerator that loses power for two days during a heatwave will hold antivenom that has lost much of its potency. The vial looks identical. The facility records it as stocked. The clinician administers it. The patient fails to respond, and the case is logged as "antivenom failure" — when the real failure happened in the cold chain weeks earlier.</p>
+
+<p>Lyophilized (freeze-dried) antivenom solves this. It is stable at ambient temperatures up to around 56°C in accelerated testing and does not need refrigeration for storage. The switch from liquid to lyophilized is estimated to recover roughly 19 of a 25 percentage-point field efficacy penalty. It is available now — it is a procurement decision, not a research problem. In Africa, where cold chain infrastructure is even less reliable than India, it is if anything more important.</p>
+
+<p>There is a second quality problem on top of cold chain. In India, between-batch potency of antivenom varies substantially across manufacturers — some batches have been found to fail WHO minimum potency thresholds on pre-use testing, before any temperature exposure. No Indian manufacturer currently holds WHO prequalification; self-certification is the norm. In Africa, the problem is even more basic: after the Fav-Afrique discontinuation, the replacement products available cover only some species and some regions, and even those products have coverage gaps (a 2026 study found EchiTAb-Plus-ICP, the main West African antivenom, failed to neutralize <em>Naja nigricollis</em> venom in preclinical testing, despite nominally including that species).</p>
+
+<h3>3. The wrong antivenom is given, or the right antivenom is given for the wrong snake</h3>
+
+<p>Antivenom is species-specific. The antibodies in an Indian polyvalent vial were made from horses immunized with Indian Big Four venom — they neutralize those four species and nothing else. Give that product to a patient bitten by a <em>Trimeresurus</em> pit viper in Northeast India, or by an African carpet viper, and the antivenom does nothing. The patient receives a full course of treatment, is recorded as having received antivenom, and dies from unaddressed envenomation.</p>
+
+<p>This happens more than the statistics show. Roughly 15–20% of serious envenomations in India involve species outside the Big Four panel. In Africa, Indian antivenom has been imported as a stopgap for Nigerian hospitals despite having zero efficacy against African snakes — it was available and cheap. Even within the Big Four, the venom composition of Russell's viper varies enough by geography that south Indian antivenom provides inadequate protection against north Indian specimens. Effective species coverage of Indian polyvalent across eastern India's actual bite mix is estimated around 53%, not 100%. That gap nearly doubles the cost-effectiveness estimate for generic distribution programs.</p>
+
+<h3>4. The patient reaches care and receives the right antivenom, but gets the wrong dose</h3>
+
+<p>This is the failure mode that disappears most completely from statistics. WHO guidelines require dosing antivenom to a clinical endpoint — you keep giving vials until the patient's blood clots again (for viper bites) or until paralysis stops progressing (for elapid bites). That can take 10 to 30 vials or more. In practice, many district hospitals give 8–10 vials as a fixed starter dose and stop. The reasons are mundane: limited stock, a clinical team that doesn't know to continue, a family that pulls back when they see partial improvement. The patient is discharged with incomplete treatment, bleeds out at home from continuing coagulopathy, and is counted as a community death.</p>
+
+<p>Fewer than half of Indian district hospitals dose to clinical endpoint by the published evidence. The same basic clinical training gap exists in most African settings with access to antivenom. This failure is not about product or supply — it is about whether the clinician in the room knows what they are doing. That is fixable, relatively cheaply, through clinical quality improvement programs.</p>
+
+<div class="callout">
+  <strong>The care pathway in India, where we have the best data:</strong> 86% of snakebite victims in India seek hospital care — demand is not the problem. Only 60% receive antivenom. Of those who do, fewer than half receive guideline-concordant dosing. And of those who receive correct treatment, some arrive after the therapeutic window has already closed. Each of these failures is independently addressable, at different costs, with different interventions. The mismatch between what is failing and what most programs fund (buying more antivenom for central hospitals) is why so many well-resourced programs have failed to move mortality.
+</div>
+
+<h2 id="mismatch">Africa's antivenom problem — product gaps and coverage failures</h2>
+
+<p>India's main failures are delivery and clinical quality. Africa has those too, but it has a more fundamental problem sitting underneath them: in large parts of the continent, there simply is no effective antivenom to give even if a patient reaches care.</p>
+
+<p>Until 2014, Fav-Afrique — a French-produced polyvalent covering the full range of West and Central African species including mambas — was the standard treatment across Sub-Saharan Africa. Sanofi had been producing it at a loss for years. When they decided to stop, they notified the market in 2013; the last batch was produced in January 2014 and stocks expired by mid-2016. Nothing with equivalent coverage has replaced it.</p>
+
+<p>The current situation for each major region:</p>
+
+<ul class="bl">
+  <li><strong>West Africa (Nigeria, Ghana, Burkina Faso, Mali):</strong> EchiTAb-Plus-ICP, produced by Instituto Clodomiro Picado in Costa Rica, covers the three dominant species — carpet viper, puff adder, and spitting cobra. It works well for viper bites. A 2026 study found it failed preclinically against <em>Naja nigricollis</em> (the spitting cobra), despite that species nominally being in the panel. Supply is limited to roughly 20,000–30,000 vials per year for all of West Africa — a region with hundreds of thousands of envenomings annually. The vials cost $40–80 each at current prices; a treatment course runs $160–640, which is simply unaffordable through normal health system procurement in Nigeria or Ghana.</li>
+  <li><strong>East and Southern Africa:</strong> SAIMR Polyvalent from South Africa covers southern African species but has limited efficacy against West African venom compositions — the same genus of snake can have substantially different venom protein profiles depending on where it lives. Mamba coverage since the Fav-Afrique collapse remains a gap in areas where black and green mambas are clinically significant.</li>
+  <li><strong>The stopgap that does active harm:</strong> Indian polyvalent ASV, available cheaply in large volumes, has occasionally been procured for African hospitals. It has zero neutralizing efficacy against African species. Patients who receive it are not being treated; they are being given a delay in seeking effective treatment while appearing to receive care.</li>
+</ul>
+
+<p>The product problem in Africa means that even programs that successfully get patients to facilities quickly, with trained staff and correct protocols, may be operating in settings where no effective antivenom exists. This is not a delivery problem — it is a market failure in antivenom production. Fixing it requires either driving up production volumes of existing products to bring costs down, or waiting for the recombinant pipeline to deliver a cheaper, broader-coverage product. Neither happens quickly.</p>
+
+<h2 id="dead-ends">What has been tried and learned</h2>
+
+<p>Several approaches look intuitively sensible but have failed repeatedly across India, Africa, and Southeast Asia. They keep getting funded because they sound right — distributing boots to people who walk through fields, teaching communities about snakes, getting antivenom closer to villages. The failure modes are instructive.</p>
+
+<ul class="bl">
+  <li>
+    <strong>Protective footwear (gaiters, boots) — $254,000–$1.1M/DALY. Decline.</strong> The physics works on paper: denim alone reduces venom delivery ~60–66%. The economics don't. You pay for an entire agricultural population but only prevent deaths in the small fraction who would have had a fatal lower-limb bite. Baseline boot-wearing among paddy workers is ~8%, and heat compliance in 40°C field conditions is near zero. No controlled trial has ever measured a reduction in snakebite incidence from footwear distribution. The model's best-case corner — most snakebite-dense district, near-free product, viper-dominated mix — still lands at ~$9,000/DALY. The probability of gaiters clearing $150/DALY across 200,000 Monte Carlo draws is zero.
+  </li>
+  <li>
+    <strong>CHW-carried ASV without clinical monitoring — net-harmful.</strong> Liquid ASV requires cold chain that CHWs cannot maintain. More importantly, anaphylaxis occurs in 5–20% of patients and requires adrenaline and IV airway management. A CHW who administers ASV in the field without monitoring can kill through anaphylaxis as often as they save through early treatment. The path to a facility with monitoring capacity is not optional — it is the intervention.
+  </li>
+  <li>
+    <strong>Mobile snake identification apps — no mortality impact.</strong> Poor rural connectivity, no clear photo of a snake during the chaos of a bite, and no ASV on site even if the species is correctly identified. Some delayed transport while identification was attempted. None showed mortality impact.
+  </li>
+  <li>
+    <strong>Community awareness without an end-to-end system — zero mortality effect.</strong> The most replicated null finding in this literature. Teaching communities to recognize snakebite and seek care, without ensuring the facility they reach has potent antivenom and trained staff, produces no mortality improvement. Shown repeatedly across India, Africa, and Southeast Asia. Demand is not the binding constraint — the facility is. The only awareness program worth funding is one where the target behavior is immediate ambulance dispatch, not snake avoidance or first-aid.
+  </li>
+  <li>
+    <strong>Tourniquet de-training — worth doing, too slow to be a primary lever.</strong> Tight tourniquet application is still traditional first-aid in much of rural South Asia. It causes tissue necrosis and delays transport. Worth continuing through existing programs; changes over decades, not years.
+  </li>
+  <li>
+    <strong>Generic village ASV community banks — $1,789/DALY, 9% net-harmful.</strong> Antivenom stocked at a village level without adrenaline kits, trained staff, or monitoring produces adverse outcomes more reliably than it prevents deaths. Break-even is roughly 13 envenomings per year per facility minimum, with adrenaline co-deployment mandatory. Below that threshold, this is a net harm.
+  </li>
+</ul>
+
+<h2 id="landscape">Who is doing what</h2>
+
+<p>Snakebite attracts a small, relatively cohesive global community of researchers and implementers. The landscape has one dominant philanthropic actor (Wellcome Trust), a small number of manufacturers, and several implementation organizations. The main gap — delivery — is largely unfunded.</p>
+
+<p>The most consequential event in the landscape in the past decade was Sanofi's 2014 discontinuation of Fav-Afrique, described above. The second most consequential is Wellcome's £80M, 7-year investment (2019–2026). <a href="https://www.nature.com/articles/d41586-019-01557-0">Wellcome's portfolio</a> is almost entirely R&amp;D: varespladib clinical trials, recombinant monoclonal antibody platforms (DTU Copenhagen, UCB), the LSTMH multi-centre African antivenom trial, and WHO Target Product Profile development. Wellcome is not funding delivery. As of 2026, Wellcome is winding down its snakebite work — making Wellcome alumni a priority talent pool for hiring, and the India delivery portfolio in this case largely non-overlapping with anything already funded.</p>
+
+<table>
+  <thead><tr><th>Organization</th><th>What they actually do</th><th>Geography</th><th>Critical limitations</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>LSTMH CSRI</strong> (Casewell)</td>
+      <td>Antivenom development, venom characterization, clinical trials. Developed EchiTAb-Plus-ICP. Leads Wellcome multi-centre Africa trial.</td>
+      <td>Nigeria, Kenya, Ghana</td>
+      <td>Research institution — cannot solve last-mile stocking. Holds IPR for EchiTAb.</td>
+    </tr>
+    <tr>
+      <td><strong>Instituto Clodomiro Picado (ICP)</strong>, Costa Rica</td>
+      <td>Public antivenom manufacturer. Only non-commercial model at scale. ~100k vials/yr including Panafrican ICP at ~$20/dose under WHO cost-recovery.</td>
+      <td>West/Central Africa, South Asia</td>
+      <td>Supply constrained to 100k vials/yr. Expansion capital-intensive for a university institute.</td>
+    </tr>
+    <tr>
+      <td><strong>Indian ASV manufacturers</strong> (VINS, Bharat Serums, Haffkine, Biological E, CRI Kasauli)</td>
+      <td>Collectively produce several million vials/yr — the largest volume ASV production in the world. VINS is the largest exporter.</td>
+      <td>India primary</td>
+      <td>Quality problems significant: geographic venom composition variation, batch potency variation, self-certification norm, no WHO prequalification active.</td>
+    </tr>
+    <tr>
+      <td><strong>MSF Access Campaign</strong></td>
+      <td>Emergency ASV distribution + procurement advocacy. Field data from Nigeria documents mortality rates pre/post ASV access.</td>
+      <td>Nigeria, CAR, DRC, South Sudan</td>
+      <td>Emergency response, not sustainable supply-chain. When MSF exits, the gap reopens.</td>
+    </tr>
+    <tr>
+      <td><strong>MCBT</strong> (Madras Crocodile Bank Trust)</td>
+      <td>Community awareness, rescuer training, train-the-trainer networks across India. 4,500+ training materials in regional languages.</td>
+      <td>India pan-national</td>
+      <td>Zero direct mortality effect in isolation. Value is upstream behavior change feeding into transport tier. Effective only if combined with end-to-end system.</td>
+    </tr>
+    <tr>
+      <td><strong>GVK-EMRI / Ziqitza (108 Ambulance)</strong></td>
+      <td>Emergency ambulance transport; pre-staging of ASV vials on ambulances; GPS dispatch. Enrolled 29,461 snakebite cases in 2014 (Sharma 2016 IJID).</td>
+      <td>India (16 states)</td>
+      <td>Government contracts don't always mandate snakebite ASV as on-board item. Coverage uneven.</td>
+    </tr>
+    <tr>
+      <td><strong>ICMR-RMRC / NTF</strong></td>
+      <td>National burden surveillance, CFR research, district QI programs. ICMR NTF cross-sectional survey (Nat Commun 2025) is the primary evidence base.</td>
+      <td>India (Odisha primary)</td>
+      <td>Scientific anchor without ICMR-RMRC, district QI programs lose credibility with state health systems.</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h2 id="rd">The R&amp;D pipeline — what it solves, what it doesn't, and when</h2>
+
+<p>There is active scientific work on next-generation snakebite treatments — oral first-aid drugs, recombinant antibody antivenom, and broad-spectrum nanobody cocktails. None of it reaches deployment readiness before roughly 2030. But the pipeline is scientifically more interesting than it was five years ago, and individual products address specific constraints in the delivery problem. The useful question isn't "when will a cure arrive" — it's "which bottleneck does each product attack, and does that change the investment logic?"</p>
+
+<h3>The five key constraints the pipeline could address</h3>
+
+<table>
+  <thead><tr><th>Constraint</th><th>Current status</th><th>What in the pipeline addresses it</th></tr></thead>
+  <tbody>
+    <tr><td><strong>IV administration requirement</strong> — antivenom must be given intravenously, requiring a nurse, IV access, and anaphylaxis monitoring at a facility</td><td>Binds every delivery program to facility-level care. The single most structural barrier to last-mile treatment.</td><td>Oral small molecules (varespladib, unithiol) could enable pre-hospital first aid to buy time before IV ASV at a facility. They do NOT replace IV antivenom — they reduce severity while the patient is transported. <strong>The IV requirement for definitive treatment is not going away in the next decade.</strong></td></tr>
+    <tr><td><strong>Cold chain dependency</strong> — liquid equine ASV requires refrigeration; fails with power outages and high ambient temperatures</td><td>Solvable now with lyophilized ASV (freeze-dried; ambient-stable to ~56°C). Already exists for Indian polyvalent (Bharat Serums lyophilized) and for EchiTAb-Plus (lyophilized hospital formulation). The pipeline's recombinant proteins may offer inherently better thermostability.</td><td>Near-term: lyophilized equine ASV procurement (available now). Longer-term: recombinant antibody proteins that don't require the same cold chain as fragile equine immunoglobulins.</td></tr>
+    <tr><td><strong>Species coverage gaps</strong> — existing products miss species, and venom composition varies geographically even within a species</td><td>Indian polyvalent covers ~53% of effective eastern India envenomations due to geographic venom variation. EchiTAb-Plus fails preclinically against <em>N. nigricollis</em> (2026 study). No pan-African product exists since Fav-Afrique.</td><td>Recombinant nanobody cocktails targeting conserved toxin families — can theoretically achieve broad cross-species coverage not limited by which snakes were used to immunize horses. The DTU nanobody paper (Nature, Oct 2025) demonstrated 8-nanobody cocktail protecting against 17 African species in mice.</td></tr>
+    <tr><td><strong>Anaphylaxis / adverse reactions</strong> — equine immunoglobulins trigger 5–20% true anaphylaxis; require pre-medication and monitoring</td><td>Manageable with adrenaline co-deployment but requires clinical infrastructure. Kills patients when CHWs administer ASV without monitoring capability.</td><td>Recombinant human monoclonal antibodies eliminate the horse-protein anaphylaxis risk entirely. This would substantially lower the clinical floor for administration — potentially enabling nurse-administered treatment with lower monitoring requirements.</td></tr>
+    <tr><td><strong>Antivenom cost in Africa</strong> — EchiTAb-Plus runs $40–80/vial; course cost $160–640; blocks Africa from clearing the $150/DALY bar</td><td>The primary financial constraint blocking Africa cost-effectiveness. ICP produces at ~$20/dose for some products under WHO cost-recovery but EchiTAb-Plus is priced higher.</td><td>Recombinant manufacturing at scale could dramatically reduce costs. A 2026 E. coli expression platform study estimated drug substance cost of USD $26–132 per treatment for nanobody-based antivenom — competitive with current equine products if production volumes are reached. This is the most transformative potential impact on the Africa CEA.</td></tr>
+  </tbody>
+</table>
+
+<h3>Pipeline products — status and honest timelines</h3>
+
+<div class="tier-card">
+  <div class="th">Varespladib (oral sPLA₂ inhibitor) — Ophirex <span class="cea">Constraint addressed: IV requirement (partially) · Timing: ~2028 US approval via Animal Rule</span></div>
+  <div class="tb">
+    <p><strong>What it is:</strong> Oral broad-spectrum phospholipase A₂ inhibitor targeting a shared enzyme across many venom types. Hypothesis: a pill taken immediately after a bite could reduce envenoming severity while the patient travels to a facility, buying the therapeutic window before IV antivenom.</p>
+    <p><strong>BRAVO trial (Phase II, published Oct 2024):</strong> Primary outcome <strong>null</strong> (SSS improvement: varespladib −0.4 vs placebo, p=0.13). A within-5-hour subgroup (n=37) showed nominal significance — the signal is real but rests on a small sample. The trial was primarily US (copperheads, rattlesnakes) and Indian (Russell's vipers, n=29) patients.</p>
+    <p><strong>Current pathway:</strong> FDA Animal Rule — bypasses human efficacy data, using animal model evidence for regulatory approval. DoD-funded ($34M); US approval expected ~2028, approximately 4 years behind early estimates. This produces a US label that may not translate to LMIC regulatory pathways or prescribing contexts without separate data.</p>
+    <p><strong>Honest constraint on usefulness:</strong> Even with approval, varespladib does not replace antivenom. It is a first-aid bridge. The IV facility requirement remains. In settings where a patient is already within 1–2h of a functioning CHC, the marginal value of oral first-aid is limited — and those are precisely the settings where the India portfolio already works. The highest potential value is for the truly remote patient where bite-to-facility exceeds 6h, but that patient also faces the biggest transport barriers.</p>
+  </div>
+</div>
+
+<div class="tier-card">
+  <div class="th">Unithiol (oral SVMP/metalloprotease inhibitor) — LSTM/TOCSINS <span class="cea">Constraint addressed: IV requirement (for metalloprotease toxins) · Timing: Phase II efficacy data ~2028–29</span></div>
+  <div class="tb">
+    <p><strong>What it is:</strong> Repurposed chelating agent that inhibits snake venom metalloproteases (SVMPs) — the enzymes responsible for hemotoxic coagulopathy and local tissue destruction in viper bites. Unlike varespladib, unithiol targets a specific mechanistic class of toxins rather than a broad enzyme family.</p>
+    <p><strong>TRUE-1 (Phase I, published eBioMedicine Mar 2025, LSTM):</strong> Safe and well-tolerated in healthy Kenyan adults. Dose established: 1,500mg loading + 900mg at 6h and 24h. Rapidly absorbed; pharmacokinetics above SVMP-inhibiting thresholds. <strong>Most scientifically credible oral small-molecule path</strong> — the mechanism is specific, the target is validated, and the molecule is inexpensive and room-temperature stable.</p>
+    <p><strong>TOCSINS (Phase II):</strong> Funding secured; sites in Brazil (Bothrops) and Ghana (Echis). Trial not yet recruiting as of Sep 2026. First efficacy data expected ~2028–29. The Ghana site makes this the most relevant oral product for West Africa's hemotoxic envenomation problem.</p>
+    <p><strong>Key limitation:</strong> SVMP inhibitors address hemotoxic (viper) envenomation. They do not address neurotoxic syndromes (krait, cobra) — which are India's dominant mortality source. An oral SVMP inhibitor is more useful for Africa's <em>Echis</em>-dominant hemotoxic burden than for India's krait-heavy mortality burden.</p>
+  </div>
+</div>
+
+<div class="tier-card">
+  <div class="th">Nanobody-based recombinant antivenom — DTU (Copenhagen) <span class="cea">Constraints addressed: species coverage, anaphylaxis, potentially cost · Timing: Preclinical only, ~2030+ earliest clinical</span></div>
+  <div class="tb">
+    <p><strong>What it is:</strong> Single-domain antibody fragments (VHH, "nanobodies") derived from alpaca/llama immunization with 18 African snake venoms, then selected via phage display for broad cross-species neutralization. The bet is that a small number of nanobodies targeting conserved toxin epitopes can cover a wide range of species — unlike equine ASV where coverage is limited to the snakes the horses were immunized with.</p>
+    <p><strong>October 2025 Nature paper (DTU):</strong> 8-nanobody cocktail demonstrated broad protection against venom-induced lethality and dermonecrosis in mice challenged with cobras, mambas, and rinkhals (17 species). The manufacturing platform achieved volumetric titers of 7–16 g/L in E. coli, with estimated drug substance cost of <strong>$26–132 per treatment</strong> at scale — potentially competitive with or cheaper than current equine antivenom.</p>
+    <p><strong>What it solves:</strong> (a) Species coverage — broad-spectrum neutralization without being limited to immunizing-snake species; (b) Anaphylaxis — no horse proteins means near-zero immunogenic reaction; (c) Cost — if manufacturing scales, $26–132/treatment is transformative for Africa's CEA; (d) Potentially cold chain — recombinant proteins may be more thermostable than equine immunoglobulins.</p>
+    <p><strong>What it doesn't solve:</strong> The IV requirement — nanobody antivenom still requires IV administration. Administration still needs clinical infrastructure.</p>
+    <p><strong>Honest timeline:</strong> No clinical trial registered as of Sep 2026. Mouse model → non-human primate → Phase I/II safety → Phase II/III efficacy → regulatory approval is a 7–10 year pipeline from proof-of-concept. Market readiness realistically 2032–2035. The $26–132 cost estimate is a drug substance cost, not a fully delivered product cost including formulation, fill-finish, QC, distribution, and profit margin.</p>
+  </div>
+</div>
+
+<div class="tier-card">
+  <div class="th">Recombinant human mAb cocktails — UCB, IONTAS, academic groups <span class="cea">Constraints addressed: species coverage, anaphylaxis · Timing: Preclinical to early clinical, ~2030+ deployment</span></div>
+  <div class="tb">
+    <p>Multiple groups are developing oligoclonal mixtures of human monoclonal antibodies targeting conserved venom toxin families — primarily three-finger toxins (3FTx), phospholipase A₂s (PLA₂), and SVMPs. The theoretical advantage over nanobodies is that human antibodies have established regulatory pathways and well-understood PK/PD; the disadvantage is higher manufacturing cost and complexity.</p>
+    <p><strong>Three-finger toxin bottleneck:</strong> 3FTx are the primary lethal component of cobra and mamba venom. They have proven substantially harder to neutralize with conventional antibodies than hemotoxic viper toxins — partly because of their small size and conserved structure, partly because the toxin binds rapidly to nicotinic receptors at the neuromuscular junction. The DTU nanobody approach (Oct 2025) achieved better results against 3FTx than earlier mAb approaches. This remains the central unsolved problem in African elapid antivenom development.</p>
+    <p><strong>Timeline:</strong> Most mAb programs are pre-IND (pre-Investigational New Drug application). Earliest plausible clinical data: 2029–2031. Deployment: 2033+.</p>
+  </div>
+</div>
+
+<details>
+<summary>Summary: which pipeline product addresses which constraint, and by when</summary>
+<div class="details-body">
+<table>
+  <thead><tr><th>Product</th><th>IV requirement</th><th>Cold chain</th><th>Species coverage</th><th>Anaphylaxis</th><th>Africa cost</th><th>Earliest LMIC deployment</th></tr></thead>
+  <tbody>
+    <tr><td>Lyophilized equine ASV (exists now)</td><td>✗ No change</td><td>✓ Solved</td><td>✗ No change</td><td>✗ No change</td><td>Partial (reduces wastage)</td><td><strong>Now — just procure it</strong></td></tr>
+    <tr><td>Varespladib (oral) — FDA Animal Rule ~2028</td><td>Partial (bridge only)</td><td>✓ Room temp</td><td>Broad but not specific</td><td>✓</td><td>Unknown (US-priced)</td><td>~2029–30 (if LMIC pathway pursued)</td></tr>
+    <tr><td>Unithiol / TOCSINS — Phase II ~2028 data</td><td>Partial (hemotoxic only)</td><td>✓ Room temp</td><td>SVMP toxins only (vipers)</td><td>✓</td><td>Potentially very low (generic molecule)</td><td>~2030–32</td></tr>
+    <tr><td>DTU nanobody cocktail — Oct 2025 Nature</td><td>✗ Still IV</td><td>Likely improved</td><td>✓ Broad (17 African spp. in mice)</td><td>✓ No horse proteins</td><td>✓ Potentially $26–132/treatment</td><td>~2032–35 (no IND yet)</td></tr>
+    <tr><td>Human mAb cocktails (UCB, etc.)</td><td>✗ Still IV</td><td>Likely improved</td><td>Partial (3FTx bottleneck remains)</td><td>✓</td><td>Likely high (mAb manufacturing)</td><td>~2033+</td></tr>
+  </tbody>
+</table>
+<p><strong>Bottom line for portfolio construction:</strong> Nothing in the pipeline eliminates the IV/facility requirement within the relevant investment horizon. The pipeline's most useful near-term contribution is oral first-aid bridges (varespladib, unithiol) that extend the therapeutic window. The transformative long-term contribution — if the nanobody platform succeeds — is broad-spectrum, cheap, low-anaphylaxis recombinant antivenom that could be pre-positioned without cold chain and administered at a lower facility threshold. That product is 7–10 years away. Fund delivery now; cap R&amp;D option at ≤10% of portfolio; monitor the DTU nanobody and TOCSINS milestones as the primary watch items.</p>
+</div>
+</details>
+
+<h2 id="cea">Cost-effectiveness — the tiered model</h2>
+
+<p>The point estimates in this section ($/DALY figures) should be treated as directional, not precise. The ranges are wide and the underlying data is genuinely uncertain — snakebite has poor surveillance, and the key inputs (true baseline CFR, real-world antivenom efficacy, additionality of philanthropic spend over government baseline) are not well measured. What the model does more reliably is identify <em>what drives the outcome</em> — which variables matter most, and therefore where programs should focus and what conditions must hold for the investment to make sense. Read the driver analysis before the point estimates.</p>
+
+<h3>What actually determines whether this is cost-effective</h3>
+
+<p>Running the cost-effectiveness model through a sensitivity analysis (Monte Carlo with 300,000 draws, ranking inputs by their correlation with $/DALY) consistently returns the same message: <strong>the $/DALY is overwhelmingly determined by three things</strong>, not by the demographic parameters (age, life expectancy, disability weights) that CEA models often foreground.</p>
+
+<div class="tier-card">
+  <div class="th">Driver 1: Time-to-effective-antivenom <span class="cea">ρ = +0.71 for mass arriving ≤6h vs. ρ = −0.63 for mass arriving >12h</span></div>
+  <div class="tb">
+    <p>Antivenom works only against venom that is still circulating in the bloodstream — before it binds irreversibly to nerve terminals or initiates downstream tissue damage. For krait bites (the dominant mortality source in north India), the window is roughly 6 hours. After that, antivenom has near-zero effect on the death outcome — ventilation determines survival, not antivenom dose.</p>
+    <p>This is why the model is so sensitive to the delay distribution. Shifting 10% of patients from the >12h group to the ≤6h group has a larger impact on $/DALY than almost any other intervention. <strong>Everything that compresses delay — ambulance dispatch, facility stocking so patients don't get referred onward, awareness programs that prevent traditional-healer detours — improves cost-effectiveness more than buying more antivenom.</strong></p>
+    <p>It is also why the comparison between well-designed programs (CHC stocking + 108 transport) and generic antivenom distribution is so stark. Generic distribution gets antivenom to a facility but doesn't change when the patient arrives. Targeted CHC stocking, combined with 108 dispatch, does.</p>
+  </div>
+</div>
+
+<div class="tier-card">
+  <div class="th">Driver 2: Effective antivenom potency at point of use <span class="cea">ρ = −0.58 (ASV potency fraction)</span></div>
+  <div class="tb">
+    <p>The model assumes some fraction of stocked antivenom is actually potent when administered. In practice this fraction is substantially below 1.0. Two reasons: (a) liquid ASV exposed to temperature excursions above 37°C loses potency invisibly — a vial that looks fine may contain degraded antibodies; (b) some Indian ASV batches fail WHO minimum potency thresholds even before any field exposure, because manufacturer self-certification is the norm and third-party QA is not routine.</p>
+    <p>The switch to lyophilized ASV addresses (a) almost entirely — freeze-dried antivenom is stable to ~56°C in accelerated testing. Independent batch QA addresses (b). Together, these two procurement decisions are estimated to eliminate roughly 19 of a 25 percentage-point field efficacy penalty. <strong>In the model, switching from liquid to lyophilized procurement has more impact on $/DALY than doubling the number of facilities stocked.</strong></p>
+  </div>
+</div>
+
+<div class="tier-card">
+  <div class="th">Driver 3: Effective species coverage <span class="cea">ρ = −0.49 (species coverage fraction)</span></div>
+  <div class="tb">
+    <p>Indian polyvalent ASV is made by immunizing horses with venom from the "Big Four" — but the venom composition of those species varies by geography. Russell's viper venom from south India fails to protect against north India specimens in animal models. Pit viper species not in the panel cause roughly 15–20% of serious envenomations in some Indian regions. The result: the effective coverage fraction of Indian polyvalent ASV across eastern India's actual envenomation mix is estimated at ~0.53 rather than 1.0.</p>
+    <p>This correction alone nearly doubles the $/DALY estimate for undifferentiated distribution — from the naive ~$109 to ~$207. Combined with the efficacy correction, the corrected estimate for undifferentiated spray-everywhere distribution is approximately $335/DALY. This is why the portfolio funds <em>targeted</em> programs in reach-capable blocks rather than national antivenom distribution.</p>
+  </div>
+</div>
+
+<h3>The interventions, ordered by what they address</h3>
+
+<div class="diagram cea-bars">
+  <div class="diagram-label">Cost per DALY averted — P50 estimates, ordered best to worst (threshold: $150/DALY)</div>
+  <svg viewBox="0 0 620 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:620px;font-family:system-ui,sans-serif;font-size:11.5px;">
+    <!-- Scale: $335 max = 480px width. $150 threshold at 215px -->
+    <!-- Threshold line at $150 -->
+    <line x1="215" y1="0" x2="215" y2="232" stroke="#374151" stroke-width="1" stroke-dasharray="5,3"/>
+    <text x="216" y="10" fill="#374151" font-size="10" font-weight="600">$150 threshold</text>
+
+    <!-- Row 1: Adrenaline $27 -->
+    <text x="0" y="28" fill="#333" font-size="11" font-weight="600">Adrenaline kits</text>
+    <text x="0" y="41" fill="#888" font-size="10">Mandatory add-on to every ASV site</text>
+    <rect x="0" y="44" width="39" height="12" rx="2" fill="#059669"/>
+    <text x="43" y="55" fill="#059669" font-size="10.5" font-weight="700">$27</text>
+
+    <!-- Row 2: District QI $110 -->
+    <text x="0" y="74" fill="#333" font-size="11" font-weight="600">District hospital clinical QI</text>
+    <text x="0" y="87" fill="#888" font-size="10">Dosing protocols, endpoint monitoring, training</text>
+    <rect x="0" y="90" width="158" height="12" rx="2" fill="#059669"/>
+    <text x="162" y="101" fill="#059669" font-size="10.5" font-weight="700">$110</text>
+
+    <!-- Row 3: NAPSE $134 -->
+    <text x="0" y="120" fill="#333" font-size="11" font-weight="600">NAPSE awareness (108 trigger only)</text>
+    <text x="0" y="133" fill="#888" font-size="10">Community education → immediate ambulance dispatch</text>
+    <rect x="0" y="136" width="193" height="12" rx="2" fill="#059669"/>
+    <text x="197" y="147" fill="#059669" font-size="10.5" font-weight="700">$134</text>
+
+    <!-- Row 4: CHC/transport $207 (with lyophilized ASV) -->
+    <text x="0" y="166" fill="#333" font-size="11" font-weight="600">CHC ASV banks + lyophilized + 108 transport</text>
+    <text x="0" y="179" fill="#888" font-size="10">Requires lyophilized ASV — liquid ASV pushes well above $150</text>
+    <rect x="0" y="182" width="298" height="12" rx="2" fill="#d97706"/>
+    <text x="302" y="193" fill="#d97706" font-size="10.5" font-weight="700">$207</text>
+
+    <!-- Row 5: EchiTAb West Africa $322 -->
+    <text x="0" y="212" fill="#333" font-size="11" font-weight="600">EchiTAb West Africa</text>
+    <text x="0" y="225" fill="#888" font-size="10">Gated on sole-producer risk + 2026 cobra neutralization gap</text>
+    <rect x="0" y="228" width="463" height="12" rx="2" fill="#dc2626"/>
+    <text x="467" y="239" fill="#dc2626" font-size="10.5" font-weight="700">$322</text>
+
+    <!-- "off chart" label for undifferentiated + village banks -->
+    <text x="0" y="255" fill="#dc2626" font-size="10.5">Generic distribution: ~$335 (corrected) · Village banks: ~$1,789 — both declined</text>
+  </svg>
+</div>
+
+<table>
+  <thead><tr><th>Intervention</th><th>Primary driver it attacks</th><th>$/DALY (P50)</th><th>P10–P90 range</th><th>Verdict</th></tr></thead>
+  <tbody>
+    <tr><td>Epinephrine/adrenaline kit co-deployment</td><td>Eliminates anaphylaxis harm tail from ASV sites</td><td>~$27 (marginal add-on)</td><td>$15–49</td><td style="color:#059669">FUND — mandatory alongside every ASV site</td></tr>
+    <tr><td>District hospital clinical QI (dosing protocols, 20WBCT, FFP)</td><td>Driver 2 + Driver 1 (treating patients already in the building correctly)</td><td>~$110</td><td>$61–198</td><td style="color:#059669">FUND — strongest component, clearly inside bar</td></tr>
+    <tr><td>NAPSE catalysis (awareness → immediate 108 trigger)</td><td>Driver 1 (compresses delay by reducing traditional-healer detour time)</td><td>~$134</td><td>$61–294</td><td style="color:#059669">FUND — conditional on no harmful first-aid being taught</td></tr>
+    <tr><td>CHC ASV banks + lyophilized procurement + 108 transport</td><td>All three drivers simultaneously: better product, faster delivery, higher coverage</td><td>~$207</td><td>$104–414</td><td style="color:#d97706">FUND WITH CONDITIONS — requires lyophilized ASV and independent QA; $207 is the lyophilized estimate; liquid ASV in real field conditions pushes well above $150</td></tr>
+    <tr><td>EchiTAbG West Africa (Nigeria/Ghana)</td><td>Driver 2 in Africa context (getting any effective product to sites)</td><td>~$322</td><td>$161–645</td><td style="color:#d97706">FUND WITH CONDITIONS — gated on sole-producer risk mitigation; 2026 preclinical data shows cobra coverage gap</td></tr>
+    <tr><td>Generic India polyvalent distribution (undifferentiated)</td><td>Addresses none of the three drivers systematically</td><td>~$335 (corrected)</td><td>$276–409</td><td style="color:#dc2626">DECLINE — the original $109 estimate was wrong; corrected for species coverage and realized efficacy</td></tr>
+    <tr><td>Generic village ASV community banks (without monitoring)</td><td>Ignores anaphylaxis risk; below break-even threshold</td><td>~$1,789</td><td>$688–4,650</td><td style="color:#dc2626">DECLINE — 9% of scenarios net-harmful</td></tr>
+  </tbody>
+</table>
+
+<div class="note">
+  <div class="nt">Transparency on the numbers</div>
+  These $/DALY figures are outputs of a Monte Carlo model (v5) drawing on published Indian snakebite literature, the ICMR NTF survey, ICMR district CFR data, and published antivenom QA studies. The ranges (P10–P90) reflect genuine parameter uncertainty — not just model variance. The absolute figures are less reliable than the <em>ordering</em> and the <em>driver analysis</em>. The largest single uncertainty is the India burden anchor: the Million Death Study (~58,000 deaths/yr, ~3M DALYs) and the ICMR NTF survey (which implied far lower mortality) point in conflicting directions. If true burden is closer to the ICMR count, the $/DALY estimates worsen proportionally — though the ranking of interventions and the driver analysis remain unchanged.
+</div>
+
+<div class="tier-card">
+  <div class="th">Tier 1 — NAPSE awareness + surveillance <span class="cea">Median $134/DALY</span></div>
+  <div class="tb">
+    <p>India's <a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2013803">National Action Plan for Snakebite Envenomation (NAPSE, 2024)</a> provides the national policy framework. The philanthropic investment is the scale-out and evaluation of community education: regional-language outreach via MCBT's train-the-trainer model, plus surveillance infrastructure (notifiable-disease registration, ICMR-NIRRCH network) that generates a verified CFR baseline.</p>
+    <p>The target behavior is <strong>not</strong> snake avoidance or first-aid — it is <strong>immediate 108 trigger + facility-seeking</strong>. Awareness programs that teach harmful first-aid (tourniquet, incision) cause net harm. Hard rule: <strong>immediate program kill if any harmful first-aid is included in training</strong>.</p>
+  </div>
+</div>
+
+<div class="tier-card">
+  <div class="th">Tier 2 — CHC ASV banks + ambulance transport <span class="cea">Median $207/DALY (lyophilized ASV)</span></div>
+  <div class="tb">
+    <p>India's GVK-EMRI 108 ambulance system already operates in 16 states and enrolled 29,461 snakebite cases in 2014. The transport backbone exists. The investment here is snakebite-specific: lyophilized ASV pre-positioned at CHCs in endemic districts (eliminating the ~19 percentage-point cold-chain efficacy penalty), independent batch potency testing, and 108 dispatch protocols for snakebite.</p>
+    <p>The $207/DALY estimate requires lyophilized ASV. Liquid ASV in real field conditions pushes this tier above $150/DALY. Siting rule: ASV only at facilities with ≥13 envenomings/year and adrenaline on site.</p>
+  </div>
+</div>
+
+<div class="tier-card">
+  <div class="th">Tier 3 — District hospital clinical QI <span class="cea">Median $110/DALY — strongest component, clearly inside bar</span></div>
+  <div class="tb">
+    <p>Fewer than 40% of district hospitals in India manage snakebite to guideline-concordant standard. The gap is trainable: 20WBCT for hemotoxic endpoint monitoring (knowing when to stop dosing), neostigmine/atropine titration for post-synaptic neurotoxic envenomation, fresh frozen plasma for severe coagulopathy, and mechanical ventilation readiness for respiratory paralysis. None of this requires specialized equipment — it requires trained staff who know what they're doing.</p>
+    <p>The Demow CHC in Assam achieved zero snakebite deaths over four years through protocol-concordant management alone (<a href="https://pubmed.ncbi.nlm.nih.gov/40848903/">Toxicon 2025</a>). The target for district hospitals is ≤2–3% CFR against a 5–8% baseline — achievable. The AIIMS Patna–SHS Bihar MoU provides a Bihar vehicle but needs a snakebite-specific annex before any budget is committed.</p>
+  </div>
+</div>
+
+
+<h2 id="geography">State selection — where to start and why</h2>
+
+<p>India's snakebite burden is highly concentrated in eastern and central states. The portfolio sequences across states based on <em>delivery probability</em> (the product of procurement execution, provider co-binding, and research infrastructure), not just death count.</p>
+
+<table>
+  <thead><tr><th>Criterion</th><th>Bihar</th><th>Odisha — Start Year 1</th><th>Jharkhand — Year 3</th></tr></thead>
+  <tbody>
+    <tr><td>Annual deaths</td><td>~4,500 (highest absolute; 4.4/100k)</td><td>~1,150 reported 2023–24</td><td>4.9/100k (highest per-capita rate)</td></tr>
+    <tr><td>State program</td><td>SAPSE drafting; no operational program; CAG audit found BMSICL procurement execution 14–63%</td><td><strong>Disaster status 2015; ₹4L ex-gratia; death-audit system in place</strong></td><td>Rising deaths; weak program</td></tr>
+    <tr><td>Research anchor</td><td>AIIMS Patna MoU (confirmed, snakebite annex needed)</td><td><strong>ICMR-RMRC CFR program live</strong></td><td>None</td></tr>
+    <tr><td>108 coverage</td><td>Churned in endemic districts</td><td><strong>EMRI + Ziqitza dual coverage</strong></td><td>Ziqitza only</td></tr>
+    <tr><td>Delivery probability</td><td>0.14 (weakest)</td><td><strong>0.29 (best)</strong></td><td>~0.18</td></tr>
+  </tbody>
+</table>
+
+<p>The sequencing logic: <strong>Odisha → Bihar, not Bihar first.</strong> Bihar has more deaths and is the higher-stakes bet, but without a functioning delivery substrate the funds would flow into a broken system. Odisha has the infrastructure to generate a proof-of-model that can then be used to fix Bihar's system. The AIIMS Patna MoU is a necessary but not sufficient condition for Bihar — the snakebite annex with a district CFR endpoint must be signed and functioning before Tranche B release.</p>
+
+<h2 id="africa">Africa vs India — why India is the primary bet, and what Africa needs to clear the bar</h2>
+
+<div class="africa-box">
+  <div class="abl">The comparison — burden, product, delivery</div>
+  <p style="font-family:system-ui,sans-serif;font-size:13.5px;color:#333;line-height:1.7;margin-bottom:.8rem;">Africa's burden is real and substantial — approximately <strong>20,000–50,000 deaths/yr depending on the estimation method</strong> (the wide range reflects poor surveillance infrastructure and large numbers of out-of-hospital deaths that never enter health system records). Nigeria's formal hospital-reported deaths are around 1,900–2,000/yr, but older community surveys estimated up to ~10,000 deaths per year in savanna Nigeria alone — the true figure is somewhere in this range and genuinely unknown. Africa's community-level CFR in poorly served areas (12–20% for <em>Echis</em> in the Benue valley, Nigeria) is 2–3× higher than India's district hospital CFR (5–8%). A higher baseline CFR is an asset in CEA arithmetic: more deaths are avertable per intervention dollar. In theory, Africa should be a better cost-effectiveness bet than India.</p>
+  <p style="font-family:system-ui,sans-serif;font-size:13.5px;color:#333;line-height:1.7;margin-bottom:.8rem;"><strong>In practice, Africa cannot clear the $150/DALY bar yet — not because of its burden, but because of product cost and delivery infrastructure gaps that India does not face.</strong> The conclusion "India first" is a delivery-probability judgment, not a dismissal of Africa's burden. The conditions that would flip this conclusion are identifiable and worth tracking.</p>
+</div>
+
+<h3>The head-to-head comparison — where Africa is ahead and where it is blocked</h3>
+
+<table>
+  <thead><tr><th>Dimension</th><th>India (current)</th><th>Africa (Nigeria/Ethiopia focus)</th><th>Who is ahead</th></tr></thead>
+  <tbody>
+    <tr><td>Baseline community CFR (the raw mortality problem)</td><td>5–8% at district hospital; higher in out-of-facility deaths</td><td>10–20% (<em>Echis</em>-dominant areas); 40–80% for untreated <em>Bitis gabonica</em></td><td><strong>Africa</strong> — higher baseline = more deaths avertable per dollar, if delivery costs are controlled</td></tr>
+    <tr><td>Antivenom product availability</td><td>Several million vials/yr produced domestically. Product exists in quantity; quality/cold-chain is the failure.</td><td>EchiTAb-Plus-ICP: ~20–30k vials/yr total. SAIMR: limited West African efficacy. No pan-African polyvalent since Fav-Afrique collapse (2014–16).</td><td><strong>India</strong> — product volume is not the bottleneck</td></tr>
+    <tr><td>Antivenom unit cost</td><td>Indian polyvalent: ~$3–8/vial ex-factory</td><td>EchiTAb-Plus: ~$40–80/vial; treatment course $160–640</td><td><strong>India</strong> — 10–20× cheaper per vial; course cost inside the CEA bar</td></tr>
+    <tr><td>Transport infrastructure</td><td>GVK-EMRI / Ziqitza 108 system: GPS dispatch, 16 states, pre-staged ASV</td><td>No 108-equivalent anywhere in SSA. Community transport = family vehicle, motorcycle, or nothing</td><td><strong>India</strong> — the 108 system is irreplaceable and took decades to build</td></tr>
+    <tr><td>Cold chain</td><td>Problematic — 40–48°C summers, endemic power outages. Solvable with lyophilized ASV.</td><td>Worse than India — higher ambient temperatures, lower grid reliability, fewer functioning rural facility refrigerators</td><td>Neither — both need lyophilized formulation; Africa needs it more urgently</td></tr>
+    <tr><td>Government policy anchor</td><td>NAPSE (2024), state programs in Odisha (disaster status 2015), Bihar (SAPSE drafting)</td><td>Fragmented national policies; Nigeria FMOH programs exist but thin; WHO NTD country plans</td><td><strong>India</strong> — NAPSE and state-level death-audit infrastructure meaningfully de-risk delivery</td></tr>
+    <tr><td>Research infrastructure + delivery probability</td><td>ICMR-RMRC CFR program live in Odisha; AIIMS Patna MoU; ICMR NTF survey data. Delivery probability: Odisha 0.29, Bihar 0.14.</td><td>LSTMH Nigeria research sites (Wellcome-funded); MSF field data. No 108-equivalent implementation partner. No established delivery probability estimate.</td><td><strong>India</strong> — research anchors that de-risk deployment exist; Africa lacks the equivalent</td></tr>
+  </tbody>
+</table>
+
+<h3>Why Africa's higher CFR doesn't save the CEA — yet</h3>
+
+<p>The Africa $/DALY arithmetic fails today not because the baseline CFR is too low (it's higher than India's), but because the <strong>cost side of the equation is too high</strong>. At $150/DALY and 30 DALYs/death, the budget per averted death is $4,500. At 13pp CFR reduction across 1,000 patients, 130 deaths are averted — giving a cost budget of $585,000. That budget has to cover:</p>
+
+<ul class="bl">
+  <li>EchiTAb-Plus at current prices: $40–80/vial × 6 vials × 500 seeking-care patients = <strong>$120,000–240,000</strong> on ASV alone — already 20–40% of the budget before transport or training.</li>
+  <li>Transport (motorcycle ambulance schemes, no 108 equivalent): ~$30–50 per transport in Nigeria × 500 = $15,000–25,000</li>
+  <li>CHC health worker training: ~$500/worker × 40–60 workers = $20,000–30,000</li>
+  <li>At optimistic pricing (EchiTAb at $8/vial — achievable only at ~100k vials/yr, 3–5× current production): total ~$64,000–84,000 for 130 deaths averted → <strong>~$16–22/DALY</strong></li>
+</ul>
+
+<p>The Africa opportunity is therefore real but conditional: it requires EchiTAb-Plus production to scale 3–5× (lead time 3–5 years with committed buyers), a community transport model proven for snakebite, and a Nigeria proof-of-concept with a CFR endpoint. None of these conditions are met in 2026. The ECWA Hospital Egbe (Kogi State, Nigeria) Egbe Protocol — near-zero snakebite mortality through systematic ASV access — is the proof-of-concept model for what a funded replication program would build toward.</p>
+
+<h3>What needs to happen for Africa to clear the bar</h3>
+
+<ul class="bl">
+  <li><strong>EchiTAb-Plus production volume:</strong> needs 5–10× scale-up for pricing to fall to ≤$10/vial. Requires a committed buyer (government health ministry + philanthropic bridge). Lead time: 3–5 years. This is the single largest unresolved bottleneck.</li>
+  <li><strong>Nigeria proof-of-concept:</strong> LSTMH/Wellcome/MSF-anchored program at 20–30 rural CHC sites with a CFR endpoint — similar in design to the Odisha QI program. Needs 2–3 years of data before scale investment is justified.</li>
+  <li><strong>Community transport model:</strong> Motorcycle ambulance schemes (Riders for Health model), prepaid transport vouchers, or equivalent. Need to be proven for snakebite specifically; existing programs can be adapted but require snakebite-protocol training.</li>
+  <li><strong>Recombinant antivenom pipeline:</strong> The DTU nanobody platform (Nature, Oct 2025) demonstrated $26–132/treatment estimated drug substance cost at scale, with broad coverage across 17 African species. If this reaches deployment (realistically 2032–35), it could reduce antivenom course cost 5–10× and eliminate the cold-chain requirement — the two biggest barriers to Africa cost-effectiveness. This is a watch item for future portfolio design, not a current bet.</li>
+</ul>
+
+<details>
+<summary>Africa $/DALY arithmetic — what has to be true for the threshold to clear</summary>
+<div class="details-body">
+<h4>Worked arithmetic for Nigeria (optimistic)</h4>
+<p>Basic setup: at $150/DALY threshold and 30 DALYs/death → $4,500 budget per averted death. At baseline CFR 15% and intervention CFR 2% (13pp reduction) across 1,000 snakebite patients → 130 deaths averted → total cost budget $585,000.</p>
+<ul>
+  <li>Lyophilized EchiTAb-Plus at ≤$8/vial (requires volume purchasing) × 6 vials = $48 per treatment</li>
+  <li>500 patients seeking care × $48 treatment = $24,000</li>
+  <li>Transport × 500 = $40/transport × 500 = $20,000</li>
+  <li>CHC training amortized = $20,000–40,000</li>
+  <li>Total: ~$64,000–84,000 for 130 deaths averted → ~$490–650/death → <strong>~$16–22/DALY</strong></li>
+</ul>
+<p>This is highly optimistic. The $8/vial price requires volumes that don't exist. The 15% baseline CFR assumes truly unserved populations. The 13pp CFR reduction requires clinical capacity needing investment. But it shows the <em>potential</em>: Africa's higher baseline CFR is a genuine asset if costs are controlled.</p>
+<h4>What stops Africa from clearing the bar today</h4>
+<table>
+  <thead><tr><th>Parameter</th><th>Required</th><th>Current status</th><th>Gap</th></tr></thead>
+  <tbody>
+    <tr><td>ASV unit cost</td><td>&lt;$60/course</td><td>$160–640/course</td><td><strong>Critical — needs 5–10× volume scale-up</strong></td></tr>
+    <tr><td>Delivery cost per patient</td><td>&lt;$150/patient</td><td>~$200–400/patient est.</td><td><strong>Significant</strong></td></tr>
+    <tr><td>Community transport</td><td>Organized system</td><td>No 108-equivalent in SSA</td><td><strong>Hardest gap to close</strong></td></tr>
+    <tr><td>Lyophilized ASV</td><td>Required</td><td>EchiTAb-Plus is lyophilized ✓; SAIMR liquid ✗</td><td>Partial</td></tr>
+    <tr><td>CHC clinical capacity</td><td>Nurse + ASV training + 20WBCT</td><td>Variable; bridgeable</td><td>Moderate — similar to India Tier 3</td></tr>
+  </tbody>
+</table>
+</div>
+</details>
+
+<h2 id="gates">Kill-switches — falsifiable outcome gates</h2>
+
+<div class="callout">
+  <strong>Measure deaths averted, not vials distributed.</strong> The failure mode in snakebite programs is good intentions with no one counting the CFR denominator. Every distribution line must report case-fatality outcomes. Process metrics (vials stocked, training completed) are leading indicators, not success criteria.
+</div>
+
+<details>
+<summary>Full kill-switch table by tier and milestone</summary>
+<div class="details-body">
+<table>
+  <thead><tr><th>Tier</th><th>M6</th><th>M12</th><th>M24 primary</th><th>Kill condition</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Tier 1 (NAPSE)</strong></td><td>Notifiable reporting ≥80%; master-trainers deployed</td><td>Care-seeking &lt;2h ↑ ≥5pp, CI≠0</td><td>Attributable CFR contribution</td><td>Kill if care-seeking CI includes 0</td></tr>
+    <tr><td><strong>Tier 2 (CHC/ASV/transport)</strong></td><td>Lyophilized ASV potent at ≥80% CHCs by independent assay</td><td>Bite→ASV time ↓ ≥30%; referral-to-ASV ≥70%, CI≠0</td><td>CHC-catchment CFR ≤3% vs. 5–8%, CI≠0</td><td>Re-procure if &lt;60% stocked or potency fails &gt;20%; halt if transport landing at ASV-less destinations</td></tr>
+    <tr><td><strong>Tier 3 (District QI)</strong></td><td>Protocol + skills at ≥80% DHs; audit cycle live</td><td>Guideline-concordant management ≥70%, CI≠0</td><td><strong>DH snakebite CFR ≤2–3% vs. 5–8%, CI≠0</strong></td><td><strong>Portfolio-level kill if primary CFR CI includes 0 at M24</strong></td></tr>
+    <tr><td><strong>Mode-C</strong></td><td>Trained to trigger 108 only; zero harmful first-aid</td><td>Pre-hospital delay ↓ ≥20%</td><td>Net CFR contribution</td><td><strong>Immediate kill if any harmful first-aid trained</strong></td></tr>
+    <tr><td><strong>ASV potency QA</strong></td><td colspan="3">Systemic QA failure → pause all ASV-dependent tiers until QA-passed lyophilized batches resume</td><td>Any batch failure >20% — pause and re-source</td></tr>
+  </tbody>
+</table>
+<p>Cross-cutting: IGIMS/NMCH are named backup anchors for Bihar if the AIIMS Patna snakebite annex fails to materialize. The M&amp;E Lead has explicit kill-switch call authority — independent of program staff.</p>
+</div>
+</details>
+
+<h2 id="grant">Grant structure</h2>
+
+<table>
+  <thead><tr><th>Tranche</th><th>Timing</th><th>Amount</th><th>Release condition</th></tr></thead>
+  <tbody>
+    <tr><td><strong>A — Odisha anchor + build</strong></td><td>Year 1</td><td>~$15M</td><td>Unconditional — baseline, lyophilized ASV procurement, ICMR-RMRC QI protocols, 108 pathway, NAPSE surveillance, lyophilized stability evidence tranche</td></tr>
+    <tr><td><strong>B — Bihar scale</strong></td><td>Year 2</td><td>~$13M</td><td>Odisha M6 (ASV potency ≥80%) + M12 (bite→ASV ↓≥30%, care-seeking ↑≥5pp) + signed snakebite annex to AIIMS Patna–SHS Bihar MoU</td></tr>
+    <tr><td><strong>C — Jharkhand + consolidation</strong></td><td>Year 3</td><td>~$6M + top-ups</td><td>Odisha M24 CFR (≤3%, CI≠0)</td></tr>
+    <tr><td><strong>D — Africa proof-of-concept</strong></td><td>Parallel</td><td>$2–5M</td><td>Nigeria ECWA Egbe protocol site expansion + EchiTAb-Plus sole-producer risk mitigation</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <strong>Three essential pre-Tranche-A hires:</strong> (1) Portfolio Clinical Lead — toxinology background, owns protocol training and case audit; (2) Procurement + Cold-Chain Lead — owns lyophilized ASV sourcing and potency QA contracts; (3) Independent M&amp;E / Data Lead — owns baselines, register linkage, kill-switch call authority. The M&amp;E Lead's specific mandate is counting the denominator. Prioritize Wellcome Trust alumni for all three — they have the field relationships and landscape knowledge.
+</div>
+
+<h2 id="verdict">Verdict</h2>
+
+<div class="note">
+  <div class="nt">Phased structure</div>
+  A sensible phased structure: <strong>Phase 1 — $10–15M test portfolio</strong> (Odisha proof-of-model, Bihar ecosystem-building, Nigeria proof-of-concept, Ethiopia scoping). Phase 2 — scale once M12/M24 kill-switches are cleared and CFR endpoints are met. Highest-priority parallel task: source a Programme Manager with Wellcome Trust alumni connections and delivery-system experience.
+</div>
+
+<p>India has a proven treatment, an operational ambulance network, and a government policy framework that creates anchor points for delivery investment. The blended portfolio sits at roughly $150/DALY — on the threshold. District QI at $110/DALY is the strongest component and is clearly inside the bar. CHC/transport at $207/DALY is outside on raw cost, but a trained district hospital cannot demonstrate a CFR reduction if patients are arriving after the therapeutic window has already closed — the tiers are interdependent.</p>
+
+<p>Three things this portfolio is not: an R&amp;D bet (the pipeline is 4+ years from deployment readiness), undifferentiated antivenom distribution (the corrected model shows $335/DALY for generic programs — worse than cash), or a footwear program ($254,000/DALY at the median, zero probability of clearing the bar).</p>
+
+<p>Africa has a plausible path but the conditions aren't met yet: EchiTAb-Plus needs to scale 5–10× in volume before pricing becomes viable, and there is no 108-equivalent to build a delivery system around. Fund Africa at $2–5M as a proof-of-concept; fund India as the primary bet. Don't conflate them.</p>
+
+<p>The kill-switches are outcome-based and must stay that way. If M24 CFR doesn't move with CI ≠ 0, the portfolio failed. Process metrics — vials stocked, trainings completed — are not success.</p>
+
+<div style="margin-top:5rem;padding-top:2rem;border-top:1px solid #e0deda;">
+  <div style="font-family:system-ui,sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:#bbb;margin-bottom:1rem;">Deep research runs — click to read full analysis</div>
+  <ul style="list-style:none;margin:0;padding:0;font-family:system-ui,sans-serif;font-size:13px;">
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1C-v9i9rO3ScN1OIoSWEDCrNE2NxG2FMlpG2pfjk1bps/edit">Snakebite portfolio synthesis — September 2026 (summary)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1WVO0PcKuNhaHGdvsCX0pHANk3aSyG3HCOgq0r5yboBc/edit">Snakebite portfolio synthesis — September 2026 (full)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1es_ysXGe8vyylZ6jm1jNazNUD5uXQZpUHHd_7j_kiWc/edit">Snakebite portfolio implementation design (summary)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1BhZnM0p0xY75jfVCZmV42rvCVwu3b1qEXi0CK6VhyZU/edit">Snakebite portfolio implementation design (full)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1Dg5kfshLFiCOG1iEv1zipqAv-ZiWZRALC_xBtoSu50A/edit">Snake gaiters vs boots — prevention CEA, field compliance, $40 vs $250 (summary)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1b1pjYJVMduOv6hyUz5Pkgpk6LC1CxMq--QW9onYHBRI/edit">Snake gaiters vs boots — prevention CEA, field compliance, $40 vs $250 (full)</a></li>
+    <li style="margin-bottom:.5rem;color:#888;font-style:italic;">Antivenom mismatch — patients who seek care but receive wrong/insufficient product (loop running, Sep 2026)</li>
+  </ul>
+</div>
+</main>
+</div>
+
+<script>
+let allOpen = false;
+function toggleAll() {
+  allOpen = !allOpen;
+  document.querySelectorAll('details').forEach(d => d.open = allOpen);
+  document.getElementById('expand-all-btn').textContent = allOpen ? 'Collapse all' : 'Expand all details';
+}
+const sections = document.querySelectorAll('h2[id]');
+const navLinks = document.querySelectorAll('nav ul li a[href^="#"]');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`nav a[href="#${e.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

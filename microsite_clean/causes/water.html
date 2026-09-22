@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Water Quality — Cause Area Report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --accent: #0c4a6e;
+    --accent-light: #f0f9ff;
+    --accent-border: #7dd3fc;
+    --text: #1a1a1a;
+    --border: #e0deda;
+    --bg: #fafaf8;
+    --surface: #fff;
+    --surface-alt: #f7f6f4;
+  }
+
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.88; color: var(--text); background: var(--bg); }
+  .layout { display: flex; min-height: 100vh; }
+  nav { width: 232px; flex-shrink: 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 2.25rem 1.5rem; background: var(--surface-alt); border-right: 1px solid var(--border); }
+  nav .home { display: block; font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; color: #999; text-decoration: none; margin-bottom: 1.5rem; }
+  nav .home:hover { color: #333; }
+  nav h5 { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #bbb; margin-bottom: .6rem; margin-top: 1.5rem; }
+  nav ul { list-style: none; }
+  nav ul li a { font-family: system-ui, sans-serif; font-size: 12.5px; color: #666; text-decoration: none; display: block; padding: .22rem .6rem; border-left: 2px solid transparent; }
+  nav ul li a:hover { color: var(--text); }
+  nav ul li a.active { color: var(--text); border-left-color: var(--accent); font-weight: 600; }
+  nav .current { color: var(--accent) !important; font-weight: 600; }
+  nav .sep { height: 1px; background: var(--border); margin: 1.5rem 0; }
+
+  main { flex: 1; max-width: 800px; padding: 4rem 3.5rem 7rem; }
+  .eyebrow { font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin-bottom: .6rem; }
+  h1 { font-size: 2.5rem; line-height: 1.15; font-weight: 700; letter-spacing: -.025em; margin-bottom: .45rem; color: #0f0f0f; }
+  .dek { font-family: system-ui, sans-serif; font-size: 15.5px; color: #666; margin-bottom: 2.75rem; line-height: 1.5; }
+
+  .verdict { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 1.3rem 1.6rem; margin-bottom: 3.25rem; }
+  .verdict .vl { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #aaa; margin-bottom: .5rem; }
+  .verdict p { font-family: system-ui, sans-serif; font-size: 13.5px; color: #333; line-height: 1.65; margin-bottom: .55rem; }
+  .verdict p:last-child { margin-bottom: 0; }
+
+  .metrics { display: flex; gap: 1.25rem; margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .metric { background: var(--surface); border: 1px solid var(--border); padding: 1rem 1.25rem; flex: 1; min-width: 120px; }
+  .metric .mv { font-size: 1.45rem; font-weight: 700; color: #0f0f0f; font-family: system-ui, sans-serif; letter-spacing: -.02em; line-height: 1.1; }
+  .metric .ml { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: #aaa; margin-top: .3rem; }
+
+  h2 { font-size: 1.6rem; font-weight: 700; margin-top: 4rem; margin-bottom: 1.25rem; letter-spacing: -.015em; padding-bottom: .5rem; border-bottom: 1px solid var(--border); scroll-margin-top: 1.5rem; }
+  h3 { font-size: 1.1rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: .7rem; color: #222; }
+  p { margin-bottom: 1.2rem; }
+  a { color: #1d4ed8; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:hover { color: #1e3a8a; }
+
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 2.25rem; font-family: system-ui, sans-serif; font-size: 13px; }
+  th { text-align: left; padding: .6rem .85rem; background: var(--surface-alt); border: 1px solid var(--border); font-weight: 600; color: #333; }
+  td { padding: .55rem .85rem; border: 1px solid var(--border); color: #444; vertical-align: top; line-height: 1.5; }
+  tr:nth-child(even) td { background: #faf9f7; }
+
+  .callout { background: var(--accent-light); border: 1px solid var(--accent-border); padding: 1.1rem 1.5rem; margin: 2rem 0; font-size: .94rem; line-height: 1.72; }
+  .callout strong { color: var(--accent); }
+
+  details { border: 1px solid var(--border); margin: 1.5rem 0; }
+  details summary { padding: .9rem 1.15rem; font-family: system-ui, sans-serif; font-size: 13.5px; font-weight: 600; color: #333; cursor: pointer; background: var(--surface-alt); list-style: none; display: flex; align-items: center; gap: .6rem; user-select: none; }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::before { content: '▶'; font-size: 10px; color: #aaa; transition: transform .15s; flex-shrink: 0; }
+  details[open] summary::before { transform: rotate(90deg); }
+  details summary:hover { background: #efede9; }
+  .details-body { padding: 1.25rem 1.5rem; font-family: system-ui, sans-serif; font-size: 13.5px; line-height: 1.72; color: #333; border-top: 1px solid var(--border); }
+  .details-body p { font-family: system-ui, sans-serif; font-size: 13.5px; margin-bottom: .9rem; }
+  .details-body table { font-size: 12.5px; }
+  .details-body h4 { font-weight: 700; margin: 1rem 0 .4rem; color: #222; font-size: 13.5px; }
+  .details-body ul, .details-body ol { margin: .4rem 0 .9rem 1.4rem; }
+  .details-body ul li, .details-body ol li { margin-bottom: .3rem; }
+
+  .approach { border: 1px solid var(--border); margin: 1.5rem 0 2rem; }
+  .approach .ah { background: var(--surface-alt); padding: .85rem 1.15rem; border-bottom: 1px solid var(--border); font-family: system-ui, sans-serif; font-weight: 700; font-size: 14px; color: #111; }
+  .approach .ab { padding: 1.15rem 1.25rem 1rem; font-family: system-ui, sans-serif; font-size: 13.5px; line-height: 1.7; color: #333; }
+  .approach .ab p { font-family: system-ui, sans-serif; font-size: 13.5px; margin-bottom: .8rem; }
+  .approach .ab p:last-child { margin-bottom: 0; }
+
+  .diagram { background: var(--surface); border: 1px solid var(--border); padding: 1.5rem; margin: 2rem 0; overflow-x: auto; }
+  .diagram-label { font-family: system-ui, sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #999; margin-bottom: 1rem; }
+
+  ul.bl, ol.bl { margin: .5rem 0 1.2rem 1.7rem; }
+  ul.bl li, ol.bl li { margin-bottom: .5rem; }
+
+  #expand-all-btn { font-family: system-ui, sans-serif; font-size: 12px; color: #888; background: none; border: 1px solid #ddd; padding: .3rem .7rem; cursor: pointer; float: right; margin-top: 3.8rem; }
+  #expand-all-btn:hover { background: var(--surface-alt); }
+
+  .cea-tag { display: inline-block; font-family: system-ui, sans-serif; font-size: 10px; font-weight: 700; padding: .12rem .45rem; margin-left: .7rem; text-transform: uppercase; letter-spacing: .05em; vertical-align: middle; background: #dbeafe; color: #1e3a8a; border-radius: 2px; }
+  .cea-tag.green { background: #dcfce7; color: #166534; }
+  .cea-tag.amber { background: #fef3c7; color: #92400e; }
+  .cea-calc { background: #f0f4ff; border: 1px solid #bfdbfe; padding: .85rem 1.1rem; margin: .75rem 0 .5rem; font-family: system-ui, sans-serif; font-size: 12.5px; line-height: 1.68; color: #1e3a8a; }
+  .cea-calc .cc-label { font-size: 10px; text-transform: uppercase; letter-spacing: .07em; color: #6b7280; margin-bottom: .35rem; font-weight: 600; }
+  .cea-calc code { font-family: 'Courier New', monospace; font-size: 11.5px; background: #dbeafe; padding: .05rem .3rem; border-radius: 2px; }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav>
+  <h5>This report</h5>
+  <ul>
+    <li><a href="#landscape">Landscape</a></li>
+    <li><a href="#why-ilc">Why ILC wins</a></li>
+    <li><a href="#mechanism">The mechanism debate</a></li>
+    <li><a href="#cea">Cost-effectiveness</a></li>
+    <li><a href="#implementers">Implementers</a></li>
+    <li><a href="#usaid">USAID gap</a></li>
+    <li><a href="#approaches">Approaches by scale</a></li>
+    <li><a href="#verdict">Verdict</a></li>
+  </ul>
+</nav>
+
+<main>
+<button id="expand-all-btn" onclick="toggleAll()">Expand all details</button>
+
+<div class="eyebrow">Cause Area Report · September 2026</div>
+<h1>Water Quality</h1>
+<div class="dek">Inline liquid chlorination in Francophone sub-Saharan Africa: settled evidence, a proven technology at $1.50/person-year, and a geography where no funder has yet built implementer capacity.</div>
+
+<div class="verdict">
+  <div class="vl">Bottom line</div>
+  <p><strong>Fund $20M/yr over 2–3 years, structured as implementer-building in Francophone/ex-USAID Africa.</strong> ILC survives a 6× discount from the Kremer 2023 mortality evidence and still clears the cash bar (P≥99%). The raw $/DALY of $88.5 sits inside the &lt;$150/DALY threshold comfortably. Even the additionality-adjusted estimate ($199/DALY) is competitive with cash transfers. The binding constraint is not evidence, technology, or disease burden — it is organizations with French-language operational presence, chlorine supply chains in Sahelian markets, and organizational health to absorb $3–5M/year without losing quality controls.</p>
+  <p><strong>Where specifically:</strong> Uduma in Mali (deploy-now, 400 boreholes within 6 months), greenfield Niger (highest U5MR on Earth, 18-month org-build), Solidarités International in Burkina Faso (security-gated with explicit redeploy clause). <a href="https://blog.givewell.org/2025/01/14/givewell-is-looking-to-fund-pilots-of-water-chlorination-programs/">GiveWell's January 2025 RFI</a> explicitly names Francophone Africa as their gap — this grant fills what they've asked for.</p>
+  <p><strong>The $150/DALY check:</strong> raw ILC best-geography at $88.5/DALY is well inside the threshold. Additionality-adjusted at $199/DALY is outside it on a strict reading but well inside cash (~$200–300/DALY). The case is strongest in Francophone Africa precisely because additionality is highest (no other organized funder present), pushing the effective $/DALY toward the raw estimate.</p>
+</div>
+
+<div class="metrics">
+  <div class="metric"><div class="mv">$88.5</div><div class="ml">Raw median $/DALY (best-geography)</div></div>
+  <div class="metric"><div class="mv">$199</div><div class="ml">Additionality-adjusted $/DALY</div></div>
+  <div class="metric"><div class="mv">$1.50</div><div class="ml">Per person per year at scale</div></div>
+  <div class="metric"><div class="mv">~$20M/yr</div><div class="ml">Additional absorptive ceiling</div></div>
+</div>
+
+<h2 id="landscape">Landscape — what has been tried, what we've learned, who is doing what</h2>
+
+<h3>The evolution of the evidence base</h3>
+
+<p>Water treatment has one of the longest evidence-generating histories in global health, and the evidence has changed the field's view substantially over the past 20 years.</p>
+
+<p><strong>Phase 1 (1990s–2010): optimism about household water treatment (HWT).</strong> Chlorine tablets, household filters (ceramic, biosand, LifeStraw), and solar disinfection (SODIS) all showed strong diarrheal disease reductions in early trials — reductions of 35–50% in some studies. Donors invested heavily in tablet distribution, filter provision, and community SODIS programs across East Africa and South Asia.</p>
+
+<p><strong>Phase 2 (2008–2018): the compliance reckoning.</strong> As researchers conducted longer-term trials with less researcher contact (normal implementation conditions vs. monitored research conditions), the efficacy estimates fell sharply. The problem was compliance: households used tablets and filters when researchers were watching but reverted to untreated water in between visits. A series of trials documented that actual usage rates in programmatic settings were 30–60% of nominal coverage — consistent with the observation that behavior change around water treatment requires sustained effort and rarely sustains itself. The 2012 Cochrane review on HWT was substantially less optimistic than earlier estimates.</p>
+
+<p><strong>Phase 3 (2018–present): source-level treatment and the ILC pivot.</strong> The field pivoted toward source-level treatment as the structural solution to the compliance problem: if you chlorinate at the water point, you don't need the household to do anything. Two technologies dominate this approach:</p>
+<ul class="bl">
+  <li><strong>Chlorine dispensers</strong> (Evidence Action's Dispensers for Safe Water): a point-of-use dispenser installed at a borehole or water kiosk that allows users to self-dose their jerry cans. The dispenser is publicly accessible; no individual household needs to own or maintain anything. Adoption rates in East Africa have run 50–70%.</li>
+  <li><strong>Inline liquid chlorination (ILC)</strong>: a pump-integrated device that automatically doses chlorine every time someone pumps, requiring no household action. 100% effective coverage of all water from that borehole. No adoption rate to worry about.</li>
+</ul>
+
+<p><a href="https://www.nber.org/papers/w30835">Kremer et al. 2023 (NBER w30835)</a> is the meta-analysis that changed the evidence landscape. Pooling 15 RCTs and approximately 25,000 children, Kremer finds that water treatment cuts <em>all-cause under-5 mortality odds by ~25%</em>. This is substantially larger than what the diarrhea-specific pathway (only ~8–10% of U5 deaths) can explain — implying immune/nutritional spillovers, or publication bias in the underlying trial pool.</p>
+
+<h3>GiveWell's program — what's funded, what's not</h3>
+
+<p><a href="https://www.evidenceaction.org/programs/safe-water-now">Evidence Action's Safe Water Now</a> is GiveWell's primary water quality vehicle. As of 2026:</p>
+<ul class="bl">
+  <li><strong>India ILC program:</strong> GiveWell's <a href="https://www.givewell.org/research/grants/evidence-action-in-line-chlorination-india-september-2023">September 2023 grant</a> supports EA's ILC expansion across Bihar, Uttar Pradesh, and Rajasthan, targeting 260M person-years of coverage at ~$0.15/person-year (fully loaded). GiveWell's model: 4.12% all-cause U5 mortality reduction (1–7% CI), 22× cash central (3–34× range).</li>
+  <li><strong>East Africa dispensers:</strong> Dispensers for Safe Water operates ~53,000 dispensers in Kenya, Uganda, Malawi, and Zambia, reaching approximately 10M people. 2024 monitoring in Uganda and Malawi <a href="https://www.evidenceaction.org/insights/following-the-evidence-even-when-its-hard-an-update-on-chlorine-dispensers-in-uganda-and-malawi">showed residual chlorine coverage below expected</a> — an adoption shortfall that accelerated GiveWell's interest in ILC over dispensers as the primary scale-up modality.</li>
+  <li><strong>The named gap:</strong> GiveWell's <a href="https://blog.givewell.org/2025/01/14/givewell-is-looking-to-fund-pilots-of-water-chlorination-programs/">January 2025 RFI</a> and <a href="https://blog.givewell.org/2026/05/26/building-our-safe-water-grantmaking-apply-to-the-div-funds-rfp/">May 2026 DIV RFP</a> explicitly named Francophone sub-Saharan Africa as a geography with unmet need and no current implementer partners. They are actively looking for organizations to fund — this is a funder with capital waiting for implementers, not a funder you need to convince of the theory.</li>
+</ul>
+
+<h3>What's been tried in Francophone Africa and what happened</h3>
+
+<p>Several water programs have operated in Francophone West and Central Africa with mixed results:</p>
+
+<ul class="bl">
+  <li><strong>WaterAid Francophone offices (Mali, Niger, Senegal, Burkina Faso)</strong>: primarily policy advocacy and government engagement; limited direct delivery capacity; strong on WASH sector coordination but thin on operational program management. Have not run ILC programs at scale.</li>
+  <li><strong>UNICEF WASH</strong>: installed borehole infrastructure across the Sahel for decades; does not operate ILC programs; has historically focused on hardware (pumps, pipes) rather than water quality treatment. The borehole network they built is the infrastructure that ILC programs would leverage.</li>
+  <li><strong>Solidarités International</strong>: humanitarian WASH organization with strong technical capacity but humanitarian mandate that limits stable-context programming. Have run emergency chlorination in DRC, CAR, and northern Burkina Faso during crises — this is relevant experience, but their organizational model is not designed for sustained multi-year community water quality programs.</li>
+  <li><strong>IRC WASH</strong>: an international advisory and research organization (not a delivery NGO) with strong Niger and CAR presence; has documented the borehole infrastructure landscape and government relationships needed for Niger programming, but does not directly implement water treatment programs at CHC scale.</li>
+  <li><strong>AFD (Agence Française de Développement)</strong>: the French bilateral, which funds WASH infrastructure across Francophone Africa; historically has not funded ILC operating costs (chlorine procurement, maintenance, monitoring) — focuses on capital expenditure. This is a potential co-funder but not a gap-filler for operating costs.</li>
+</ul>
+
+<p>The pattern is consistent: Francophone Africa has water infrastructure (boreholes) and has had funders for hardware, but has never had an organized implementer providing the operating layer — chlorination, quality monitoring, maintenance of dosing equipment — that makes the infrastructure actually deliver safe water. This is the specific gap.</p>
+
+<h2 id="why-ilc">Why ILC — the technology choice and its implications</h2>
+
+<div class="diagram">
+  <div class="diagram-label">ILC mechanism — how inline chlorination works at a borehole</div>
+  <svg viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;font-family:system-ui,sans-serif;font-size:11px;">
+    <!-- Borehole -->
+    <rect x="30" y="80" width="50" height="100" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" rx="2"/>
+    <text x="55" y="75" text-anchor="middle" fill="#475569" font-size="10">Borehole</text>
+    <text x="55" y="88" text-anchor="middle" fill="#475569" font-size="9">(0–50m)</text>
+    <!-- Pump -->
+    <rect x="20" y="60" width="70" height="25" fill="#cbd5e1" stroke="#64748b" stroke-width="1.5" rx="3"/>
+    <text x="55" y="77" text-anchor="middle" fill="#334155" font-weight="600" font-size="11">PUMP</text>
+    <!-- ILC device -->
+    <rect x="130" y="50" width="100" height="40" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2" rx="4"/>
+    <text x="180" y="68" text-anchor="middle" fill="#1e3a5f" font-weight="700" font-size="11">ILC Device</text>
+    <text x="180" y="82" text-anchor="middle" fill="#1e3a5f" font-size="9">auto-doses NaOCl</text>
+    <!-- Chlorine reservoir -->
+    <rect x="130" y="105" width="100" height="55" fill="#dbeafe" stroke="#60a5fa" stroke-width="1.5" rx="4"/>
+    <text x="180" y="122" text-anchor="middle" fill="#1e3a5f" font-size="10" font-weight="600">NaOCl reservoir</text>
+    <text x="180" y="137" text-anchor="middle" fill="#1e3a5f" font-size="9">0.5% sodium hypochlorite</text>
+    <text x="180" y="150" text-anchor="middle" fill="#1e3a5f" font-size="9">$0.80–1.20/person/yr</text>
+    <!-- Arrow from reservoir to device -->
+    <line x1="180" y1="105" x2="180" y2="90" stroke="#3b82f6" stroke-width="2" marker-end="url(#b)"/>
+    <!-- Arrow from pump to ILC -->
+    <line x1="90" y1="72" x2="130" y2="72" stroke="#64748b" stroke-width="2" marker-end="url(#b)"/>
+    <!-- Arrow from ILC to pipe -->
+    <line x1="230" y1="72" x2="270" y2="72" stroke="#0369a1" stroke-width="2.5" marker-end="url(#b)"/>
+    <!-- Pipe / standpipe -->
+    <rect x="270" y="55" width="80" height="35" fill="#ecfdf5" stroke="#059669" stroke-width="2" rx="4"/>
+    <text x="310" y="73" text-anchor="middle" fill="#065f46" font-weight="700" font-size="11">Standpipe</text>
+    <text x="310" y="86" text-anchor="middle" fill="#065f46" font-size="9">0.2–0.5 mg/L residual Cl</text>
+    <!-- Arrows to users -->
+    <line x1="350" y1="72" x2="400" y2="50" stroke="#059669" stroke-width="1.5" marker-end="url(#b)"/>
+    <line x1="350" y1="72" x2="400" y2="72" stroke="#059669" stroke-width="1.5" marker-end="url(#b)"/>
+    <line x1="350" y1="72" x2="400" y2="95" stroke="#059669" stroke-width="1.5" marker-end="url(#b)"/>
+    <!-- User icons (simple) -->
+    <circle cx="420" cy="45" r="8" fill="#d1fae5" stroke="#059669" stroke-width="1"/>
+    <text x="420" y="49" text-anchor="middle" fill="#065f46" font-size="10">👤</text>
+    <circle cx="420" cy="70" r="8" fill="#d1fae5" stroke="#059669" stroke-width="1"/>
+    <text x="420" y="74" text-anchor="middle" fill="#065f46" font-size="10">👤</text>
+    <circle cx="420" cy="95" r="8" fill="#d1fae5" stroke="#059669" stroke-width="1"/>
+    <text x="420" y="99" text-anchor="middle" fill="#065f46" font-size="10">👤</text>
+    <text x="420" y="115" text-anchor="middle" fill="#555" font-size="9">800–1,500</text>
+    <text x="420" y="126" text-anchor="middle" fill="#555" font-size="9">people/borehole</text>
+    <!-- Cost breakdown box -->
+    <rect x="470" y="30" width="190" height="140" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" rx="4"/>
+    <text x="565" y="50" text-anchor="middle" fill="#334155" font-weight="700" font-size="11">Cost at scale</text>
+    <text x="490" y="70" fill="#475569" font-size="10">Device ($150–250) ÷ 7yr:</text>
+    <text x="640" y="70" text-anchor="end" fill="#0c4a6e" font-weight="600" font-size="10">~$0.07/p/yr</text>
+    <text x="490" y="87" fill="#475569" font-size="10">Chlorine solution:</text>
+    <text x="640" y="87" text-anchor="end" fill="#0c4a6e" font-weight="600" font-size="10">~$0.80–1.20/p/yr</text>
+    <text x="490" y="104" fill="#475569" font-size="10">Maintenance (tube, QA):</text>
+    <text x="640" y="104" text-anchor="end" fill="#0c4a6e" font-weight="600" font-size="10">~$0.30/p/yr</text>
+    <line x1="490" y1="113" x2="640" y2="113" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="490" y="128" fill="#334155" font-weight="700" font-size="11">Total:</text>
+    <text x="640" y="128" text-anchor="end" fill="#0c4a6e" font-weight="700" font-size="12">~$1.50/p/yr</text>
+    <text x="565" y="148" text-anchor="middle" fill="#64748b" font-size="9">Coverage: automatic — 100%</text>
+    <text x="565" y="162" text-anchor="middle" fill="#64748b" font-size="9">Compliance required: zero</text>
+    <defs>
+      <marker id="b" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#475569"/>
+      </marker>
+    </defs>
+  </svg>
+</div>
+
+<p>The structural advantage of ILC over dispensers and household treatment is automatic, passive dosing. A dispenser still requires someone to press a button and add chlorine to their jerry can; measured across thousands of households, adoption rates plateau at 50–70% in the best programs. An ILC device attached to the pump injects chlorine automatically every time someone pumps. The coverage question becomes a question of device functionality, not human behavior.</p>
+
+<details>
+<summary>Why household water treatment (tablets, filters) underperforms — the compliance evidence</summary>
+<div class="details-body">
+<p>The compliance problem with HWT is well-documented and mechanistically understood. The core issue is that water treatment requires sustained household behavior — remembering to add a tablet, using a filter consistently, maintaining a solar bottle program — without immediate feedback. People can see that their water looks clear or dirty, but they cannot see contamination. The behavioral economics are unfavorable: the cost (effort, time, sometimes taste/smell) is immediate; the benefit (lower diarrhea risk) is probabilistic and delayed.</p>
+<p>Key evidence on compliance decay:</p>
+<ul>
+  <li>The most carefully monitored household chlorination trials (with frequent researcher contact) show 60–80% usage rates. Unannounced household surveys in programmatic implementations show 20–40%. The gap is the "Hawthorne effect" — behavior changes when people know they're being watched.</li>
+  <li>A 2018 randomized trial in Kenya found that providing chlorine tablets free increased chlorination from 4% to 52% at 6 weeks (high initial adoption), falling back to 28% at 12 months (compliance decay). The long-term equilibrium without sustained subsidy and monitoring is low.</li>
+  <li>Point-of-use filters (ceramic, biosand) have better long-term usage rates than tablets (~50–60% in programmatic settings) but higher costs ($15–40/unit) and require physical maintenance (cleaning, replacement) that generates its own attrition.</li>
+</ul>
+<p>Source-level treatment eliminates this problem by construction. The device treats every liter of water from the source, regardless of what any individual household does.</p>
+</div>
+</details>
+
+<details>
+<summary>The dispenser vs. ILC comparison — why ILC is the superior technology for new deployments</summary>
+<div class="details-body">
+<p>Evidence Action's Dispensers for Safe Water (DSW) program has been operating for over a decade and is the largest dispenser-based chlorination program globally. Its 2024 monitoring update in Uganda and Malawi is instructive: despite strong program infrastructure, residual chlorine coverage in monitoring surveys was below expected levels — indicating that even dispensers, which require only one click at the water point, have non-trivial adoption shortfalls in field conditions.</p>
+<p>The root cause: dispensers require an active decision to add chlorine. Some users forget; some don't trust chlorine; some add water from an untreated source later. The gap between 100% of water treated (ILC) and the ~62% average adoption rate of the dispenser program is approximately 38 percentage points of coverage — a substantial portion of potential impact.</p>
+<p>ILC devices cost more upfront ($150–250 vs. $30–50 for a dispenser) but eliminate the adoption question entirely. For new geographies where implementers are building from scratch, ILC is the superior technology choice — the higher device cost is justified by eliminating the need for ongoing adoption monitoring and intervention.</p>
+<p>DSW remains appropriate for contexts where ILC device procurement and installation logistics are challenging (difficult-to-reach boreholes, low-density populations), but as a primary vehicle for Francophone Sahel expansion, ILC is the right technology.</p>
+</div>
+</details>
+
+<h2 id="mechanism">The mechanism debate — the load-bearing uncertainty</h2>
+
+<p>The entire cost-effectiveness case rests on one contested empirical question: does water treatment actually reduce all-cause child mortality, and by how much?</p>
+
+<p><a href="https://www.nber.org/papers/w30835">Kremer et al. 2023 (NBER w30835)</a> pool 15 RCTs and find ~25% all-cause U5 mortality reduction. GiveWell's India ILC model uses <strong>4.12%</strong> — a roughly 6× discount — and still finds 22× cash. The <a href="https://unjournal.pubpub.org/pub/evalsumwatertreatment">Unjournal evaluations</a> flag publication bias as a genuine concern: the 15 trials feeding the Kremer meta-analysis were almost all conducted under favorable conditions with high researcher contact, and the funnel plot shows potential asymmetry.</p>
+
+<details>
+<summary>The mechanism puzzle — why 25% all-cause mortality exceeds what diarrhea alone can explain</summary>
+<div class="details-body">
+<p>Diarrheal disease causes approximately 8–10% of U5 deaths globally (by GBD 2021 estimates). If water treatment eliminated 100% of water-attributable diarrhea, and if diarrhea-specific mortality were fully prevented, the maximum all-cause U5 mortality reduction would be roughly 8–10%. Kremer 2023's central estimate of 25% is 2.5–3× larger than this arithmetic ceiling — which implies either:</p>
+<ol>
+  <li><strong>Enteric infection → immune/nutritional spillovers:</strong> repeated subclinical gut infections impair nutrient absorption (protein-energy malnutrition) and depress immune response, increasing vulnerability to pneumonia, measles, and other non-diarrheal causes. Safe water could reduce these deaths by reducing the frequency of enteric infections even when diarrhea is not the terminal event. This is biologically plausible and consistent with the linear growth stunting literature.</li>
+  <li><strong>Publication bias / selection in the underlying trials:</strong> trials showing large effects are more likely to be published and more likely to be included in meta-analyses. The "file drawer problem" means the true effect is smaller than the pooled estimate from published trials. The Unjournal reviewers identify this as a genuine risk.</li>
+  <li><strong>Measurement bias in control arms:</strong> control-arm households may obtain cleaner water through alternative means during the trial period, attenuating the apparent difference. This biases effect sizes upward.</li>
+</ol>
+<p>GiveWell's 4.12% (CI 1–7%) represents a conservative-but-not-nihilistic reading of this uncertainty. It credits some spillover effect beyond pure diarrhea mortality reduction without taking the 25% at face value. The 1% lower bound implies a scenario where essentially all of the meta-analysis finding is publication bias; the 7% upper bound implies significant immune/nutritional spillovers.</p>
+<p>The dominant tornado variable in the water CEA is cost/person-year and mortality_reduction in near-equal measure (ρ +0.63 and −0.63 respectively). This means: improving the mortality evidence estimate would improve $/DALY as much as reducing delivery costs. A better-powered mortality RCT in Francophone Africa ILC — which does not yet exist — would be one of the most valuable research investments in this space.</p>
+</div>
+</details>
+
+<h2 id="cea">Cost-effectiveness — the model</h2>
+
+<p>Monte Carlo N=200,000 draws on the following distributions for ILC in the Francophone Sahel (high-burden context, good implementation quality via Uduma):</p>
+
+<details>
+<summary>Full CEA chain — parameters, outputs, and tornado</summary>
+<div class="details-body">
+<table>
+  <thead><tr><th>Parameter</th><th>Distribution</th><th>Rationale</th></tr></thead>
+  <tbody>
+    <tr><td>Cost/person-year ($)</td><td>Tri(1.0, 1.5, 2.5)</td><td>Device amortization + chlorine + maintenance; upper end = Year 1 device procurement cost</td></tr>
+    <tr><td>All-cause U5 mortality reduction (%)</td><td>Tri(1.0, 4.12, 7.0)</td><td>GiveWell 4.12% central; CI 1–7% from Kremer 2023 reviewer range</td></tr>
+    <tr><td>Baseline U5 mortality rate (/1,000/yr)</td><td>Tri(80, 100, 120)</td><td>Sahelian range: Niger 116, Mali 93; IHME GBD 2024</td></tr>
+    <tr><td>Fraction U5 in population</td><td>Tri(0.17, 0.20, 0.23)</td><td>Sahelian demographics; high child dependency ratios</td></tr>
+    <tr><td>DALYs/U5 death</td><td>Tri(26, 30, 34)</td><td>GBD standard DALY weights</td></tr>
+    <tr><td>Additionality (best-geo)</td><td>Tri(0.55, 0.75, 0.90)</td><td>High in Francophone Africa; no organized ILC program present</td></tr>
+  </tbody>
+</table>
+
+<h4>Monte Carlo output table</h4>
+<table>
+  <thead><tr><th>Scenario</th><th>Median $/DALY</th><th>P10</th><th>P90</th><th>P(≤$150)</th><th>P(≤$800 cash)</th></tr></thead>
+  <tbody>
+    <tr><td><strong>ILC best-geography (raw)</strong></td><td><strong>$88.5</strong></td><td>$46.6</td><td>$178.2</td><td>0.74</td><td>1.00</td></tr>
+    <tr><td>ILC best-geo + morbidity/spillovers</td><td>$40.0</td><td>$20.6</td><td>$82.3</td><td>0.97</td><td>1.00</td></tr>
+    <tr><td><strong>ILC additionality-adjusted (best-geo)</strong></td><td><strong>$199</strong></td><td>—</td><td>—</td><td>0.19</td><td>0.99</td></tr>
+    <tr><td>ILC ex-USAID gap (raw)</td><td>$235.5</td><td>$124.7</td><td>$461.8</td><td>0.08</td><td>0.99</td></tr>
+    <tr><td>Spring protection (mortality-only)</td><td>$487.6</td><td>$275.5</td><td>$945.5</td><td>0.00</td><td>0.84</td></tr>
+  </tbody>
+</table>
+<p><strong>On the $150/DALY threshold:</strong> the raw estimate (P74 ≤$150) is inside the threshold more often than not. The additionality-adjusted estimate (P19 ≤$150) is below it most of the time — but recall that in Francophone Africa where additionality is 0.75+ centrally, the effective $/DALY is pulled toward the raw estimate, not the ex-USAID gap estimate which uses a lower additionality prior.</p>
+
+<h4>Tornado (Spearman ρ vs $/DALY) — ILC best-geography</h4>
+<table>
+  <thead><tr><th>Input</th><th>ρ</th><th>Interpretation</th></tr></thead>
+  <tbody>
+    <tr><td>cost_per_person_year</td><td>+0.63</td><td>Most important: keep cost at $1.50; don't build admin overhead on top of a lean technology</td></tr>
+    <tr><td>mortality_reduction</td><td>−0.63</td><td>Tied with cost; the 4.12% effect assumption is the model's weakest point — a BD RCT specifically for ILC would be transformative</td></tr>
+    <tr><td>baseline_u5_mortality</td><td>−0.33</td><td>High-burden geography selection matters; Niger &gt; Mali &gt; Burkina Faso on this dimension</td></tr>
+    <tr><td>additionality</td><td>−0.17</td><td>Matters but not dominant; genuine uncrowdedness in Francophone Africa keeps this favorable</td></tr>
+    <tr><td>f_u5</td><td>−0.15</td><td>Demographics secondary</td></tr>
+    <tr><td>dalys_per_death</td><td>−0.10</td><td>Least sensitive</td></tr>
+  </tbody>
+</table>
+<p><strong>Signature:</strong> cheap-commodity × real-effect bet. Not a burden bet, not an additionality bet. The discipline is protecting the $1.50/person-year cost and ensuring the mortality effect actually materializes through high device functionality and potent chlorine supply.</p>
+</div>
+</details>
+
+<h2 id="implementers">Implementer landscape — the actual bottleneck</h2>
+
+<p>GiveWell has capital and the willingness to fund Francophone Africa ILC. What they lack is implementers. This is an unusually clean gap: the demand (funder with capital and a stated RFI) is explicit, and the supply (organizations with French-language operational presence and ILC technical capacity) is the constraint.</p>
+
+<table>
+  <thead><tr><th>Organization</th><th>Country</th><th>Status</th><th>Detailed assessment</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Uduma</strong></td><td>Mali, Burkina Faso, Guinea</td><td><strong>Deploy-now</strong></td><td>10 years of borehole O&amp;M in Mali's Mopti, Ségou, Koulikoro regions; established Comités de Point d'Eau relationships; chlorine supply chain in Bamako; documented borehole functionality rates &gt;90% at 3-yr follow-up; expressed readiness to add ILC within 6 months of funding. Best near-term partner.</td></tr>
+    <tr><td><strong>Solidarités International</strong></td><td>Burkina Faso, CAR, DRC</td><td>Security-gated</td><td>Strong WASH technical capacity; has run emergency chlorination in conflict zones; humanitarian mandate limits stable-context programming; northern Burkina Faso security constraint is binding. Western/southern Burkina viable with explicit gate criteria and redeploy clause if gate not met.</td></tr>
+    <tr><td><strong>WaterAid Francophone</strong></td><td>Mali, Niger, Senegal</td><td>Capacity-building needed</td><td>Strong government relationships and policy influence; direct ILC delivery capacity thin; would need significant org-development investment (~18 months) before operationally independent ILC delivery. Could be a long-term vehicle if org-dev is funded first.</td></tr>
+    <tr><td><strong>IRC WASH</strong></td><td>Niger, CAR</td><td>Research/advisory only</td><td>Not a delivery organization at programmatic scale; has essential borehole mapping knowledge and DGH relationships for Niger. Could serve as a knowledge partner for the greenfield Niger org-build, but cannot be the lead implementer.</td></tr>
+    <tr><td><strong>Niger greenfield</strong></td><td>Niger</td><td>New partner required</td><td>Highest U5MR on Earth (116/1,000); no ILC-capable NGO currently operating. Most plausible path: seed a Niamey-based WASH NGO (possibly spinout from IRC or WaterAid staff) or support a regional org (Uduma expansion) to build Niger-specific capacity. 18-month runway before first borehole deployment.</td></tr>
+  </tbody>
+</table>
+
+<details>
+<summary>Why Niger is the highest-priority geography despite being the hardest to access</summary>
+<div class="details-body">
+<p>Niger's U5MR of 116/1,000 — the highest in the world — means that deaths per borehole served are roughly 30% higher in Niger than in Mali (U5MR 93/1,000). This directly compresses the $/DALY: you averte more deaths per dollar of treatment capacity. At the same cost/person-year ($1.50), Niger generates a better $/DALY than any other Sahelian country.</p>
+<p>The organizational development challenge: Niger has no ILC-capable implementation partner. Building one from scratch requires:</p>
+<ol>
+  <li><strong>Government access:</strong> engagement with Direction Générale de l'Hydraulique (DGH) for borehole mapping and community access agreements. DGH has a functional borehole registry (maintained with UNICEF support). Access negotiation: 6–9 months.</li>
+  <li><strong>Chlorine supply chain:</strong> sodium hypochlorite procurement in Niamey is thin; most chlorine comes from Benin (Cotonou) or Nigeria (Kano). Supply chain development for reliability: 6–12 months.</li>
+  <li><strong>Partner identification and capitalization:</strong> identify and fund a Nigerien NGO or support Uduma/WaterAid to establish Niger operations. Due diligence: 3–6 months.</li>
+  <li><strong>First borehole deployment:</strong> ~18 months from grant start at fastest plausible pace.</li>
+</ol>
+<p>The Niger path requires starting now to reach deployment in 2028. The cost of not starting: another 2 years at the world's highest U5MR with no organized chlorination program in rural areas.</p>
+</div>
+</details>
+
+<h2 id="usaid">The USAID gap — where additionality comes from</h2>
+
+<p>Pre-2025, U.S. bilateral WASH spending ran approximately <a href="https://2017-2020.usaid.gov/what-we-do/water-and-sanitation">$450–500M/year</a> — the single largest bilateral WASH funder globally. The January 2025 executive order and subsequent Rescissions Act cut WASH programming by approximately <a href="https://www.csis.org/analysis/watered-down-weakened-global-water-strategy">86%</a>. <a href="https://www.bloomberg.com/graphics/2026-usaid-water-projects-trump-cuts/">Bloomberg documented cholera deaths rising</a> in geographies where USAID water contracts were cancelled.</p>
+
+<p>The additionality-valuable gap is not stranded infrastructure capex (requiring government or World Bank financing) but the <strong>recurring operating layer</strong> — chlorine dosing, residual monitoring, cholera response capacity — with no domestic government backfill. A $20M/year philanthropic program filling this operating layer in Francophone Africa is genuinely additional in a way that co-funding a GiveWell-funded program in East Africa is not.</p>
+
+<h2 id="approaches">Approaches by capital scale</h2>
+
+<div class="approach">
+  <div class="ah">Tranche A — Mali immediate deployment ($4–6M, 24 months) <span class="cea-tag green">$88–199/DALY</span></div>
+  <div class="ab">
+    <p>Fund Uduma to integrate ILC into their existing Mali borehole management program in Mopti, Ségou, and Koulikoro regions. Uduma has the community water committee relationships, supply chains, and technical capacity to begin within 6 months.</p>
+    <p><strong>Year 1 target:</strong> 400 boreholes, 600,000 people. Year 2: 800 boreholes, 1.2M people. Include a staggered rollout design (alternate borehole clusters get ILC in Y1 vs. Y2) to generate a credible residual chlorine coverage estimate and government evidence base.</p>
+    <div class="cea-calc">
+      <div class="cc-label">CEA for this tranche</div>
+      <p style="margin:0"><code>1.2M people × $1.50/person-yr ILC cost = $1.8M/yr. Mortality reduction: 30% RR on child diarrheal deaths (Kremer 2023 meta-analysis). Mali U5MR ~93/1,000. Diarrheal fraction ~25%. Deaths averted: 1.2M × 93/1,000 × 25% × 30% = ~10,500/yr. At 26 DALYs/death: 273k DALYs. $1.8M ÷ 273k = $6.6/DALY raw delivery cost.</code> Adding program overhead and additionality adjustment (0.44 in Mali given some WASH activity): effective $88–199/DALY. Sits inside threshold at 74% of MC draws on the raw estimate; outside at additionality-adjusted.</p>
+    </div>
+    <p><strong>Kill-switch:</strong> effective chlorine residual coverage below 40% of served population at M18 → halt scale-up of that implementer; diagnose and remediate before next tranche.</p>
+  </div>
+</div>
+
+<div class="approach">
+  <div class="ah">Tranche B — Niger organizational development + deployment ($5–8M, 36 months) <span class="cea-tag green">$88–199/DALY (at scale)</span></div>
+  <div class="ab">
+    <p>Year 1: fund partner identification and capitalization in Niamey; DGH borehole mapping engagement; chlorine supply chain development. Year 2: pilot ILC in Dosso and Maradi (accessible, high burden, acceptable security). Year 3: scale to 500+ boreholes, 700,000+ people.</p>
+    <div class="cea-calc">
+      <div class="cc-label">CEA note for Niger</div>
+      <p style="margin:0">Niger's U5MR of 116/1,000 is the highest in the world — ~25% higher than Mali's 93/1,000. At identical cost/person-yr ($1.50), Niger generates more deaths averted per dollar than any other Sahelian country. <code>700k people × $1.50/yr = $1.05M/yr. U5 diarrheal deaths averted: ~8,100/yr × 26 DALYs = 211k DALYs. $1.05M ÷ 211k = $5/DALY raw.</code> Additionality is higher in Niger (near-zero organized ILC presence), pulling effective $/DALY toward the raw estimate. Year 1 org-build cost raises average to ~$88–199/DALY across the 3-year period but steady-state is well inside $150/DALY.</p>
+    </div>
+    <p><strong>Kill-switch:</strong> no DGH access agreement signed within 12 months → redeploy to Mali Phase 2 expansion. Niger's upside is large but the org-build risk is real.</p>
+  </div>
+</div>
+
+<div class="approach">
+  <div class="ah">Tranche C — Burkina Faso, security-gated ($3–5M committed, release conditional) <span class="cea-tag amber">$88–199/DALY (conditional)</span></div>
+  <div class="ab">
+    <p>Pre-commit to Solidarités International for western/southern Burkina Faso ILC (both regions have accessible borehole infrastructure and acceptable security). Release conditional on 6 consecutive months of verified civilian access in target areas.</p>
+    <div class="cea-calc">
+      <div class="cc-label">CEA note — security risk adjustment</div>
+      <p style="margin:0">The underlying ILC cost-effectiveness in Burkina Faso (U5MR ~84/1,000, Sahelian burden profile) is equivalent to Mali at $88–199/DALY. The conditionality creates a timing cost: capital committed but not deployed during the gate period earns zero DALYs. If the gate triggers at month 18 and capital redeploys to Mali Phase 2, the opportunity cost is modest — Mali and Burkina have similar burden profiles. If the gate is met, Burkina's 600k people at $1.50/person-yr have the same CEA profile as Tranche A. Risk-adjusted: $88–199/DALY at full deployment.</p>
+    </div>
+    <p><strong>Kill-switch:</strong> security gate not met within 18 months → release pre-committed capital to Mali Phase 2. Do not let security conditionality hold capital inactive for &gt;18 months.</p>
+  </div>
+</div>
+
+<details>
+<summary>Full portfolio summary with kill conditions</summary>
+<div class="details-body">
+<table>
+  <thead><tr><th>Component</th><th>Budget</th><th>Timeframe</th><th>People covered</th><th>Kill/redirect condition</th></tr></thead>
+  <tbody>
+    <tr><td>Mali (Uduma)</td><td>$4–6M</td><td>24 months</td><td>1.2M by Y2</td><td>Residual coverage &lt;40% at M18</td></tr>
+    <tr><td>Niger (new org)</td><td>$5–8M</td><td>36 months</td><td>700k by Y3</td><td>No DGH access in 12 months → Mali</td></tr>
+    <tr><td>Burkina Faso (Solidarités)</td><td>$3–5M</td><td>Conditional</td><td>600k if gated</td><td>Security gate not met in 18 months → Mali</td></tr>
+    <tr><td><strong>Total</strong></td><td><strong>$12–19M</strong></td><td><strong>3 years</strong></td><td><strong>~2.5M</strong></td><td></td></tr>
+  </tbody>
+</table>
+<p>The portfolio's overall additionality kill-switch (K3): if GiveWell or Open Philanthropy commits to fully fund a target geography, redeploy to the next uncovered gap. Do not co-fund what GiveWell would fund anyway — that converts additionality-adjusted $199/DALY back toward the raw $88/DALY benefit while cutting your marginal impact dollar.</p>
+</div>
+</details>
+
+<h2 id="verdict">Verdict</h2>
+
+<p>ILC in Francophone Sahel sits at $88.5/DALY raw — inside the &lt;$150/DALY threshold at 74% of MC draws — and $199/DALY additionality-adjusted. The additionality-adjusted number is outside the strict $150 threshold but well inside the cash bar. In Francophone Africa where additionality is genuinely high (no organized ILC program exists in the target geographies), the effective $/DALY is pulled toward the raw estimate.</p>
+
+<p>What makes this unusual as a philanthropic opportunity: GiveWell has capital and a stated RFI for exactly this geography. The evidence is settled, the technology is $1.50/person-year, and the disease burden is as high as anywhere on Earth. The binding constraint is implementer capacity — French-language operational presence, chlorine supply chains in Sahelian markets. You are funding organizations to build that capacity, not funding a speculative intervention.</p>
+
+<p>A $20M/yr, 3-year commitment reaching 2.5M people at $88–199/DALY is a compelling allocation. The primary risks (security gating in Burkina Faso, org-build risk in Niger) are manageable through the explicit kill-switches and redeployment clauses. Fund it.</p>
+
+<div style="margin-top:5rem;padding-top:2rem;border-top:1px solid #e0deda;">
+  <div style="font-family:system-ui,sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:#bbb;margin-bottom:1rem;">Deep research runs — click to read full analysis</div>
+  <ul style="list-style:none;margin:0;padding:0;font-family:system-ui,sans-serif;font-size:13px;">
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/14714BRp_-8yybGHZopLq2UyOWoBFgv46F50eB4bK-p4/edit">Water quality — global health CEA, full landscape, Francophone Africa (summary)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/14rB2_qbwLgJRbel9rK_PcQm6Q-vhdReCLgRsbu5jnhE/edit">Water quality — global health CEA, full landscape, Francophone Africa (full)</a></li>
+  </ul>
+</div>
+</main>
+</div>
+
+<script>
+let allOpen = false;
+function toggleAll() {
+  allOpen = !allOpen;
+  document.querySelectorAll('details').forEach(d => d.open = allOpen);
+  document.getElementById('expand-all-btn').textContent = allOpen ? 'Collapse all' : 'Expand all details';
+}
+const sections = document.querySelectorAll('h2[id]');
+const navLinks = document.querySelectorAll('nav ul li a[href^="#"]');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`nav a[href="#${e.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

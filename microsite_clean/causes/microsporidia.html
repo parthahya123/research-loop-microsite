@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Microsporidia MB / SYMBIOVECTOR — Cause Area Report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --accent: #064e3b;
+    --accent-mid: #065f46;
+    --accent-light: #ecfdf5;
+    --accent-border: #6ee7b7;
+    --text: #1a1a1a;
+    --muted: #555;
+    --border: #e0deda;
+    --bg: #fafaf8;
+    --surface: #fff;
+    --surface-alt: #f7f6f4;
+  }
+
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.88; color: var(--text); background: var(--bg); }
+  .layout { display: flex; min-height: 100vh; }
+
+  nav { width: 232px; flex-shrink: 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 2.25rem 1.5rem; background: var(--surface-alt); border-right: 1px solid var(--border); }
+  nav .home { display: block; font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; color: #999; text-decoration: none; margin-bottom: 1.5rem; }
+  nav .home:hover { color: #333; }
+  nav h5 { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #bbb; margin-bottom: .6rem; margin-top: 1.5rem; }
+  nav ul { list-style: none; }
+  nav ul li a { font-family: system-ui, sans-serif; font-size: 12.5px; color: #666; text-decoration: none; display: block; padding: .22rem .6rem; border-left: 2px solid transparent; }
+  nav ul li a:hover { color: var(--text); }
+  nav ul li a.active { color: var(--text); border-left-color: var(--accent); font-weight: 600; }
+  nav .sep { height: 1px; background: var(--border); margin: 1.5rem 0; }
+
+  main { flex: 1; max-width: 800px; padding: 4rem 3.5rem 7rem; }
+  .eyebrow { font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin-bottom: .6rem; }
+  h1 { font-size: 2.5rem; line-height: 1.15; font-weight: 700; letter-spacing: -.025em; margin-bottom: .45rem; color: #0f0f0f; }
+  .dek { font-family: system-ui, sans-serif; font-size: 15.5px; color: #666; margin-bottom: 2.75rem; line-height: 1.5; }
+
+  .verdict { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 1.3rem 1.6rem; margin-bottom: 3.25rem; }
+  .verdict .vl { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #aaa; margin-bottom: .5rem; }
+  .verdict p { font-family: system-ui, sans-serif; font-size: 13.5px; color: #333; line-height: 1.65; margin-bottom: .55rem; }
+  .verdict p:last-child { margin-bottom: 0; }
+
+  .metrics { display: flex; gap: 1.25rem; margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .metric { background: var(--surface); border: 1px solid var(--border); padding: 1rem 1.25rem; flex: 1; min-width: 120px; }
+  .metric .mv { font-size: 1.45rem; font-weight: 700; color: #0f0f0f; font-family: system-ui, sans-serif; letter-spacing: -.02em; line-height: 1.1; }
+  .metric .ml { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: #aaa; margin-top: .3rem; }
+
+  h2 { font-size: 1.6rem; font-weight: 700; margin-top: 4rem; margin-bottom: 1.25rem; letter-spacing: -.015em; padding-bottom: .5rem; border-bottom: 1px solid var(--border); scroll-margin-top: 1.5rem; }
+  h3 { font-size: 1.1rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: .7rem; color: #222; }
+
+  p { margin-bottom: 1.2rem; }
+  a { color: #065f46; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:hover { color: #022c22; }
+
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 2.25rem; font-family: system-ui, sans-serif; font-size: 13px; }
+  th { text-align: left; padding: .6rem .85rem; background: var(--surface-alt); border: 1px solid var(--border); font-weight: 600; color: #333; }
+  td { padding: .55rem .85rem; border: 1px solid var(--border); color: #444; vertical-align: top; line-height: 1.5; }
+  tr:nth-child(even) td { background: #faf9f7; }
+
+  .callout { background: var(--accent-light); border: 1px solid var(--accent-border); padding: 1.1rem 1.5rem; margin: 2rem 0; font-size: .94rem; line-height: 1.72; }
+  .callout strong { color: var(--accent); }
+
+  .note { background: #f8f9fa; border: 1px solid #d0d5dd; padding: 1.1rem 1.5rem; margin: 1.75rem 0; font-size: .93rem; font-family: system-ui, sans-serif; line-height: 1.7; }
+  .note .nt { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: #888; margin-bottom: .5rem; }
+
+  details { border: 1px solid var(--border); margin: 1.5rem 0; }
+  details summary { padding: .9rem 1.15rem; font-family: system-ui, sans-serif; font-size: 13.5px; font-weight: 600; color: #333; cursor: pointer; background: var(--surface-alt); list-style: none; display: flex; align-items: center; gap: .6rem; user-select: none; }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::before { content: '▶'; font-size: 10px; color: #aaa; transition: transform .15s; flex-shrink: 0; }
+  details[open] summary::before { transform: rotate(90deg); }
+  details summary:hover { background: #efede9; }
+  .details-body { padding: 1.25rem 1.5rem; font-family: system-ui, sans-serif; font-size: 13.5px; line-height: 1.72; color: #333; border-top: 1px solid var(--border); }
+  .details-body p { font-family: system-ui, sans-serif; font-size: 13.5px; margin-bottom: .9rem; }
+  .details-body table { font-size: 12.5px; }
+  .details-body h4 { font-weight: 700; margin: 1rem 0 .4rem; color: #222; font-size: 13.5px; }
+  .details-body ul, .details-body ol { margin: .4rem 0 .9rem 1.4rem; }
+  .details-body ul li, .details-body ol li { margin-bottom: .3rem; }
+
+  ul.bl, ol.bl { margin: .5rem 0 1.2rem 1.7rem; }
+  ul.bl li, ol.bl li { margin-bottom: .5rem; }
+
+  /* Evidence scorecard */
+  .scorecard { display: grid; gap: 0; margin: 1.5rem 0 2rem; border: 1px solid var(--border); }
+  .sc-row { display: grid; grid-template-columns: 2fr 1fr 2fr; border-bottom: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 13px; }
+  .sc-row:last-child { border-bottom: none; }
+  .sc-row.header { background: var(--surface-alt); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: #666; }
+  .sc-cell { padding: .65rem .9rem; border-right: 1px solid var(--border); line-height: 1.45; }
+  .sc-cell:last-child { border-right: none; }
+  .badge { display: inline-block; padding: .15rem .5rem; font-size: 10.5px; font-weight: 700; letter-spacing: .03em; }
+  .badge.green { background: #d1fae5; color: #065f46; }
+  .badge.yellow { background: #fef3c7; color: #92400e; }
+  .badge.red { background: #fee2e2; color: #991b1b; }
+  .badge.grey { background: #f3f4f6; color: #374151; }
+
+  /* Staging */
+  .stage-grid { display: grid; gap: 0; margin: 1.5rem 0 2.5rem; }
+  .stage { border: 1px solid var(--border); border-bottom: none; padding: 1.25rem 1.4rem; }
+  .stage:last-child { border-bottom: 1px solid var(--border); }
+  .stage.active-stage { border-left: 4px solid var(--accent); background: #f0fdf4; }
+  .stage-header { display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: .6rem; }
+  .stage-label { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #aaa; }
+  .stage-title { font-family: system-ui, sans-serif; font-weight: 700; font-size: 14px; color: #111; }
+  .stage-cost { font-family: system-ui, sans-serif; font-size: 13px; color: var(--accent); font-weight: 700; }
+  .stage-body { font-family: system-ui, sans-serif; font-size: 13px; line-height: 1.65; color: #333; }
+  .stage-body p { font-family: system-ui, sans-serif; font-size: 13px; margin-bottom: .55rem; }
+  .stage-resolves { margin-top: .75rem; background: var(--accent-light); border: 1px solid var(--accent-border); padding: .6rem .9rem; font-size: 12px; }
+  .stage-resolves .rl { font-size: 10px; text-transform: uppercase; letter-spacing: .07em; color: #6b7280; margin-bottom: .2rem; }
+  .kill-flag { margin-top: .6rem; background: #fef3c7; border: 1px solid #fde68a; padding: .5rem .9rem; font-size: 12px; color: #92400e; }
+  .kill-flag .kl { font-size: 10px; text-transform: uppercase; letter-spacing: .07em; color: #b45309; margin-bottom: .2rem; }
+
+  /* Sensitivity sliders viz */
+  .sensitivity-bar { margin: .5rem 0 1.1rem; }
+  .sens-label { font-family: system-ui, sans-serif; font-size: 12px; color: #333; display: flex; justify-content: space-between; margin-bottom: .25rem; }
+  .sens-track { height: 8px; background: #e5e7eb; border-radius: 2px; position: relative; }
+  .sens-fill { height: 100%; border-radius: 2px; }
+
+  /* Binary scenarios */
+  .binary { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0 2rem; }
+  .bin-card { border: 1px solid var(--border); padding: 1.15rem 1.25rem; font-family: system-ui, sans-serif; font-size: 13px; line-height: 1.65; }
+  .bin-card.optimistic { border-color: #6ee7b7; background: #f0fdf4; }
+  .bin-card.pessimistic { border-color: #fca5a5; background: #fff5f5; }
+  .bin-card .bh { font-weight: 700; font-size: 14px; margin-bottom: .55rem; }
+  .bin-card.optimistic .bh { color: #065f46; }
+  .bin-card.pessimistic .bh { color: #991b1b; }
+  .bin-card .bd { font-size: 2rem; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; margin: .4rem 0; }
+  .bin-card.optimistic .bd { color: #065f46; }
+  .bin-card.pessimistic .bd { color: #991b1b; }
+
+  #expand-all-btn { font-family: system-ui, sans-serif; font-size: 12px; color: #888; background: none; border: 1px solid #ddd; padding: .3rem .7rem; cursor: pointer; float: right; margin-top: 3.8rem; }
+  #expand-all-btn:hover { background: var(--surface-alt); }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav>
+  <a class="home" href="../index.html">← All causes</a>
+  <h5>This report</h5>
+  <ul>
+    <li><a href="#idea">The idea</a></li>
+    <li><a href="#what-we-know">What has been shown</a></li>
+    <li><a href="#the-bet">The one open question</a></li>
+    <li><a href="#sensitivities">Key sensitivities</a></li>
+    <li><a href="#staging">Staged funding</a></li>
+    <li><a href="#cea">Cost-effectiveness</a></li>
+    <li><a href="#comparators">Comparators</a></li>
+    <li><a href="#jeremy">Questions for Jeremy</a></li>
+    <li><a href="#calculator">Calculator</a></li>
+    <li><a href="#verdict">Verdict</a></li>
+  </ul>
+  <div class="sep"></div>
+  <h5>Deep research</h5>
+  <ul>
+    <li><a href="https://docs.google.com/document/d/1hRVnvQWJ7ycPh1F-1fNYE_sSSwrR6OZXVzz2PLTSTgw/edit" target="_blank">Main loop (full doc)</a></li>
+    <li><a href="https://docs.google.com/document/d/1VullE0K5BG33Ue6bYJketakwPDiMs4adXWxH1reYsks/edit" target="_blank">Main loop (summary)</a></li>
+    <li><a href="https://docs.google.com/document/d/1-YW4kr_6VRzAOkAL9u9ArjNg2b81Tnwkrx4Yda2f8oU/edit" target="_blank">Wolbachia failure loop</a></li>
+  </ul>
+  <h5>Concept-note loops</h5>
+  <ul>
+    <li><a href="https://docs.google.com/document/d/19rHUQQ26HmBkbnaqlqD5am3Yr_yto1z5IeGkY8i5PNs/edit" target="_blank">Revised CEA + p(success) (full)</a></li>
+    <li><a href="https://docs.google.com/document/d/1TnUZTK6HV3fPZIu27EhyiVCdRelYXVCbQGsIqaLZCRk/edit" target="_blank">Revised CEA (summary)</a></li>
+    <li><a href="https://docs.google.com/document/d/1HnwurWFS6wiyp_SgTOR-m3U5NOlMzQiLmzKhr4tJcLw/edit" target="_blank">Ahero seasonal dynamics (full)</a></li>
+    <li><a href="https://docs.google.com/document/d/1xCD3oxAG68yu2jZdrTVuV3LZ7qUqsPSNvJlABDTHv9c/edit" target="_blank">Ahero dynamics (summary)</a></li>
+    <li><a href="https://docs.google.com/document/d/1-VmUfv3ZJB0tPBeHjBIzF77wXZ8560zHTClqG1bKA_o/edit" target="_blank">Plasmodium resistance + durability (full)</a></li>
+    <li><a href="https://docs.google.com/document/d/1QGnWhdTYMcjdC6nBLw8nGfQts3l8P4YU14NkZU2AB7o/edit" target="_blank">Resistance (summary)</a></li>
+  </ul>
+  <div class="sep"></div>
+  <h5>Source</h5>
+  <ul>
+    <li><a href="#" style="color:#aaa;cursor:default;">SYMBIOVECTOR concept note, Sep 2026</a></li>
+  </ul>
+</nav>
+
+<main>
+<button id="expand-all-btn" onclick="toggleAll()">Expand all</button>
+
+<div class="eyebrow">Cause Area Report · September 2026</div>
+<h1>Microsporidia MB</h1>
+<div class="dek">A naturally occurring microbe already living inside malaria mosquitoes in Africa appears to make those mosquitoes unable to transmit malaria — and can spread itself through wild mosquito populations. The programme (SYMBIOVECTOR) is asking for $50M over five years to take it from a proven lab discovery to real-world deployment across three countries.</div>
+
+<div class="verdict">
+  <div class="vl">Bottom line</div>
+  <p><strong>Fund Stage 1 (~$9M, Years 1–2) and co-fund Stage 2 (~$24M, Years 2–4) alongside Open Philanthropy, Gates, and Wellcome.</strong> Do not commit to Stage 3 until the Stage 2 field release data exists. The programme is further along than most early-stage global health bets — it has cage evidence, 30 months of field data, and a delivery route (spore-seeding) that doesn't require mass mosquito rearing. But it still lacks an open-field prevalence measurement after a real release, and that number determines whether this is a $47/DALY intervention or not cost-effective at all.</p>
+  <p><strong>The key things to understand:</strong> (1) In controlled lab cages, MB clearly spreads on its own to ~90% prevalence and stays there for 2+ years without any further intervention. (2) In the real wild, it sits at 1–16% — the gap between these two numbers is the central open question. (3) A spore-seeding release campaign is now possible without releasing mosquitoes, which makes the programme far cheaper and operationally simpler than anything comparable. (4) If it works, it could protect populations for 6+ years per campaign at ~$47/DALY — beating bednets on cost and durability.</p>
+  <p><strong>The $188/DALY headline</strong> is the programme's own number. Our independent reconstruction puts the central conditional estimate at <strong>~$227/DALY</strong> (if it all works) and the ex-ante (probability-weighted) figure at <strong>~$900–3,000/DALY</strong> — reflecting a ~7–15% chance the field establishment step succeeds at the scale needed. The range is wide because it depends heavily on which route (spore vs. mosquito release) and which reading of the Ahero seasonal data you use. Three independent research loops with concept-note data integrated revised p(success) downward from 15–20% to ~7–8% central, primarily because (1) the spore/Moina delivery mechanism has not been confirmed in primary literature, and (2) semi-field enclosure data shows prevalence rising then declining — not stable as the concept note states. At that ex-ante range this is a research bet, not a delivery buy. But the VOI case is strong: a ~$30M bet on Stages 1+2 either delivers a transformative tool or teaches the field something critical about symbiont-based malaria control.</p>
+</div>
+
+<div class="metrics">
+  <div class="metric"><div class="mv">610k</div><div class="ml">Malaria deaths/yr (2024)</div></div>
+  <div class="metric"><div class="mv">$12M</div><div class="ml">Invested so far (since 2018)</div></div>
+  <div class="metric"><div class="mv">~$47</div><div class="ml">$/DALY if works at scale</div></div>
+  <div class="metric"><div class="mv">$50M</div><div class="ml">5-year programme ask</div></div>
+  <div class="metric"><div class="mv">7–15%</div><div class="ml">p(field establishment succeeds)</div></div>
+</div>
+
+
+<h2 id="idea">The idea — explained for a non-biologist</h2>
+
+<p>Malaria is spread by mosquitoes. A mosquito bites an infected person, the malaria parasite develops inside the mosquito over about two weeks, and then when the mosquito bites again it injects the parasite into the next person. Every existing tool — bednets, spraying, drugs — tries to interrupt this cycle at one point: either stop the bite, kill the mosquito, or cure the person after they're infected. All of them are expensive to sustain because they have to be re-applied every year, and mosquitoes are steadily evolving resistance to the chemicals.</p>
+
+<p>Microsporidia MB (MB) attacks a link nobody else reaches cheaply. It is a naturally occurring microbe — already living inside some wild Kenyan mosquitoes — that seems to make those mosquitoes <strong>unable to transmit the malaria parasite at all</strong>. Not less likely to transmit it. Unable to. The parasite simply doesn't develop properly inside an MB-carrying mosquito.</p>
+
+<p>The reason this matters is how MB spreads. It passes from a mother mosquito to her offspring (about 74% of the time on average, up to 99.5% under good conditions), and also passes between adults when they mate. This means if you can get enough MB-carrying mosquitoes into a wild population, the symbiont can spread and maintain itself without any further human action — protecting everyone who lives among those mosquitoes, whether or not they use a bednet, take a drug, or do anything at all.</p>
+
+<p>Think of it as the difference between a recurring cost (bednets you have to buy and replace every three years) and a one-time infrastructure investment (seed a mosquito population once, and the protection persists and self-renews). The closest comparison is <em>Wolbachia</em>, a different microbe that was seeded into dengue mosquitoes in Indonesia and produced a <a href="https://doi.org/10.1056/NEJMoa2030243">77% reduction in dengue cases</a> in a randomized trial. It's been self-sustaining in those populations for 8+ years with no further intervention. MB is trying to do the same thing for malaria.</p>
+
+<div class="callout">
+  <strong>The spore-seeding delivery concept:</strong> The team proposes that MB produces environmentally stable spores that can infect a small crustacean called <em>Moina</em>, which lives in mosquito breeding sites. Those crustaceans would amplify the infection and release a second spore form that infects mosquito larvae directly from the water — meaning the programme wouldn't need to mass-rear and release adult mosquitoes at all. This is the most important proposed cost-reduction in the programme, and <strong>if it works</strong>, it would make this vastly cheaper than anything comparable. <strong>However:</strong> a 2026 molecular screen specifically looking for secondary hosts of MB in <em>Anopheles</em> larval habitats found none. The Moina-MB mechanism has biological precedent in other microsporidia genera but has not been demonstrated for MB specifically. This is a plausible hypothesis under active investigation — not yet an established fact.
+</div>
+
+
+<h2 id="what-we-know">What has actually been shown — the evidence scorecard</h2>
+
+<p>MB has been in development since Jeremy Herren's discovery in 2018. About $12M has been invested across two funding phases. Here is an honest account of what that money has established, and what it hasn't:</p>
+
+<div class="scorecard">
+  <div class="sc-row header">
+    <div class="sc-cell">Claim</div>
+    <div class="sc-cell">Status</div>
+    <div class="sc-cell">What the evidence actually shows</div>
+  </div>
+  <div class="sc-row">
+    <div class="sc-cell"><strong>MB completely blocks malaria in lab mosquitoes</strong></div>
+    <div class="sc-cell"><span class="badge green">Shown</span></div>
+    <div class="sc-cell">Controlled membrane-feeding experiments: zero sporozoites detected in MB-infected mosquitoes after deliberate malaria exposure. Replicated multiple times.</div>
+  </div>
+  <div class="sc-row">
+    <div class="sc-cell"><strong>MB reduces malaria in wild mosquitoes (field epidemiology)</strong></div>
+    <div class="sc-cell"><span class="badge green">Shown</span></div>
+    <div class="sc-cell">37,879 wild-caught mosquitoes screened over 30 months at Ahero, western Kenya. MB-infected individuals had roughly half the odds of carrying Plasmodium (OR = 0.51, ≥49% protection). A second independent field dataset corroborates this. Submitted to Nature Communications.</div>
+  </div>
+  <div class="sc-row">
+    <div class="sc-cell"><strong>MB spreads to high prevalence and self-sustains in cage colonies</strong></div>
+    <div class="sc-cell"><span class="badge green">Shown (lab)</span></div>
+    <div class="sc-cell">In lab cages: prevalence rose from ~20% to 85–90% over 5 generations, then held at ~90% for 2+ years (40+ generations) with no further releases. Replicated 5× in parallel. <strong>Semi-field enclosures are more mixed:</strong> published data (Insects 2025, PMC12733993) shows prevalence rising in F1–F4 then declining thereafter — contradicting the concept note claim of "stable across generations." The cage data is the cleaner result; whether it predicts open-field behaviour is the core open question.</div>
+  </div>
+  <div class="sc-row">
+    <div class="sc-cell"><strong>MB blocks malaria in An. funestus and other vectors</strong></div>
+    <div class="sc-cell"><span class="badge red">Not demonstrated</span></div>
+    <div class="sc-cell">MB <em>presence</em> has been detected in wild funestus (Busia, Kenya; Ghana/Nigeria) at low prevalence. But the transmission-blocking phenotype has only been demonstrated in <em>An. arabiensis</em>. No blocking experiment has been done in funestus because no funestus MB colony exists (funestus is notoriously difficult to rear). The multi-vector blocking claim is an extrapolation. No MB surveillance data exists for funestus in Rwanda, Uganda, Malawi, or Mozambique — the East/Southern African strongholds the programme targets. Stage 1 must establish this before Rwanda is a justified site.</div>
+  </div>
+  <div class="sc-row">
+    <div class="sc-cell"><strong>MB passes from mother to offspring reliably</strong></div>
+    <div class="sc-cell"><span class="badge green">Shown</span></div>
+    <div class="sc-cell">Average maternal transmission 74% per reproductive cycle (range 63.5–99.5%). Mechanism mapped: MB enters germline stem cells early in mosquito development, which is what makes inheritance stable. Published in PLoS Pathogens 2024.</div>
+  </div>
+  <div class="sc-row">
+    <div class="sc-cell"><strong>MB gives infected mosquitoes a fitness advantage</strong></div>
+    <div class="sc-cell"><span class="badge green">Shown</span></div>
+    <div class="sc-cell">Infected offspring develop faster, infected males mate more competitively, infected females live longer. No apparent fitness cost. This helps MB spread — infected lineages are slightly more successful, not less.</div>
+  </div>
+  <div class="sc-row">
+    <div class="sc-cell"><strong>Spore-seeding delivery route works (without mosquito releases)</strong></div>
+    <div class="sc-cell"><span class="badge red">Speculative</span></div>
+    <div class="sc-cell">The concept note proposes MB spores infect <em>Moina</em> crustaceans in breeding water, which amplify and then infect mosquito larvae. <strong>A 2026 molecular screen of aquatic macrofauna in <em>Anopheles</em> breeding sites found no secondary host for MB at all</strong> (Microbiology Spectrum 2026, 10.1128/spectrum.00679-26). MB does produce spores (octosporogony confirmed) but whether those spores infect Moina or larvae from the water column is explicitly described as "under investigation." Related mechanisms exist for other microsporidia genera (<em>Amblyospora</em>, <em>Parathelohania</em>), providing biological plausibility — but the specific Moina-MB link has not been demonstrated. This is the highest-priority unproven step in the programme.</div>
+  </div>
+  <div class="sc-row">
+    <div class="sc-cell"><strong>MB spreads to high prevalence after an open-field release</strong></div>
+    <div class="sc-cell"><span class="badge red">Not yet done</span></div>
+    <div class="sc-cell">No open-field release has occurred. Wild prevalence sits at 1–16% in survey sites. Whether a deliberate release can push this to the 15–70% needed for malaria control is the central open question. Stage 2 resolves this.</div>
+  </div>
+  <div class="sc-row">
+    <div class="sc-cell"><strong>MB reduces malaria cases in humans</strong></div>
+    <div class="sc-cell"><span class="badge grey">Not yet attempted</span></div>
+    <div class="sc-cell">No human-endpoint trial has been conducted. This is Stage 3. The field data shows reduced mosquito infection (good proxy), but the human health impact is the Stage 3 question.</div>
+  </div>
+  <div class="sc-row">
+    <div class="sc-cell"><strong>Community acceptance</strong></div>
+    <div class="sc-cell"><span class="badge green">Strong</span></div>
+    <div class="sc-cell">Survey of 8,108 households in western Kenya: 81% willing to accept, 96% willing to participate. Acceptance would increase further if mosquito releases are replaced by spore-seeding (no mosquitoes in the air).</div>
+  </div>
+</div>
+
+<p>The short version: the biology is sound, the field protection signal is real, and the cage self-sustaining data is genuinely impressive. What the programme hasn't yet done is take MB from a cage into an open field and measure whether it spreads and holds there. That is the pivotal experiment.</p>
+
+
+<h2 id="the-bet">The one open question everything turns on</h2>
+
+<p>When you seed MB into a wild mosquito population — whether via a spore release or an infected mosquito release — does the prevalence rise to the level needed to block malaria, and does it stay there without further intervention?</p>
+
+<p>In cage experiments, the answer is clearly yes: prevalence goes from 20% to 90% and holds for two years. In the wild right now, the answer appears to be no: wild prevalence is 1–16% across survey sites. Both of these things are true simultaneously, and the gap between them is what you're betting on when you fund this programme.</p>
+
+<p>The team's explanation for the gap: wild prevalence fluctuates with temperature and rainfall — it goes up and down seasonally, and the survey averages are not the peak values. The cage data suggests that once MB crosses a threshold, it self-sustains. The field release will test whether a deliberate seeding campaign can push wild populations past that threshold in real conditions with real dispersal, immigration, and weather variability.</p>
+
+<div class="binary">
+  <div class="bin-card optimistic">
+    <div class="bh">If the field release works</div>
+    <div class="bd">~$47/DALY</div>
+    <p>A two-round spore campaign establishes 90% MB prevalence, 75% transmission blocking, 6 years of protection. Self-sustaining. Scales across East and West Africa. Potentially among the most cost-effective malaria tools ever.</p>
+    <p style="font-size:11px;color:#065f46;margin:0;">Programme estimate: $24–188/DALY. Independent central: ~$47–227/DALY.</p>
+  </div>
+  <div class="bin-card pessimistic">
+    <div class="bh">If the field release fails to hold</div>
+    <div class="bd">~$1,000+/DALY</div>
+    <p>MB drifts back toward baseline after the release. Requires continuous re-seeding. Cost-effectiveness falls to the range of indoor residual spraying or worse, and the self-sustaining advantage disappears.</p>
+    <p style="font-size:11px;color:#991b1b;margin:0;">The ~22-fold cost gap between these scenarios cannot be closed by operational efficiency — only the biology decides.</p>
+  </div>
+</div>
+
+<p>The malaria-suppressing threshold varies by region: mathematical models suggest you need about <strong>15% MB prevalence in highland settings, 40% on the coast, and 70% in the high-transmission lake region</strong>. The lake region threshold is the hardest and will probably be the last to attempt. Stage 2 starts with the most achievable settings.</p>
+
+
+<h2 id="sensitivities">The key sensitivities — what matters most and what we know</h2>
+
+<p>Not all uncertainties are equal. Here are the five parameters that actually drive the cost-effectiveness estimate, in order of how much they matter, alongside what we currently know about each:</p>
+
+<h3>1. Does MB self-sustain after a field release? (dominant driver)</h3>
+
+<div class="sensitivity-bar">
+  <div class="sens-label"><span>How much it matters</span><span style="color:#064e3b;font-weight:700;">Very high — drives ~60% of variance in $/DALY</span></div>
+  <div class="sens-track"><div class="sens-fill" style="width:95%;background:#064e3b;"></div></div>
+</div>
+
+<p><strong>What we know:</strong> Cage data is strongly positive — MB rises to 90% and holds for 40+ generations. Semi-field enclosure data is more mixed: published data (Insects 2025) shows prevalence rising in F1–F4 then declining, rather than stabilising — diverging from the concept note's claim of stable semi-field prevalence. Wild field prevalence at Ahero is 1–16% with clear seasonality: trough ~2% (dry season), peak ~15.6% (wet season). A 2026 bistable dynamical model (Mfangnia et al.) suggests only two stable equilibria: 0% or 55–60%. If correct, current wild prevalence is near the lower attractor and a release must push the population past a threshold to reach the upper one — rather than incrementally rising from 8% to 40%.</p>
+
+<p><strong>New from Loop E (bistable threshold analysis):</strong> An independent Monte Carlo reconstruction of the Mfangnia 2026 model found that robust bistability — where a one-time seeding locks in to the high equilibrium — occurs in only <strong>~1.2% of the plausible parameter space</strong>; the remaining 98.8% is monostable-extinction, meaning a single release very likely decays back to baseline without continuous top-up. When bistability does apply, the separatrix (invasion threshold p*) sits at <strong>~0.39 (P10 0.30 – P90 0.49)</strong> — roughly 1.5–2× higher than the Wolbachia/<em>Aedes</em> threshold, directly because MB has no cytoplasmic incompatibility drive. The implied Stage 2 release design: ~10,000 MB+ adults/ha/round (60–70% female, since vertical transmission dominates), 4–6 rounds across 25–100 ha, timed to the late dry season before the long rains, total ~1.0–6.0 million MB+ mosquitoes. Independent budget model: <strong>~$1.9M</strong> (P10 $1.5M / P90 $2.6M). The binding constraint is not money but whether the bistable regime applies at all — making Stage 2 a ~$1.9M value-of-information experiment on a question only field data can answer.</p>
+
+<p><strong>What resolves it:</strong> Stage 2 pilot releases in Kenya (first), then Rwanda and Benin. The key measurement: what is the mosquito MB prevalence 6 and 12 months after a spore-seeding release, and does it stay elevated after the campaign ends? A kill-switch signal: if prevalence decays within 2–3 generations of stopping releases, the programme is operating in the 98.8% extinction regime and must pivot to inundative re-seeding. This is the go/no-go for Stage 3.</p>
+
+<h3>2. How large is the reach? (second biggest driver)</h3>
+
+<div class="sensitivity-bar">
+  <div class="sens-label"><span>How much it matters</span><span style="color:#1d4ed8;font-weight:700;">High — $/DALY nearly linear in reach</span></div>
+  <div class="sens-track"><div class="sens-fill" style="width:78%;background:#1d4ed8;"></div></div>
+</div>
+
+<p><strong>What we know:</strong> MB is thermally suited to zones covering ~80% of Africa's malaria burden — that's roughly 40 million DALYs of nominal addressable burden. MB has been detected in wild mosquitoes in Kenya, Nigeria, Niger, Cameroon, Benin — it is widespread. A single MB strain infects most major African vector species (An. gambiae, coluzzii, arabiensis, funestus, coustani). However, "thermally suitable" ≠ "will actually be protected" — effective reach depends on whether MB establishes in each setting, which depends on the answer to sensitivity 1.</p>
+
+<p><strong>What resolves it:</strong> The three-country Stage 2 (Kenya, Rwanda, Benin) tests different ecological and vector contexts simultaneously, which is deliberately designed to bound the reach uncertainty faster than a sequential single-country approach.</p>
+
+<h3>3. Does the spore/Moina delivery route work at all — and then at production scale?</h3>
+
+<div class="sensitivity-bar">
+  <div class="sens-label"><span>How much it matters</span><span style="color:#7c3aed;font-weight:700;">Very high — determines programme feasibility and whether cost is $276 or $1,400+/DALY</span></div>
+  <div class="sens-track"><div class="sens-fill" style="width:70%;background:#7c3aed;"></div></div>
+</div>
+
+<p><strong>What we know:</strong> The spore → Moina → larval infection chain has <em>not</em> yet been demonstrated in primary literature. MB does produce spores (octosporogony confirmed in mSphere 2025), but whether those spores infect Moina crustaceans and whether infected Moina then infect mosquito larvae from the water column is explicitly described as "under investigation." A 2026 molecular screen of breeding-site macrofauna found no secondary host for MB. The cost arithmetic (10× Bti unit cost × 2 applications vs 15/year) is compelling on paper, and our independent Monte Carlo puts the spore-route conditional $/DALY at ~$276 vs ~$421 for a mosquito-release route — but both rest on this mechanism being real. An independent head-to-head CEA found the two routes land at similar ex-ante medians (~$1,391 spore vs ~$1,545 release) because the lower cost is offset by a lower mechanism-existence probability.</p>
+
+<p><strong>What resolves it:</strong> Stage 1 is the decisive test here — <em>first</em> demonstrating that the Moina secondary host mechanism actually exists for MB (a cheap, fast experiment), and <em>then</em> expanding production. If Stage 1 fails to confirm the Moina mechanism, the programme must either revert to a more expensive mosquito-release route or be paused. This is now the earliest and cheapest kill-switch experiment in the whole programme.</p>
+
+<h3>4. Does the transmission block hold across all major vector species?</h3>
+
+<div class="sensitivity-bar">
+  <div class="sens-label"><span>How much it matters</span><span style="color:#b45309;font-weight:700;">High — An. funestus blocking is completely undemonstrated; Rwanda site assumption rests on this</span></div>
+  <div class="sens-track"><div class="sens-fill" style="width:65%;background:#b45309;"></div></div>
+</div>
+
+<p><strong>What we know:</strong> The transmission-blocking phenotype has <em>only ever been demonstrated in An. arabiensis</em>. MB has been molecularly detected at low prevalence in wild funestus (Busia, Kenya — Otieno et al. 2025 BMC Microbiology; Ghana/Nigeria — Akorli et al. 2021), confirming the symbiont can <em>colonise</em> funestus. But no membrane-feeding experiment, oocyst count, or sporozoite-detection study has been done in funestus. No funestus MB colony exists to run one on (funestus is notoriously difficult to rear). The multi-vector blocking claim is an extrapolation from arabiensis — not a finding. Notably, the Busia survey found funestus MB prevalence at the low end, with gambiae s.l. having significantly higher odds than other species (aOR 5.94). The East/Southern African funestus strongholds that SYMBIOVECTOR most needs to cover (Rwanda, Uganda, Malawi, Mozambique) have zero MB surveillance data in funestus in the literature as of Sept 2026. The <em>Wolbachia-in-Anopheles</em> history is the cautionary analogue: colonisation compatibility in <em>Anopheles</em> repeatedly failed to translate into stable blocking infections, because each vector species' midgut immune environment is different.</p>
+
+<p><strong>What resolves it:</strong> Stage 1 must establish a funestus MB colony (prerequisite for any blocking experiment) and demonstrate transmission blocking in funestus before the Rwanda site can be justified. This is harder than the concept note implies — funestus colony establishment is itself a multi-year challenge. If blocking cannot be demonstrated in funestus, the programme's East/Southern African scope shrinks significantly.</p>
+
+<h3>5. How long does a single seeding campaign protect — and can the parasite evolve around it?</h3>
+
+<div class="sensitivity-bar">
+  <div class="sens-label"><span>How much it matters</span><span style="color:#6b7280;font-weight:700;">Medium — 6-year vs 2-year protection per campaign; parasite resistance is NOT the main risk</span></div>
+  <div class="sens-track"><div class="sens-fill" style="width:40%;background:#6b7280;"></div></div>
+</div>
+
+<p><strong>What we know:</strong> The concept note uses 6 years of protection per campaign as its central assumption. Cage data supports multi-year persistence (40+ generations in lab = ~3–4 field years). Climate modelling shows prevalence moves seasonally — some periodic top-up is a reasonable planning assumption.</p>
+
+<p><strong>On parasite resistance — a specific research loop addressed this directly.</strong> The verdict is reassuring: MB's durability against <em>Plasmodium</em> resistance is likely structural, not lucky. The block appears to act through a multi-factorial, host-mediated mechanism in the mosquito midgut (re-tuned immunity, lipid competition, microbiome shift) rather than a single evolvable molecular target. An independent Monte Carlo model estimates <strong>~17% probability</strong> of resistance emerging within 10 years at 60% MB prevalence — and that drops to <strong>&lt;1% conditional on the mechanism being host-mediated</strong> (consistent with current evidence). Compare this to insecticide resistance in the same western Kenya geography: pyrethroid-resistance <em>kdr</em> alleles went from 6% to near-fixation (~98%) in roughly 9 years. No pathogen has ever been documented to evolve around a symbiont-mediated block in the field — not dengue against Wolbachia after a decade of deployment. The real durability risk is symbiont <em>establishment and persistence</em> (sensitivity #1), not parasite evolution. This is a structural advantage over every insecticide-based tool.</p>
+
+<p><strong>What resolves campaign duration:</strong> Stage 2 longitudinal monitoring. The Ahero dataset (2022–2024) is already providing climate-prevalence data to model this. What resolves mechanism-based durability: dedicated mechanistic studies in Stage 1 to determine exactly how MB prevents sporozoite development — the single highest-value piece of information for the long-run investment case.</p>
+
+
+<h2 id="staging">How to stage the funding — what each tranche buys</h2>
+
+<p>The programme proposes $50M over five years in three stages. Here is what each stage actually resolves, and what the go/no-go decision at each stage looks like:</p>
+
+<div class="stage-grid">
+  <div class="stage active-stage">
+    <div class="stage-header">
+      <span class="stage-label">Stage 1 · Years 1–2</span>
+      <span class="stage-title">De-risk the biology</span>
+      <span class="stage-cost">~$9M</span>
+    </div>
+    <div class="stage-body">
+      <p><strong>What it funds:</strong> Enhanced semi-field capacity; efficacy studies across all major vector species (especially funestus); geographic diversity testing (humid, semi-arid, arid conditions); refinement of the spore/Moina delivery pathway; set-up of a 10-country scientific alliance for data sharing and future scale-up.</p>
+      <p><strong>What it answers:</strong> Does MB block malaria in funestus as well as arabiensis? Does the spore route work in diverse field conditions? What are the production economics for the Nairobi facility?</p>
+      <div class="stage-resolves">
+        <div class="rl">Uncertainty resolved</div>
+        Sensitivities 3 and 4 above — delivery route production and multi-species efficacy. These are binary: if MB doesn't block in funestus, the programme's geographic scope shrinks significantly. If the spore route doesn't scale, cost estimates need revision upward.
+      </div>
+      <div class="kill-flag">
+        <div class="kl">Go/No-go at end of Stage 1</div>
+        Continue if: transmission block confirmed in ≥3 vector species; <strong>Moina secondary-host mechanism demonstrated in controlled experiment</strong>; spore production pathway viable at ≥1 pilot site; no unexpected safety signals. Pause/pivot if: block is arabiensis-specific only (narrows reach to East Africa); Moina mechanism cannot be demonstrated (must revert to more expensive mosquito-release route); or spore production costs exceed 50× Bti (re-run cost model). <em>The Moina mechanism test is now the earliest, cheapest, most decisive kill-switch.</em>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage">
+    <div class="stage-header">
+      <span class="stage-label">Stage 2 · Years 2–4</span>
+      <span class="stage-title">Pilot releases — the pivotal experiment</span>
+      <span class="stage-cost">~$24M</span>
+    </div>
+    <div class="stage-body">
+      <p><strong>What it funds:</strong> Regulatory approval in Kenya, Rwanda, and Benin (three parallel regulatory pathways). Large production facility in Nairobi. Smaller satellite production in Rwanda and Benin. Community engagement. Pilot releases in western/northern Kenya, Rwanda, and Benin. Baseline data already collected at Kenya sites.</p>
+      <p><strong>What it answers:</strong> The central question — does MB establish and hold at malaria-suppressing prevalence after an open-field spore-seeding release? This is the go/no-go for Stage 3 and for the entire programme's cost-effectiveness case. It also tests three regulatory pathways simultaneously (reducing dependence on any single country's approval timeline) and three ecological contexts.</p>
+      <div class="stage-resolves">
+        <div class="rl">Uncertainty resolved</div>
+        Sensitivity 1 (self-sustaining establishment) and Sensitivity 2 (reach across ecologies). This is where the $47/DALY vs $1,000+/DALY question gets answered. It also generates the safety and community data that a Stage 3 field trial will require for ethics approval.
+      </div>
+      <div class="kill-flag">
+        <div class="kl">Go/No-go at end of Stage 2</div>
+        Continue to Stage 3 if: MB prevalence rises to ≥40% in at least one release site and remains elevated 6 months after campaign ends. The 40% threshold is the coastal blocking level — the intermediate target. If prevalence peaks then collapses to baseline, the self-sustaining thesis fails and the programme pivots to inundative strategy (periodic reseeding, higher cost, lower priority).
+      </div>
+    </div>
+  </div>
+
+  <div class="stage">
+    <div class="stage-header">
+      <span class="stage-label">Stage 3 · Years 4–5</span>
+      <span class="stage-title">Regional field trial and scale-up</span>
+      <span class="stage-cost">~$17M</span>
+    </div>
+    <div class="stage-body">
+      <p><strong>What it funds:</strong> Increased production across all three sites sufficient to initiate a multi-site cluster-randomised trial measuring human malaria cases; spin-off of a dedicated non-profit entity for long-term programme management; government partnerships for integration into national malaria programmes; building demonstration landscapes in each country that governments and global health funders can directly observe.</p>
+      <p><strong>What it answers:</strong> Does MB prevalence at population scale translate to reduced human malaria cases? This is the definitive human-endpoint evidence the programme needs for WHO endorsement and integration into national malaria control budgets.</p>
+      <div class="stage-resolves">
+        <div class="rl">Uncertainty resolved</div>
+        The human health impact endpoint. If Stage 3 delivers a positive cluster-RCT, the programme transitions from philanthropic R&D to mainstream malaria-control financing (WHO/Global Fund/national governments redirecting existing malaria budgets).
+      </div>
+      <div class="kill-flag">
+        <div class="kl">Note</div>
+        Do not commit to Stage 3 funding until Stage 2 pilot release data exists. This is a $17M decision that should be made in Years 3–4, not upfront.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="callout">
+  <strong>Why three countries in parallel matters:</strong> The conventional path (one country at a time, sequential) would add 2–5 years to reaching the same evidence base. The parallel approach across Kenya, Rwanda, and Benin simultaneously generates evidence in three ecological and regulatory contexts, surfaces what works and what needs adapting earlier, and creates three regulatory precedents rather than one — meaning future country expansion copies an existing template rather than starting from scratch.
+</div>
+
+
+<h2 id="cea">Cost-effectiveness</h2>
+
+<p>The programme's own estimate is $24–188 per DALY (central case $47/DALY at 20% baseline malaria prevalence). This assumes: two-round spore campaign, 90% MB prevalence achieved, 75% transmission blocking, 6 years of protection per campaign. MB spore production costs ~10× Bti but requires ~2 applications vs Bti's ~15/year.</p>
+
+<p>Our independent reconstruction of the cost model, stress-tested across uncertainty ranges:</p>
+
+<table>
+  <tr><th>Scenario</th><th>$/DALY</th><th>What it assumes</th></tr>
+  <tr><td>Programme optimistic</td><td>$24–47</td><td>90% prevalence, 6yr protection, self-sustaining, 20% baseline transmission</td></tr>
+  <tr><td><strong>Conditional central (our estimate)</strong></td><td><strong>~$227</strong></td><td>If development succeeds; realistic reach; P10 $97, P90 $493</td></tr>
+  <tr><td>Ex-ante central (our estimate)</td><td>~$900–3,000</td><td>Conditional × 1/p(success = 7–15%); range reflects release-route vs spore-route assumptions and Ahero seasonal vs equilibrium readings</td></tr>
+  <tr><td>Reach at 500k (demo scale)</td><td>~$646</td><td>Conservative demonstration reach only</td></tr>
+  <tr><td>Reach at 1M (central demo)</td><td>~$353</td><td>Central demonstration reach</td></tr>
+  <tr><td>Reach at 5M+ (scale)</td><td>~$120–188</td><td>Significant scale, closer to programme estimates</td></tr>
+  <tr><td>Repeat-release (if not self-sustaining)</td><td>~$1,000–1,334</td><td>λ ≤ 1, must re-seed every season</td></tr>
+</table>
+
+<div class="note">
+  <div class="nt">The $188/DALY headline</div>
+  The programme's $188 figure is real but requires context: it's a conditional best-case that assumes the field establishment works and the programme reaches significant scale. Our reconstruction puts it at the 38th percentile of the conditional distribution — achievable but not the central outcome. The honest decision-relevant number (probability-weighted) is ~$900–3,000/DALY, with the range driven primarily by (a) whether p(success) is 7% (spore route mechanistic gate + Ahero equilibrium reading) or 15% (Wolbachia reference class adjusted for cage data), and (b) whether the Ahero 2% seasonal trough or 55-60% bistable equilibrium model is the right anchor. This isn't a reason not to fund it — it's a reason to fund it as a research bet on a potentially transformative tool, not as a proven delivery programme.
+</div>
+
+<details>
+  <summary>Value-of-information: why Stages 1+2 are worth funding even if the programme ultimately fails</summary>
+  <div class="details-body">
+    <p>At p(success) = 18%, there's an 82% chance Stage 3 ($17M) would be wasted. Funding Stage 2 pilot releases before committing to Stage 3 saves:</p>
+    <p>Expected Stage 3 waste if funded blind: $17M × 0.82 = <strong>$13.9M expected waste</strong><br>
+    Stage 1+2 cost: $33M (shared with OpenPhil/Gates/Wellcome → your share ~$8–11M)<br>
+    Net VOI from Stage 2 gate: saves ~$14M expected waste in Stage 3</p>
+    <p>Beyond the financial VOI: the programme generates foundational knowledge about whether symbiont-based malaria control is achievable at all. A positive Stage 2 result would accelerate the entire field; a negative result would redirect it productively (away from self-sustaining and toward inundative strategies or other approaches). Either outcome is valuable to the malaria control community.</p>
+  </div>
+</details>
+
+
+<h2 id="comparators">How it compares to existing tools</h2>
+
+<table>
+  <tr><th>Tool</th><th>$/DALY</th><th>Self-sustaining?</th><th>Resistance-proof?</th><th>Status</th></tr>
+  <tr><td>Insecticide-treated bednets (ITNs)</td><td>~$100</td><td>No — replace every 3 yrs</td><td>No — pyrethroid resistance spreading</td><td>Deployed at scale</td></tr>
+  <tr><td>Indoor residual spraying (IRS)</td><td>~$266–400</td><td>No — annual re-spray</td><td>No — insecticide resistance</td><td>Deployed at scale</td></tr>
+  <tr><td>R21 / RTS,S malaria vaccine</td><td>~$100–150</td><td>No — boosters required</td><td>Yes</td><td>Rolling out (limited)</td></tr>
+  <tr><td>Wolbachia / Aedes (dengue)</td><td>&lt;$100–1,500 depending on estimate</td><td><strong>Yes — CI drive self-sustains to fixation</strong></td><td>Yes</td><td>Deployed in 15 countries, 16M people protected</td></tr>
+  <tr><td><strong>MB (if field establishment works)</strong></td><td><strong>~$47–227</strong></td><td><strong>Conditional</strong> — cage yes; bistable lock-in requires p*≈0.39 and applies in only ~1.2% of parameter space</td><td><strong>Yes</strong></td><td>Pilot release in Stage 2</td></tr>
+  <tr><td>MB (if field establishment fails)</td><td>~$1,000+</td><td>No</td><td>Yes</td><td>—</td></tr>
+</table>
+
+<p>The strategic case for MB isn't just its cost-effectiveness in isolation. It's that it attacks the one failure mode of every existing tool: <strong>resistance</strong>. Bednets and IRS rely on insecticides mosquitoes are evolving around. MB works against the parasite inside the mosquito's gut — a mechanism that doesn't select for resistance in the mosquito, and that the parasite cannot easily escape because MB prevents its development in an entirely different way than drugs do.</p>
+
+<p>MB is most valuable as a complement to the existing toolkit, not a replacement for it. In a world where pyrethroid resistance is accelerating and the tools we have are depreciating, a resistance-independent tool that self-sustains is worth pursuing even if it costs more than bednets today — because bednets' effective cost is rising every year as resistance spreads.</p>
+
+
+<h2 id="jeremy">Questions for Jeremy Herren — before committing Stage 2</h2>
+
+<h3>The most important questions (tier 1)</h3>
+
+<ol class="bl">
+  <li><strong>What do you expect wild prevalence to look like 6 months after a spore-seeding release at Ahero?</strong> Not the model prediction — your best empirical guess, based on the cage and semi-field data. What would make you confident the field is tracking the cage trajectory? What would make you worried it isn't?</li>
+
+  <li><strong>The bistable threshold — Loop E finding:</strong> An independent reconstruction of the Mfangnia 2026 Stella model finds that robust self-sustaining lock-in occurs in only ~1.2% of plausible parameter space, with the invasion threshold p* ≈ 0.39 (nearly 2× the Wolbachia/Aedes threshold) when bistability applies at all. The rest of parameter space is monostable-extinction — a one-off seed decays. <strong>Ask Jeremy:</strong> Does the team's own modelling reach the same conclusion about the bistable regime's rarity? What empirical signal from Stage 2 would confirm you're in the 1.2% bistable regime vs. the 98.8% extinction regime — and at what point in the release campaign would you know? Does the planned release volume (~10k adults/ha/round) match this threshold, or is the team using a different density estimate?</li>
+
+  <li><strong>The Ahero longitudinal data (30 months) — published answer: peak ~15.6%, average ~8%, trough ~2%.</strong> Independent analysis of the Frontiers in Malaria 2026 paper confirms the seasonal pattern: dry-season trough ~2%, wet-season peak ~15.6%, survey-average ~8%. The peak is notably <em>lower</em> than the 30–40% scenario that would have reframed the concern — in fact, even the seasonal ceiling is only ~39% of the 40% suppression threshold needed for the lake-basin setting. <strong>Ask Jeremy:</strong> Does the programme's own Ahero dataset show a higher peak than the published figure, or do you accept ~15.6% as the ceiling? If the peak genuinely doesn't cross 20%, does that change the Stage 2 release strategy (volume, timing)?</li>
+
+  <li><strong>Semi-field cage data — concept note vs. published literature:</strong> The concept note states prevalence is "stable across generations" in semi-field enclosures. Published data (Insects 2025, PMC12733993) shows prevalence rising in F1–F4 then declining — not stable. Which is accurate? Is the published data a different experiment or strain? If semi-field data shows decline, the self-sustaining argument weakens significantly and the cage → field extrapolation becomes harder to defend. This is the single most important disconfirming finding from our independent literature review.</li>
+
+  <li><strong>The Moina/spore route — has the secondary-host mechanism been demonstrated?</strong> A 2026 molecular screen of <em>Anopheles</em> breeding-site macrofauna (Microbiology Spectrum 2026) found no evidence of MB in any secondary host. Have you seen this paper? Does unpublished lab data contradict this? The concept note presents the Moina route as established; primary literature suggests it has not been demonstrated. This is the most important question for the programme's cost case, and the answer determines whether Stage 1's first priority is confirming mechanism vs. scaling production.</li>
+
+  <li><strong>An. funestus blocking — no evidence exists in the literature.</strong> A systematic search (Sept 2026) found zero published, preprint, or conference evidence of MB blocking malaria in funestus. The only blocking demonstration is arabiensis (Herren 2020). MB has been detected at low prevalence in wild funestus (Busia, Kenya; West Africa) but this is presence, not efficacy. No funestus MB colony appears to exist in the literature. <strong>Ask Jeremy:</strong> Is there any unpublished blocking data for funestus? Has the team established a funestus MB colony? If not, how is Rwanda justified as a Stage 2 site — and what does the Stage 1 funestus work plan actually look like?</li>
+</ol>
+
+<h3>Important but second-tier</h3>
+
+<ol class="bl">
+  <li><strong>Regulatory pathway:</strong> Kenya's non-GMO classification — is this formally confirmed or anticipated? What is the timeline for regulatory dossier submission in Rwanda and Benin?</li>
+  <li><strong>The arabiensis F3–F4 transmission decline in some early colony data:</strong> Is this fully resolved? The concept note is confident (cites 74% average, up to 99.5%) — what changed from the earlier reports of declining fidelity?</li>
+  <li><strong>Absorptive capacity at Stage 2 budget:</strong> The $24M Stage 2 involves three countries, three production facilities, and three regulatory pathways in parallel. What is the team capacity (headcount) today and what needs to be hired?</li>
+  <li><strong>Plasmodium resistance risk — now largely answered by independent research:</strong> A dedicated research loop found ~17% probability of resistance in 10 years (blended), dropping to &lt;1% conditional on the block being host-mediated rather than a single molecular target. The favourable verdict is conditional on mechanism resolution. <strong>Ask Jeremy:</strong> What does the team's mechanistic work say about exactly how MB prevents oocyst formation? Is there a specific parasite protein or pathway being disrupted, or is it a diffuse host-immune effect? The answer determines whether the &lt;1% or ~63% resistance probability applies.</li>
+</ol>
+
+
+<h2 id="calculator">Interactive calculator</h2>
+
+<div id="mb-tool" style="border:1px solid #6ee7b7;background:#f0fdf4;padding:1.5rem 1.75rem;margin:0 0 2.5rem;font-family:system-ui,sans-serif;">
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1.75rem;">
+    <div>
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;margin-bottom:.3rem;">Conditional $/DALY</div>
+      <div id="mb-conditional" style="font-size:2.4rem;font-weight:800;letter-spacing:-.03em;line-height:1;color:#065f46;">—</div>
+      <div style="font-size:10px;color:#9ca3af;margin-top:.25rem;">if programme succeeds</div>
+    </div>
+    <div>
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;margin-bottom:.3rem;">Ex-ante $/DALY</div>
+      <div id="mb-exante" style="font-size:2.4rem;font-weight:800;letter-spacing:-.03em;line-height:1;color:#1f2937;">—</div>
+      <div style="font-size:10px;color:#9ca3af;margin-top:.25rem;">probability-weighted</div>
+    </div>
+    <div>
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;margin-bottom:.3rem;">Verdict</div>
+      <div id="mb-verdict" style="font-size:13px;font-weight:700;padding:.45rem .9rem;border-radius:3px;display:inline-block;margin-top:.2rem;">—</div>
+    </div>
+  </div>
+
+  <div style="font-size:11.5px;color:#374151;line-height:2;margin-bottom:1.5rem;background:#fff;border:1px solid #d1fae5;padding:.85rem 1.1rem;" id="mb-breakdown"></div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem 2rem;">
+    <div>
+      <label style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;font-weight:600;">p(field establishment succeeds): <span id="ps-val">10%</span></label>
+      <input type="range" id="ps-slider" min="5" max="40" value="10" step="1" oninput="mbRecalc()" style="width:100%;margin-top:.4rem;accent-color:#064e3b;">
+      <div style="font-size:10px;color:#9ca3af;margin-top:.2rem;">5–8% = new loops central · 10% = balanced · 15–20% = Wolbachia ref class · 40% = cage data implies</div>
+    </div>
+    <div>
+      <label style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;font-weight:600;">People protected at scale: <span id="reach-val">—</span></label>
+      <input type="range" id="reach-slider" min="1" max="20" value="4" step="1" oninput="mbRecalc()" style="width:100%;margin-top:.4rem;accent-color:#064e3b;">
+      <div style="font-size:10px;color:#9ca3af;margin-top:.2rem;">500k (demo) → 1M → 2M → 5M → 20M+ (regional)</div>
+    </div>
+    <div>
+      <label style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;font-weight:600;">Self-sustaining after release: <span id="ss-val">Yes</span></label>
+      <input type="range" id="ss-slider" min="0" max="1" value="1" step="1" oninput="mbRecalc()" style="width:100%;margin-top:.4rem;accent-color:#064e3b;">
+      <div style="font-size:10px;color:#9ca3af;margin-top:.2rem;">No (must re-seed each season) / Yes (one campaign, 6yr protection)</div>
+    </div>
+    <div>
+      <label style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;font-weight:600;">Effective reach fraction: <span id="eff-val">23%</span></label>
+      <input type="range" id="eff-slider" min="5" max="80" value="23" step="1" oninput="mbRecalc()" style="width:100%;margin-top:.4rem;accent-color:#064e3b;">
+      <div style="font-size:10px;color:#9ca3af;margin-top:.2rem;">% of nominal reach that is actually protected (threshold achievability × vector match)</div>
+    </div>
+    <div>
+      <label style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;font-weight:600;">Malaria burden (DALYs/1,000/yr): <span id="burden-val">50</span></label>
+      <input type="range" id="burden-slider" min="10" max="150" value="50" step="5" oninput="mbRecalc()" style="width:100%;margin-top:.4rem;accent-color:#064e3b;">
+      <div style="font-size:10px;color:#9ca3af;margin-top:.2rem;">Highland ~20 · Coastal ~50 · Lake region ~120</div>
+    </div>
+    <div>
+      <label style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;font-weight:600;">Your share of programme cost ($M): <span id="cost-val">—</span></label>
+      <input type="range" id="cost-slider" min="2" max="50" value="10" step="1" oninput="mbRecalc()" style="width:100%;margin-top:.4rem;accent-color:#064e3b;">
+      <div style="font-size:10px;color:#9ca3af;margin-top:.2rem;">At 25–33% co-fund: S1+S2 share ~$8–11M · Full programme share ~$12–17M</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const REACH_MAP = [0.5,0.75,1,1.5,2,2.5,3,4,5,6,7,8,9,10,11,12,13,14,15,20];
+const REACH_LABELS = ['500k','750k','1M','1.5M','2M','2.5M','3M','4M','5M','6M','7M','8M','9M','10M','11M','12M','13M','14M','15M','20M'];
+
+function mbRecalc() {
+  const ps = parseInt(document.getElementById('ps-slider').value)/100;
+  const reachIdx = parseInt(document.getElementById('reach-slider').value)-1;
+  const selfSust = parseInt(document.getElementById('ss-slider').value);
+  const effFrac = parseInt(document.getElementById('eff-slider').value)/100;
+  const burden = parseInt(document.getElementById('burden-slider').value);
+  const costM = parseInt(document.getElementById('cost-slider').value);
+
+  document.getElementById('ps-val').textContent = Math.round(ps*100)+'%';
+  document.getElementById('reach-val').textContent = REACH_LABELS[reachIdx];
+  document.getElementById('ss-val').textContent = selfSust ? 'Yes' : 'No';
+  document.getElementById('eff-val').textContent = Math.round(effFrac*100)+'%';
+  document.getElementById('burden-val').textContent = burden;
+  document.getElementById('cost-val').textContent = '$'+costM+'M';
+
+  const nomM = REACH_MAP[reachIdx];
+  const effM = nomM * effFrac;
+  const burdenPerPerson = burden/1000;
+  const txBlock = 0.75;
+  const additionality = 0.6;
+  const dalyPerYear = effM * 1e6 * burdenPerPerson * txBlock * additionality;
+
+  const dr = 0.04;
+  let npvYrs = selfSust ? 6 : 2;
+  const npvFactor = (1 - Math.pow(1+dr, -npvYrs))/dr;
+
+  const totalDalys = dalyPerYear * npvFactor;
+  const condPerDaly = (costM*1e6)/totalDalys;
+  const exAntePerDaly = condPerDaly/ps;
+
+  document.getElementById('mb-conditional').textContent = '$'+Math.round(condPerDaly).toLocaleString();
+  document.getElementById('mb-exante').textContent = '$'+Math.round(exAntePerDaly).toLocaleString();
+
+  const vEl = document.getElementById('mb-verdict');
+  if (exAntePerDaly < 200) {
+    vEl.textContent = 'Strong buy'; vEl.style.background='#d1fae5'; vEl.style.color='#065f46';
+  } else if (exAntePerDaly < 600) {
+    vEl.textContent = 'Good research bet'; vEl.style.background='#fef3c7'; vEl.style.color='#92400e';
+  } else if (exAntePerDaly < 1500) {
+    vEl.textContent = 'Marginal — VOI case needed'; vEl.style.background='#fee2e2'; vEl.style.color='#991b1b';
+  } else {
+    vEl.textContent = 'Hard to justify ex-ante'; vEl.style.background='#f3f4f6'; vEl.style.color='#374151';
+  }
+
+  document.getElementById('mb-breakdown').innerHTML =
+    '① Your share: <strong>$'+costM+'M</strong>' +
+    ' &emsp;② Nominal reach: <strong>'+REACH_LABELS[reachIdx]+'</strong>' +
+    ' &emsp;③ Effective reach: <strong>'+effM.toFixed(2)+'M people</strong>' +
+    '<br>④ DALYs averted/yr: <strong>'+Math.round(dalyPerYear/1000).toLocaleString()+'k</strong>' +
+    ' &emsp;⑤ Protection duration: <strong>'+(selfSust?'6yr self-sustaining':'2yr repeat-release')+'</strong>' +
+    ' &emsp;⑥ Total DALYs: <strong>'+Math.round(totalDalys/1000).toLocaleString()+'k</strong>' +
+    '<br>⑦ Conditional $/DALY: <strong>$'+Math.round(condPerDaly).toLocaleString()+'</strong>' +
+    ' &emsp;⑧ ÷ p(success) '+Math.round(ps*100)+'% → Ex-ante: <strong>$'+Math.round(exAntePerDaly).toLocaleString()+'</strong>';
+}
+
+function toggleAll() {
+  const ds = document.querySelectorAll('details');
+  const anyOpen = [...ds].some(d=>d.open);
+  ds.forEach(d=>d.open=!anyOpen);
+  document.getElementById('expand-all-btn').textContent = anyOpen ? 'Expand all' : 'Collapse all';
+}
+
+const secs = document.querySelectorAll('h2[id]');
+const links = document.querySelectorAll('nav ul li a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{ if(window.scrollY>=s.offsetTop-80) cur=s.id; });
+  links.forEach(a=>{ a.classList.toggle('active', a.getAttribute('href')==='#'+cur); });
+});
+
+mbRecalc();
+</script>
+
+
+<h2 id="verdict">Verdict</h2>
+
+<p>Microsporidia MB is the most credible candidate for a self-sustaining, resistance-independent malaria transmission-blocking tool in the current pipeline. The biology is real, the field protection signal is genuine (30 months, 37,879 mosquitoes, OR=0.51), the cage self-sustaining data is impressive (90% prevalence for 2+ years, 5 replications), the delivery pathway is simpler than anything comparable, and community acceptance is high. The programme team is the right group — Jeremy Herren's lab discovered MB, has led its development, and is hosted at icipe, Africa's leading insect science institute.</p>
+
+<p>The central uncertainty is not about the biology of MB — it works. The uncertainty is about field establishment: whether a deliberate release can push wild mosquito populations past the malaria-suppressing threshold and keep them there. This is directly testable with Stage 2 pilot releases, and the three-country parallel approach (Kenya/Rwanda/Benin) will answer it faster and with more geographic breadth than a sequential single-country strategy.</p>
+
+<p>At a probability-weighted cost of ~$900–3,000/DALY ex-ante, this is not a direct delivery buy. Three independent research loops run after integrating the concept note revised p(success) downward to ~7–8% central (from 15–20%), primarily because the spore/Moina delivery mechanism has not been confirmed in primary literature and semi-field data shows decline rather than stability. The right framing is: what would I pay for a 7–15% chance at a self-sustaining $47–227/DALY malaria intervention that protects populations for 6 years per campaign? For a funder with a long time horizon and a portfolio orientation, the answer is still: meaningful money — especially when the downside is a well-structured field experiment that advances the science regardless of outcome, and when Stage 1 specifically tests the most important unproven steps (Moina mechanism, funestus efficacy) before committing to Stage 2 scale-up.</p>
+
+<p><strong>Recommended structure:</strong> Co-fund Stage 1 (~$9M total, your share ~$2–3M) and Stage 2 (~$24M total, your share ~$6–8M) alongside Open Philanthropy, Gates, CIFF, and Wellcome. Set a clear decision point at the end of Stage 2 (end of Year 4) where you evaluate the pilot release data and decide on Stage 3 co-funding. Pre-register the go/no-go criterion now: if MB prevalence reaches ≥40% and holds for 6+ months post-campaign at any Stage 2 site, move to Stage 3. If it doesn't, the programme pivots or stops.</p>
+
+<div style="margin-top:5rem;padding-top:2rem;border-top:1px solid #e0deda;">
+  <div style="font-family:system-ui,sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:#bbb;margin-bottom:1rem;">Deep research runs — full analysis</div>
+  <ul style="list-style:none;margin:0;padding:0;font-family:system-ui,sans-serif;font-size:13px;">
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1hRVnvQWJ7ycPh1F-1fNYE_sSSwrR6OZXVzz2PLTSTgw/edit">Main evaluation — 7 iterations (full doc)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1VullE0K5BG33Ue6bYJketakwPDiMs4adXWxH1reYsks/edit">Main evaluation (summary)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1-YW4kr_6VRzAOkAL9u9ArjNg2b81Tnwkrx4Yda2f8oU/edit">Wolbachia failure reference class</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/19rHUQQ26HmBkbnaqlqD5am3Yr_yto1z5IeGkY8i5PNs/edit">Concept-note loop A: revised p(success) &amp; CEA (full)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1TnUZTK6HV3fPZIu27EhyiVCdRelYXVCbQGsIqaLZCRk/edit">Loop A (summary)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1HnwurWFS6wiyp_SgTOR-m3U5NOlMzQiLmzKhr4tJcLw/edit">Concept-note loop B: Ahero seasonal dynamics (full)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1xCD3oxAG68yu2jZdrTVuV3LZ7qUqsPSNvJlABDTHv9c/edit">Loop B (summary)</a></li>
+    <li style="margin-bottom:.5rem;"><span style="color:#999;">Loop C: spore/Moina delivery economics — synthesis complete, upload pending</span></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1o4XB2FSES9gWR8AsL2njqbdT4WYc5lCAqKR0uzgJm0g/edit">Loop E: Bistable threshold + Stage 2 release design (full)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1xpuZDoa7ZGG2ce_sFEy36KHLKTZJ6o1S_6f6I5zT8oE/edit">Loop E (summary)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1-VmUfv3ZJB0tPBeHjBIzF77wXZ8560zHTClqG1bKA_o/edit">Loop F: Plasmodium resistance evolution + MB durability (full)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1QGnWhdTYMcjdC6nBLw8nGfQts3l8P4YU14NkZU2AB7o/edit">Loop F (summary)</a></li>
+  </ul>
+</div>
+</main>
+</div>
+</body>
+</html>

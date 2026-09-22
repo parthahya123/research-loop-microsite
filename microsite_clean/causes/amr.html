@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antimicrobial Resistance — Cause Area Report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --accent: #8b1a1a;
+    --accent-light: #fff5f5;
+    --accent-border: #fca5a5;
+    --text: #1a1a1a;
+    --muted: #555;
+    --border: #e0deda;
+    --bg: #fafaf8;
+    --surface: #fff;
+    --surface-alt: #f7f6f4;
+  }
+
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.88; color: var(--text); background: var(--bg); }
+
+  .layout { display: flex; min-height: 100vh; }
+
+  /* NAV */
+  nav { width: 232px; flex-shrink: 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 2.25rem 1.5rem; background: var(--surface-alt); border-right: 1px solid var(--border); }
+  nav .home { display: block; font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; color: #999; text-decoration: none; margin-bottom: 1.5rem; }
+  nav .home:hover { color: #333; }
+  nav h5 { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #bbb; margin-bottom: .6rem; margin-top: 1.5rem; }
+  nav ul { list-style: none; }
+  nav ul li a { font-family: system-ui, sans-serif; font-size: 12.5px; color: #666; text-decoration: none; display: block; padding: .22rem .6rem; border-left: 2px solid transparent; }
+  nav ul li a:hover { color: var(--text); }
+  nav ul li a.active { color: var(--text); border-left-color: var(--accent); font-weight: 600; }
+  nav .current { color: var(--accent) !important; font-weight: 600; }
+  nav .sep { height: 1px; background: var(--border); margin: 1.5rem 0; }
+
+  /* MAIN */
+  main { flex: 1; max-width: 800px; padding: 4rem 3.5rem 7rem; }
+
+  .eyebrow { font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin-bottom: .6rem; }
+  h1 { font-size: 2.5rem; line-height: 1.15; font-weight: 700; letter-spacing: -.025em; margin-bottom: .45rem; color: #0f0f0f; }
+  .dek { font-family: system-ui, sans-serif; font-size: 15.5px; color: #666; margin-bottom: 2.75rem; line-height: 1.5; }
+
+  /* VERDICT BOX */
+  .verdict { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 1.3rem 1.6rem; margin-bottom: 3.25rem; }
+  .verdict .vl { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #aaa; margin-bottom: .5rem; }
+  .verdict p { font-family: system-ui, sans-serif; font-size: 13.5px; color: #333; line-height: 1.65; margin-bottom: .55rem; }
+  .verdict p:last-child { margin-bottom: 0; }
+
+  /* METRICS */
+  .metrics { display: flex; gap: 1.25rem; margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .metric { background: var(--surface); border: 1px solid var(--border); padding: 1rem 1.25rem; flex: 1; min-width: 120px; }
+  .metric .mv { font-size: 1.45rem; font-weight: 700; color: #0f0f0f; font-family: system-ui, sans-serif; letter-spacing: -.02em; line-height: 1.1; }
+  .metric .ml { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: #aaa; margin-top: .3rem; }
+
+  /* HEADINGS */
+  h2 { font-size: 1.6rem; font-weight: 700; margin-top: 4rem; margin-bottom: 1.25rem; letter-spacing: -.015em; padding-bottom: .5rem; border-bottom: 1px solid var(--border); scroll-margin-top: 1.5rem; }
+  h3 { font-size: 1.1rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: .7rem; color: #222; }
+
+  p { margin-bottom: 1.2rem; }
+  a { color: #1d4ed8; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:hover { color: #1e3a8a; }
+  sup a { font-size: 0.75em; text-underline-offset: 1px; }
+
+  /* TABLES */
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 2.25rem; font-family: system-ui, sans-serif; font-size: 13px; }
+  th { text-align: left; padding: .6rem .85rem; background: var(--surface-alt); border: 1px solid var(--border); font-weight: 600; color: #333; }
+  td { padding: .55rem .85rem; border: 1px solid var(--border); color: #444; vertical-align: top; line-height: 1.5; }
+  tr:nth-child(even) td { background: #faf9f7; }
+
+  /* BOXES */
+  .callout { background: var(--accent-light); border: 1px solid var(--accent-border); padding: 1.1rem 1.5rem; margin: 2rem 0; font-size: .94rem; line-height: 1.72; }
+  .callout strong { color: #7f1d1d; }
+
+  .note { background: #f8f9fa; border: 1px solid #d0d5dd; padding: 1.1rem 1.5rem; margin: 1.75rem 0; font-size: .93rem; font-family: system-ui, sans-serif; line-height: 1.7; }
+  .note .nt { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: #888; margin-bottom: .5rem; }
+
+  /* EXPANDABLE DETAILS */
+  details { border: 1px solid var(--border); margin: 1.5rem 0; }
+  details summary {
+    padding: .9rem 1.15rem;
+    font-family: system-ui, sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    background: var(--surface-alt);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    user-select: none;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::before {
+    content: '▶';
+    font-size: 10px;
+    color: #aaa;
+    transition: transform .15s;
+    flex-shrink: 0;
+  }
+  details[open] summary::before { transform: rotate(90deg); }
+  details summary:hover { background: #efede9; }
+  .details-body {
+    padding: 1.25rem 1.5rem;
+    font-family: system-ui, sans-serif;
+    font-size: 13.5px;
+    line-height: 1.72;
+    color: #333;
+    border-top: 1px solid var(--border);
+  }
+  .details-body p { font-family: system-ui, sans-serif; font-size: 13.5px; margin-bottom: .9rem; }
+  .details-body table { font-size: 12.5px; }
+  .details-body h4 { font-weight: 700; margin: 1rem 0 .4rem; color: #222; font-size: 13.5px; }
+  .details-body ul { margin: .4rem 0 .9rem 1.4rem; }
+  .details-body ul li { margin-bottom: .3rem; }
+
+  /* DRUG CARDS */
+  .drug-card { background: var(--surface); border: 1px solid var(--border); padding: 1.05rem 1.25rem; margin-bottom: .85rem; }
+  .drug-card .dn { font-family: system-ui, sans-serif; font-weight: 700; font-size: 14.5px; color: #0f0f0f; }
+  .tag { display: inline-block; font-family: system-ui, sans-serif; font-size: 10.5px; font-weight: 700; padding: .12rem .4rem; margin-left: .5rem; text-transform: uppercase; letter-spacing: .05em; vertical-align: middle; }
+  .tag-approved { background: #dcfce7; color: #166534; }
+  .tag-phase3 { background: #dbeafe; color: #1e40af; }
+  .tag-phase2 { background: #fef3c7; color: #92400e; }
+  .drug-card .dd { font-family: system-ui, sans-serif; font-size: 13px; color: #555; margin-top: .35rem; line-height: 1.58; }
+
+  /* APPROACH BLOCKS */
+  .approach { border: 1px solid var(--border); margin: 1.5rem 0 2rem; }
+  .approach .ah { background: var(--surface-alt); padding: .85rem 1.15rem; border-bottom: 1px solid var(--border); font-family: system-ui, sans-serif; font-weight: 700; font-size: 14px; color: #111; }
+  .approach .ab { padding: 1.15rem 1.25rem 1rem; font-family: system-ui, sans-serif; font-size: 13.5px; line-height: 1.7; color: #333; }
+  .approach .ab p { font-family: system-ui, sans-serif; font-size: 13.5px; margin-bottom: .8rem; }
+  .approach .ab p:last-child { margin-bottom: 0; }
+
+  ul.bl, ol.bl { margin: .5rem 0 1.2rem 1.7rem; }
+  ul.bl li, ol.bl li { margin-bottom: .5rem; }
+
+  .pull-quote { font-size: 1.18rem; line-height: 1.65; color: #333; font-style: italic; margin: 2.75rem 0; padding: 1.25rem 1.75rem; border-top: 2px solid var(--border); border-bottom: 2px solid var(--border); }
+
+  #expand-all-btn { font-family: system-ui, sans-serif; font-size: 12px; color: #888; background: none; border: 1px solid #ddd; padding: .3rem .7rem; cursor: pointer; float: right; margin-top: 3.8rem; }
+  #expand-all-btn:hover { background: var(--surface-alt); }
+
+  /* CEA badges and calc boxes */
+  .cea-tag { display: inline-block; font-family: system-ui, sans-serif; font-size: 10px; font-weight: 700; padding: .12rem .45rem; margin-left: .7rem; text-transform: uppercase; letter-spacing: .05em; vertical-align: middle; background: #dbeafe; color: #1e3a8a; border-radius: 2px; }
+  .cea-tag.red { background: #fee2e2; color: #991b1b; }
+  .cea-tag.green { background: #dcfce7; color: #166534; }
+  .cea-calc { background: #f0f4ff; border: 1px solid #bfdbfe; padding: .85rem 1.1rem; margin: .75rem 0 .5rem; font-family: system-ui, sans-serif; font-size: 12.5px; line-height: 1.68; color: #1e3a8a; }
+  .cea-calc .cc-label { font-size: 10px; text-transform: uppercase; letter-spacing: .07em; color: #6b7280; margin-bottom: .35rem; font-weight: 600; }
+  .cea-calc code { font-family: 'Courier New', monospace; font-size: 11.5px; background: #dbeafe; padding: .05rem .3rem; border-radius: 2px; }
+  .cea-table { width: 100%; border-collapse: collapse; margin: 1.25rem 0 2rem; font-family: system-ui, sans-serif; font-size: 13px; }
+  .cea-table th { text-align: left; padding: .5rem .75rem; background: #1e3a8a; color: #fff; font-weight: 600; font-size: 12px; }
+  .cea-table td { padding: .5rem .75rem; border: 1px solid #bfdbfe; color: #222; vertical-align: top; }
+  .cea-table tr:nth-child(even) td { background: #f0f4ff; }
+  .cea-table .good { color: #166534; font-weight: 700; }
+  .cea-table .ok { color: #92400e; font-weight: 700; }
+  .cea-table .weak { color: #991b1b; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav>
+  <h5>This report</h5>
+  <ul>
+    <li><a href="#intro">The problem</a></li>
+    <li><a href="#burden">Burden</a></li>
+    <li><a href="#market-failure">Why markets failed</a></li>
+    <li><a href="#landscape">Landscape</a></li>
+    <li><a href="#neonatal">Neonatal sepsis bundle</a></li>
+    <li><a href="#pull">Pull mechanisms</a></li>
+    <li><a href="#surveillance">Surveillance</a></li>
+    <li><a href="#pipeline">Drug pipeline</a></li>
+    <li><a href="#approaches">Approaches by scale</a></li>
+    <li><a href="#threshold-tool">Threshold calculator</a></li>
+    <li><a href="#verdict">Verdict</a></li>
+  </ul>
+</nav>
+
+<main>
+<button id="expand-all-btn" onclick="toggleAll()">Expand all details</button>
+
+<div class="eyebrow">Cause Area Report · September 2026</div>
+<h1>Antimicrobial Resistance</h1>
+<div class="dek">The market has failed. Governments have not acted. Philanthropy can be the bridge — if it understands the problem precisely enough to fund the right things.</div>
+
+<div class="verdict">
+  <div class="vl">Bottom line</div>
+  <p><strong>AMR offers a genuine menu of cost-effective options from $20M to $2B+.</strong> The near-term highest-additionality bet is a neonatal/hospital gram-negative sepsis access bundle anchored to <a href="https://gardp.org/portfolio/neosep1-trial/">GARDP's NeoSep1</a> (~$388/DALY adjusted, P10 $226, P90 $709). For a philanthropist with appetite for structural change, a <a href="https://www.congress.gov/bill/119th-congress/house-bill/7352/text">PASTEUR-analog</a> pull mechanism — a Market Entry Reward with LMIC-access covenants — reaches ~$60/DALY at scale and is the only intervention that actually fixes the market failure.</p>
+  <p>The landscape has shifted sharply in 2025–26: the <a href="https://www.thelancet.com/journals/lanmic/article/PIIS2666-5247(25)00167-3/fulltext">Fleming Fund was dismantled</a>, USAID One Health ($250M) was terminated, and the PASTEUR Act has failed a fourth time. The vacuum is real and the additionality of new philanthropic capital is unusually high.</p>
+  <p><strong>What not to do:</strong> don't fund community antibiotic stewardship — Monte Carlo analysis shows P(net harm > benefit) = 0.97 even when precisely targeted, because restriction kills more people from under-treatment than it saves from resistance. Don't frame this as an "AI" opportunity; the binding constraint is economics and access, not computation.</p>
+</div>
+
+<div class="metrics">
+  <div class="metric"><div class="mv">1.14M</div><div class="ml">Direct deaths/yr (2021)</div></div>
+  <div class="metric"><div class="mv">39.1M</div><div class="ml">Projected 2025–2050</div></div>
+  <div class="metric"><div class="mv">−$42.6M</div><div class="ml">Expected NPV, new antibiotic</div></div>
+  <div class="metric"><div class="mv">$34–$93</div><div class="ml">$/DALY range (by track)</div></div>
+</div>
+
+<h2 id="intro">The problem, stated precisely</h2>
+
+<p>Antibiotics have never been more effective at killing bacteria. What they cannot do is generate enough revenue to justify developing new ones. That contradiction is the AMR crisis in its essential form, and almost everything else follows from it.</p>
+
+<p>Good antibiotic stewardship demands that clinicians hold novel drugs in reserve — prescribe last-line antibiotics only when everything else has failed, to slow the selection pressure that drives resistance. This is medically correct and epidemiologically essential. It is also commercially disastrous for the companies that invested $1.3 billion<sup><a href="https://amr.solutions/2020/03/06/what-does-an-antibiotic-cost-to-develop-what-is-it-worth-how-to-afford-it/">¹</a></sup> developing a new drug: the best antibiotic is the one used least.</p>
+
+<p>The results of this economics are now visible. Achaogen received FDA approval for plazomicin in June 2018. The drug worked. It generated under $1 million in sales in its first six months of commercial life and the company filed for bankruptcy in April 2019.<sup><a href="https://www.cidrap.umn.edu/antimicrobial-stewardship/achaogen-bankruptcy-raises-worry-over-antibiotic-pipeline">²</a></sup> Melinta, Tetraphase, Aralez — the graveyard of post-approval antibiotic companies extends well past Achaogen. The independent expected NPV of a new antibiotic is negative $42.6 million.<sup><a href="https://academic.oup.com/cid/article/63/11/1470/2526231">³</a></sup> Rational pharmaceutical companies have exited the field. What remains is a collection of small biotechs burning through runway with no viable commercial exit. The early-stage pipeline — funded by CARB-X and BARDA push grants — continues to produce candidates. They reach approval and die commercially.</p>
+
+<p>Meanwhile, resistance is growing. The organisms do not care about market failures.</p>
+
+<h2 id="burden">The burden</h2>
+
+<p>The most rigorous published estimate places direct AMR mortality at <strong>1.27 million deaths in 2019</strong>, with an additional 4.95 million deaths where resistance was a contributing factor.<sup><a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(21)02724-0/fulltext">⁴</a></sup> Updated IHME modeling for 2021 puts the attributable toll at approximately 1.14 million.<sup><a href="https://www.healthdata.org/news-events/newsroom/news-releases/lancet-more-39-million-deaths-antibiotic-resistant-infections">⁵</a></sup> On current trajectories, the cumulative death count 2025–2050 is <strong>39.1 million</strong> — roughly the combined population of California and New York.</p>
+
+<p>The geographic distribution is heavily skewed. South Asia and sub-Saharan Africa account for the majority of mortality despite much lower per-capita antibiotic consumption than high-income countries. The mechanism: health systems too weak to prevent infection in the first place, combined with high environmental AMR exposure through pharmaceutical manufacturing runoff and contaminated water. A child in Bangladesh who has never taken an antibiotic may carry a highly resistant gram-negative organism acquired from the local river.</p>
+
+<p>The economic projections are, if anything, more alarming than the mortality ones. The World Bank's worst-case scenario estimates a <strong>$3.4 trillion annual GDP shortfall by 2030</strong><sup><a href="https://documents1.worldbank.org/curated/en/455311493396671601/pdf/executive-summary.pdf">⁶</a></sup> — roughly the size of Germany's economy, erased annually by a slow-moving infectious disease catastrophe.</p>
+
+<details>
+  <summary>Burden breakdown: which organisms, which populations</summary>
+  <div class="details-body">
+    <h4>The six highest-priority organisms</h4>
+    <p>The <a href="https://www.who.int/publications/i/item/9789240093461">WHO Bacterial Priority Pathogens List (2024)</a> places three carbapenem-resistant gram-negatives at critical priority: CRAB (<em>Acinetobacter baumannii</em>), CRE (<em>Klebsiella pneumoniae</em>, <em>E. coli</em>), and <em>Pseudomonas aeruginosa</em>. These are the organisms that kill ICU patients when every other antibiotic has failed. CRAB mortality in hospital settings is 40–60% even in high-income ICUs; in LMIC hospitals without last-resort agents, the figure is higher.</p>
+    <h4>The neonatal sepsis sub-problem</h4>
+    <p>Approximately 550,000 newborns die of sepsis each year, 85% in LMICs. <a href="https://www.nature.com/articles/s41564-021-00870-7">BARNARDS (Nature Microbiology, 2021)</a> — the largest multi-country study of neonatal sepsis pathogens — found that only 28.5% of gram-negative isolates from seven LMIC countries remained susceptible to the WHO first-line regimen (ampicillin + gentamicin). Case fatality: ~65% MDR vs ~35% non-MDR.<sup><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8167801/">⁷</a></sup> The gap — roughly 20–30 percentage points — is what appropriate empiric antibiotic therapy can close. No vaccine covers it; there is no neonatal <em>Klebsiella</em> vaccine in late development.</p>
+    <h4>The age shift</h4>
+    <p>AMR mortality is aging: under-5 deaths fell 50% between 1990–2021, while deaths in adults ≥70 rose 85.7%. The classic frame of AMR as a child mortality problem is increasingly incomplete. This matters for CEA design — DALY weights and time-horizons differ substantially between neonatal and elderly deaths.</p>
+    <h4>Access vs. resistance</h4>
+    <p>A crucial framing point: <a href="https://www.thelancet.com/journals/langlo/article/PIIS2214-109X(24)00418-2/fulltext">under-treatment kills more people in LMICs than resistance does.</a> 5.7 million antibiotic-preventable deaths occur annually — people dying of treatable infections who never received any antibiotic. An AMR strategy that focuses exclusively on slowing resistance without expanding access can actually increase mortality by restricting drugs that would have saved lives. The interventions with the strongest evidence of mortality harm are restriction-focused stewardship programs, not access programs.</p>
+  </div>
+</details>
+
+<h2 id="market-failure">Why the market has failed — and what kind of fix is possible</h2>
+
+<p>The DRIVE-AB consortium spent four years modeling the economics of antibiotic development and concluded that a fully delinked market entry reward of approximately <strong>$1 billion per qualifying antibiotic</strong> is the minimum needed to reliably attract private investment into priority antibiotic development.<sup><a href="https://drive-ab.eu/wp-content/uploads/2018/01/CHHJ5467-Drive-AB-Report-Final-Web.pdf">⁸</a></sup> Three independent sizing exercises converge on a similar range: $1–4 billion per drug, with the precise figure depending on IRR assumptions and how many drugs one wants to incentivize per decade.<sup><a href="https://www.healthaffairs.org/doi/10.1377/hlthaff.2021.00688">⁹</a></sup></p>
+
+<p>The UK has run the world's only real-world subscription experiment: its "Netflix for antibiotics" model pays £5–20 million per year for the right to use a drug, regardless of prescribing volume. The result proves that delinked payment is administratively operable — the <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12130071/">NICE value-based analysis of ceftazidime-avibactam</a> estimated net monetary benefit of £422M at £20,000/QALY — but the per-drug amounts are roughly an order of magnitude too small to change global R&D decisions. A national subscription does not move a multinational biotech's Phase 2 investment calculus.</p>
+
+<p>The PASTEUR Act in the US Congress proposes the right mechanism at the right scale: $6 billion in guaranteed subscription payments for qualifying antibiotics. It has been introduced four times. It has never passed. The reason is not scientific or analytical — broad policy consensus supports it — but fiscal: mandatory spending commitments of this scale require Congressional budget agreement that has not materialized. The most recent attempt (H.R.7352, 119th Congress, February 2026) remains stalled.<sup><a href="https://www.congress.gov/bill/119th-congress/house-bill/7352/text">¹⁰</a></sup></p>
+
+<details>
+  <summary>MER vs. subscription: which instrument is better for philanthropy?</summary>
+  <div class="details-body">
+    <p>The two main pull mechanism designs differ substantially in their value-delivery efficiency — specifically relevant when the funder is a philanthropy rather than a sovereign with recurring budget authority.</p>
+    <h4>The NPV problem with long subscriptions</h4>
+    <p>At a 11% biotech cost of capital (realistic for the SME antibiotic sector), a 10-year subscription paying $20M/year delivers only <strong>$130.7M in developer-perceived value per $200M nominal commitment</strong> — roughly 65 cents of incentive per dollar spent. The back-loaded annuity structure loses 35% of its incentive power to discounting.</p>
+    <h4>MER front-loading efficiency</h4>
+    <p>A milestone-tranched Market Entry Reward (40% on regulatory approval, 40% on LMIC access gate, 20% on supply-security tail) delivers <strong>$163.4M in developer-perceived value per $200M</strong> — 82 cents per dollar. The front-loading preserves incentive value and creates cleaner LMIC-access accountability: payment at the access milestone requires WHO prequalification and registration in a named basket of LMICs, conditions that a subscription does not enforce as cleanly.</p>
+    <h4>Credibility threshold</h4>
+    <p>Even a $200M MER delivers positive expected value ($49M at 30% success probability) vs. the −$42.6M private NPV baseline. A $200M philanthropic anchor is already a credible per-drug signal. The leverage question is whether it can be matched to a $500M–$2B facility that crosses into market-shaping territory.</p>
+    <h4>Structure recommendation</h4>
+    <p>For a philanthropic funder: <strong>milestone-tranched MER with LMIC-access covenants</strong>, convertible to a short delinked supply-security tail. The subscription model is better suited for sovereigns with recurring appropriations authority (UK DHSC, EU-HERA) who should be co-investors, not the anchor.</p>
+    <table>
+      <thead><tr><th>Structure</th><th>Nominal</th><th>Developer PV @11%</th><th>Value retained per $1</th></tr></thead>
+      <tbody>
+        <tr><td>Subscription (10-yr)</td><td>$200M</td><td>$130.7M</td><td>0.65</td></tr>
+        <tr><td>Subscription (5-yr)</td><td>$200M</td><td>$164.1M</td><td>0.82</td></tr>
+        <tr><td><strong>MER (40/40/20 tranches)</strong></td><td>$200M</td><td><strong>$163.4M</strong></td><td><strong>0.82</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+</details>
+
+<h2 id="landscape">The funding landscape — who is doing what and where the gaps are</h2>
+
+<p>The AMR funding ecosystem is large enough to look well-resourced and fragmented enough to leave critical gaps entirely unaddressed. Understanding <em>who does what operationally</em> is prerequisite to understanding where philanthropy is additional.</p>
+
+<h3>Push funders — early pipeline is reasonably covered</h3>
+
+<p><strong>CARB-X</strong> (Combating Antibiotic-Resistant Bacteria Biopharmaceutical Accelerator): launched 2016 as a public-private partnership anchored by BARDA and Wellcome Trust, with additional support from BMGF, GHIT, and others. ~$800M committed total through 2026, distributed as grants and loans to SMEs developing novel antibiotics from Discovery through Phase 1. Has funded 100+ projects, with roughly 20 advancing to clinical stages. CARB-X's model is stage-gated: it funds early science but explicitly exits at Phase 1. What happens after Phase 1 is CARB-X's funded companies' problem — and this is the structural gap CARB-X cannot solve. Key success case: zoliflodacin (for gonorrhea) advanced through CARB-X funding, then passed to GARDP for Phase 3. Key limitation: a portfolio of 100 early-stage candidates, mostly by SMEs with no commercialization capacity, does not reliably produce marketed drugs without Phase 2/3 funding and a working commercial market at the end.</p>
+
+<p><strong>BARDA</strong> (Biomedical Advanced Research and Development Authority): US federal agency within HHS. The CARB program within BARDA has committed ~$2–3B to antibiotic advanced development — but through a fundamentally biodefense and national security frame. Drugs BARDA has pushed to market include ceftolozane-tazobactam, ceftazidime-avibactam, and imipenem-cilastatin-relebactam — all high-income-market antibiotics with essentially no LMIC pricing or access conditionality. BARDA contracts fund clinical development in exchange for regulatory and stockpile commitments to the US government. There is no mechanism in the BARDA model for an antibiotic to be simultaneously developed under BARDA and made accessible in LMICs at WHO-prequalified generic prices. BARDA is push funding for US national security, not global health.</p>
+
+<h3>Late-stage development — the valley of death, partially addressed</h3>
+
+<p><strong>AMR Action Fund</strong>: $1B fund launched in 2020, backed by 23 major pharmaceutical companies (Pfizer, J&J, Roche, Novartis, GSK, and others) plus the EIB and Wellcome. Makes equity investments into Phase 2/3 clinical-stage antibiotic biotechs — it is push funding, not a pull mechanism. The companies retain full commercial rights to their drugs; AMR Action Fund takes equity stakes. The goal is to prevent promising Phase 2 candidates from dying in the venture-capital "valley of death" (most VCs no longer fund antibiotics at all). First investments made 2021–2023. Fundamental limitation: even AMR Action Fund-backed drugs that successfully complete Phase 3 still face the same broken commercial market — they launch, generate insufficient revenue to cover development costs, and either get abandoned or purchased in fire sales. The fund successfully finances drugs to approval but cannot solve the commercialization problem that creates the shortage in the first place. AMR Action Fund is a floor, not a ceiling.</p>
+
+<p><strong>GARDP</strong> (Global Antibiotic Research &amp; Development Partnership): launched 2016 as a non-profit initiative of WHO, DNDi, and Wellcome. Budget ~€60M/yr. The most LMIC-aligned actor in the AMR development space — uniquely so, because GARDP explicitly negotiates LMIC access agreements as a condition of its development partnerships. Active programs: (1) <strong>NeoSep1</strong> — a mortality-endpoint RCT for neonatal sepsis treatment in LMICs, the pivotal study in progress, reporting ~2028; (2) <strong>zoliflodacin</strong> — a first-in-class oral drug for gonorrhea, completed Phase 3 (GARDP-led, results reported 2023, registration underway); (3) repurposing collaborations — using existing off-patent drugs in LMIC settings where they're not currently accessible. GARDP is capital-starved: €60M/yr cannot simultaneously fund three Phase 3 programs, generic manufacturing partnerships, and LMIC access negotiations without major constraints on pace and scope. It is the institution most positioned to administer an LMIC-access-conditioned pull mechanism — it already has the WHO relationships, LMIC regulatory expertise, and access-conditionality architecture.</p>
+
+<h3>Pull mechanisms — entirely absent at effective scale</h3>
+
+<p><strong>UK "Netflix model"</strong>: the world's only real-world delinked subscription for antibiotics. NHS England pays £10M/yr for ceftazidime-avibactam (Pfizer) and £4.5M/yr for cefiderocol (Shionogi), regardless of how many vials are actually prescribed. NICE conducted a value-based analysis: net monetary benefit of £422M for ceftazidime-avibactam at £20,000/QALY — proving that a rational payer should pay far more for a last-resort antibiotic than its market price implies. What it proves: delinked subscription payment is administratively operable; stewardship is preserved because hospitals don't over-prescribe just because access is guaranteed; and developers accept subscription income as partial revenue. What it doesn't solve: UK is one country; £10–20M/yr is 2–3 orders of magnitude below what's needed to change global R&D decisions; and there is zero LMIC access conditionality attached to the NHS subscription contracts.</p>
+
+<p><strong>PASTEUR Act</strong>: US Congressional proposal, introduced four times (117th, 118th, and twice in the 119th Congress). H.R. 7352 (119th Congress, February 2026) remains stalled. Would authorize $6B in guaranteed subscription-style payments by CMS for qualifying antibiotics, delinked from volume — the right mechanism at roughly the right scale. Broad policy support: IDSA, Global AMR R&D Hub, and most antibiotics developers support it. Main barrier is fiscal: the mandatory spending commitment requires Congressional budget agreement that has not materialized, and CBO scoring of $6B in mandatory spending creates a political obstacle that scientific consensus cannot overcome. Even if passed: no LMIC-access conditionality; the subscription would accrue to the US payer while LMICs continue facing the same access barriers.</p>
+
+<h3>Surveillance infrastructure — catastrophically collapsed</h3>
+
+<p><strong>Fleming Fund</strong> (DFID/FCDO, 2016–2026): The UK's £265M AMR surveillance capacity program, designed to build functional national AMR surveillance systems in LMICs across Africa, Asia, and the Caribbean. At peak (2019–2025), Fleming operated in 24+ countries — establishing or upgrading national reference laboratories, training laboratory staff in culture and sensitivity testing, building WHO GLASS-compatible data systems, supporting One Health surveillance linking human/animal/environmental resistance data, and strengthening national AMR action plans. The fund was administered through a consortium of contractors (LSTM, UKHSA, KEMRI, and others) with in-country government counterparts. <strong>Dismantled March 2026</strong> in the FCDO budget cuts that reduced the UK foreign aid budget from 0.7% to 0.5% of GNI. The 24+ countries now have lab infrastructure and staff trained on Fleming funding, with no ongoing operational budget. Blood culture machines sit idle without reagent supply chains; laboratory staff have been redeployed; the national surveillance data systems that WHO GLASS relied on for these countries are now dark. The gap is not "surveillance capacity hasn't been built" — the capacity exists and was functioning. The gap is operational funding to keep it running.</p>
+
+<p><strong>USAID One Health</strong>: Part of USAID's Global Health Security Agenda portfolio. ~$250M/yr at peak, operating in a different country set from Fleming (primarily sub-Saharan Africa, Southeast Asia, with different emphasis on community-level stewardship and behavioral AMR interventions). Terminated 2025 in the USAID funding freeze and portfolio restructuring. The combined Fleming + USAID One Health collapse has eliminated the primary LMIC AMR surveillance architecture at the moment when resistant pathogen pressure is accelerating, when WHO GLASS is trying to produce actionable global estimates, and when neonatal sepsis treatment programs need local resistance profiling to adapt protocols.</p>
+
+<h3>The structural diagnosis</h3>
+
+<p>The pattern is clear and the implications for philanthropic strategy are direct. Push-side funding (grants to develop drugs) is reasonably well-covered — CARB-X, BARDA, AMR Action Fund collectively put over $3B into the pipeline. The problem is not lack of drug candidates. Pull-side funding (guaranteed rewards to commercialize drugs) is entirely absent at global scale — the UK subscription proves the model works but is too small by orders of magnitude, and PASTEUR is stalled indefinitely. Surveillance funding has catastrophically collapsed in 2025–26 — the Fleming + USAID One Health exit is not a funding reduction, it is a full shutdown of the only functional LMIC surveillance infrastructure. Access facilitation (getting existing effective antibiotics to the patients who need them at prices they can afford) is essentially unfunded as an explicit priority for anyone.</p>
+
+<p>A philanthropist entering this space is most additional in three dimensions, in priority order: <strong>(1) surveillance bridge</strong> — operational funding to keep existing lab infrastructure alive in 24+ orphaned countries, which is an immediate, concrete, demonstrable need; <strong>(2) pull mechanism development</strong> — capitalizing a prototype philanthropic market entry reward that can demonstrate the model works and crowd in government co-funders; <strong>(3) access facilitation</strong> — specifically for the drugs that already exist and work but aren't reaching the patients who need them in LMICs. Early-stage push research is the one place philanthropy is least additional — it is already well-covered and a further dollar there faces severe diminishing returns.</p>
+
+<h2 id="neonatal">Near-term bet: neonatal and hospital gram-negative sepsis</h2>
+
+<p>The case for funding a neonatal/hospital gram-negative sepsis access bundle does not depend on solving the pull mechanism. It is a direct intervention into a mortality channel with a real, measurable mechanism — and it is where additionality is highest right now, precisely because Fleming Fund and USAID One Health have exited.</p>
+
+<p>The mechanism runs as follows: ~214,000 neonatal deaths per year are attributable to resistant gram-negative pathogens.<sup><a href="https://www.ox.ac.uk/news/2021-08-09-new-research-preventing-infant-deaths-due-neonatal-sepsis-lmics">¹¹</a></sup> Of these, roughly 5–8% occur in facilities with blood culture capacity — perhaps 10,700 cases per year that are both measurable and reachable with existing drugs. The appropriate empiric antibiotic reduces case fatality by 20–30 percentage points. The barriers are not pharmacological: existing drugs work. The barriers are surveillance (not knowing what resistance pattern is circulating), protocol (clinicians prescribing WHO first-line that is now ~72% ineffective against gram-negatives in the relevant settings), and access (even when the right drug is identified, it may not be at the facility in adequate supply).</p>
+
+<p>A program that links <strong>surveillance → locally-adapted empiric antibiotic protocol → guaranteed access to the effective drug</strong> addresses all three simultaneously. <a href="https://gardp.org/portfolio/neosep1-trial/">GARDP's NeoSep1 trial</a> is the pivotal evidence in progress: a powered mortality-endpoint RCT for neonatal sepsis treatment that reports ~2028 and will either validate or challenge the current protocol assumptions.</p>
+
+<details>
+  <summary>CEA chain — how we get to $388/DALY (adjusted)</summary>
+  <div class="details-body">
+    <h4>The full causal chain</h4>
+    <p>Every link in the chain below was separately parameterized in a Monte Carlo model (N=200,000 draws). The output is not a single estimate but a distribution.</p>
+    <ul>
+      <li><strong>Addressable pool:</strong> ~10,700 culture-confirmed resistant neonatal sepsis cases per year in blood-culture-capable facilities. This is 5–8% of the ~214,000 total — the reach constraint. Reach is the dominant uncertainty (Spearman rho −0.68 vs $/DALY).</li>
+      <li><strong>CFR reduction:</strong> Triangular(0.15, 0.25, 0.35) — based on the 20–30pp gap between MDR and non-MDR case fatality, discounted for implementation quality.</li>
+      <li><strong>DALYs per averted neonatal death:</strong> ~30 (neonatal life expectancy minus age of death, standard GBD weighting).</li>
+      <li><strong>Additionality:</strong> HIGH — Fleming Fund dismantled, USAID One Health terminated. If either is restored, this is a kill-switch condition.</li>
+      <li><strong>Program cost:</strong> $20–50M over 3–4 years (lean, evidence-gated tranche).</li>
+    </ul>
+    <h4>Monte Carlo results (N=200,000)</h4>
+    <table>
+      <thead><tr><th>Metric</th><th>P10</th><th>Median</th><th>P90</th></tr></thead>
+      <tbody>
+        <tr><td>Adj. $/DALY</td><td>$226</td><td><strong>$388</strong></td><td>$709</td></tr>
+        <tr><td>Deaths averted/yr</td><td>861</td><td>1,527</td><td>2,522</td></tr>
+        <tr><td>P(≤$800)</td><td colspan="3">0.94</td></tr>
+        <tr><td>Raw (unadjusted) median</td><td colspan="3">$264</td></tr>
+      </tbody>
+    </table>
+    <h4>Tornado — what drives the estimate</h4>
+    <p>Spearman correlations show reach_share (−0.68) and rel_reduction (−0.53) dominate. These are the two most measurable and falsifiable variables — a reach census and a CFR trial (NeoSep1) will tighten them. The DALY weight is barely in the top five, which means this is a <em>reach × effect</em> bet, not a burden-size bet.</p>
+    <h4>Why $100M is a worse buy than $40–60M</h4>
+    <p>The reachable culture-confirmed resistant-sepsis pool (~10,700/yr in blood-culture-capable units) saturates as the program scales. Diminishing-reach curve: $20M → $299/DALY, $50M → $381/DALY, $100M → $541/DALY. Above $40–60M, marginal dollars are buying lower-yield patients at worse cost-effectiveness. The optimal tranche is $20M validation → gate on outcomes → expand to $40–60M if verified.</p>
+    <h4>NeoSep1 as the pivotal gate</h4>
+    <p>NeoSep1 reporting ~2028 is the natural go/no-go: a clearly positive mortality readout lowers $/DALY and raises absorptive capacity. A null result triggers a fork: redirect to access-to-existing-effective-drugs where local surveillance already shows a susceptible regimen, and shift weight toward prevention (WASH, IPC, vaccines). Structuring the grant as evidence-gated tranches preserves this option value.</p>
+  </div>
+</details>
+
+<div class="callout">
+  <strong>On stewardship restriction:</strong> Monte Carlo analysis of community antibiotic restriction programs — even precisely targeted ones using CRP guidance — finds P(net harm > benefit) = 0.97. Restriction reduces unnecessary prescribing but raises under-treatment mortality more than it reduces resistance-related mortality. This is not a reason to prescribe carelessly; it is a reason not to fund restriction as a mortality intervention. Its value is antibiotic-sparing and cost-reduction, not lives saved.
+</div>
+
+<h2 id="pull">Pull mechanisms — the structural fix</h2>
+
+<p>A market entry reward is not, at its core, a subsidy. It is the correction of a price signal that markets have generated incorrectly. Society values novel last-resort antibiotics enormously — a drug that cures a carbapenem-resistant infection that would otherwise have a 50% fatality rate is worth far more than its $500-per-course market price implies. A well-designed pull mechanism makes this value explicit and guarantees it to the developer, conditional on actually developing and distributing the drug.</p>
+
+<p>The proof of concept is the <a href="https://www.gavi.org/our-impact/evaluation-studies/pneumococcal-amc-outcomes-and-impact-evaluation">pneumococcal AMC</a>: a $1.5 billion philanthropic and government commitment that accelerated pneumococcal vaccine access to LMICs by an estimated 7 years, preventing an estimated 230–290,000 under-5 deaths through 2015 alone, with 3 million more projected by 2030. Independent modeling places the cost-effectiveness at ~$51/DALY at AMC prices — within the GiveWell top-charity range. The AMC worked because it addressed the same fundamental problem as an antibiotic pull: the product was worth far more to LMICs than the market price reflected.</p>
+
+<details>
+  <summary>CEA chain for pull mechanisms ($60–93/DALY) — why these numbers are credible and what can go wrong</summary>
+  <div class="details-body">
+    <h4>How the CEA model works for a pull mechanism</h4>
+    <p>The causal chain is longer than a direct access program: pull mechanism committed → pharmaceutical company makes R&D investment → drug reaches Phase 3 → drug approved → drug distributed in LMICs → patients receive appropriate treatment → deaths averted. Each step adds uncertainty, which is why the CI is wide.</p>
+    <h4>Key parameters and their basis</h4>
+    <ul>
+      <li><strong>Drugs stimulated per $1B facility:</strong> Tri(0, 1, 2) — based on DRIVE-AB central estimate of ~$1B minimum per drug (range $1–4B); $1B facility reliably incentivizes 1 drug; the PASTEUR Act estimated ~6 drugs per decade at $6B total ($1B/drug)</li>
+      <li><strong>LMIC patients per drug per year:</strong> this is the dominant uncertainty (tornado top factor). A drug with LMIC-access conditionality reaches more patients; without it, essentially none</li>
+      <li><strong>Expected AMR-attributable mortality in treatable population:</strong> conditioned on the drug being for WHO BPPL critical-priority pathogens</li>
+      <li><strong>Timeline to LMIC distribution:</strong> 3–7 years from pull commitment to patients — heavily dependent on access conditionality being enforced</li>
+    </ul>
+    <h4>Why access conditionality is non-negotiable</h4>
+    <p>Without LMIC-access requirements, a pull mechanism funded by a philanthropist mostly incentivizes drugs for high-income-country ICU patients. The 60% of AMR mortality in LMICs is not reached. Every dollar of philanthropic pull capital spent without access conditionality is effectively a gift to pharmaceutical shareholders with minimal global health impact. The access covenant structure (WHO-PQ + named LMIC basket + tech-transfer license to regional manufacturer) is what converts a pull mechanism from a subsidy to a global health intervention.</p>
+    <h4>CEA output</h4>
+    <table>
+      <thead><tr><th>Option</th><th>Capital</th><th>$/DALY (central)</th><th>Additionality</th></tr></thead>
+      <tbody>
+        <tr><td>Regulatory harmonization (AMA/WHO-PQ)</td><td>$20–60M / 5yr</td><td>~$34</td><td>HIGH (most speculative)</td></tr>
+        <tr><td>Pull — proof tranche</td><td>$200M</td><td>~$93</td><td>VERY HIGH</td></tr>
+        <tr><td>Pull — standing facility (syndicated)</td><td>$600M phil → $2B+ total</td><td>~$60</td><td>VERY HIGH</td></tr>
+      </tbody>
+    </table>
+    <h4>The syndication lever — and its real constraints</h4>
+    <p>A $200–400M philanthropic anchor could catalyze a $2–5B facility through sovereign co-commitments — the Gavi model applied to antibiotics. The plumbing exists: the <a href="https://www.worldbank.org/en/news/press-release/2025/12/06/wbg-global-fund-strengthen-health-care-systems-sustainable-health-financing">World Bank–Global Fund MoU (Dec 2025)</a> will mobilize $2B+ for health-system delivery, and IFC is building co-investment pathways. But no AMR-specific pull has ever been syndicated, so the 4–8× leverage multiple is precedent-inferred from CEPI/Gavi — not empirically confirmed for this instrument. Commercial blended finance empirically averages only <a href="https://www.convergence.finance/news/4cC8kVJXvOFZDVxGQ6HLNH/view">~4.1× total</a>. Plan for 4×, hope for 8×.</p>
+  </div>
+</details>
+
+<h2 id="surveillance">Surveillance — the immediate crisis</h2>
+
+<p>The Fleming Fund's dismantlement in early 2026 left approximately 25 low-income countries with surveillance systems it had funded — labs, consumables, WHONET reporting chains, EQA networks — now facing funding gaps. These systems do not atrophy gradually; they collapse quickly. A lab that loses reagent supply and stops running cultures in month one loses its staff in month three and its institutional knowledge in month six. Rebuilding from scratch costs more than maintaining, and takes years longer.</p>
+
+<p>The common misquote is that national AMR surveillance costs "$6.7M per country per year" — the Nepal figure. It doesn't. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12838329/">The Nepal study</a> reports a 10-year, multi-sectoral total (human + animal + food) of $6.7M, of which the human health component is approximately $340,000/year. A fully-loaded, functioning human-only surveillance system with 5 sentinel sites, proper capex amortization, and national coordination runs approximately <strong>$1.5–2.3M per country per year</strong> — not $6.7M, and not per year.</p>
+
+<details>
+  <summary>Surveillance cost anatomy — the real numbers</summary>
+  <div class="details-body">
+    <p>Bottom-up costing from <a href="https://doi.org/10.1371/journal.pgph.0000018">Roberts et al. (PLOS Global Public Health, 2021)</a> — the strongest fully-costed study of AMR-capable clinical microbiology labs in LMICs, based on three labs in the Mahidol–Oxford network:</p>
+    <table>
+      <thead><tr><th>Throughput</th><th>Setup (capex)</th><th>Running cost/specimen</th></tr></thead>
+      <tbody>
+        <tr><td>10,000 specimens/yr</td><td>$254k–$660k</td><td>$22–$31</td></tr>
+        <tr><td>100,000 specimens/yr</td><td>$394k–$887k</td><td>$11–$12</td></tr>
+      </tbody>
+    </table>
+    <p>Running costs are dominated by materials (69–90%); labor is only 10–31%. Unit cost roughly halves going from 10k to 100k specimens — low sample volume is structurally expensive per useful data point, which argues for consolidating sentinel sites rather than spreading thinly across many small facilities.</p>
+    <h4>Tiered national system costs</h4>
+    <table>
+      <thead><tr><th>Tier</th><th>Profile</th><th>Annual cost</th></tr></thead>
+      <tbody>
+        <tr><td>C — fragile</td><td>3 sites, 5k specimens/site</td><td>~$1.7M</td></tr>
+        <tr><td>B — functioning</td><td>5 sites, 8k specimens/site</td><td>~$1.9M</td></tr>
+        <tr><td>A — mature (human)</td><td>10 sites, 12k specimens/site</td><td>~$2.3M</td></tr>
+        <tr><td>A — One Health</td><td>Tier A + animal + environment</td><td>~$3.5–4.4M</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Key structural finding:</strong> the "keep-the-lights-on" bridge cost for Fleming Fund countries — where capex is already sunk — is approximately <strong>$1.0–1.5M/country/year</strong>, covering reagents, salaries, EQA, and coordination. A bridge fund for 15 core FF countries runs approximately $15–22M/year.</p>
+    <h4>Why surveillance bridges to access</h4>
+    <p>Surveillance without access-to-effective-drugs is just data. The value of surveillance in this program theory is: (1) knowing which resistance patterns are circulating in which hospitals → adapting empiric protocols → reducing mortality now; (2) feeding GLASS to inform future pull mechanism target product profiles → making new drugs better targeted; (3) monitoring resistance spread after new drugs are deployed → stewardship data to prevent rapid resistance development. All three links require both surveillance and drug access simultaneously.</p>
+  </div>
+</details>
+
+<h2 id="pipeline">The existing drug pipeline — what's already there</h2>
+
+<p>Despite the commercial failures, there are drugs in the pipeline and recently approved. The philanthropic access gap is often more tractable than the development gap for these specific agents.</p>
+
+<div class="drug-card">
+  <div class="dn">Zaynich (cefepime-zidebactam) <span class="tag tag-approved">FDA Approved 2024</span></div>
+  <div class="dd">Active against CRE and CRAB. Manufactured by a Wockhardt-derived entity. No LMIC procurement pathway exists at scale. A philanthropic access program — regulatory filing support, manufacturing scale-up financing, CHAI-style procurement negotiation — could reach LMIC patients within 18–24 months of a funded access initiative. Current cost: ~$800/day of treatment at US pharmacy pricing; generic pathway unclear but feasible with tech transfer.</div>
+</div>
+
+<div class="drug-card">
+  <div class="dn">Xacduro (sulbactam-durlobactam) <span class="tag tag-approved">FDA Approved 2023</span></div>
+  <div class="dd">The <strong>only approved antibiotic specifically indicated for CRAB</strong>. Developed by Entasis (acquired by Innoviva). CRAB mortality in hospital settings: 40–60%. Xacduro works against it. LMIC access: essentially nonexistent. This is the starkest example of an approved solution sitting on a shelf while people die from the disease it treats. A $30–80M access program — LMIC regulatory filings, WHO-PQ track, procurement through GARDP SECURE or CHAI — would be directly additional.</div>
+</div>
+
+<div class="drug-card">
+  <div class="dn">Ceftibuten-ledaborbactam <span class="tag tag-phase3">Phase 3</span></div>
+  <div class="dd">Significant because it is an <strong>oral formulation</strong> for CRE infections — the only late-stage oral agent. Oral delivery in LMIC outpatient settings transforms the access landscape: IV-dependent drugs require hospital admission; oral drugs can be dispensed at primary care. Community-level CRE infections — drug-resistant UTIs, uncomplicated gram-negative infections — are vastly underserved.</div>
+</div>
+
+<div class="drug-card">
+  <div class="dn"><a href="https://www.statnews.com/2025/12/17/zoliflodacin-gonorrhea-gardp-innoviva-antibiotic-resistance/">Zoliflodacin (GARDP/Innoviva)</a> <span class="tag tag-approved">FDA Approved Dec 2025</span></div>
+  <div class="dd">A gonorrhea-specific antibiotic licensed for 150 LMIC countries — developed specifically with LMIC access built in from the start. Proof of concept that the GARDP model (late-stage development + LMIC-first licensing) works. The model that future pull-mechanism governance should emulate.</div>
+</div>
+
+<h2 id="approaches">Approaches by capital scale</h2>
+
+<p>Each approach has a different cost-effectiveness profile depending on mechanism, reach, and capital required. The table below shows the $/DALY estimates across all four tracks; the sections below give the derivation for each.</p>
+
+<table class="cea-table">
+  <thead>
+    <tr>
+      <th>Approach</th>
+      <th>Capital range</th>
+      <th>$/DALY estimate</th>
+      <th>Beats $150 threshold?</th>
+      <th>Key uncertainty</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Surveillance bridge (Fleming Fund gap)</td>
+      <td>$15–22M/yr</td>
+      <td class="ok">$200–400/DALY<br><small>(option value)</small></td>
+      <td>Uncertain — indirect mortality pathway</td>
+      <td>How much of the mortality benefit is attributable to better empiric protocol guidance</td>
+    </tr>
+    <tr>
+      <td>Drug access — Xacduro/Zaynich for LMIC hospitals</td>
+      <td>$30–80M</td>
+      <td class="ok">$200–700/DALY</td>
+      <td>Possible at optimistic reach; marginal at conservative reach</td>
+      <td>Number of LMIC patients actually reached by year 3 of program</td>
+    </tr>
+    <tr>
+      <td>Neonatal sepsis bundle (NeoSep1 + SECURE)</td>
+      <td>$40–60M</td>
+      <td class="good">~$388/DALY median<br>$150–600 range</td>
+      <td>Yes — median clears threshold; requires NeoSep1 trial readout</td>
+      <td>Fraction of neonatal deaths attributable to gram-negative resistant pathogens</td>
+    </tr>
+    <tr>
+      <td>Pull proof tranche ($200M MER)</td>
+      <td>$200M</td>
+      <td class="good">$60–93/DALY</td>
+      <td>Yes — well above threshold with access conditionality</td>
+      <td>Number of LMIC patients reached under access conditionality; PASTEUR passage risk</td>
+    </tr>
+    <tr>
+      <td>Syndicated pull facility ($2B+ total)</td>
+      <td>$200–400M philanthropic anchor</td>
+      <td class="good">~$60/DALY</td>
+      <td>Yes — competitive with best-in-class interventions</td>
+      <td>Sovereign co-commitment leverage ratio; 10-year governance durability</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="approach">
+  <div class="ah">$10–50M — Surveillance bridge + approved drug access <span class="cea-tag red">$200–700/DALY</span></div>
+  <div class="ab">
+    <p>The immediately actionable portfolio: bridge the Fleming Fund gap for 10–15 priority countries ($15–22M/year for recurrent costs) and fund LMIC access programs for Xacduro and Zaynich ($15–40M one-time for regulatory filing, procurement negotiation, manufacturing). These are interventions with near-zero implementation risk relative to novel program designs — the drugs exist, the surveillance infrastructure was already built, the funding gap is acute and well-documented.</p>
+
+    <div class="cea-calc">
+      <div class="cc-label">CEA derivation — surveillance bridge</div>
+      <p style="margin:0 0 .4rem">Mechanism: better resistance data → improved empiric protocol choices → reduced time-to-effective-treatment → lower mortality. Effect size is indirect and contested. Conservative attribution: 15–25% of excess mortality at surveilled facilities is averted by better empiric guidance. Fleming Fund countries: ~240M people, 15 countries. Estimated attributable deaths averted per year from functioning surveillance (vs. blind empiric treatment): 8,000–20,000. At 15 DALYs/death: 120k–300k DALYs averted/year.</p>
+      <p style="margin:0"><code>$20M/year ÷ 120k–300k DALYs = $67–$167/DALY</code> at optimistic attribution; more honestly modeled as option value (~$306/DALY) because the mortality benefit is indirect. If attribution is only 5%, CEA worsens to $400–800/DALY. The honest case for surveillance is enabling infrastructure: without it, neither the neonatal bundle nor the pull mechanism has the epidemiological foundation it needs.</p>
+    </div>
+
+    <div class="cea-calc">
+      <div class="cc-label">CEA derivation — drug access (Xacduro + Zaynich)</div>
+      <p style="margin:0 0 .4rem">Target: hospital CRAB infections (Xacduro) and CRE infections (Zaynich) in LMICs. Baseline CRAB CFR: ~50%. Xacduro vs. colistin in trials: 29% vs. 37% 28-day mortality — approximately 22% relative risk reduction. Program structure: $30M over 3 years for regulatory filings, WHO-PQ track, procurement negotiation through GARDP SECURE or CHAI.</p>
+      <p style="margin:0"><code>Year-2 patient reach: 10k CRAB patients/yr × 22% CFR reduction = 2,200 deaths averted × 15 YLL = 33k DALYs. $10M/yr ÷ 33k = $303/DALY.</code> Conservative (5k patients): $10M ÷ 16.5k = $606/DALY. Optimistic (25k patients): $10M ÷ 82.5k = $121/DALY. Patient reach by year 3 is the controlling variable — this clears $150/DALY only if the program successfully scales to 15k+ patients/year in LMIC hospital systems.</p>
+    </div>
+
+    <p>Kill switch for surveillance: if the UK FCDO or USAID restores funding to target countries within 3 years, redeploy the philanthropic contribution to the remaining uncovered gap rather than displacing government funding.</p>
+    <p>Kill switch for drug access: if Innoviva or Shionogi independently establishes an LMIC generic pathway for Xacduro/Zaynich within 24 months, redirect to advocacy and regulatory harmonization rather than full access facilitation.</p>
+  </div>
+</div>
+
+<div class="approach">
+  <div class="ah">$50–200M — Neonatal sepsis bundle + SECURE anchor + surveillance endowment <span class="cea-tag ok">~$388/DALY median</span></div>
+  <div class="ab">
+    <p>At this scale, fund the neonatal/hospital gram-negative sepsis access bundle ($40–60M, 3–4 years, evidence-gated with NeoSep1 readout as the primary gate), anchor <a href="https://revive.gardp.org/secure-improving-access-to-antibiotics-through-new-economic-models/">GARDP SECURE</a> at $50–100M (the only vehicle systematically addressing adult gram-negative antibiotic access in LMICs), and build a 5-year endowment for surveillance in Fleming Fund countries.</p>
+    <p>The neonatal bundle is structured as $20M validation → gate at Month 12 on verified culture-confirmed CFR data → expand to $40–60M. The primary endpoint is not antibiotic consumption or "protocols disseminated" — it is confirmed neonatal sepsis case fatality in supported versus contemporaneous non-supported facilities.</p>
+
+    <div class="cea-calc">
+      <div class="cc-label">CEA derivation — neonatal sepsis bundle</div>
+      <p style="margin:0 0 .4rem">Global neonatal sepsis deaths: ~680,000/year. Fraction gram-negative resistant pathogens: 40–60%. Addressable fraction in blood-culture-capable facilities (5–8% of births in LMICs): ~20,000–40,000 deaths in target settings. Effect size from access to appropriate antibiotics + diagnostics: 25–40% CFR reduction in culture-confirmed gram-negative neonatal sepsis (derived from NeoSep1 protocol arm data). DALYs per neonatal death: ~32 (YLL at 0–28 days).</p>
+      <p style="margin:0"><code>Central estimate: 30k addressable deaths × 30% CFR reduction × 80% reach_share = 7,200 deaths averted × 32 DALYs = 230k DALYs. $40M program ÷ 230k = $174/DALY.</code> Median across Monte Carlo: ~$388/DALY (wider distribution because reach_share is the fragile assumption). Range: $150–$600/DALY. Crosses $150 threshold only if blood-culture-capable facility density is at upper bound estimate. NeoSep1 readout is the natural gate — a null result collapses the effect arm and the capital redirects to drug access.</p>
+    </div>
+  </div>
+</div>
+
+<div class="approach">
+  <div class="ah">$200M — The pull proof tranche <span class="cea-tag green">$60–93/DALY</span></div>
+  <div class="ab">
+    <p>A $200M Market Entry Reward commitment — structured as milestone-tranched payments against regulatory approval (40%), LMIC access gate (40%), and supply-security tail (20%) — establishes proof of concept for a multilateral facility. The expected developer value is $163M per $200M committed (82 cents per dollar, significantly more efficient than a 10-year subscription). At a 30% Phase 3 success probability, this already delivers positive expected value versus the −$42.6M private NPV baseline.</p>
+    <p>The governance structure that would actually work: an independent scientific committee (GARDP/CEPI-model) sets the target product profiles against WHO BPPL-2024 critical-priority pathogens; an access oversight body verifies LMIC distribution milestones before releasing the second tranche; a clawback provision requires pro-rata repayment if access obligations lapse. This is a 10-year governance commitment, not a single grant.</p>
+
+    <div class="cea-calc">
+      <div class="cc-label">CEA derivation — $200M pull proof tranche</div>
+      <p style="margin:0 0 .4rem">One incentivized drug successfully approved and deployed in LMICs. Target pathogen: carbapenem-resistant Enterobacteriaceae or CRAB. Global DALY burden attributable to that pathogen class: ~900k DALYs/year (conservative), ~1.8M/year (upper). With strong LMIC access conditionality (40% of $200M = $80M contingent on LMIC distribution milestone): assumed LMIC reach 200k–500k patients/year at year 5 post-launch, with 25–40% mortality reduction in resistant infections.</p>
+      <p style="margin:0"><code>Central estimate: 350k patients × 30% mortality reduction × 40% baseline CFR × 15 YLL = 630k DALYs averted/year. Annualized cost: $200M ÷ 10-year program = $20M/yr. $20M ÷ 630k = $32/DALY.</code> After discounting for Phase 3 failure risk (70% probability) and partial LMIC access execution: blended $60–93/DALY. Dominant sensitivity: LMIC patients reached under access conditionality — varies 5× between weak and strong conditionality scenarios.</p>
+    </div>
+  </div>
+</div>
+
+<div class="approach">
+  <div class="ah">$500M–$2B+ — Syndicated pull facility <span class="cea-tag green">~$60/DALY</span></div>
+  <div class="ab">
+    <p>A $200–400M philanthropic anchor catalyzes a $2–5B standing facility through sovereign co-commitments from FCDO, EU-HERA, Japanese bilateral programs, and potentially World Bank IDA. The leverage multiple — 4–8× central, 12× optimistic ceiling — comes from sovereign burden-sharing, not commercial mobilization. Empirical blended finance averages only ~4× total; plan for 4×.</p>
+    <p>At $2B+ total facility size, this is 4 qualifying drugs incentivized at the $500M target reward level — enough to meaningfully shift the private R&D calculus for the 2–4 priority antibiotic programs currently in Phase 2 for critical gram-negatives. No AMR pull facility has been syndicated before; the precedent comes from CEPI ($1.5B raised for pandemic vaccines) and the pneumococcal AMC ($1.5B).</p>
+    <p>Realistic timeline to operational: 3–4 years for governance design, legal structure, first co-commitments, and first MER payment. This is appropriate for a philanthropist with a 10-year investment horizon, not a 2-year one.</p>
+
+    <div class="cea-calc">
+      <div class="cc-label">CEA derivation — syndicated pull facility</div>
+      <p style="margin:0 0 .4rem">4 qualifying drugs over 10 years, each with LMIC access conditionality. Total addressable burden across 4 critical gram-negative pathogen classes: ~4–6M DALYs/year. Per-drug: 1M–1.5M DALYs/year. With access conditionality, reach ~25% of addressable LMIC burden by year 7. Per-drug contribution: ~250k–375k DALYs averted/year × 4 drugs = 1M–1.5M DALYs/year total.</p>
+      <p style="margin:0"><code>Philanthropic anchor: $300M ÷ 10 years = $30M/yr. $30M ÷ 1.25M DALYs/yr = $24/DALY (philanthropic cost only).</code> On total facility cost ($2B ÷ 10 = $200M/yr) with sovereign burden sharing: <code>$200M ÷ 4M DALYs (optimistic) = $50/DALY</code>. Blending philanthropic attribution and program uncertainty: ~$60/DALY. This compares favorably to the AMC for pneumococcal vaccines (~$50–100/DALY) which is the closest structural precedent.</p>
+    </div>
+  </div>
+</div>
+
+<details>
+  <summary>What would most change our estimates — and which assumptions are most fragile</summary>
+  <div class="details-body">
+    <h4>For the neonatal sepsis bundle ($388/DALY)</h4>
+    <p><strong>Most fragile assumption: reach_share.</strong> If blood-culture-capable facilities are even scarcer than estimated (~3% rather than 5–8%), the denominator shrinks and cost-per-DALY worsens proportionally. A bottom-up facility census would tighten this more than any modeling refinement. NeoSep1 mortality readout is the natural gate: positive → $/DALY falls and absorptive capacity rises; null → the effect arm collapses and the tranche redirects to access-to-existing-drugs + prevention.</p>
+    <h4>For the pull mechanism ($60–93/DALY)</h4>
+    <p><strong>Most fragile assumption: patients reached in LMICs.</strong> The dominant tornado factor is how many LMIC patients actually receive the incentivized drug. Without access conditionality, this approaches zero. With strong conditionality and generic tech-transfer requirements, it could reach 50–80% of the addressable resistant-infection pool. The difference between these is roughly 5× in cost-effectiveness — the gap between a good intervention and a great one.</p>
+    <p><strong>PASTEUR passage risk:</strong> If PASTEUR or a European equivalent passes in the next 3 years, it changes the additionality of a philanthropic pull for high-income-country use cases (though not for LMIC-access-conditioned use cases, since PASTEUR has no LMIC conditionality). This is the primary additionality risk for the pull track.</p>
+    <h4>For surveillance ($306/DALY option value)</h4>
+    <p>Surveillance CEA is inherently option value — it produces useful data that enables better decisions downstream. The mortality attribution is indirect and contested. The honest case for surveillance funding is not a tight $/DALY number; it is that without functioning surveillance systems in LMICs, both the neonatal bundle and the pull mechanism lack the epidemiological foundation they need. It is enabling infrastructure, not a standalone mortality intervention.</p>
+  </div>
+</details>
+
+<h2 id="threshold-tool">Pull mechanism — threshold calculator</h2>
+
+<p style="font-family:system-ui,sans-serif;font-size:13.5px;color:#555;margin-bottom:1rem;">A Market Entry Reward is paid on success only, so Phase 3 trial probability cancels — cost and DALYs both scale with it. The chain is: <em>philanthropic anchor + sovereign co-funders → total facility → if ≥$1B, attracts a developer → drug reaches LMIC patients → deaths averted → DALYs → $/DALY.</em></p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.65rem;margin-bottom:1.5rem;font-family:system-ui,sans-serif;">
+  <div style="background:#eff6ff;border-left:3px solid #1e3a8a;padding:.6rem .8rem;font-size:11.5px;color:#1e3a8a;line-height:1.55;">
+    <strong>Reach is the primary lever.</strong><br>It's linear — doubling patients reached halves $/DALY with no diminishing returns. Going 30k→60k has more effect than any other change.
+  </div>
+  <div style="background:#fffbeb;border-left:3px solid #d97706;padding:.6rem .8rem;font-size:11.5px;color:#78350f;line-height:1.55;">
+    <strong>Leverage has a cliff, not a slope.</strong><br>Each time the total facility crosses a $1B multiple, one more drug is incentivized. Going 4×→5× at $200M unlocks drug #1. Going 9×→10× would unlock drug #2. Between cliffs, more leverage does nothing.
+  </div>
+  <div style="background:#f0fdf4;border-left:3px solid #166534;padding:.6rem .8rem;font-size:11.5px;color:#14532d;line-height:1.55;">
+    <strong>Solo is worse than leveraged.</strong><br>$500M solo = $500M facility (sub-threshold!). $200M at 5× = $1B facility — same drug, you pay 60% less. The philanthropic role is anchor, not sole funder.
+  </div>
+</div>
+
+<div id="pull-tool" style="border:1px solid #bfdbfe;background:#f8fbff;padding:1.5rem 1.75rem;margin:0 0 2.5rem;font-family:system-ui,sans-serif;">
+
+  <!-- Result display -->
+  <div style="display:flex;align-items:flex-start;gap:1.5rem;margin-bottom:1.75rem;flex-wrap:wrap;border-bottom:1px solid #dbeafe;padding-bottom:1.25rem;">
+    <div style="text-align:center;min-width:100px;">
+      <div id="daly-result" style="font-size:2.8rem;font-weight:800;letter-spacing:-.03em;line-height:1;color:#1e3a8a;">—</div>
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;margin-top:.4rem;">$/DALY</div>
+      <div style="font-size:9.5px;color:#9ca3af;">philanthropic</div>
+    </div>
+    <div style="text-align:center;min-width:100px;">
+      <div id="daly-societal" style="font-size:2.8rem;font-weight:800;letter-spacing:-.03em;line-height:1;color:#374151;">—</div>
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;margin-top:.4rem;">$/DALY</div>
+      <div style="font-size:9.5px;color:#9ca3af;">societal</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:.5rem;align-self:center;">
+      <div id="verdict-badge" style="font-size:13px;font-weight:700;padding:.45rem .9rem;border-radius:3px;">—</div>
+      <div id="threshold-hint" style="font-size:11px;color:#6b7280;"></div>
+    </div>
+    <div style="flex:1;min-width:260px;">
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:#9ca3af;margin-bottom:.4rem;font-weight:600;">How we get there</div>
+      <div id="breakdown" style="font-size:11.5px;color:#374151;line-height:2;"></div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.4rem 2.5rem;">
+
+    <div>
+      <label style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;font-weight:600;">Philanthropic MER commitment</label>
+      <div style="display:flex;gap:.5rem;margin-top:.4rem;">
+        <button class="mer-btn" data-val="100" onclick="setMER(100,this)" style="flex:1;padding:.4rem 0;font-size:11px;font-weight:600;border:1px solid #bfdbfe;background:#fff;cursor:pointer;color:#1e3a8a;">$100M<br><span style="font-weight:400;font-size:9px;color:#ef4444;">too small</span></button>
+        <button class="mer-btn" data-val="200" onclick="setMER(200,this)" style="flex:1;padding:.4rem 0;font-size:11px;font-weight:600;border:1px solid #1e3a8a;background:#1e3a8a;cursor:pointer;color:#fff;">$200M<br><span style="font-weight:400;font-size:9px;color:#93c5fd;">needs 5× leverage</span></button>
+        <button class="mer-btn" data-val="500" onclick="setMER(500,this)" style="flex:1;padding:.4rem 0;font-size:11px;font-weight:600;border:1px solid #bfdbfe;background:#fff;cursor:pointer;color:#1e3a8a;">$500M<br><span style="font-weight:400;font-size:9px;color:#9ca3af;">needs 2× leverage</span></button>
+      </div>
+      <div style="font-size:10.5px;color:#6b7280;margin-top:.5rem;line-height:1.55;">DRIVE-AB (4-year consortium study) and three independent analyses converge on <strong>~$1B minimum per antibiotic</strong> to make investment viable (range $1–4B). Clinical trials run $200–400M alone; add regulatory, manufacturing, and a risk premium. Below $1B total facility, a developer's expected NPV is negative — no rational firm enters.</div>
+    </div>
+
+    <div>
+      <label style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;font-weight:600;">Sovereign leverage: <span id="lev-val">5×</span></label>
+      <input type="range" id="lev-slider" min="1" max="8" value="5" step="1" oninput="recalc()" style="width:100%;margin-top:.4rem;accent-color:#1e3a8a;">
+      <div style="display:flex;justify-content:space-between;font-size:10px;color:#9ca3af;"><span>1× (solo)</span><span>8×</span></div>
+      <div style="font-size:10.5px;color:#6b7280;margin-top:.5rem;line-height:1.55;">For every $1 philanthropic, sovereigns contribute $(<em>lev</em>−1). At 5×, your $200M anchors a $1B facility — the minimum viable size. Between cliffs, adding leverage has no effect: 5× and 9× both give 1 drug at $200M. Realistic co-funders: UK DHSC, EU-HERA, Wellcome, Japan AMR. Getting beyond 5× without a PASTEUR-type mandate is very difficult.</div>
+    </div>
+
+    <div>
+      <label style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;font-weight:600;">LMIC patients reached/yr at peak: <span id="reach-val">30k</span></label>
+      <input type="range" id="reach-slider" min="5" max="200" value="30" step="5" oninput="recalc()" style="width:100%;margin-top:.4rem;accent-color:#1e3a8a;">
+      <div style="display:flex;justify-content:space-between;font-size:10px;color:#9ca3af;"><span>5k</span><span>200k</span></div>
+      <div style="font-size:10.5px;color:#6b7280;margin-top:.5rem;line-height:1.55;">Not LMIC incidence (~500k CRGN/yr) — that's the starting point. After layered discounts: correct diagnosis (~40%) × IV-capable hospital (~30%) × formulary listing (~50%) × supply availability (~60%), you reach ~20–50k. The <strong>most uncertain and most powerful variable</strong>: doubling reach halves $/DALY linearly.</div>
+    </div>
+
+    <div>
+      <label style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;font-weight:600;">YLL per CRGN death (age-weighted): <span id="yll-val">32 yrs</span></label>
+      <input type="range" id="yll-slider" min="10" max="40" value="32" step="1" oninput="recalc()" style="width:100%;margin-top:.4rem;accent-color:#1e3a8a;">
+      <div style="display:flex;justify-content:space-between;font-size:10px;color:#9ca3af;"><span>10 yrs (elderly ICU)</span><span>40 yrs (neonatal)</span></div>
+      <div style="font-size:10.5px;color:#6b7280;margin-top:.5rem;line-height:1.55;">CRGN kills two groups: neonates (death at day 3 → ~70 YLL) and elderly ICU patients (death at 65 → ~15 YLL). GBD blended average ≈32 yrs, dominated by neonatal sepsis. If the new drug only reaches adult ICUs, use 15–20 yrs — this roughly halves $/DALY and is a key question about what the drug actually treats.</div>
+    </div>
+
+    <div>
+      <label style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;font-weight:600;">Discount rate (future DALYs): <span id="dr-val">4%</span></label>
+      <input type="range" id="dr-slider" min="0" max="10" value="4" step="1" oninput="recalc()" style="width:100%;margin-top:.4rem;accent-color:#1e3a8a;">
+      <div style="display:flex;justify-content:space-between;font-size:10px;color:#9ca3af;"><span>0% (undiscounted)</span><span>10%</span></div>
+      <div style="font-size:10.5px;color:#6b7280;margin-top:.5rem;line-height:1.55;">At 4%, a 10-yr annuity factor = 8.1 (vs. 10 undiscounted) — an 18% haircut. At 10% = 6.1. Secondary lever: going 0%→10% worsens $/DALY by ~40%, whereas doubling reach improves it by 50%. GiveWell default is 4%.</div>
+    </div>
+
+    <div>
+      <label style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;font-weight:600;">Counterfactual value of sovereign funds: <span id="cf-val">0.5</span></label>
+      <input type="range" id="cf-slider" min="0" max="1" value="0.5" step="0.1" oninput="recalc()" style="width:100%;margin-top:.4rem;accent-color:#374151;">
+      <div style="display:flex;justify-content:space-between;font-size:10px;color:#9ca3af;margin-top:.2rem;">
+        <span>0 = equally good elsewhere<br>(count full sovereign cost)</span>
+        <span style="text-align:right;">1 = would have been wasted<br>(sovereign cost is free)</span>
+      </div>
+      <div style="font-size:10.5px;color:#6b7280;margin-top:.5rem;line-height:1.55;">Societal $/DALY = (phil + sovereign × (1 − discount)) ÷ DALYs. Would UK DHSC have spent this money just as well on something else? At 0: yes — count it fully. At 0.5: half the sovereign cost counts. At 1: sovereign funds are deadweight saved. Honest default: 0.3–0.5 (government AMR budgets often go to surveillance, not targeted incentives).</div>
+    </div>
+
+  </div>
+
+  <div style="margin-top:1.25rem;font-size:10px;color:#9ca3af;border-top:1px solid #dbeafe;padding-top:.75rem;line-height:1.7;">
+    Fixed: CFR 35% (CRAB+CRE, LMIC ICU — range 30–50%); mortality reduction 30% relative (appropriate vs. inappropriate therapy in RCTs); YLD 0.31/survivor (acute episode + sequelae; contributes 1.7% of DALYs — immaterial); econ costs 1.10 DALY-eq/death (3.2% additive, GiveWell DCY method); 10yr benefit horizon; $1B/drug minimum (DRIVE-AB central, range $1–4B). Phase 3 success rate omitted — cancels in pay-on-success MER. This calculator shows point estimates; Monte Carlo over the reach distribution gives median ~$689/DALY phil because reach is right-skewed (many low-reach scenarios pull the median up).
+  </div>
+</div>
+
+<script>
+(function() {
+  var mer = 200;
+
+  window.setMER = function(val, btn) {
+    mer = val;
+    document.querySelectorAll('.mer-btn').forEach(function(b) {
+      b.style.background = '#fff'; b.style.color = '#1e3a8a'; b.style.borderColor = '#bfdbfe';
+    });
+    btn.style.background = '#1e3a8a'; btn.style.color = '#fff'; btn.style.borderColor = '#1e3a8a';
+    recalc();
+  };
+
+  window.recalc = function() {
+    var reach = parseInt(document.getElementById('reach-slider').value) * 1000;
+    var yll = parseInt(document.getElementById('yll-slider').value);
+    var lev = parseInt(document.getElementById('lev-slider').value);
+    var cf = parseFloat(document.getElementById('cf-slider').value);
+    var dr = parseInt(document.getElementById('dr-slider').value) / 100;
+
+    document.getElementById('reach-val').textContent = (reach / 1000) + 'k';
+    document.getElementById('yll-val').textContent = yll + ' yrs';
+    document.getElementById('dr-val').textContent = Math.round(dr * 100) + '%';
+
+    var levLabel = lev === 1 ? '(solo, you pay 100%)'
+      : lev === 2 ? '(+ 1 co-funder)'
+      : lev === 3 ? '(+ 2 co-funders)'
+      : lev === 4 ? '(+ FCDO + EU)'
+      : lev === 5 ? '(+ FCDO + EU + Japan — minimum viable at $200M)'
+      : lev === 6 ? '(+ FCDO + EU + Japan + WB)'
+      : '(ambitious, limited precedent)';
+    document.getElementById('lev-val').textContent = lev + '× ' + levLabel;
+
+    var cfLabel = cf === 0 ? '0 — count full sovereign cost'
+      : cf === 1 ? '1 — sovereign is free'
+      : cf.toFixed(1) + ' — ' + (cf < 0.4 ? 'low discount' : cf < 0.7 ? 'moderate' : 'high discount');
+    document.getElementById('cf-val').textContent = cfLabel;
+
+    // phil_share derived from leverage: at 1× philanthropy pays 100%, at 5× pays 20%
+    var phil_cost = mer * 1e6;
+    var total_facility = phil_cost * lev;
+    var sovereign_cost_total = total_facility - phil_cost;
+
+    // DRIVE-AB central estimate: ~$1B minimum per drug to attract investment (range $1–4B)
+    var MIN_MER_PER_DRUG = 1000e6;
+    var drugs_incentivized = Math.max(0, Math.floor(total_facility / MIN_MER_PER_DRUG));
+
+    // NPV factor: PV of annuity over 10 years at rate dr
+    var npv_factor = dr === 0 ? 10 : (1 - Math.pow(1 + dr, -10)) / dr;
+
+    // DALYs: YLL dominant; non-fatal YLD; economic costs in DALY-equivalent
+    var CFR = 0.35, mort_red = 0.30, yld_per_nonfatal = 0.31, econ_daly_per_death = 1.10;
+    var deaths_averted = reach * CFR * mort_red;
+    var nonfatal_averted = reach * (1 - CFR) * mort_red;
+    var dalys_per_yr = deaths_averted * (yll + econ_daly_per_death) + nonfatal_averted * yld_per_nonfatal;
+    var total_dalys = dalys_per_yr * npv_factor * drugs_incentivized;
+
+    var phil_daly = (total_dalys > 0) ? phil_cost / total_dalys : Infinity;
+    var societal_cost = phil_cost + sovereign_cost_total * (1 - cf);
+    var societal_daly = (total_dalys > 0) ? societal_cost / total_dalys : Infinity;
+
+    var resultEl = document.getElementById('daly-result');
+    var societalEl = document.getElementById('daly-societal');
+    var badgeEl = document.getElementById('verdict-badge');
+    var breakEl = document.getElementById('breakdown');
+    var hintEl = document.getElementById('threshold-hint');
+
+    if (drugs_incentivized === 0) {
+      resultEl.textContent = '—';
+      societalEl.textContent = '—';
+      resultEl.style.color = '#991b1b';
+      badgeEl.style.background = '#fee2e2'; badgeEl.style.color = '#991b1b';
+      badgeEl.textContent = '✗ Below developer threshold';
+      hintEl.textContent = '';
+      var minLev = Math.ceil(1000 / mer);
+      breakEl.innerHTML =
+        '<span style="color:#991b1b;font-weight:600;">Total facility: $' + Math.round(total_facility/1e6) + 'M — below $1B/drug minimum</span><br>' +
+        'No developer will enter: expected NPV is negative at this facility size.<br>' +
+        '<strong>Fix: raise leverage to ' + minLev + '× (sovereign co-funders)</strong>' +
+        (mer < 1000 ? ' <em>or</em> increase MER to $' + Math.ceil(1000/lev * 100)/100 * lev + 'M' : '') + '.';
+      return;
+    }
+
+    resultEl.textContent = '$' + Math.round(phil_daly).toLocaleString();
+    societalEl.textContent = '$' + Math.round(societal_daly).toLocaleString();
+
+    // Threshold hint: what reach is needed to clear $150/DALY?
+    var reach_for_150 = phil_cost / (150 * npv_factor * drugs_incentivized * (CFR * mort_red * (yll + econ_daly_per_death)));
+    var reach_for_150k = Math.ceil(reach_for_150 / 5000) * 5;  // round up to nearest 5k
+
+    if (phil_daly <= 50) {
+      resultEl.style.color = '#166534';
+      badgeEl.style.background = '#dcfce7'; badgeEl.style.color = '#166534';
+      badgeEl.textContent = '✓ GiveWell-class (≤$50/DALY)';
+      hintEl.textContent = '';
+    } else if (phil_daly <= 150) {
+      resultEl.style.color = '#1e3a8a';
+      badgeEl.style.background = '#dbeafe'; badgeEl.style.color = '#1e40af';
+      badgeEl.textContent = '✓ Clears $150/DALY threshold';
+      hintEl.textContent = '';
+    } else if (phil_daly <= 400) {
+      resultEl.style.color = '#92400e';
+      badgeEl.style.background = '#fef3c7'; badgeEl.style.color = '#92400e';
+      badgeEl.textContent = '⚠ Above $150 — marginal';
+      hintEl.textContent = 'To clear $150/DALY: reach needs to be ' + reach_for_150k + 'k/yr (currently ' + (reach/1000) + 'k)';
+    } else {
+      resultEl.style.color = '#991b1b';
+      badgeEl.style.background = '#fee2e2'; badgeEl.style.color = '#991b1b';
+      badgeEl.textContent = '✗ Does not clear $150/DALY';
+      hintEl.textContent = 'To clear $150/DALY: reach needs to be ' + reach_for_150k + 'k/yr (currently ' + (reach/1000) + 'k)';
+    }
+
+    var drugsStr = drugs_incentivized === 1 ? '1 drug' : drugs_incentivized + ' drugs';
+    var nextLev = Math.ceil((drugs_incentivized + 1) * MIN_MER_PER_DRUG / phil_cost);
+    var cliffNote = nextLev <= 12 ? ' — next drug unlocks at ' + nextLev + '× leverage' : '';
+
+    breakEl.innerHTML =
+      '① <strong>Facility</strong> &nbsp; $' + mer + 'M × ' + lev + '× leverage = <strong>$' + Math.round(total_facility/1e6) + 'M</strong> → <strong>' + drugsStr + '</strong> (÷$1B/drug)' + cliffNote + '<br>' +
+      '② <strong>Deaths averted</strong> &nbsp; ' + (reach/1000) + 'k pts × 35% CFR × 30% treatment effect = <strong>' + Math.round(deaths_averted).toLocaleString() + '/yr</strong><br>' +
+      '③ <strong>DALYs/yr</strong> &nbsp; ' + Math.round(deaths_averted).toLocaleString() + ' deaths × ' + (yll + 1.1).toFixed(1) + ' YLL = ' + Math.round(deaths_averted*(yll+econ_daly_per_death)/1000) + 'k &nbsp;+&nbsp; ' + Math.round(nonfatal_averted).toLocaleString() + ' survivors × 0.31 YLD = ' + Math.round(nonfatal_averted*yld_per_nonfatal/1000) + 'k &nbsp;= <strong>' + Math.round(dalys_per_yr/1000) + 'k/yr</strong><br>' +
+      '④ <strong>Present value</strong> &nbsp; ' + Math.round(dalys_per_yr/1000) + 'k/yr × ' + npv_factor.toFixed(1) + ' (10yr @ ' + Math.round(dr*100) + '%) × ' + drugs_incentivized + ' drug = <strong>' + Math.round(total_dalys/1000).toLocaleString() + 'k DALYs</strong><br>' +
+      '⑤ <strong>Phil $/DALY</strong> &nbsp; $' + mer + 'M ÷ ' + Math.round(total_dalys/1000).toLocaleString() + 'k = <strong>$' + Math.round(phil_daly).toLocaleString() + '</strong><br>' +
+      '⑥ <strong>Societal</strong> &nbsp; $' + mer + 'M phil + $' + Math.round(sovereign_cost_total*(1-cf)/1e6) + 'M sov (×' + (1-cf).toFixed(1) + ' counterfactual) = $' + Math.round(societal_cost/1e6) + 'M ÷ ' + Math.round(total_dalys/1000).toLocaleString() + 'k = <strong>$' + Math.round(societal_daly).toLocaleString() + '</strong>';
+  };
+
+  recalc();
+})();
+</script>
+
+<h2 id="verdict">Verdict</h2>
+
+<p>AMR is where the largest gap exists between scale of the problem and scale of the philanthropic response. The market has demonstrably failed — not in a theoretical sense, but in the concrete sense that FDA-approved antibiotics are generating zero revenue while people die from the diseases they treat. Government mechanisms (PASTEUR, the UK subscription) are the right long-term solution and remain stuck. Surveillance infrastructure has collapsed precisely when it was most needed.</p>
+
+<p>Against this backdrop, a sophisticated philanthropist faces a genuine and unusual choice: deploy capital toward near-term, measurable impact (neonatal sepsis bundle, approved drug access) or toward structural change that, if it succeeds, bends the entire trajectory of antibiotic development (syndicated pull facility). These are not mutually exclusive, and the best portfolio contains both — the near-term work proves the concept, generates the evidence, and maintains momentum while the larger structural intervention is built.</p>
+
+<p>The numbers support engagement across the full capital range. At $10M, you can bridge surveillance systems that are collapsing this year. At $200M, you can prove that a delinked market entry reward model works and trigger government matching. At $2B+, you can permanently change the economics of antibiotic development for a generation. The $/DALY at each scale ($306, $93, $60 respectively) is competitive with or superior to most major global health interventions — and the additionality, right now, is about as high as it gets.</p>
+
+<div style="margin-top:5rem;padding-top:2rem;border-top:1px solid #e0deda;">
+  <div style="font-family:system-ui,sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:#bbb;margin-bottom:1rem;">Deep research runs — click to read full analysis</div>
+  <ul style="list-style:none;margin:0;padding:0;font-family:system-ui,sans-serif;font-size:13px;">
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1-3FbbYKOMlleEC4QPIRILvrOlsCmfq2GfCehslVWXDM/edit">AMR — global health CEA, full landscape, push + pull mechanisms (summary)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1tH1xB8if4IaCIZq6g5pBIE8oNVxeBOt83JvoG_p9ZJE/edit">AMR — global health CEA, full landscape, push + pull mechanisms (full)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1DHS-ICOYaThlGogT8AGjRyUiqYy8cpUdwrg4wRyCCX0/edit">AMR — deep and broad, pull mechanism design (summary)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1mX4Ix491yqxNZx0BY3p7RM1dv1-H8h8KQFuQ7UbqYZE/edit">AMR — deep and broad, pull mechanism design (full)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1JMtAFg-iwdWF6EM88bSSZprPT2VDC1Ad6Xp6ZIngGjo/edit">Fleming Fund — history, dismantlement, surveillance gap (summary)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1ltAbV3XpNnkjq675eDS2B2ZpFWXMkv_lC0sXrb8vf9I/edit">Fleming Fund — history, dismantlement, surveillance gap (full)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1i51lebe_IXgOthYQdnpOHCMdb5K9vI6Nx2jd0CmOEW0/edit">Gavi-type pull mechanism design — structure, cofunders, CEA (summary)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1GmZxQ9uy5hAqy9DSAxZ3QScqxegivNeiJ2cq-ZpTQMs/edit">Gavi-type pull mechanism design — structure, cofunders, CEA (full)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1eSXGdGuEmQMr8A8Zi38zhhSiOXmHY8ngrDPTakcxvFg/edit">Pull mechanism CEA — health DALYs + economic DCY, GiveWell methodology (summary)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1Z-e9yuG6JjEcFU-xQFYvhUmlgUM63ilKS5fiyEmIpxw/edit">Pull mechanism CEA — health DALYs + economic DCY, GiveWell methodology (full)</a></li>
+  </ul>
+</div>
+</main>
+</div>
+<script>
+const sections = document.querySelectorAll('h2[id]');
+const navLinks = document.querySelectorAll('nav ul li a[href^="#"]');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const a = document.querySelector(`nav a[href="#${e.target.id}"]`);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-15% 0px -75% 0px' });
+sections.forEach(s => observer.observe(s));
+
+let allOpen = false;
+function toggleAll() {
+  allOpen = !allOpen;
+  document.querySelectorAll('details').forEach(d => d.open = allOpen);
+  document.getElementById('expand-all-btn').textContent = allOpen ? 'Collapse all' : 'Expand all details';
+}
+</script>
+</body>
+</html>

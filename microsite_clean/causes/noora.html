@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noora Health Bangladesh — Cause Area Report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --accent: #1e3a5f;
+    --accent-light: #eff6ff;
+    --accent-border: #93c5fd;
+    --text: #1a1a1a;
+    --muted: #555;
+    --border: #e0deda;
+    --bg: #fafaf8;
+    --surface: #fff;
+    --surface-alt: #f7f6f4;
+  }
+
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.88; color: var(--text); background: var(--bg); }
+
+  .layout { display: flex; min-height: 100vh; }
+
+  nav { width: 232px; flex-shrink: 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 2.25rem 1.5rem; background: var(--surface-alt); border-right: 1px solid var(--border); }
+  nav .home { display: block; font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; color: #999; text-decoration: none; margin-bottom: 1.5rem; }
+  nav .home:hover { color: #333; }
+  nav h5 { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #bbb; margin-bottom: .6rem; margin-top: 1.5rem; }
+  nav ul { list-style: none; }
+  nav ul li a { font-family: system-ui, sans-serif; font-size: 12.5px; color: #666; text-decoration: none; display: block; padding: .22rem .6rem; border-left: 2px solid transparent; }
+  nav ul li a:hover { color: var(--text); }
+  nav ul li a.active { color: var(--text); border-left-color: var(--accent); font-weight: 600; }
+  nav .current { color: var(--accent) !important; font-weight: 600; }
+  nav .sep { height: 1px; background: var(--border); margin: 1.5rem 0; }
+
+  main { flex: 1; max-width: 800px; padding: 4rem 3.5rem 7rem; }
+
+  .eyebrow { font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin-bottom: .6rem; }
+  h1 { font-size: 2.5rem; line-height: 1.15; font-weight: 700; letter-spacing: -.025em; margin-bottom: .45rem; color: #0f0f0f; }
+  .dek { font-family: system-ui, sans-serif; font-size: 15.5px; color: #666; margin-bottom: 2.75rem; line-height: 1.5; }
+
+  .verdict { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 1.3rem 1.6rem; margin-bottom: 3.25rem; }
+  .verdict .vl { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #aaa; margin-bottom: .5rem; }
+  .verdict p { font-family: system-ui, sans-serif; font-size: 13.5px; color: #333; line-height: 1.65; margin-bottom: .55rem; }
+  .verdict p:last-child { margin-bottom: 0; }
+
+  .metrics { display: flex; gap: 1.25rem; margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .metric { background: var(--surface); border: 1px solid var(--border); padding: 1rem 1.25rem; flex: 1; min-width: 120px; }
+  .metric .mv { font-size: 1.45rem; font-weight: 700; color: #0f0f0f; font-family: system-ui, sans-serif; letter-spacing: -.02em; line-height: 1.1; }
+  .metric .ml { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: #aaa; margin-top: .3rem; }
+
+  h2 { font-size: 1.6rem; font-weight: 700; margin-top: 4rem; margin-bottom: 1.25rem; letter-spacing: -.015em; padding-bottom: .5rem; border-bottom: 1px solid var(--border); scroll-margin-top: 1.5rem; }
+  h3 { font-size: 1.1rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: .7rem; color: #222; }
+
+  p { margin-bottom: 1.2rem; }
+  a { color: #1d4ed8; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:hover { color: #1e3a8a; }
+  sup a { font-size: 0.75em; text-underline-offset: 1px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 2.25rem; font-family: system-ui, sans-serif; font-size: 13px; }
+  th { text-align: left; padding: .6rem .85rem; background: var(--surface-alt); border: 1px solid var(--border); font-weight: 600; color: #333; }
+  td { padding: .55rem .85rem; border: 1px solid var(--border); color: #444; vertical-align: top; line-height: 1.5; }
+  tr:nth-child(even) td { background: #faf9f7; }
+
+  .callout { background: var(--accent-light); border: 1px solid var(--accent-border); padding: 1.1rem 1.5rem; margin: 2rem 0; font-size: .94rem; line-height: 1.72; }
+  .callout strong { color: var(--accent); }
+
+  .note { background: #f8f9fa; border: 1px solid #d0d5dd; padding: 1.1rem 1.5rem; margin: 1.75rem 0; font-size: .93rem; font-family: system-ui, sans-serif; line-height: 1.7; }
+  .note .nt { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: #888; margin-bottom: .5rem; }
+
+  details { border: 1px solid var(--border); margin: 1.5rem 0; }
+  details summary {
+    padding: .9rem 1.15rem;
+    font-family: system-ui, sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    background: var(--surface-alt);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    user-select: none;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::before {
+    content: '▶';
+    font-size: 10px;
+    color: #aaa;
+    transition: transform .15s;
+    flex-shrink: 0;
+  }
+  details[open] summary::before { transform: rotate(90deg); }
+  details summary:hover { background: #efede9; }
+  .details-body {
+    padding: 1.25rem 1.5rem;
+    font-family: system-ui, sans-serif;
+    font-size: 13.5px;
+    line-height: 1.72;
+    color: #333;
+    border-top: 1px solid var(--border);
+  }
+  .details-body p { font-family: system-ui, sans-serif; font-size: 13.5px; margin-bottom: .9rem; }
+  .details-body table { font-size: 12.5px; }
+  .details-body h4 { font-weight: 700; margin: 1rem 0 .4rem; color: #222; font-size: 13.5px; }
+  .details-body ul, .details-body ol { margin: .4rem 0 .9rem 1.4rem; }
+  .details-body ul li, .details-body ol li { margin-bottom: .3rem; }
+
+  /* Diagram container */
+  .diagram { background: var(--surface); border: 1px solid var(--border); padding: 1.5rem; margin: 2rem 0; overflow-x: auto; }
+  .diagram-label { font-family: system-ui, sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #999; margin-bottom: 1rem; }
+
+  ul.bl, ol.bl { margin: .5rem 0 1.2rem 1.7rem; }
+  ul.bl li, ol.bl li { margin-bottom: .5rem; }
+
+  .pull-quote { font-size: 1.18rem; line-height: 1.65; color: #333; font-style: italic; margin: 2.75rem 0; padding: 1.25rem 1.75rem; border-top: 2px solid var(--border); border-bottom: 2px solid var(--border); }
+
+  #expand-all-btn { font-family: system-ui, sans-serif; font-size: 12px; color: #888; background: none; border: 1px solid #ddd; padding: .3rem .7rem; cursor: pointer; float: right; margin-top: 3.8rem; }
+  #expand-all-btn:hover { background: var(--surface-alt); }
+
+  .cea-calc { background: #f0f4ff; border: 1px solid #bfdbfe; padding: .85rem 1.1rem; margin: .75rem 0 .5rem; font-family: system-ui, sans-serif; font-size: 12.5px; line-height: 1.68; color: #1e3a8a; }
+  .cea-calc .cc-label { font-size: 10px; text-transform: uppercase; letter-spacing: .07em; color: #6b7280; margin-bottom: .35rem; font-weight: 600; }
+  .cea-calc code { font-family: 'Courier New', monospace; font-size: 11.5px; background: #dbeafe; padding: .05rem .3rem; border-radius: 2px; }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav>
+  <h5>This report</h5>
+  <ul>
+    <li><a href="#what-is-ccp">What CCP is</a></li>
+    <li><a href="#landscape">Landscape</a></li>
+    <li><a href="#bd-additionality">BD additionality</a></li>
+    <li><a href="#toc">Theory of change</a></li>
+    <li><a href="#trial">Trial design</a></li>
+    <li><a href="#cea">Cost-effectiveness</a></li>
+    <li><a href="#grant">Grant structure</a></li>
+    <li><a href="#verdict">Verdict</a></li>
+  </ul>
+</nav>
+
+<main>
+<button id="expand-all-btn" onclick="toggleAll()">Expand all details</button>
+
+<div class="eyebrow">Cause Area Report · September 2026</div>
+<h1>Noora Health Bangladesh</h1>
+<div class="dek">Caregiver education as a neonatal mortality intervention: settled evidence in India, zero verified evidence in Bangladesh — and GiveWell buying India while no funder buys Bangladesh outcomes.</div>
+
+<div class="verdict">
+  <div class="vl">Bottom line</div>
+  <p><strong>Fund $14–15M over 3 years as a stepped-wedge cluster-RCT layered on deepened delivery.</strong> Noora Health's Care Companion Program (CCP) has quasi-experimental evidence of an 18% relative neonatal mortality reduction in India (RR 0.821, <a href="https://journals.plos.org/globalpublichealth/article?id=10.1371%2Fjournal.pgph.0001240">Kumar 2023</a>). GiveWell is buying that evidence — two studies including an Indian RCT. Nobody is buying Bangladesh outcomes, where Noora already operates at 658 facilities and 3.4M caregivers with zero verified mortality evidence.</p>
+  <p>The grant buys a pre-registered, independently ascertained causal estimate of CCP's effect on 28-day neonatal mortality in Bangladesh (NMR baseline 20/1,000). The trial is powered at 0.88 (40 hospitals, 240k births, 8-sequence stepped-wedge) to detect a realistic 15% relative reduction. If positive, it converts a 3.4M-caregiver program from "process-evidenced" to "mortality-evidenced" and unlocks DGHS/multilateral scale-up. If null (K3), the trial stops before the expensive endline and the answer is cheap and decisive.</p>
+  <p><strong>Delivery economics:</strong> ~$51–86/DALY. This is <em>well inside</em> the &lt;$150/DALY threshold — but only if the trial is positive. The &lt;$150/DALY estimate is contingent on the Bangladesh effect being real and of the magnitude the India evidence suggests. The trial resolves that contingency.</p>
+</div>
+
+<div class="metrics">
+  <div class="metric"><div class="mv">20/1,000</div><div class="ml">Bangladesh NMR (2022)</div></div>
+  <div class="metric"><div class="mv">658</div><div class="ml">Facilities with Noora CCP (BD)</div></div>
+  <div class="metric"><div class="mv">$51–86</div><div class="ml">$/DALY (delivery economics)</div></div>
+  <div class="metric"><div class="mv">0.88</div><div class="ml">Trial power (15% relative NMR reduction)</div></div>
+</div>
+
+<h2 id="what-is-ccp">What the Care Companion Program actually is</h2>
+
+<p>CCP is a hospital-based, pre-discharge caregiver education program. Before a mother leaves the maternity ward, a trained nurse delivers a ~40-minute group session to mothers and family members — the people who will actually care for the newborn at home. The session uses contextualized video and flipchart materials, with in-hospital skills practice, covering:</p>
+
+<ul class="bl">
+  <li><strong>Early and exclusive breastfeeding</strong> — initiation within 1 hour of birth, exclusive for 6 months</li>
+  <li><strong>Thermal care</strong> — skin-to-skin/kangaroo mother care (KMC), appropriate room temperature, no early bathing</li>
+  <li><strong>Hygienic cord and wound care</strong> — dry cord care, clean cut, no application of ash or other contaminants</li>
+  <li><strong>Hand hygiene</strong> — before handling newborn, before and after feeding</li>
+  <li><strong>Danger-sign recognition → care-seeking</strong> — when to return to facility (respiratory difficulty, feeding refusal, fever, jaundice, hypothermia)</li>
+  <li><strong>Post-natal immunization and follow-up</strong></li>
+</ul>
+
+<p>Two structural constraints define where CCP can and cannot work. First, it is a <em>post-discharge</em> intervention — it acts after the mother-baby dyad leaves the facility. It cannot touch intrapartum deaths (during delivery) or deaths that occur in the delivery room. Second, its levers are caregiver behaviors — it moves mortality only where the binding constraint is a home caregiving practice or a delayed care-seeking decision, not a facility or clinical-skill gap. These constraints define which causes CCP can address and which are upstream of its reach.</p>
+
+<details>
+<summary>The science: why pre-discharge caregiver education can move neonatal mortality</summary>
+<div class="details-body">
+<p>The central mechanism is not information provision — it is <strong>behavior change of the exact person performing the care act</strong>, at the moment of highest receptivity (pre-discharge with the newborn present), in an in-person, skills-practiced session.</p>
+<p>This matters because the global evidence base on health education interventions shows that information-only approaches (SMS reminders, mass media campaigns, helpline counseling) consistently fail to move mortality. The RCT literature is clear: interventions that work are those where the educator is physically present, the learner is the actor, and the taught skill has a short causal chain to the health outcome.</p>
+<p>CCP's mortality-relevant mechanisms, by cause:</p>
+<h4>Prematurity/LBW (~15–22% of neonatal deaths)</h4>
+<p>Premature and low-birthweight infants are at highest risk from hypothermia, inadequate feeding, and infection. KMC (continuous skin-to-skin contact) has a <a href="https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD002771.pub4/full">Cochrane meta-analysis RR ~0.68</a> for mortality in LBW infants. In Bangladesh, skin-to-skin KMC practice is only 17.7% of newborns (<a href="https://dhsprogram.com/pubs/pdf/PR148/PR148.pdf">BDHS 2022</a>); all five essential newborn care components are performed for only 1% of births. The practice headroom is enormous.</p>
+<h4>Sepsis/infection (~12–29% of neonatal deaths)</h4>
+<p>Neonatal sepsis in South Asia is predominantly caused by gram-negative organisms (<em>Klebsiella</em>, <em>E. coli</em>, <em>Acinetobacter</em>) gaining entry via the umbilical cord, skin breaks, or respiratory tract — all preventable through hygienic cord care and hand hygiene. The danger-sign recognition component converts early sepsis presentation into care-seeking rather than at-home management. This mechanism is conditional on a functioning referral destination — CCP creates demand; a working EmONC/SCANU must supply it.</p>
+<h4>Asphyxia (~16% nationally, 43–45% in rural verbal autopsy)</h4>
+<p>Intrapartum asphyxia is an upstream problem — a delivery quality and skilled birth attendant issue. CCP cannot affect it. This is the central theory-of-change tension: the largest single cause of neonatal death in Bangladesh (especially in rural settings) is essentially untouchable by a post-discharge intervention. This is why the Bangladesh trial is powered on all-cause NMR with a pre-specified secondary endpoint on CCP-addressable causes (prematurity/sepsis) via verbal autopsy — to detect a realistic effect even though the asphyxia fraction dilutes the all-cause estimate.</p>
+</div>
+</details>
+
+<h2 id="landscape">Landscape — who is doing what and what we've learned</h2>
+
+<h3>Bangladesh neonatal mortality: the trajectory and what drove it</h3>
+
+<p>Bangladesh's NMR improvement from 2000–2020 is one of the most cited examples of rapid neonatal mortality decline in global health. NMR fell from 44/1,000 in 2000 to 17/1,000 in 2020 — a 4.6% average annual rate of reduction, faster than any peer country at similar income levels. What drove this? Primarily: expansion of facility delivery (from ~9% in 2000 to ~50%+ nationally by 2020), scaling of antenatal care, immunisation, and skilled birth attendance — all supply-side coverage gains. <strong>The critical caveat: this decline has stalled and partially reversed.</strong> NMR climbed from 16 to 20/1,000 within a single year (by 2023), driven by COVID-19 system disruptions, health worker attrition, and supply chain fragility. Bangladesh is no longer on a declining trajectory. The question for any new program is whether it can re-activate the decline by targeting the causes of remaining deaths — primarily prematurity/LBW, infection/sepsis, and (most importantly from a program-design standpoint) what cannot be addressed: intrapartum asphyxia.</p>
+
+<h3>Who else is operating in the Bangladesh neonatal space</h3>
+
+<p>Understanding Noora Health's position requires knowing what else is in the field — and why those alternatives haven't closed the evidence gap.</p>
+
+<p><strong>BRAC Manoshi (2007–present)</strong> is the largest community-based maternal and neonatal health program operating in Bangladesh urban slums. Established in 2007, Manoshi deploys female CHWs (Community Health Workers) in city corporation areas (Dhaka, Chittagong, Sylhet, Khulna) to provide doorstep antenatal care, deliver in birthing centres, and conduct postnatal home visits. Manoshi has facilitated millions of deliveries and is the primary maternal health infrastructure in Bangladesh's informal urban settlements. Evidence shows Manoshi significantly increased facility delivery rates, ANC visits, and skilled attendance, with dose-response relationships (≥4 ANC visits → 4–6× higher PNC uptake). However, Manoshi is fundamentally an <em>access</em> program — it connects women to the facility-delivery system. It does not address what happens to the caregiver after discharge. CCP and Manoshi operate on different pathways: Manoshi brings women into the health system; CCP trains them for the 28 days after they leave it. They are complements, not competitors.</p>
+
+<p><strong>USAID MaMoni MNCSP (Save the Children, 2018–2023)</strong> was USAID's $40M+ flagship maternal and newborn care strengthening project in Bangladesh, implemented by Save the Children across 17 districts. MaMoni supported functioning of 6 Special Care Newborn Units (SCANUs), rolled out Kangaroo Mother Care in 41 hospitals, trained providers in Essential Newborn Care, and worked to improve referral pathways. MaMoni operated at the facility level — improving the quality of clinical care within SCANU walls. It produced improved output metrics (6,729 newborns served in supported SCANUs) but was never powered to detect NMR change. <strong>MaMoni ended in April 2023 and was not renewed</strong> (USAID Bangladesh portfolio restructuring). This means the primary USAID-funded newborn care platform in Bangladesh has now exited. There is no comparable successor program. The gap MaMoni leaves — particularly in SCANU quality and KMC rollout — is one context in which Noora's SCANU-embedded CCP operates.</p>
+
+<p><strong>DGHS SCANU infrastructure</strong>: The Directorate General of Health Services (DGHS) has built a national network of Special Care Newborn Units, with 50+ operational SCANUs across all divisions. DGHS issued KMC guidelines in 2013 and SCANU operational standards subsequently. However, the quality gap between DGHS standards and actual SCANU performance is well-documented: provider adherence to KMC protocols is low, caregiver counseling sessions are typically 3–5 minutes (vs. Noora's structured 45–60 minute session), and post-discharge follow-up essentially does not exist in the public system. Noora's partnership with DGHS is embedded in this infrastructure — rather than building parallel systems, Noora augments DGHS-managed SCANUs within the existing government structure. The MoU structure means Noora's program is positioned for government adoption at no additional NGO cost if the trial is positive.</p>
+
+<p><strong>WHO/UNICEF Essential Newborn Care (ENC)</strong>: WHO and UNICEF have promoted the ENC package (immediate newborn care, thermal protection, early breastfeeding, cord care, danger sign recognition) globally since the late 1990s. In Bangladesh, ENC training is nominally part of provider pre-service training, but caregiver-facing ENC counseling in facilities is inconsistent and rarely extends to structured post-discharge sessions. ENC provides the theoretical foundation for what Noora teaches; Noora's CCP is, in essence, a rigorously structured and operationalized delivery mechanism for ENC content at the caregiver level.</p>
+
+<h3>The global evidence base for caregiver education: what works and what doesn't</h3>
+
+<p>Noora's CCP is one variant of a well-studied intervention class. The global evidence provides important context for interpreting what a Bangladesh trial might show:</p>
+
+<ul class="bl">
+  <li><strong>Bang et al. 1999 (Gadchiroli, India)</strong>: The original proof-of-concept for community-based newborn care. A cluster RCT in rural Maharashtra trained village health workers in essential newborn care and found a 62% reduction in NMR in the first trial, 71% in the second. The Bang trials established that trained community-level intervention can drive large NMR reductions. However, Gadchiroli was extremely low baseline (<em>home delivery rate 99%, NMR ~60+</em>) — the effect size cannot be extrapolated to Bangladesh's facility-delivery context.</li>
+  <li><strong>Projahnmo (icddr,b + JHU, Sylhet Division, Bangladesh, 2004–2007)</strong>: Community-based newborn care delivered by trained CHWs in rural Sylhet. Three trial arms. The CHW home-visit arm showed 34% NMR reduction (RR 0.66, 95% CI 0.47–0.93). This is the benchmark community-NMR-reduction estimate for Bangladesh specifically. Projahnmo's design (CHW home visits) differs from CCP (in-hospital caregiver education) — but both work on the same caregiver-knowledge/behavior pathway. The 34% figure provides a plausible upper bound for a CCP trial in Bangladesh.</li>
+  <li><strong>Nepal MIRA trials (Manandhar 2004, BMJ)</strong>: Community women's group facilitation of Essential Newborn Care knowledge in rural Nepal reduced NMR 30% (cluster RCT). Again: home-delivery setting with high baseline NMR (~60). Generalization to facility-delivery, lower-NMR Bangladesh requires caution.</li>
+  <li><strong>Newhints Ghana (Kirkwood 2010, Lancet)</strong>: CHW home-visits for newborn care in northern Ghana — showed no mortality effect in the full sample (RR 0.97, CI 0.84–1.12). Null result despite strong implementation quality. The Newhints null result is the most important counter-evidence: it demonstrates that caregiver education pathways are not universally effective and that context, baseline NMR, and the facility/referral system available all matter. Bangladesh's weaker referral system in high-burden divisions increases the risk of a Newhints-like null.</li>
+  <li><strong>What the evidence says about mechanisms</strong>: Information-only interventions (SMS, mass media, radio) consistently fail to move neonatal mortality in any setting. In-person, skills-practiced sessions with the actual caregiver who will perform the care act — where the educator is physically present and the learner practices before leaving — is the consistently effective design pattern across the successful trials. CCP's session structure is deliberately aligned with this pattern.</li>
+</ul>
+
+<h3>Noora Health in India: the evidence base</h3>
+
+<p>Noora Health has operated in India since 2014 and now reaches approximately 9M+ caregivers across Karnataka, Bihar, Odisha, Rajasthan, Tamil Nadu, and Assam, embedded within public hospital systems via government MoUs. The India evidence base has evolved through three generations:</p>
+
+<ul class="bl">
+  <li><strong>Generation 1 (2014–2019): observational, self-reported.</strong> Early Noora reporting relied on caregiver surveys showing improved knowledge of danger signs and feeding practices. These are process metrics — necessary for program iteration but not sufficient evidence of mortality effects.</li>
+  <li><strong>Generation 2 (2019–2023): quasi-experimental.</strong> <a href="https://journals.plos.org/globalpublichealth/article?id=10.1371%2Fjournal.pgph.0001240">Kumar et al. 2023 (PLOS Global Public Health)</a> used a difference-in-differences design across 118 Noora hospitals vs. comparison facilities in Karnataka, finding RR 0.821 for neonatal mortality (95% CI 0.766–0.879) — an 18% relative reduction. This is the evidence GiveWell is buying. But a difference-in-differences design can't rule out selection bias (Noora hospitals may differ from comparisons in systematic ways beyond the intervention).</li>
+  <li><strong>Generation 3 (2025–ongoing): RCT in India.</strong> GiveWell is funding an Indian RCT to produce trial-grade evidence. Results expected approximately 2027–28. This will be the definitive India evidence — and it will cover a population Noora already serves well (higher-NMR India settings).</li>
+</ul>
+
+<h3>What's happening in Bangladesh specifically</h3>
+
+<p>Noora entered Bangladesh in 2018 in partnership with DGHS (Directorate General of Health Services), the government body that administers the national hospital network. By September 2026, Noora operates in 658 facilities across all 8 divisions, with a cumulative reach of approximately 3.4M caregivers. It is embedded in the SCANU (Special Care Newborn Unit) network — the government's designated high-risk newborn care infrastructure — which gives it access to the most vulnerable newborns.</p>
+
+<p>Despite this scale, Bangladesh has no mortality evidence for CCP whatsoever. Noora's Bangladesh M&E produces process metrics: sessions delivered, caregivers reached, practice knowledge scores. <strong>Zero verified mortality data.</strong> This is not a critique of Noora's operations; it is the consequence of a decision to prioritize reaching caregivers over building the ascertainment infrastructure to measure whether those caregivers' babies live or die.</p>
+
+<h3>The funding landscape and why additionality is high</h3>
+
+<p>GiveWell's <a href="https://blog.givewell.org/2026/07/13/casting-a-wider-net-for-cost-effective-programs/">July 2026 grant announcement</a> confirms they are funding Noora India studies. The logic of that grant is: India has a large Noora footprint, a higher-NMR baseline, and a causal evidence gap that the RCT is designed to fill.</p>
+
+<p>GiveWell is explicitly <em>not</em> buying Bangladesh mortality outcomes. The reasons are practical: Bangladesh's lower NMR (20 vs. India's ~41) means smaller expected absolute mortality effects, harder to power a trial; the evidence gap in Bangladesh is distinct from India (different cause-mix, different coverage baseline, different referral system); and GiveWell's internal capacity for managing two Noora country programs simultaneously is limited.</p>
+
+<p>This creates a genuine additionality opportunity: if you fund the Bangladesh trial, you are buying evidence and delivery outcomes that no other organized funder is purchasing. The additionality deteriorates rapidly if GiveWell pivots to Bangladesh — which would happen if (a) the India RCT is strongly positive and (b) GiveWell's funder base expands to support a second country. Current additionality estimate: <strong>0.85+ (very high)</strong>, with an explicit K5 kill-switch: if GiveWell commits to buying BD mortality outcomes, redefine this grant to the non-overlapping slice.</p>
+
+<h3>icddr,b — the evaluation infrastructure anchor</h3>
+
+<p>The <a href="https://www.icddrb.org/">International Centre for Diarrhoeal Disease Research, Bangladesh</a> operates the Matlab Health and Demographic Surveillance System (Matlab HDSS) — one of the world's oldest continuous population-based mortality surveillance systems, running since 1963. The <a href="https://www.projahnmo.org/">Projahnmo study</a>, conducted in Bangladesh by icddr,b in collaboration with Johns Hopkins, demonstrated a 34% NMR reduction through community-based newborn care — the benchrmark for community NMR interventions in Bangladesh.</p>
+
+<p>icddr,b's involvement as independent evaluator transforms the Noora Bangladesh trial from a program evaluation into credible science. They own the ascertainment database, run the household follow-up and verbal autopsy, generate the randomization allocation sequence (which DGHS holds in the MoU), and will conduct the primary analysis. This independence firewall — preventing implementer-favorable measurement — is what separates this from Noora's prior quasi-experimental evidence.</p>
+
+<h2 id="bd-additionality">Why Bangladesh, not more India</h2>
+
+<p>A reasonable question: if Noora's India evidence is stronger and GiveWell is already buying it, why fund Bangladesh at all? Three reasons:</p>
+
+<ol class="bl">
+  <li><strong>Additionality is in Bangladesh, not India.</strong> Funding more India delivery or more India evidence is largely duplicating what GiveWell and Noora are already buying. Funding Bangladesh mortality outcomes is genuinely additional — no other organized funder is doing it.</li>
+  <li><strong>Bangladesh is not a repeat of India.</strong> NMR 20 vs. India's ~41; lower facility delivery rate in high-burden divisions (51.6% in Sylhet, 51.1% in Barishal vs. India's high-burden states); different cause-mix (higher relative asphyxia burden via verbal autopsy); weaker care-seeking patterns in northwest and coastal divisions. The Bangladesh context requires its own causal estimate — you cannot extrapolate India's 18% to Bangladesh and fund a $14M program on that inference without more evidence than a cross-country assumption.</li>
+  <li><strong>Bangladesh is Noora's highest-additionality node for scale.</strong> If the Bangladesh trial is positive, it creates the evidence base for DGHS to mandate CCP across the national SCANU network (50+ SCANUs, national scale) — a scale-up that requires government buy-in, not additional philanthropic funding. The trial is the evidence that unlocks that government commitment.</li>
+</ol>
+
+<div class="diagram">
+  <div class="diagram-label">Evidence gap map — Noora Health by geography</div>
+  <svg viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;font-family:system-ui,sans-serif;">
+    <!-- India column -->
+    <rect x="20" y="20" width="190" height="140" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5" rx="2"/>
+    <text x="115" y="45" text-anchor="middle" font-size="13" font-weight="700" fill="#1e3a5f">India</text>
+    <text x="115" y="62" text-anchor="middle" font-size="11" fill="#444">NMR ~41/1,000</text>
+    <text x="115" y="79" text-anchor="middle" font-size="11" fill="#444">9M+ caregivers</text>
+    <!-- Evidence badges -->
+    <rect x="35" y="90" width="160" height="22" fill="#bbf7d0" rx="3"/>
+    <text x="115" y="105" text-anchor="middle" font-size="10.5" fill="#166534" font-weight="600">Kumar 2023: RR 0.821 ✓</text>
+    <rect x="35" y="117" width="160" height="22" fill="#bbf7d0" rx="3"/>
+    <text x="115" y="132" text-anchor="middle" font-size="10.5" fill="#166534" font-weight="600">GiveWell RCT (ongoing) ✓</text>
+    <rect x="35" y="144" width="160" height="22" fill="#bbf7d0" rx="3"/>
+    <text x="115" y="159" text-anchor="middle" font-size="10.5" fill="#166534" font-weight="600">GiveWell funding delivery ✓</text>
+
+    <!-- Arrow -->
+    <text x="230" y="105" text-anchor="middle" font-size="28" fill="#999">→</text>
+
+    <!-- Bangladesh column -->
+    <rect x="250" y="20" width="190" height="140" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5" rx="2"/>
+    <text x="345" y="45" text-anchor="middle" font-size="13" font-weight="700" fill="#92400e">Bangladesh</text>
+    <text x="345" y="62" text-anchor="middle" font-size="11" fill="#444">NMR 20/1,000</text>
+    <text x="345" y="79" text-anchor="middle" font-size="11" fill="#444">3.4M caregivers, 658 sites</text>
+    <rect x="265" y="90" width="160" height="22" fill="#fecaca" rx="3"/>
+    <text x="345" y="105" text-anchor="middle" font-size="10.5" fill="#991b1b" font-weight="600">Zero mortality evidence ✗</text>
+    <rect x="265" y="117" width="160" height="22" fill="#fecaca" rx="3"/>
+    <text x="345" y="132" text-anchor="middle" font-size="10.5" fill="#991b1b" font-weight="600">No funder buying BD outcomes ✗</text>
+    <rect x="265" y="144" width="160" height="22" fill="#fef9c3" rx="3"/>
+    <text x="345" y="159" text-anchor="middle" font-size="10.5" fill="#713f12" font-weight="600">This grant fills both gaps →</text>
+
+    <!-- Grant arrow -->
+    <text x="460" y="105" text-anchor="middle" font-size="28" fill="#999">→</text>
+
+    <!-- Outcome box -->
+    <rect x="490" y="20" width="190" height="140" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5" rx="2"/>
+    <text x="585" y="45" text-anchor="middle" font-size="13" font-weight="700" fill="#166534">If Trial Positive</text>
+    <text x="585" y="70" text-anchor="middle" font-size="10.5" fill="#444">1st causal BD NMR estimate</text>
+    <text x="585" y="87" text-anchor="middle" font-size="10.5" fill="#444">DGHS mandates SCANU scale</text>
+    <text x="585" y="104" text-anchor="middle" font-size="10.5" fill="#444">Government-funded at scale</text>
+    <text x="585" y="124" text-anchor="middle" font-size="11" fill="#166534" font-weight="700">~$51–86/DALY</text>
+    <text x="585" y="142" text-anchor="middle" font-size="10.5" fill="#444">well inside &lt;$150 threshold</text>
+    <text x="585" y="159" text-anchor="middle" font-size="10.5" fill="#444">at government scale</text>
+  </svg>
+</div>
+
+<h2 id="toc">Theory of change — where the mortality levers are</h2>
+
+<p>Bangladesh's NMR at 20/1,000 (2022) is already lower than India's ~41/1,000 because facility delivery is higher and some of the lowest-hanging ENC practices are already more common. This creates a subtler but important tension: the "easy" deaths have already been averted at the national level, leaving a residual burden concentrated in specific places (low-coverage divisions) and specific causes (prematurity/LBW post-discharge, sepsis) that CCP's mechanism can plausibly reach.</p>
+
+<table>
+  <thead><tr><th>Cause (Bangladesh)</th><th>% Neonatal deaths</th><th>CCP mechanism</th><th>Addressable?</th></tr></thead>
+  <tbody>
+    <tr><td>Birth asphyxia / intrapartum</td><td>16% nationally; 43–45% rural VA</td><td>None — delivery quality problem</td><td>No — upstream of discharge</td></tr>
+    <tr><td><strong>Prematurity / LBW</strong></td><td>15–22%</td><td>KMC, thermal care, feeding</td><td><strong>Yes — large practice headroom</strong></td></tr>
+    <tr><td><strong>Sepsis / infection</strong></td><td>12–29%</td><td>Cord hygiene, hand hygiene, danger-sign → care-seeking</td><td><strong>Yes — conditional on referral</strong></td></tr>
+    <tr><td>Congenital</td><td>~4%</td><td>None</td><td>No</td></tr>
+  </tbody>
+</table>
+
+<p>The addressable fraction: prematurity/sepsis together account for approximately 27–51% of neonatal deaths in Bangladesh (depending on urban/rural mix and verbal autopsy vs. national estimates). A 15% <em>relative</em> reduction in <em>all-cause</em> NMR translates to a larger proportional effect on the addressable subset — the pre-specified secondary endpoint is designed to detect this.</p>
+
+<details>
+<summary>The chained gate problem: care-seeking that goes nowhere</summary>
+<div class="details-body">
+<p>CCP's danger-sign recognition lever only converts to averted deaths if a functioning referral destination exists when the caregiver shows up. This is the "chained gate" problem: CCP generates demand (a caregiver recognizes a fever and takes the baby to a facility); if the receiving facility lacks functional EmONC/SCANU capacity (blood for transfusion, IV antibiotics, oxygen), the demand dead-ends and the death happens anyway — but now it happens at a facility, which is recorded in the denominato, but CCP gets no credit.</p>
+<p>In the trial design, this is addressed by Kill-Switch K4: if a wedge shows rising danger-sign care-seeking without a corresponding improvement in NMR, and if the wedge's referral facilities lack functional EmONC, that wedge's CCP data is flagged and the grant pairs CCP with referral-readiness interventions before extending further.</p>
+<p>The Bangladesh SCANU network (50+ SCANUs nationally) provides better baseline referral capacity than many of CCP's target geographies in India, which is one reason Bangladesh's addressable-fraction ceiling may be somewhat higher than a naive India-to-Bangladesh extrapolation would suggest. But the variation within Bangladesh is large: Sylhet and Barishal division have substantially weaker referral infrastructure than Dhaka or Khulna.</p>
+</div>
+</details>
+
+<h2 id="trial">Trial design — the stepped-wedge architecture</h2>
+
+<p>The choice of stepped-wedge over parallel cluster-RCT was not purely statistical — it was political. DGHS will not hold a control arm facility at zero CCP indefinitely when the program is already endorsed for national rollout. A stepped-wedge rolls CCP to all 40 hospitals over the trial period; every facility eventually receives the intervention, which is the framing DGHS will authorize via MoU.</p>
+
+<div class="diagram">
+  <div class="diagram-label">Stepped-wedge design schematic — 40 hospitals, 8 sequences, 9 periods</div>
+  <svg viewBox="0 0 660 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:660px;font-family:system-ui,sans-serif;font-size:11px;">
+    <!-- Period labels -->
+    <text x="85" y="15" text-anchor="middle" fill="#666" font-size="10">Baseline</text>
+    <text x="155" y="15" text-anchor="middle" fill="#666" font-size="10">P1</text>
+    <text x="225" y="15" text-anchor="middle" fill="#666" font-size="10">P2</text>
+    <text x="295" y="15" text-anchor="middle" fill="#666" font-size="10">P3</text>
+    <text x="365" y="15" text-anchor="middle" fill="#666" font-size="10">P4</text>
+    <text x="435" y="15" text-anchor="middle" fill="#666" font-size="10">P5</text>
+    <text x="505" y="15" text-anchor="middle" fill="#666" font-size="10">P6</text>
+    <text x="575" y="15" text-anchor="middle" fill="#666" font-size="10">P7</text>
+    <text x="635" y="15" text-anchor="middle" fill="#666" font-size="10">P8</text>
+    <!-- Sequence labels -->
+    <text x="25" y="40" text-anchor="middle" fill="#555" font-weight="600">Seq 1</text>
+    <text x="25" y="65" text-anchor="middle" fill="#555" font-weight="600">Seq 2</text>
+    <text x="25" y="90" text-anchor="middle" fill="#555" font-weight="600">Seq 3</text>
+    <text x="25" y="115" text-anchor="middle" fill="#555" font-weight="600">Seq 4</text>
+    <text x="25" y="140" text-anchor="middle" fill="#555" font-weight="600">Seq 5</text>
+    <text x="25" y="165" text-anchor="middle" fill="#555" font-weight="600">Seq 6</text>
+    <text x="25" y="190" text-anchor="middle" fill="#555" font-weight="600">Seq 7</text>
+    <text x="25" y="215" text-anchor="middle" fill="#555" font-weight="600">Seq 8</text>
+    <!-- Grid rows for each sequence -->
+    <!-- Sequence 1: crosses in P1 -->
+    <rect x="50" y="25" width="70" height="18" fill="#fee2e2" stroke="#fca5a5" stroke-width="0.5"/> <!-- Baseline: control -->
+    <rect x="120" y="25" width="70" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/> <!-- P1-P8: intervention -->
+    <rect x="190" y="25" width="70" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <rect x="260" y="25" width="70" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <rect x="330" y="25" width="70" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <rect x="400" y="25" width="70" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <rect x="470" y="25" width="70" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <rect x="540" y="25" width="70" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <rect x="610" y="25" width="40" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <!-- Sequence 2: crosses in P2 -->
+    <rect x="50" y="50" width="70" height="18" fill="#fee2e2" stroke="#fca5a5" stroke-width="0.5"/>
+    <rect x="120" y="50" width="70" height="18" fill="#fee2e2" stroke="#fca5a5" stroke-width="0.5"/>
+    <rect x="190" y="50" width="70" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <rect x="260" y="50" width="70" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <rect x="330" y="50" width="70" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <rect x="400" y="50" width="70" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <rect x="470" y="50" width="70" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <rect x="540" y="50" width="70" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <rect x="610" y="50" width="40" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <!-- Sequence 3 -->
+    <rect x="50" y="75" width="70" height="18" fill="#fee2e2" stroke="#fca5a5" stroke-width="0.5"/>
+    <rect x="120" y="75" width="70" height="18" fill="#fee2e2" stroke="#fca5a5" stroke-width="0.5"/>
+    <rect x="190" y="75" width="70" height="18" fill="#fee2e2" stroke="#fca5a5" stroke-width="0.5"/>
+    <rect x="260" y="75" width="70" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <rect x="330" y="75" width="70" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <rect x="400" y="75" width="70" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <rect x="470" y="75" width="70" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <rect x="540" y="75" width="70" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <rect x="610" y="75" width="40" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <!-- Sequences 4-8 abbreviated -->
+    <rect x="50" y="100" width="70" height="18" fill="#fee2e2" stroke="#fca5a5" stroke-width="0.5"/>
+    <rect x="120" y="100" width="70" height="18" fill="#fee2e2" stroke="#fca5a5" stroke-width="0.5"/>
+    <rect x="190" y="100" width="70" height="18" fill="#fee2e2" stroke="#fca5a5" stroke-width="0.5"/>
+    <rect x="260" y="100" width="70" height="18" fill="#fee2e2" stroke="#fca5a5" stroke-width="0.5"/>
+    <rect x="330" y="100" width="70" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <rect x="400" y="100" width="70" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <rect x="470" y="100" width="70" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <rect x="540" y="100" width="70" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <rect x="610" y="100" width="40" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <!-- Remaining sequences compressed -->
+    <rect x="50" y="125" width="280" height="18" fill="#fee2e2" stroke="#fca5a5" stroke-width="0.5"/>
+    <rect x="330" y="125" width="70" height="18" fill="#fee2e2" stroke="#fca5a5" stroke-width="0.5"/>
+    <rect x="400" y="125" width="250" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <rect x="50" y="150" width="350" height="18" fill="#fee2e2" stroke="#fca5a5" stroke-width="0.5"/>
+    <rect x="400" y="150" width="250" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <rect x="50" y="175" width="420" height="18" fill="#fee2e2" stroke="#fca5a5" stroke-width="0.5"/>
+    <rect x="470" y="175" width="180" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <rect x="50" y="200" width="490" height="18" fill="#fee2e2" stroke="#fca5a5" stroke-width="0.5"/>
+    <rect x="540" y="200" width="110" height="18" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <!-- Legend -->
+    <rect x="50" y="218" width="12" height="10" fill="#fee2e2" stroke="#fca5a5" stroke-width="0.5"/>
+    <text x="66" y="227" fill="#555" font-size="10">Control (pre-crossing)</text>
+    <rect x="200" y="218" width="12" height="10" fill="#bbf7d0" stroke="#86efac" stroke-width="0.5"/>
+    <text x="216" y="227" fill="#555" font-size="10">Intervention (post-crossing)</text>
+    <text x="400" y="227" fill="#888" font-size="9">5 hospitals cross per step; 4-month periods</text>
+  </svg>
+</div>
+
+<details>
+<summary>Statistical design — why ICC-insensitivity is the key robustness result</summary>
+<div class="details-body">
+<h4>The power calculation</h4>
+<p>Power is computed via exact generalized least squares (GLS) at the cluster-period level, α=0.05 two-sided. The design specification:</p>
+<table>
+  <thead><tr><th>Parameter</th><th>Value</th><th>Note</th></tr></thead>
+  <tbody>
+    <tr><td>Clusters (hospitals)</td><td>40</td><td>SCANU-attached district + medical-college hospitals</td></tr>
+    <tr><td>Sequences</td><td>8 (5 hospitals per sequence)</td><td>Each sequence crosses at a different step</td></tr>
+    <tr><td>Periods</td><td>9 (1 baseline + 8 intervention steps)</td><td>4 months per period = 36-month total rollout</td></tr>
+    <tr><td>Births/cluster/period</td><td>~667</td><td>≈2,000 births/hospital/year</td></tr>
+    <tr><td>Total births under surveillance</td><td>~240,000</td><td>The ascertainment budget's determinant</td></tr>
+    <tr><td>Target effect (MDE)</td><td>15% relative (20→17/1,000)</td><td>3/1,000 absolute</td></tr>
+    <tr><td>Power</td><td><strong>0.88</strong></td><td>Across ICC 0.002–0.05 (0.881–0.893)</td></tr>
+  </tbody>
+</table>
+<h4>Why ICC-insensitivity is the key result</h4>
+<p>The intra-cluster correlation (ICC) — the degree to which outcomes within the same hospital cluster more than between hospitals — is the most uncertain parameter in cluster-RCT power calculations. A <a href="https://journals.plos.org/plosmedicine/article?id=10.1371%2Fjournal.pmed.1002900">Nepal stepped-wedge neonatal trial</a> showed that underestimating ICC can catastrophically underpower a trial (they found ICC much higher than assumed).</p>
+<p>This design's power barely moves across ICC values from 0.002 to 0.05 (0.881 to 0.893) — a range that spans the plausible ICC for facility-based neonatal mortality in South Asia. The reason: the many-period stepped-wedge structure means each cluster contributes to both before-crossing (control) and after-crossing (intervention) periods. This within-cluster comparison absorbs most of the between-cluster variance that ICC would otherwise inflate. Power is driven by total births × number of clusters, not by ICC. The design is structurally robust to the hardest-to-estimate parameter.</p>
+<h4>Minimum detectable effect</h4>
+<p>At 80% power (vs. the target 88%), the MDE at 40 hospitals and ρ=0.01 is approximately <strong>12% relative</strong> (2.4/1,000 absolute). The design has headroom below the 15% target — it can still detect a disappointing-but-real 12% effect, and it would not miss a large true effect.</p>
+</div>
+</details>
+
+<h3>Death ascertainment — the methodological core</h3>
+
+<p>Routine DHIS2/SCANU death capture in Bangladesh is too incomplete to serve as the primary endpoint. The trial requires an active, independent ascertainment engine operating in parallel with routine data systems. icddr,b runs this through three components:</p>
+
+<ol class="bl">
+  <li><strong>Birth denominator:</strong> facility birth registers at 40 SCANU hospitals + community birth notification (BRAC/DGHS field workers) to capture home births in the catchment. CCP acts at discharge — home births and deaths must not be systematically missed, or the denominator is understated and the RR estimate is biased.</li>
+  <li><strong>28-day vital status:</strong> prospective household follow-up by icddr,b, using its Matlab HDSS methodology — a home visit or phone contact at approximately 6 weeks to establish 28-day survival. This is what makes the ascertainment expensive ($2–4M one-time) but reliable.</li>
+  <li><strong>Cause assignment:</strong> verbal autopsy by icddr,b for every neonatal death, to validate the death and populate the secondary endpoint on CCP-addressable causes (prematurity/LBW, sepsis, post-discharge) vs. the untouchable asphyxia/congenital fraction.</li>
+</ol>
+
+<h2 id="cea">Cost-effectiveness — the $51–86/DALY estimate and its conditions</h2>
+
+<p>The delivery economics estimate of $51–86/DALY is computed as: total program cost ÷ (CCP-attributable deaths averted × DALYs/death), using the India evidence (RR 0.821) as the effect estimate until the Bangladesh trial produces its own.</p>
+
+<details>
+<summary>Full CEA chain — parameters, conditionality, and sensitivity</summary>
+<div class="details-body">
+<h4>Delivery economics model (central estimate)</h4>
+<table>
+  <thead><tr><th>Parameter</th><th>Value</th><th>Source</th></tr></thead>
+  <tbody>
+    <tr><td>Program cost/yr (deepened delivery)</td><td>$3–5M/yr</td><td>Absorptive ceiling from Phase 5 analysis; ~$8.2M/yr total ceiling</td></tr>
+    <tr><td>Addressable dyads/yr (Bangladesh)</td><td>~1.3M mother-newborn pairs at enrolled hospitals</td><td>40 SCANU hospitals × ~2,000 births/hospital/yr</td></tr>
+    <tr><td>NMR baseline</td><td>20/1,000</td><td>BDHS 2022</td></tr>
+    <tr><td>Expected relative NMR reduction</td><td>15% (range 8–25%)</td><td>India RR 0.821 as upper; Bangladesh-specific expectation lower due to NMR-20 vs NMR-41 baseline</td></tr>
+    <tr><td>Expected absolute NMR reduction</td><td>3/1,000 (20→17)</td><td>15% relative on NMR-20 baseline</td></tr>
+    <tr><td>Deaths averted/yr at 1.3M dyads</td><td>~3,900</td><td>1.3M × 3/1,000</td></tr>
+    <tr><td>Additionality (high — no other BD funder)</td><td>0.85</td><td>K5 kill-switch protects this</td></tr>
+    <tr><td>Attributable deaths averted/yr</td><td>~3,315</td><td>3,900 × 0.85</td></tr>
+    <tr><td>DALYs/death (neonatal, standard GBD)</td><td>~30</td><td>Life expectancy at median age of neonatal death</td></tr>
+    <tr><td>DALYs averted/yr</td><td>~99,450</td><td></td></tr>
+    <tr><td>Cost per DALY (central)</td><td><strong>~$51–86</strong></td><td>$5M / 99k DALYs → $50; upper end at 8% effect</td></tr>
+  </tbody>
+</table>
+<h4>Conditionality — what has to be true for $51–86/DALY to hold</h4>
+<ul>
+  <li><strong>The Bangladesh effect is real.</strong> This is what the trial tests. If the trial is null (K3), the $51–86/DALY estimate is invalid and the program should not be funded at scale.</li>
+  <li><strong>The effect is approximately 15% relative on all-cause NMR.</strong> If the true effect is 8%, $/DALY approximately doubles to ~$100–130 — still inside the $150/DALY threshold but significantly less compelling.</li>
+  <li><strong>Delivery cost stays at $3–5M/yr.</strong> This holds as long as Noora's trainer cadre and government-embedded delivery model scales within the absorptive ceiling. Above the ceiling (~$8.2M/yr), marginal cost per DALY rises.</li>
+</ul>
+<h4>Comparison to benchmarks</h4>
+<table>
+  <thead><tr><th>Intervention</th><th>$/DALY</th><th>Evidence type</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Noora BD (central estimate)</strong></td><td><strong>$51–86</strong></td><td>Modeled from India RR; BD trial tests validity</td></tr>
+    <tr><td>GiveWell top-charity range</td><td>$50–180</td><td>Direct RCTs (SMC, AMF, New Incentives)</td></tr>
+    <tr><td>HBB (Helping Babies Breathe)</td><td>~$50–150</td><td>RCTs; different mechanism (intrapartum)</td></tr>
+    <tr><td>KMC (kangaroo mother care, institutional)</td><td>~$30–80</td><td>Cochrane meta-analysis RCTs</td></tr>
+    <tr><td>Community-based newborn care (Projahnmo)</td><td>~$40–100</td><td>Cluster-RCT Bangladesh</td></tr>
+  </tbody>
+</table>
+</div>
+</details>
+
+<h2 id="grant">Grant structure — three tranches, five kill-switches</h2>
+
+<div class="cea-calc" style="margin-bottom:1.5rem;">
+  <div class="cc-label">CEA derivation — all tranches ($14–15M total, 3 years)</div>
+  <p style="margin:0 0 .4rem">The program buys two things: (a) delivery of CCP to ~1.3M newborn-dyads/year in 40 SCANU hospitals across Bangladesh; (b) a stepped-wedge mortality trial that generates the evidence to justify government-funded national scale-up. The $/DALY calculation draws from the India RCT (RR 0.821 on all-cause NMR, CI 0.766–0.879) as the effect estimate pending the Bangladesh trial.</p>
+  <p style="margin:0"><code>Bangladesh NMR: ~20/1,000. CCP-addressable dyads: ~300,000/yr in 40 SCANU hospitals. Deaths in addressable population: 300k × 20/1,000 = 6,000. CCP RR reduction 17.9%: 6,000 × 17.9% = 1,074 deaths averted/yr. At 30 DALYs/neonatal death: 32,220 DALYs/yr. Program cost ~$5M/yr. $5M ÷ 32,220 = $155/DALY delivery economics (Year 2+).</code> Optimistic (15% relative NMR effect): ~$86/DALY. Conservative (8% effect, lower bound CI): ~$200/DALY. Published central range: $51–86/DALY delivery economics. This clears the $150/DALY threshold if the Bangladesh effect is real and approximately the magnitude seen in India.</p>
+</div>
+
+<table>
+  <thead><tr><th>Tranche</th><th>Timing</th><th>Amount</th><th>Contents</th></tr></thead>
+  <tbody>
+    <tr><td><strong>A — Design + baseline + delivery</strong></td><td>Year 1</td><td>~$4.5–5.5M</td><td>Trial design/SAP/pre-registration; DSMB stand-up; baseline (all-control) period ascertainment at 40 hospitals; DGHS MoU + randomization sequence; Y1 deepened delivery toward ~1.3M addressable dyads/yr</td></tr>
+    <tr><td><strong>B — Stepped-wedge rollout</strong></td><td>Year 2</td><td>~$5–6M</td><td>8-step SW launch across 40 SCANU hospitals; household follow-up + VA engine at scale; Y2 delivery (deepen + extend into trial divisions Sylhet/Barishal/Rangpur)</td></tr>
+    <tr><td><strong>C — Endline + analysis</strong></td><td>Year 3</td><td>~$4–5M</td><td>Final wedges; endline ascertainment; primary + cause-subset analysis; Y3 delivery; sustainability handoff to DGHS (SCANU/DHIS2 integration for routine monitoring)</td></tr>
+  </tbody>
+</table>
+
+<details>
+<summary>Five kill-switches — with the logic behind each</summary>
+<div class="details-body">
+<table>
+  <thead><tr><th>#</th><th>Gate</th><th>Trigger (falsifiable)</th><th>Action</th><th>Why this matters</th></tr></thead>
+  <tbody>
+    <tr><td><strong>K1</strong></td><td>Ascertainment feasibility (M6)</td><td>Birth-registration completeness &lt;85% OR 28-day LTFU &gt;15% in baseline period</td><td>Halt rollout; fix ascertainment or abort before spending Tranche B</td><td>A mortality endpoint you cannot measure is worthless — and you will spend Tranche B on a trial that cannot answer the primary question</td></tr>
+    <tr><td><strong>K2</strong></td><td>Delivery fidelity (M12)</td><td>CCP session delivered to &lt;60% of eligible newborn-dyads in onboarded wedges</td><td>Pause extension; remediate trainer cadre before adding wedges</td><td>The causal chain requires the intervention to actually reach caregivers — coverage below 60% means the "treated" arm isn't treated</td></tr>
+    <tr><td><strong>K3</strong></td><td>Interim efficacy/futility (M24)</td><td>DSMB pre-specified boundary: NMR-reduction CI convincingly excludes any benefit (futility), OR crosses the efficacy boundary</td><td>Futility → stop trial, redirect to delivery-only or exit; efficacy → accelerate rollout</td><td>The O'Brien-Fleming-type boundary stops spending on a failing trial before the expensive endline — the grant structure is designed to exit cheaply if the signal isn't there</td></tr>
+    <tr><td><strong>K4</strong></td><td>Referral-supply gate (rolling)</td><td>In a wedge, danger-sign care-seeking rises but referral facility lacks functional EmONC/SCANU</td><td>Pair CCP with referral-readiness fix in that wedge, or down-weight it</td><td>CCP's sepsis lever dead-ends without a working referral destination — rising care-seeking without a functional destination is not impact, it is just measurement noise</td></tr>
+    <tr><td><strong>K5</strong></td><td>Additionality (annual)</td><td>A major funder (e.g. GiveWell) commits to buy BD mortality outcomes</td><td>Re-scope grant to the non-overlapping slice; additionality is the premise</td><td>The entire rationale for this grant is that no other funder is buying BD outcomes — if that changes, the grant's marginal value collapses</td></tr>
+  </tbody>
+</table>
+</div>
+</details>
+
+<h2 id="verdict">Verdict</h2>
+
+<p>Noora Bangladesh sits at $51–86/DALY in delivery economics — well inside the &lt;$150/DALY threshold — if the Bangladesh trial is positive and the effect is approximately 15% relative on NMR. The "if" is the whole point: the $14–15M grant is structured so that ~$3.5M (one-time evaluation cost) resolves the uncertainty before committing to ongoing delivery at scale. If K3 triggers (futility at M24), the grant exits before the expensive endline. If the trial is positive, the evidence base supports DGHS mandate and government-funded national scale-up — a leverage outcome that makes the $14–15M look like a small fraction of eventual impact.</p>
+
+<p>The critical comparison: GiveWell is buying India outcomes. No funder is buying Bangladesh outcomes. If you believe the India evidence generalizes (RR 0.821, CI 0.766–0.879 — a tight, well-estimated effect), Bangladesh at $51–86/DALY is more cost-effective than most GiveWell top-charity alternatives. If you believe it doesn't generalize to Bangladesh's lower-NMR, different cause-mix, different coverage baseline — the trial tells you that at a cost of roughly $3.5M for the mortality ascertainment component. That's a cheap option on a potentially high-value outcome.</p>
+
+<p>Fund it. Pre-register everything. Keep K3 sharp.</p>
+
+<div style="margin-top:5rem;padding-top:2rem;border-top:1px solid #e0deda;">
+  <div style="font-family:system-ui,sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:#bbb;margin-bottom:1rem;">Deep research runs — click to read full analysis</div>
+  <ul style="list-style:none;margin:0;padding:0;font-family:system-ui,sans-serif;font-size:13px;">
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1tQR0X8MdRE7MkswkwbHyAxUn2dcNFDjvJDngBSHqD00/edit">Noora Health — caregiver education, India + Bangladesh CEA (summary)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1blcpNmYQmHTytdIp-SuCX-_CILnadF-YuIrNsgeKAeE/edit">Noora Health — caregiver education, India + Bangladesh CEA (full)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1qgFr-EAEgtO6f1yYPq1LhwJmsuIogHDh8oQyHt9cNG4/edit">OAIF Deep CEA — Noora Health (summary)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1BBjdn1nzzN6vdK0WIuwgPWlbDqoglaRc-IPeujdT4RU/edit">OAIF Deep CEA — Noora Health (full)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1lkYLDqpRLHipc_MYx3wRsyIlLMMlbkvEkcCOHZeertU/edit">Noora Health Bangladesh crux resolution (summary)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1YJbFMK7MVGlXni1g6D2nU6SvaK-4XZq7FtzwDVaUTNw/edit">Noora Health Bangladesh crux resolution (full)</a></li>
+  </ul>
+</div>
+</main>
+</div>
+
+<script>
+let allOpen = false;
+function toggleAll() {
+  allOpen = !allOpen;
+  document.querySelectorAll('details').forEach(d => d.open = allOpen);
+  document.getElementById('expand-all-btn').textContent = allOpen ? 'Collapse all' : 'Expand all details';
+}
+
+const sections = document.querySelectorAll('h2[id]');
+const navLinks = document.querySelectorAll('nav ul li a[href^="#"]');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`nav a[href="#${e.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

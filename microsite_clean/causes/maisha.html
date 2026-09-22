@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maisha Meds — Cause Area Report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --accent: #064e3b;
+    --accent-light: #f0fdf4;
+    --accent-border: #86efac;
+    --text: #1a1a1a;
+    --muted: #555;
+    --border: #e0deda;
+    --bg: #fafaf8;
+    --surface: #fff;
+    --surface-alt: #f7f6f4;
+  }
+
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.88; color: var(--text); background: var(--bg); }
+
+  .layout { display: flex; min-height: 100vh; }
+
+  nav { width: 232px; flex-shrink: 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 2.25rem 1.5rem; background: var(--surface-alt); border-right: 1px solid var(--border); }
+  nav .home { display: block; font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; color: #999; text-decoration: none; margin-bottom: 1.5rem; }
+  nav .home:hover { color: #333; }
+  nav h5 { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #bbb; margin-bottom: .6rem; margin-top: 1.5rem; }
+  nav ul { list-style: none; }
+  nav ul li a { font-family: system-ui, sans-serif; font-size: 12.5px; color: #666; text-decoration: none; display: block; padding: .22rem .6rem; border-left: 2px solid transparent; }
+  nav ul li a:hover { color: var(--text); }
+  nav ul li a.active { color: var(--text); border-left-color: var(--accent); font-weight: 600; }
+  nav .current { color: var(--accent) !important; font-weight: 600; }
+  nav .sep { height: 1px; background: var(--border); margin: 1.5rem 0; }
+
+  main { flex: 1; max-width: 800px; padding: 4rem 3.5rem 7rem; }
+
+  .eyebrow { font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin-bottom: .6rem; }
+  h1 { font-size: 2.5rem; line-height: 1.15; font-weight: 700; letter-spacing: -.025em; margin-bottom: .45rem; color: #0f0f0f; }
+  .dek { font-family: system-ui, sans-serif; font-size: 15.5px; color: #666; margin-bottom: 2.75rem; line-height: 1.5; }
+
+  .verdict { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 1.3rem 1.6rem; margin-bottom: 3.25rem; }
+  .verdict .vl { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #aaa; margin-bottom: .5rem; }
+  .verdict p { font-family: system-ui, sans-serif; font-size: 13.5px; color: #333; line-height: 1.65; margin-bottom: .55rem; }
+  .verdict p:last-child { margin-bottom: 0; }
+
+  .metrics { display: flex; gap: 1.25rem; margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .metric { background: var(--surface); border: 1px solid var(--border); padding: 1rem 1.25rem; flex: 1; min-width: 120px; }
+  .metric .mv { font-size: 1.45rem; font-weight: 700; color: #0f0f0f; font-family: system-ui, sans-serif; letter-spacing: -.02em; line-height: 1.1; }
+  .metric .ml { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: #aaa; margin-top: .3rem; }
+
+  h2 { font-size: 1.6rem; font-weight: 700; margin-top: 4rem; margin-bottom: 1.25rem; letter-spacing: -.015em; padding-bottom: .5rem; border-bottom: 1px solid var(--border); scroll-margin-top: 1.5rem; }
+  h3 { font-size: 1.1rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: .7rem; color: #222; }
+
+  p { margin-bottom: 1.2rem; }
+  a { color: #1d4ed8; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:hover { color: #1e3a8a; }
+  sup a { font-size: 0.75em; text-underline-offset: 1px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 2.25rem; font-family: system-ui, sans-serif; font-size: 13px; }
+  th { text-align: left; padding: .6rem .85rem; background: var(--surface-alt); border: 1px solid var(--border); font-weight: 600; color: #333; }
+  td { padding: .55rem .85rem; border: 1px solid var(--border); color: #444; vertical-align: top; line-height: 1.5; }
+  tr:nth-child(even) td { background: #faf9f7; }
+
+  .callout { background: var(--accent-light); border: 1px solid var(--accent-border); padding: 1.1rem 1.5rem; margin: 2rem 0; font-size: .94rem; line-height: 1.72; }
+  .callout strong { color: var(--accent); }
+
+  .note { background: #f8f9fa; border: 1px solid #d0d5dd; padding: 1.1rem 1.5rem; margin: 1.75rem 0; font-size: .93rem; font-family: system-ui, sans-serif; line-height: 1.7; }
+  .note .nt { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: #888; margin-bottom: .5rem; }
+
+  details { border: 1px solid var(--border); margin: 1.5rem 0; }
+  details summary {
+    padding: .9rem 1.15rem;
+    font-family: system-ui, sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    background: var(--surface-alt);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    user-select: none;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::before {
+    content: '▶';
+    font-size: 10px;
+    color: #aaa;
+    transition: transform .15s;
+    flex-shrink: 0;
+  }
+  details[open] summary::before { transform: rotate(90deg); }
+  details summary:hover { background: #efede9; }
+  .details-body {
+    padding: 1.25rem 1.5rem;
+    font-family: system-ui, sans-serif;
+    font-size: 13.5px;
+    line-height: 1.72;
+    color: #333;
+    border-top: 1px solid var(--border);
+  }
+  .details-body p { font-family: system-ui, sans-serif; font-size: 13.5px; margin-bottom: .9rem; }
+  .details-body table { font-size: 12.5px; }
+  .details-body h4 { font-weight: 700; margin: 1rem 0 .4rem; color: #222; font-size: 13.5px; }
+  .details-body ul { margin: .4rem 0 .9rem 1.4rem; }
+  .details-body ul li { margin-bottom: .3rem; }
+
+  .era { border-left: 3px solid var(--accent-border); padding: .6rem 1.1rem; margin: 1.3rem 0; background: var(--accent-light); }
+  .era .el { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); margin-bottom: .3rem; font-weight: 700; }
+  .era p { font-family: system-ui, sans-serif; font-size: 13.5px; margin-bottom: .4rem; color: #333; }
+  .era p:last-child { margin-bottom: 0; }
+
+  .threshold-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: .6rem; margin: 1.5rem 0 2rem; }
+  .tg-cell { border: 1px solid var(--border); padding: .8rem 1rem; text-align: center; font-family: system-ui, sans-serif; }
+  .tg-cell .tv { font-size: 1.25rem; font-weight: 700; letter-spacing: -.02em; margin-bottom: .2rem; }
+  .tg-cell .tl { font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: #888; margin-bottom: .4rem; }
+  .tg-cell .ts { font-size: 12px; padding: .15rem .45rem; border-radius: 2px; display: inline-block; }
+  .tg-cell.pass { background: #f0fdf4; border-color: #86efac; }
+  .tg-cell.fail { background: #fef2f2; border-color: #fca5a5; }
+  .tg-cell.warn { background: #fffbeb; border-color: #fcd34d; }
+  .tg-cell.pass .ts { background: #dcfce7; color: #166534; }
+  .tg-cell.fail .ts { background: #fee2e2; color: #991b1b; }
+  .tg-cell.warn .ts { background: #fef3c7; color: #92400e; }
+
+  .svg-wrap { margin: 2rem 0; background: var(--surface); border: 1px solid var(--border); padding: 1.25rem; overflow-x: auto; }
+  .svg-caption { font-family: system-ui, sans-serif; font-size: 12px; color: #888; margin-top: .6rem; text-align: center; }
+
+  ul.bl, ol.bl { margin: .5rem 0 1.2rem 1.7rem; }
+  ul.bl li, ol.bl li { margin-bottom: .5rem; }
+
+  #expand-all-btn { font-family: system-ui, sans-serif; font-size: 12px; color: #888; background: none; border: 1px solid #ddd; padding: .3rem .7rem; cursor: pointer; float: right; margin-top: 3.8rem; }
+  #expand-all-btn:hover { background: var(--surface-alt); }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav>
+  <h5>This report</h5>
+  <ul>
+    <li><a href="#landscape">Landscape</a></li>
+    <li><a href="#platform">What Maisha does</a></li>
+    <li><a href="#science">Malaria science</a></li>
+    <li><a href="#burden">Burden chain</a></li>
+    <li><a href="#testsmart">The TESTsmART null</a></li>
+    <li><a href="#cea">Cost-effectiveness</a></li>
+    <li><a href="#threshold">$150/DALY threshold</a></li>
+    <li><a href="#deepen">Deepen vs. extend</a></li>
+    <li><a href="#additionality">Additionality</a></li>
+    <li><a href="#approaches">Grant structure</a></li>
+    <li><a href="#verdict">Verdict</a></li>
+  </ul>
+</nav>
+
+<main>
+<button id="expand-all-btn" onclick="toggleAll()">Expand all details</button>
+
+<div class="eyebrow">Cause Area Report · September 2026</div>
+<h1>Maisha Meds</h1>
+<div class="dek">Ring-fencing the commodity: separating a defensible $137/DALY malaria-access bet from an indefensible AI/CDS layer — and deciding which one to fund.</div>
+
+<div class="verdict">
+  <div class="vl">Bottom line</div>
+  <p><strong>Fund ~$5M/yr × 2–3 years (~$10–15M) for the commodity rail, plus $2–4M one-time for a mortality-endpoint RCT.</strong> The commodity + subsidy rail — RDT-conditioned ACT reimbursement at private pharmacies — reaches a median $137/DALY (P10 $79, P90 $245). That sits inside the $150/DALY threshold at ~55% of MC draws; inside the cash bar with near-certainty. Do not fund the AI/CDS layer; it costs ~$1,387/DALY and swapping it for classical rules loses approximately zero DALYs.</p>
+  <p><strong>The single load-bearing uncertainty:</strong> whether "8% → 33% guideline adherence" carries mortality. If yes → $112/DALY (GiveWell-adjacent, well inside threshold). If the <a href="https://doi.org/10.1371/journal.pgph.0002451">TESTsmART null</a> (Laktabai 2024) generalizes → $566/DALY (outside threshold, beats cash 73%, never beats SMC). The highest-value purchase is a mortality-endpoint evaluation, not an open-ended subsidy.</p>
+  <p><strong>Genuinely additional:</strong> 2025–2027 PMI stockout bridge (PMI cut ~47%), RDT-conditioned rail that AMFm/CPM never had, and a mortality evaluation the entire retail subsidy reference class lacks. Not additional: putting QAACT on shelves — GF PSCM already achieved &gt;70% private availability.</p>
+</div>
+
+<div class="metrics">
+  <div class="metric"><div class="mv">$137</div><div class="ml">Median $/DALY (commodity rail)</div></div>
+  <div class="metric"><div class="mv">55%</div><div class="ml">P(≤$150/DALY), base scenario</div></div>
+  <div class="metric"><div class="mv">1.97M</div><div class="ml">True-malaria cases/yr in pool</div></div>
+  <div class="metric"><div class="mv">$112↔$566</div><div class="ml">CEA range (process-full ↔ RCT-null)</div></div>
+</div>
+
+<!-- =================== LANDSCAPE =================== -->
+<h2 id="landscape">Landscape — fifteen years of retail malaria subsidy</h2>
+
+<p>The private retail pharmacy sector handles 50–60% of first-contact malaria treatment across sub-Saharan Africa. Someone with fever in Nigeria, Uganda, or Kenya is more likely to walk to a nearby drug shop than to a public clinic. This sector was largely invisible to global malaria programs until 2007, when the Global Fund, WHO, and DFID began designing the first serious attempt to make artemisinin-combination therapies (ACTs) affordable at the private retail level. What followed is a fifteen-year natural experiment in how hard it is to actually change treatment behavior in private markets — and what Maisha Meds represents is the most sophisticated attempt to date to crack the problem that all previous programs failed to solve.</p>
+
+<div class="era">
+  <div class="el">Era 1 — The chloroquine/chloroquine-resistance problem (pre-2006)</div>
+  <p>Before ACTs became the WHO first-line recommendation (2006), the African private retail market ran on chloroquine — cheap (~$0.05/course), universally available, and by the late 1990s essentially useless in most of sub-Saharan Africa due to widespread P. falciparum resistance (K1 mutation, confirmed in WHO reports from 1990s onward). Private pharmacies continued selling chloroquine despite its ineffectiveness because it was cheap and patients expected it. First-line ACTs cost $6–12 per course at manufacturers' prices — roughly 100× chloroquine — and were simply unaffordable at scale. A parasitemic patient who presented to a drug shop in 2005 received an ineffective drug 90%+ of the time.</p>
+</div>
+
+<div class="era">
+  <div class="el">Era 2 — AMFm: the great subsidy experiment (2010–2012)</div>
+  <p>The Affordable Medicines Facility for malaria (AMFm) was the most ambitious retail malaria intervention ever attempted. Conceived by economists at the Center for Global Development and adopted by the Global Fund Board in 2008, it used a first-buyer co-payment: the Global Fund paid a subsidy to manufacturers at the top of the supply chain — reducing ACT factory gate price from ~$6–12 to ~$0.30–0.40 per course — then passed savings down the retail chain with a "Green Leaf" logo marking subsidized products. Piloted in 7 countries (Ghana, Kenya, Madagascar, Niger, Nigeria, Tanzania, Uganda) from 2010–2012 with $344M in funding.</p>
+  <p>Results were impressive on market penetration and catastrophic on targeting. <a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(12)61843-1/abstract">Tougher et al. 2012 (Lancet)</a> found ACT market share at private retail rose dramatically: Ghana from 5% to 52%; Kenya from 7% to 23%. Average retail price fell from $6+ to $1–2. By market-penetration metrics, AMFm succeeded. But no diagnosis was required. In settings where only 15–30% of febrile patients are parasitemic, the ACT subsidy was heavily consumed by non-malaria fevers. AMFm was prescribing treatments to people who didn't have malaria. The <a href="https://www.theglobalfund.org/kb/board-decisions/b28/b28-dp06/">GF Board decision B28 (2012)</a> wound AMFm down as a standalone mechanism, integrating the subsidy into country grants — and identified "appropriate use" (i.e., diagnostic conditioning) as the unresolved problem.</p>
+</div>
+
+<div class="era">
+  <div class="el">Era 3 — GF PSCM/CPM and ACTwatch surveillance (2013–2019)</div>
+  <p>The Private Sector Co-payment Mechanism (PSCM, later renamed CPM) was AMFm's successor — same subsidy logic but embedded in country GF grants rather than a global standalone fund. It preserved the price benefit while doing nothing new about targeting. By 2017, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5405529/">Tougher et al. (PMC5405529)</a> documented that private ACT availability exceeded 70% in most surveyed African markets — a genuine achievement attributable to the subsidy programs. The availability problem was largely solved. The overtreatment problem remained entirely unsolved.</p>
+  <p>ACTwatch — a UNITAID-funded surveillance consortium running 2007–2019 across Africa and Asia — documented the gap. Even in markets with high ACT availability, testing rates in the private sector remained below 30% in most settings (<a href="https://journals.plos.org/globalpublichealth/article?id=10.1371/journal.pgph.0002134">pgph.0002134</a>). The ACTwatch endgame finding (2019 closeout) was clear: price subsidies alone solved availability but not appropriate use. Changing the private sector's diagnostic behavior required a different mechanism entirely — one that conditional subsidies theoretically offered, but that nobody had proven at scale.</p>
+</div>
+
+<div class="era">
+  <div class="el">Era 4 — The diagnostic conditioning experiments (2015–2024)</div>
+  <p>Two lines of evidence emerged in this era, pointing in opposite directions. The positive signal: <a href="https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1002607">Cohen et al. 2015 (PLOS Medicine)</a>, an ACT Consortium cluster RCT, found that diagnosis-conditioned subsidies (ACT free only if RDT positive) improved rational ACT use relative to unconditional subsidy. The causal mechanism was plausible and the evidence was clean. This was the founding evidence base for the Maisha Meds model.</p>
+  <p>The negative signal arrived at scale. The TESTsmART trial (2019–2023), registered as <a href="https://clinicaltrials.gov/study/NCT04428307">NCT04428307</a> (Kenya) and <a href="https://clinicaltrials.gov/study/NCT04428385">NCT04428385</a> (Nigeria Lagos), tested whether incrementally stronger RDT targeting — free ACT conditional on a positive RDT plus optional provider incentives — improved appropriate treatment at 39 Kenyan retail outlets. <a href="https://doi.org/10.1371/journal.pgph.0002451">Laktabai et al. 2024 (PLOS GPH)</a>: null result on the incremental targeting effect (RR 1.11, CI 0.61–2.02). The hard lesson: the positive effect of the RDT itself (making any patient test before buying) was present in all arms including control, and the conditional subsidy added essentially nothing on top of that. Poor subsidy pass-through and inconsistent provider adherence to the conditional protocol undermined the intervention at scale.</p>
+</div>
+
+<div class="era">
+  <div class="el">Era 5 — Maisha Meds: the enforcement layer (2014–present)</div>
+  <p>Maisha Meds, founded in Nairobi in 2014, represents the most operationally sophisticated attempt to solve the enforcement problem that earlier subsidy programs could not crack. The insight: AMFm failed on targeting because there was no mechanism to enforce the diagnosis condition at the point of sale. Maisha's POS/EMR platform digitally enforces the RDT-positive requirement — the ACT subsidy is released only when an RDT-positive result is logged in the system, and reimbursement flows to the pharmacy via mobile money within 48 hours. This is structurally different from all prior programs.</p>
+  <p>Scale has grown rapidly. At the USAID DIV Stage-3 award (Oct 2023, $5.25M): ~2,600 pharmacies logging ~10M patient encounters/year. By the <a href="https://maishameds.org/news/2025-annual-report/">2025 Annual Report</a>: "Africa's largest digital network of ~4,500 private drug shops, pharmacies and clinics... supporting over 25 million patient visits each year" across Uganda, Nigeria, Kenya, and Tanzania. In 2025, Lagos State adopted Maisha's model into its own government budget (World Bank loan-financed), and Uganda awarded Maisha its first Global Fund grant. Both signals are exactly what catalytic philanthropy should produce — but they also cap philanthropic additionality, since the government and GF money is backfilling what OAIF might otherwise fund.</p>
+</div>
+
+<h3>What has been learned from fifteen years</h3>
+
+<table>
+  <thead><tr><th>Era</th><th>Program</th><th>What it solved</th><th>What it failed to solve</th><th>Key evidence</th></tr></thead>
+  <tbody>
+    <tr><td>2010–12</td><td>AMFm</td><td>Price: retail ACT cost from $6 → $1; availability from ~10% → 50%+</td><td>Overtreatment: no diagnosis conditioning; majority of ACTs went to non-malaria fevers</td><td>Tougher 2012 Lancet</td></tr>
+    <tr><td>2013–</td><td>GF PSCM/CPM</td><td>Sustained availability &gt;70% across markets</td><td>Testing rates remained &lt;30% in private sector; same overtreatment problem</td><td>Tougher 2017 PMC5405529</td></tr>
+    <tr><td>2015</td><td>Cohen (PLOS Med)</td><td>Proof-of-concept: diagnosis-conditional subsidy can shift rational ACT use</td><td>Small scale; sustainability; provider behavior at scale</td><td>Cohen 2015 pmed.1002607</td></tr>
+    <tr><td>2024</td><td>TESTsmART</td><td>n/a</td><td>Incremental targeting effect: NULL at scale in Kenya and Nigeria (RR 1.11, CI 0.61–2.02)</td><td>Laktabai 2024 pgph.0002451</td></tr>
+    <tr><td>2014–</td><td>Maisha Meds</td><td>Digital enforcement of diagnosis condition; mobile money reimbursement at last mile; fraud control</td><td>Whether the adherence gain (8→33%) carries mortality — <em>still unmeasured</em></td><td>Internal/press; UC Berkeley/Emory RCT unpublished</td></tr>
+  </tbody>
+</table>
+
+<p>The structural lesson: the retail malaria sector will not fix itself without both a price subsidy (solved) and an enforcement mechanism for appropriate use (partially solved by Maisha, but mortality benefit unproven). The entire reference class — AMFm, PSCM, UNITAID, CPM, ACTwatch — has only modeled cost-effectiveness figures. <strong>No retail malaria subsidy program has a mortality endpoint.</strong> This is the most important fact in the landscape.</p>
+
+<!-- =================== PLATFORM =================== -->
+<h2 id="platform">What Maisha actually does — the platform stack</h2>
+
+<p>Maisha Meds is a digital pharmaceutical benefits manager (PBM) for the private retail sector — a concept that barely existed in African health systems five years ago. The analogy is to how health insurance in the US uses claims data + formulary control to enforce appropriate prescribing; Maisha does this for malaria at private pharmacies in Uganda and Nigeria without the insurance intermediary layer.</p>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 700 210" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;display:block;margin:0 auto;">
+  <!-- Title -->
+  <text x="350" y="22" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#333">Maisha Meds — Malaria Treatment Pathway</text>
+
+  <!-- Febrile patient box -->
+  <rect x="10" y="40" width="120" height="48" rx="3" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+  <text x="70" y="60" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#064e3b" font-weight="700">Febrile patient</text>
+  <text x="70" y="77" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#555">Private pharmacy</text>
+
+  <!-- Arrow 1 -->
+  <line x1="130" y1="64" x2="168" y2="64" stroke="#aaa" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="149" y="57" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9.5" fill="#888">RDT ~$0.40</text>
+
+  <!-- RDT diamond -->
+  <polygon points="210,40 258,64 210,88 162,64" fill="#fefce8" stroke="#fcd34d" stroke-width="1.5"/>
+  <text x="210" y="60" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#854d0e" font-weight="700">RDT</text>
+  <text x="210" y="75" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#854d0e">positive?</text>
+
+  <!-- Arrow 2 YES downward -->
+  <line x1="210" y1="88" x2="210" y2="120" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrg)"/>
+  <text x="218" y="108" font-family="system-ui,sans-serif" font-size="10" fill="#16a34a" font-weight="700">YES</text>
+
+  <!-- ACT dispensed box -->
+  <rect x="140" y="120" width="140" height="52" rx="3" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+  <text x="210" y="140" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#064e3b" font-weight="700">ACT dispensed</text>
+  <text x="210" y="156" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#555">Subsidized / free to patient</text>
+  <text x="210" y="170" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#555">~$0.50–1.00 to pharmacy</text>
+
+  <!-- Arrow 2b to Maisha platform -->
+  <line x1="280" y1="146" x2="330" y2="146" stroke="#aaa" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Maisha platform box -->
+  <rect x="330" y="110" width="185" height="70" rx="3" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1.5"/>
+  <text x="422" y="130" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#5b21b6" font-weight="700">Maisha Platform</text>
+  <text x="422" y="146" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#555">Logs RDT+ result (POS/EMR)</text>
+  <text x="422" y="160" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#555">Fraud detection (ML audit)</text>
+  <text x="422" y="174" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#555">Mobile money reimbursement</text>
+
+  <!-- Arrow 3 NO right -->
+  <line x1="258" y1="64" x2="330" y2="64" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arrr)"/>
+  <text x="294" y="57" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#ef4444" font-weight="700">NO</text>
+
+  <!-- No ACT box -->
+  <rect x="330" y="40" width="180" height="48" rx="3" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.5"/>
+  <text x="420" y="61" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#991b1b" font-weight="700">No ACT dispensed</text>
+  <text x="420" y="77" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#555">Refer if severe symptoms</text>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <polygon points="0 0, 7 3.5, 0 7" fill="#aaa"/>
+    </marker>
+    <marker id="arrg" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <polygon points="0 0, 7 3.5, 0 7" fill="#16a34a"/>
+    </marker>
+    <marker id="arrr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <polygon points="0 0, 7 3.5, 0 7" fill="#ef4444"/>
+    </marker>
+  </defs>
+
+  <!-- AI centrality note -->
+  <text x="530" y="195" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#888">AI centrality: 2/10 on health outcomes</text>
+  <text x="530" y="207" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#888">The DALYs come from RDT+ACT, not the ML audit layer</text>
+</svg>
+<div class="svg-caption">The Maisha treatment pathway. The diagnosis-conditioning mechanism is the novel element vs. AMFm/PSCM. The ML fraud-detection layer (purple box) is a cost-control tool, not the health-outcome mechanism.</div>
+</div>
+
+<p>The stack has four components. The <strong>POS/EMR</strong> records patient identifiers, RDT result, drug dispensed, and inventory changes. The <strong>conditional subsidy enforcement</strong> logic releases ACT reimbursement only when an RDT-positive result is recorded — this is the structural innovation that AMFm could never implement (AMFm operated through manufacturers and wholesalers, not at the point of care). The <strong>mobile money reimbursement</strong> system pays pharmacies within 48 hours of a compliant claim, providing cash-flow certainty that makes program participation worth the extra step of doing and recording the RDT. The <strong>ML audit layer</strong> flags anomalous claims (high claim volumes from a single pharmacy, duplicate patient IDs, implausibly rapid series of treatments) — legitimate fraud control and cost protection, but peripheral to whether any lives are saved.</p>
+
+<p>AI centrality on health outcomes: <strong>2/10</strong>. Swap the ML audit for rule-based claim checks and human spot-audits, and the DALYs are essentially unchanged. The lives come from the RDT + ACT commodity, not from the algorithm. This is the primary reason the AI/CDS grant ask is not defensible at any amount near the commodity rail.</p>
+
+<!-- =================== SCIENCE =================== -->
+<h2 id="science">Malaria science — the biology behind the numbers</h2>
+
+<p>To evaluate whether the 8%→33% adherence shift could plausibly carry mortality, you need to understand what happens when a P. falciparum infection goes untreated or undertreated. The biology is the foundation for the "would-have-died" (whd) parameter that dominates the entire CEA.</p>
+
+<details>
+<summary>P. falciparum lifecycle, artemisinin mechanism, and how RDTs work</summary>
+<div class="details-body">
+
+<h4>The parasite lifecycle</h4>
+<p>Plasmodium falciparum is an obligate intracellular parasite with two hosts. In humans: an Anopheles mosquito deposits sporozoites into skin during a blood meal; sporozoites travel to the liver within minutes; a single sporozoite invades a hepatocyte and undergoes exoerythrocytic schizogony over 10–14 days, producing ~30,000 merozoites per infected hepatocyte. This liver stage is completely asymptomatic — the patient feels nothing. When the hepatocyte ruptures, merozoites pour into the bloodstream and invade red blood cells.</p>
+<p>Inside an RBC, the parasite progresses through three stages (one 48-hour cycle): <strong>ring</strong> (hours 0–20: small, metabolically quiet; most artemisinin-resistant mutants are resistant here because artemisinin is less activated), <strong>trophozoite</strong> (hours 20–36: rapidly growing, digesting hemoglobin, generating heme as a byproduct, metabolically active — the artemisinin kill zone), and <strong>schizont</strong> (hours 36–48: replication, 8–32 daughter merozoites form inside the RBC). At hour ~48, the infected RBC ruptures, releasing merozoites that immediately invade new RBCs. This synchronized burst causes the characteristic fever spike of malaria.</p>
+<p>Clinical severity is determined by two things: parasite density (parasitemia, measured as parasites per µL of blood; uncomplicated disease typically &lt;100,000/µL; hyperparasitemia defined as &gt;5% RBCs infected or &gt;250,000/µL) and sequestration. Mature P. falciparum trophozoites express PfEMP1 (P. falciparum erythrocyte membrane protein 1) on the RBC surface, causing infected cells to adhere to microvascular endothelium and each other. Sequestration in the brain causes cerebral malaria (coma, seizures, death without IV artesunate); sequestration in the placenta causes pregnancy-associated malaria (low birthweight, maternal anemia). Uncomplicated malaria (fever + parasitemia, no end-organ involvement) kills roughly 1% of cases if untreated in malaria-naïve or immunocompromised patients; severe malaria (cerebral, severe anemia, respiratory distress) kills 15–25% without treatment and 8–9% even with optimal IV artesunate.</p>
+
+<h4>The artemisinin mechanism — why timing matters for the CEA</h4>
+
+<svg viewBox="0 0 640 160" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:640px;display:block;margin:1rem auto;">
+  <!-- Timeline bar -->
+  <rect x="30" y="60" width="580" height="30" rx="3" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+  <!-- Ring stage -->
+  <rect x="30" y="60" width="145" height="30" rx="3" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
+  <text x="102" y="79" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#166534" font-weight="700">Ring (0–20h)</text>
+  <!-- Trophozoite stage -->
+  <rect x="175" y="60" width="240" height="30" rx="3" fill="#064e3b" stroke="#064e3b" stroke-width="1"/>
+  <text x="295" y="79" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#fff" font-weight="700">Trophozoite (20–36h) ← ARTEMISININ TARGET</text>
+  <!-- Schizont stage -->
+  <rect x="415" y="60" width="195" height="30" rx="3" fill="#bbf7d0" stroke="#86efac" stroke-width="1"/>
+  <text x="512" y="79" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#166534" font-weight="700">Schizont → burst (36–48h)</text>
+  <!-- Hour markers -->
+  <text x="30" y="105" font-family="system-ui,sans-serif" font-size="10" fill="#888">0h</text>
+  <text x="170" y="105" font-family="system-ui,sans-serif" font-size="10" fill="#888">20h</text>
+  <text x="410" y="105" font-family="system-ui,sans-serif" font-size="10" fill="#888">36h</text>
+  <text x="604" y="105" font-family="system-ui,sans-serif" font-size="10" fill="#888">48h</text>
+  <!-- RDT annotation -->
+  <text x="295" y="120" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#854d0e">↑ HRP2 released by trophozoites → detected by RDT</text>
+  <!-- Artemisinin annotation -->
+  <text x="295" y="38" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#064e3b" font-weight="700">Artemisinin: free radicals alkylate PfKRS and digestive-vacuole proteins at trophozoite stage</text>
+  <text x="295" y="52" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9.5" fill="#888">activated by heme iron (parasite digests ~80% of host hemoglobin) → burst of reactive oxygen species → protein alkylation → rapid parasite death</text>
+</svg>
+
+<p>Artemisinin (and its semi-synthetic derivatives: artesunate, artemether, dihydroartemisinin) is a sesquiterpene lactone endoperoxide isolated by Youyou Tu (Nobel Prize 2015) from Artemisia annua. The endoperoxide bridge is essential for activity: in the digestive vacuole of a trophozoite, ferrous iron (Fe²⁺) from hemoglobin digestion cleaves the endoperoxide bridge, generating a carbon radical that alkylates parasite proteins — particularly the prolyl-tRNA synthetase (PfKRS) and proteins involved in hemoglobin digestion. Result: rapid parasite killing within 4–6 hours of treatment, the fastest-acting class of antimalarials. Because artemisinin's half-life is only 1–3 hours, it is always combined with a longer-acting partner drug (lumefantrine, amodiaquine, piperaquine) that eliminates residual parasites over 7–14 days. This is the ACT (artemisinin-combination therapy).</p>
+<p>The timing implication for the CEA: early-stage (ring) parasites are less sensitive to artemisinin. A patient who takes ACT within the first 24 hours of symptomatic illness has mostly ring-stage parasites and achieves near-complete cure; a patient who delays 48–72 hours has mostly trophozoites and schizonts, higher parasitemia, and a higher probability of severe disease. This is the mechanistic basis for the <strong>delay-to-severity relationship</strong> (Mousa 2020, OR 2.79–5.46 for treatment delay → severe malaria) that drives the whd parameter. Every hour of delay matters biologically.</p>
+
+<h4>RDT mechanism — HRP2 lateral flow immunoassay</h4>
+<p>Rapid diagnostic tests detect parasite antigens in a finger-prick blood sample using lateral flow immunoassay. The dominant target is <strong>HRP2</strong> (histidine-rich protein 2), a P. falciparum-specific antigen secreted by trophozoites and schizonts into the host bloodstream. HRP2 has excellent sensitivity (~95%) and specificity (~98%) at parasite densities &gt;100 parasites/µL. Most RDTs also have a second line detecting pLDH (plasmodium lactate dehydrogenase), which is more labile and specific to viable parasites (useful for treatment monitoring but present at lower levels).</p>
+<p>Key limitations: (1) <strong>HRP2 persistence</strong> — HRP2 remains detectable in blood for 2–4 weeks after successful treatment; a patient who had malaria two weeks ago will still test positive even if parasite-free. This can cause inappropriate re-treatment in high-transmission settings. (2) <strong>pfhrp2/3 gene deletions</strong> — Parasites with deletions in the HRP2-encoding gene produce no HRP2 → false negatives even at high parasitemia. Confirmed in Eritrea (&gt;80% of isolates), Ethiopia, Senegal, and increasingly found across Africa. WHO issued an alert in 2023. Maisha's Uganda-Nigeria footprint has currently lower pfhrp2 deletion rates than East Africa's horn, but this is a surveillance gap. (3) <strong>Low density</strong> — Very early infections (&lt;10 parasites/µL) can be RDT-negative despite true infection.</p>
+<p><strong>Why this matters for the CEA:</strong> If the RDT sensitivity is lower than assumed (due to pfhrp2 deletions or low-density infections), the 25% RDT positivity rate in the model is underestimating the true-malaria pool, and some true-malaria patients are being turned away without treatment even in the Maisha program. This is a systematic error that the mortality endpoint RCT would capture but the process-metric adherence measure would not.</p>
+</div>
+</details>
+
+<!-- =================== BURDEN CHAIN =================== -->
+<h2 id="burden">Burden chain — walking 25.6M visits to 1,170 attributable deaths</h2>
+
+<p>The full CEA is scale-free by construction: per the identity <code style="background:#f7f6f4;padding:.2em .4em;font-size:13px;">$/DALY = cost_per_case ÷ (incr_correct_treat × whd × DALYs/death × additionality)</code>, RDT positivity and febrile fraction cancel — adding more enrolled pharmacies does not improve $/DALY unless the marginal pharmacies have meaningfully different epidemiology. But the absolute-impact chain matters for understanding what the program does.</p>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 640 360" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:640px;display:block;margin:0 auto;">
+  <defs>
+    <marker id="da" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <polygon points="0 0, 7 3.5, 0 7" fill="#064e3b"/>
+    </marker>
+  </defs>
+  <!-- Step 1: 25.6M -->
+  <rect x="60" y="10" width="520" height="38" rx="3" fill="#064e3b" stroke="#064e3b"/>
+  <text x="200" y="33" font-family="system-ui,sans-serif" font-size="12" fill="#fff" font-weight="700">25.6M pharmacy visits/year</text>
+  <text x="540" y="33" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#86efac">100%</text>
+
+  <!-- Multiplier -->
+  <line x1="320" y1="48" x2="320" y2="65" stroke="#064e3b" stroke-width="1.5" marker-end="url(#da)"/>
+  <text x="335" y="60" font-family="system-ui,sans-serif" font-size="10" fill="#555">× febrile fraction (30%)</text>
+
+  <!-- Step 2: 7.68M -->
+  <rect x="90" y="65" width="460" height="38" rx="3" fill="#065f46" stroke="#065f46"/>
+  <text x="220" y="88" font-family="system-ui,sans-serif" font-size="12" fill="#fff" font-weight="700">7.68M febrile visits</text>
+  <text x="520" y="88" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#a7f3d0">30%</text>
+
+  <line x1="320" y1="103" x2="320" y2="120" stroke="#064e3b" stroke-width="1.5" marker-end="url(#da)"/>
+  <text x="335" y="115" font-family="system-ui,sans-serif" font-size="10" fill="#555">× RDT positivity (25%)</text>
+
+  <!-- Step 3: 1.97M -->
+  <rect x="130" y="120" width="380" height="38" rx="3" fill="#047857" stroke="#047857"/>
+  <text x="230" y="143" font-family="system-ui,sans-serif" font-size="12" fill="#fff" font-weight="700">1.97M confirmed malaria cases</text>
+  <text x="490" y="143" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#6ee7b7">7.7%</text>
+
+  <line x1="320" y1="158" x2="320" y2="175" stroke="#064e3b" stroke-width="1.5" marker-end="url(#da)"/>
+  <text x="335" y="170" font-family="system-ui,sans-serif" font-size="10" fill="#555">× Δ adherence (22%, haircut from 8→33%)</text>
+
+  <!-- Step 4: 433k -->
+  <rect x="180" y="175" width="280" height="38" rx="3" fill="#059669" stroke="#059669"/>
+  <text x="240" y="198" font-family="system-ui,sans-serif" font-size="12" fill="#fff" font-weight="700">433k incremental treated</text>
+  <text x="440" y="198" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#34d399">1.7%</text>
+
+  <line x1="320" y1="213" x2="320" y2="230" stroke="#064e3b" stroke-width="1.5" marker-end="url(#da)"/>
+  <text x="335" y="225" font-family="system-ui,sans-serif" font-size="10" fill="#555">× would-have-died (0.6%, top tornado driver)</text>
+
+  <!-- Step 5: 2,600 -->
+  <rect x="220" y="230" width="200" height="38" rx="3" fill="#10b981" stroke="#10b981"/>
+  <text x="255" y="253" font-family="system-ui,sans-serif" font-size="12" fill="#fff" font-weight="700">~2,600 deaths averted (gross)</text>
+
+  <line x1="320" y1="268" x2="320" y2="285" stroke="#064e3b" stroke-width="1.5" marker-end="url(#da)"/>
+  <text x="335" y="280" font-family="system-ui,sans-serif" font-size="10" fill="#555">× additionality (45%)</text>
+
+  <!-- Step 6: 1,170 -->
+  <rect x="240" y="285" width="160" height="40" rx="3" fill="#34d399" stroke="#059669" stroke-width="2"/>
+  <text x="320" y="308" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#064e3b" font-weight="700">1,170 attributable deaths/yr</text>
+  <text x="320" y="325" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#065f46">× 30 DALYs/death = ~35,100 DALYs · $5M ÷ 35,100 = $142/DALY</text>
+  <text x="320" y="348" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#888">(rounds to $137 median in MC due to distributional skew)</text>
+</svg>
+<div class="svg-caption">Burden chain funnel from 25.6M visits to 1,170 attributable deaths averted per year. Each step narrows the pool; the would-have-died (whd) and additionality multipliers are the two most uncertain steps and jointly determine whether this is a $112 or $566/DALY program.</div>
+</div>
+
+<details>
+<summary>Step-by-step notes and sources for each multiplier</summary>
+<div class="details-body">
+<table>
+  <thead><tr><th>Step</th><th>Central value</th><th>Key uncertainty / source</th></tr></thead>
+  <tbody>
+    <tr><td>Pharmacy visits/yr</td><td>25.6M</td><td>Maisha 2025 Annual Report; implementer-reported; treated as anchor</td></tr>
+    <tr><td>Febrile fraction (0.30)</td><td>7.68M</td><td>ACTwatch surveys; pharmacy-level symptom composition in SSA; range 0.25–0.40</td></tr>
+    <tr><td>RDT positivity (0.25)</td><td>1.97M</td><td>WHO/NMCP test positivity in high-transmission Uganda/Nigeria; range 0.18–0.35; pfhrp2 deletions could lower this</td></tr>
+    <tr><td>Incr. correct treatment (0.22)</td><td>433k</td><td>8%→33% adherence shift (unpublished UC Berkeley/Emory RCT), haircut to 22% incremental; <strong>load-bearing; not peer-reviewed</strong></td></tr>
+    <tr><td>Would-have-died (whd, 0.006)</td><td>~2,600 gross</td><td>CFR gradient (uncomplicated ~1%, severe ~8.3%) × delay-to-severity probability; <a href="https://doi.org/10.1371/journal.pmed.1003359">Mousa 2020</a> OR 2.79–5.46; LiST case management <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3231887/">PMC3231887</a>; <strong>inferred, not directly observed at the rail</strong></td></tr>
+    <tr><td>Additionality (0.45)</td><td>~1,170 attributable</td><td>PMI cut raises it; GF Uganda + Lagos budget caps it; see additionality section</td></tr>
+    <tr><td>DALYs/death (Tri 24,30,36)</td><td>~35,100 DALYs</td><td>GBD standard; age-blend matters — retail skews adult but deaths concentrate U5 (higher DALYs/death)</td></tr>
+  </tbody>
+</table>
+<p><strong>The whd parameter is the top tornado driver (ρ = −0.616 on $/DALY).</strong> This single number — the probability that a malaria patient who receives incremental correct treatment would otherwise have died — is inferred from CFR gradients and delay-to-severity literature, not directly observed at any Maisha pharmacy. If the Zambian Thiès CFR benchmark (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12702173/">PMC12702173</a>) overstates mortality in Uganda/Nigeria urban pharmacy contexts, whd could be 50% lower, doubling $/DALY to ~$274. This is exactly the uncertainty that a mortality-endpoint RCT resolves.</p>
+</div>
+</details>
+
+<!-- =================== TESTSMART =================== -->
+<h2 id="testsmart">The TESTsmART null — the most important paper to read before funding this</h2>
+
+<p><a href="https://doi.org/10.1371/journal.pgph.0002451">Laktabai et al. 2024 (PLOS Global Public Health, pgph.0002451)</a> — the TESTsmART cluster-randomized trial — is the closest peer-reviewed evidence to what Maisha Meds actually does. Its null result is the central epistemic problem for this grant. Understanding exactly what it tested, what it didn't, and how it affects the CEA is non-negotiable before committing $10–15M.</p>
+
+<p><strong>Design:</strong> 39 retail medicine outlets in Western Kenya; three arms — control (subsidized RDT ~$0.40), client-directed (CD: free ACT if RDT+), client-plus-provider-directed (CDPD: free ACT if RDT+ <em>plus</em> $0.10/RDT to outlet). 5,696 clients over 20 months. Primary outcome: proportion of ACTs dispensed to test-positive clients.</p>
+
+<p><strong>Result:</strong> NULL. Control 67% of test-positives bought ACT vs. 75–79% in intervention arms; adjusted RR (control vs. CDPD) = 1.11, 95% CI 0.61–2.02 — not significant. The targeting benefit came from RDT testing itself, present in all arms including control: 25.3% of test-negative clients bought ACT vs. 75% of untested clients. Only 27% of all ACTs sold in the trial went to test-positive individuals — large residual leakage even with conditional subsidy.</p>
+
+<details>
+<summary>What TESTsmART tested vs. didn't; the "8%→33%" claim and how they conflict</summary>
+<div class="details-body">
+<h4>The design difference — why it's not exactly the same thing as Maisha</h4>
+<p>TESTsmART tested a conditional ACT subsidy + provider incentive at the retail level. Maisha Meds uses a digital PBM that enforces the diagnosis condition through a POS system with real-time reimbursement contingent on logged RDT results. The mechanism is similar — conditional subsidy — but the enforcement infrastructure differs: TESTsmART used paper protocols and cash incentives; Maisha uses software enforcement. The digital enforcement could plausibly achieve better compliance than the TESTsmART protocol enforcement. This is the main argument against generalizing the TESTsmART null to Maisha.</p>
+<p>The counter-argument: the deep failure mode TESTsmART identified was not a protocol-adherence problem — it was <em>poor subsidy pass-through</em>. In the Nigeria Lagos arm (<a href="https://www.medrxiv.org/content/10.1101/2024.01.30.24302026v1.full">Laktabai/O'Meara et al. medRxiv 2024</a>), only 23% of clients chose to test at all; among test-negatives, 26% still bought ACT. The conditional ACT subsidy was frequently not passed through to positive clients even when those clients tested positive. Digital enforcement of the reimbursement trigger does not solve the underlying behavior: providers selling ACTs to test-negative patients without logging the result, or logging a positive result for a negative patient to capture the subsidy (fraud). The ML audit layer is supposed to catch the latter; the former is simply leakage that the digital system cannot prevent.</p>
+
+<h4>The "8%→33%" claim and its evidentiary status</h4>
+<p>The adherence figure that drives the base case CEA — provider adherence to malaria testing and treatment protocols rising from 8% to 33% — is NOT from TESTsmART. It is attributed to a separate UC Berkeley + Emory 2023 RCT of Maisha Meds' provider-reimbursement program. <strong>No peer-reviewed paper, preprint, or working paper for this trial could be located as of September 2026 — it remains unpublished and implementer-reported.</strong></p>
+<p>This means: (a) the effect is a process metric (protocol adherence, not mortality); (b) it is from a randomized trial, which is stronger than an observational before/after; but (c) the trial is not verifiable. The model uses 22% (a haircut from 25% face-value incremental) as the base case. This is reasonable given the unpublished status, but it should not be confused with peer-reviewed evidence. The evidence trajectory in the field is negative: Cohen 2015 (small scale) → positive; TESTsmART 2024 (large scale, peer-reviewed) → null. The closer the test gets to the actual deployed mechanism, the weaker the incremental effect.</p>
+
+<h4>The three-scenario grid</h4>
+<table>
+  <thead><tr><th>Scenario</th><th>Median $/DALY</th><th>P10</th><th>P90</th><th>P(≤$800)</th><th>P(≤$131 SMC)</th><th>P(≤$150)</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Base (8→33% haircut to 22%)</strong></td><td><strong>$137</strong></td><td>$79</td><td>$245</td><td>1.000</td><td>0.462</td><td>~0.55</td></tr>
+    <tr><td>Process-full (face value 25%)</td><td>$112</td><td>$68</td><td>$187</td><td>1.000</td><td>0.654</td><td>~0.76</td></tr>
+    <tr><td><strong>RCT-null (TESTsmART generalizes)</strong></td><td><strong>$566</strong></td><td>$298</td><td>$1,193</td><td>0.733</td><td>0.000</td><td>0.000</td></tr>
+    <tr><td>Low additionality (0.30)</td><td>$205</td><td>$118</td><td>$367</td><td>0.999</td><td>0.152</td><td>~0.16</td></tr>
+    <tr><td>Extend only (+3,000 sites)</td><td>$206</td><td>$124</td><td>$347</td><td>1.000</td><td>0.127</td><td>~0.15</td></tr>
+  </tbody>
+</table>
+<p>The $150/DALY threshold sits almost exactly at the base-case median. The verdict depends entirely on the TESTsmART generalizability question — which is exactly what the mortality-endpoint RCT resolves.</p>
+</div>
+</details>
+
+<!-- =================== CEA =================== -->
+<h2 id="cea">Cost-effectiveness — the full Monte Carlo model</h2>
+
+<p>N=200,000 MC draws. The model is scale-free per the identity: <code style="background:#f7f6f4;padding:.2em .4em;font-size:13px;">$/DALY = cost_per_case ÷ (incr_correct_treat × whd × DALYs/death × additionality)</code></p>
+
+<table>
+  <thead><tr><th>Input</th><th>Distribution</th><th>Rationale</th></tr></thead>
+  <tbody>
+    <tr><td>cost_per_case ($)</td><td>Tri(1.5, 2.0, 3.0)</td><td>RDT ~$0.40-0.50 + ACT margin ~$0.50-1.00 + overhead; ~$2/case at current scale</td></tr>
+    <tr><td>incr_correct_treat</td><td>Tri(0.12, 0.22, 0.35)</td><td>Haircut from 8→33% (25pp face value) to 22%; upper tail allows process-full; lower tail TESTsmART-adjacent</td></tr>
+    <tr><td>whd (would-have-died)</td><td>Tri(0.003, 0.006, 0.012)</td><td>CFR gradient × delay probability; top tornado driver; inferred, not observed</td></tr>
+    <tr><td>DALYs/death</td><td>Tri(24, 30, 36)</td><td>GBD standard; age-blend uncertainty (retail skews adult, deaths concentrate U5)</td></tr>
+    <tr><td>additionality</td><td>Tri(0.30, 0.45, 0.60)</td><td>PMI cut raises; GF Uganda + Lagos budget caps; central 0.45</td></tr>
+  </tbody>
+</table>
+
+<details>
+<summary>Tornado chart — what drives the model (Spearman ρ vs $/DALY)</summary>
+<div class="details-body">
+<table>
+  <thead><tr><th>Input</th><th>ρ</th><th>Interpretation</th></tr></thead>
+  <tbody>
+    <tr><td><strong>whd (would-have-died, survival delta)</strong></td><td><strong>−0.616</strong></td><td>Top driver; inferred from CFR gradient + delay-severity literature, not observed at the rail — the structural uncertainty. Resolves with mortality RCT.</td></tr>
+    <tr><td><strong>incr_correct_treat</strong></td><td><strong>−0.500</strong></td><td>Second; the 8→33% adherence shift is a process metric; TESTsmART null is the specific risk here. Digital enforcement may or may not outperform paper protocol.</td></tr>
+    <tr><td>cost_per_case</td><td>+0.436</td><td>Third; keeping cost ~$2/case (vs. AMFm's higher fully-loaded cost) is load-bearing. Extension raises cost to ~$4/case, significantly worsening $/DALY.</td></tr>
+    <tr><td>additionality</td><td>−0.304</td><td>Fourth; GF Uganda + Lagos budget adoption cap the upper bound; PMI cut lifts the floor.</td></tr>
+    <tr><td>DALYs/death</td><td>−0.184</td><td>Age-demographic blend; retail skews adult but deaths concentrate U5 (higher DALYs/death per death in that subpopulation).</td></tr>
+    <tr><td>RDT_positivity / febrile</td><td>≈ 0</td><td>Scale-free by construction; pool size doesn't drive $/DALY — only the per-case parameters matter.</td></tr>
+  </tbody>
+</table>
+<p><strong>Model signature: epidemiology/effect-size + cost bet — not a reach or AI bet.</strong> The AI parameters (ML audit efficiency) don't enter the tornado at all. Adding pharmacies does not improve $/DALY; improving the whd estimate (through a mortality RCT) would resolve the dominant uncertainty. This is a cheap-commodity fingerprint — same structure as bed net programs but with a weaker evidence base.</p>
+</div>
+</details>
+
+<details>
+<summary>Comparable retail subsidy programs — what was measured and what wasn't</summary>
+<div class="details-body">
+<table>
+  <thead><tr><th>Program</th><th>$/DALY</th><th>Mortality measured?</th><th>Source</th></tr></thead>
+  <tbody>
+    <tr><td>SMC (Sahel, seasonal malaria chemoprevention)</td><td>$19–131</td><td>✅ RCT</td><td>Gilmartin 2020 Lancet GH</td></tr>
+    <tr><td>AMF ITNs (bed nets)</td><td>~$78</td><td>✅ pooled RCT data</td><td>GiveWell AMF</td></tr>
+    <tr><td><strong>Maisha commodity rail (this run)</strong></td><td><strong>$137</strong> (79–245)</td><td>❌ modelled; RCT pending</td><td>This analysis</td></tr>
+    <tr><td>Retail RDT/ACT subsidy reference class</td><td>$44–482 (PfPR-gated)</td><td>❌ modelled</td><td>Yukich 2020 PMC7247415</td></tr>
+    <tr><td>AMFm (unconditional)</td><td>— (no CEA published)</td><td>❌ market/process only</td><td>Tougher 2012 Lancet</td></tr>
+    <tr><td>GF PSCM/CPM</td><td>—</td><td>❌ market/process only</td><td>Tougher 2017 PMC5405529</td></tr>
+    <tr><td>Maisha AI/CDS layer</td><td>~$1,387</td><td>❌</td><td>Prior run (settled prior)</td></tr>
+    <tr><td>Cash (GiveDirectly)</td><td>~$200–300</td><td>—</td><td>GiveWell</td></tr>
+  </tbody>
+</table>
+<p>The retail malaria reference class ($44–482/DALY, Yukich 2020) is entirely modeled — just like this analysis. SMC and AMF are the only malaria interventions with mortality RCT data. The $44/DALY lower bound in Yukich corresponds to high-transmission (PfPR &gt;30%) settings with high baseline mortality; the $482/DALY upper bound corresponds to low-transmission (PfPR &lt;3%) settings where the marginal malaria death averted is very expensive. Maisha's current footprint is predominantly high-transmission Uganda and high-burden Nigeria — appropriate geography for the better end of the range.</p>
+</div>
+</details>
+
+<!-- =================== $150 THRESHOLD =================== -->
+<h2 id="threshold">$150/DALY threshold analysis</h2>
+
+<p>Our benchmark is $150/DALY — roughly 2× GiveWell's standard top-charity bar ($100/DALY), providing headroom for promising but imperfect programs. Here is where each Maisha scenario falls:</p>
+
+<div class="threshold-grid">
+  <div class="tg-cell pass">
+    <div class="tl">Base scenario</div>
+    <div class="tv">$137</div>
+    <div style="font-size:11px;color:#555;margin:.2rem 0;">P(≤$150) ≈ 55%</div>
+    <div class="ts">Inside threshold</div>
+  </div>
+  <div class="tg-cell pass">
+    <div class="tl">Process-full</div>
+    <div class="tv">$112</div>
+    <div style="font-size:11px;color:#555;margin:.2rem 0;">P(≤$150) ≈ 76%</div>
+    <div class="ts">Well inside</div>
+  </div>
+  <div class="tg-cell fail">
+    <div class="tl">RCT-null scenario</div>
+    <div class="tv">$566</div>
+    <div style="font-size:11px;color:#555;margin:.2rem 0;">P(≤$150) = 0%</div>
+    <div class="ts">Outside threshold</div>
+  </div>
+  <div class="tg-cell warn">
+    <div class="tl">Low additionality</div>
+    <div class="tv">$205</div>
+    <div style="font-size:11px;color:#555;margin:.2rem 0;">P(≤$150) ≈ 16%</div>
+    <div class="ts">Marginal</div>
+  </div>
+</div>
+
+<p>The base scenario sits almost exactly at the threshold median. This is the most important single fact: a funder using a $150/DALY benchmark cannot confidently say "yes" or "no" to the commodity rail based on the existing evidence — which is exactly why the mortality RCT has such high value-of-information. If the RCT confirms the mortality benefit → the program comfortably clears the threshold. If it null replicates TESTsmART → the commodity rail fails the threshold and should not be renewed at scale. The $2–4M RCT resolves a binary decision about the much larger ($10–15M) commodity commitment.</p>
+
+<div class="callout">
+  <strong>Threshold verdict:</strong> The commodity rail is at-threshold in the base case; process-full clears comfortably; TESTsmART-null fails decisively. Fund the commodity rail as a time-limited bridge while conducting the mortality endpoint evaluation that will determine whether it deserves continued investment.
+</div>
+
+<!-- =================== DEEPEN VS. EXTEND =================== -->
+<h2 id="deepen">Deepen vs. extend — why the asymmetry matters</h2>
+
+<p>At current margins, <strong>deepening ($137/DALY) beats extending ($206/DALY)</strong> — but the algebra shifts as deepening saturates.</p>
+
+<table>
+  <thead><tr><th>Option</th><th>Marginal $/DALY</th><th>Cost/case</th><th>Incr. treatment Δ</th><th>Additionality</th><th>Ceiling</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Deepen (existing ~5,000 sites)</strong></td><td><strong>$137</strong></td><td>$2.00</td><td>0.22</td><td>0.35</td><td>Saturates at ~$2–3M/yr: only ~1.2M visits currently reimbursement-supported vs. ~1.9M true-malaria visits/yr at enrolled sites → headroom ~700k additional cases</td></tr>
+    <tr><td>Extend (+3,000 new sites, high-PfPR)</td><td>$206</td><td>$4.00</td><td>0.15</td><td>0.55</td><td>Flatter absorption ceiling; fresh malaria pools; additionality better but cost-per-case dominates at current margins</td></tr>
+    <tr><td>Extend (low-PfPR, &lt;3%)</td><td>~$482</td><td>$4.50</td><td>0.10</td><td>0.60</td><td>Yukich 2020 upper bound; do not extend here</td></tr>
+  </tbody>
+</table>
+
+<p>The crossing point: extending beats deepening when deepening has saturated (approximately $2–3M/yr throughput) AND when the extension geography is high-PfPR (&gt;5%). The optimal strategy for a $5M/yr tranche: <strong>deepen-first for years 1–2 (burning down the ~700k case headroom); selectively extend only into high-PfPR geographies in year 2–3 as deepening saturates</strong>. Never extend into low-transmission settings — the $482/DALY tail destroys the portfolio average.</p>
+
+<p>Why extending costs more per case: onboarding a new pharmacy requires installation, training, and initial supervision — roughly $400–600 one-time — amortized over the pharmacy's case volume. At 380 malaria cases/site/year (the current average at enrolled sites), that adds ~$1.50/case on top of commodity cost. The existing 5,000 sites have already absorbed this amortization; marginal cost at those sites is nearly pure commodity.</p>
+
+<!-- =================== ADDITIONALITY =================== -->
+<h2 id="additionality">Additionality — what's genuinely new vs. what GF/PMI would fund anyway</h2>
+
+<p>Central estimate: <strong>0.45</strong> (range 0.30–0.60). The factors pulling in opposite directions:</p>
+
+<table>
+  <thead><tr><th>Factor raising additionality</th><th>Central contribution</th><th>Factor capping additionality</th><th>Central contribution</th></tr></thead>
+  <tbody>
+    <tr><td>2025 PMI cut ~47% — created genuine unfunded stockout gap in 2025 that no other source immediately filled</td><td>+0.15</td><td>GF Uganda national malaria grant to Maisha — now funding recurring ACT subsidy at national scale</td><td>−0.10</td></tr>
+    <tr><td>RDT-conditioned reimbursement rail (diagnosis enforcement) is structurally novel — AMFm/PSCM never had this</td><td>+0.08</td><td>Lagos State budget adoption (World Bank loan) — government increasingly funding the service Maisha delivers</td><td>−0.08</td></tr>
+    <tr><td>Mortality-endpoint evaluation — the entire retail subsidy reference class lacks this; entirely additional</td><td>+0.05</td><td>Gates Foundation already co-funded Maisha's scale-up (DIV Stage 3 co-funder)</td><td>−0.05</td></tr>
+    <tr><td>PMI stockout bridge in 2025–2027 specifically — short-term gap before GF/domestic backfill scales</td><td>+0.07</td><td>Institutional trajectory: GF + domestic funding expected to absorb 70%+ of commodity subsidy within 3 years</td><td>−0.10</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <strong>Additionality kill-switch (K3):</strong> if GF Uganda + Lagos State expansion absorbs &gt;70% of the recurring commodity subsidy within the grant period, the recurring tranche's additionality falls below 0.30 and the $/DALY rises above $200. At that point, the most valuable philanthropic spend is the mortality-endpoint RCT alone — not the recurring subsidy. Monitor quarterly against the GF award amounts and Lagos budget lines.
+</div>
+
+<!-- =================== GRANT STRUCTURE =================== -->
+<h2 id="approaches">Grant structure — commodity, evidence, and kill-switches</h2>
+
+<table>
+  <thead><tr><th>Component</th><th>Amount</th><th>Timeframe</th><th>Purpose</th><th>Kill/redirect condition</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Commodity rail (deepen-first)</strong></td><td>~$5M/yr</td><td>2–3 years</td><td>PMI gap bridge + RDT-conditioned reimbursement at existing 5,000 sites; deepen to existing sites before extending</td><td>K1: adherence Δ &lt;5pp at 12mo → halt scale, trigger evaluation immediately; K2: cost/case &gt;$3 → re-scope to fewer sites; K3: GF/domestic absorption &gt;70% → stop recurring subsidy, redirect to evaluation</td></tr>
+    <tr><td><strong>Mortality-endpoint RCT</strong></td><td>$2–4M one-time</td><td>3 years (design + data collection + analysis)</td><td>Pre-registered, cluster-randomized, mortality-powered trial. Primary endpoint: all-cause U5 mortality at 24 months in 1km catchment areas of Maisha vs. control pharmacies</td><td>K4: if interim futility analysis at 18 months shows mortality CI includes 0 with low probability of reversal → stop, publish, do not renew commodity scale-up at &gt;current level</td></tr>
+    <tr><td><strong>Selective extension (post-deepen)</strong></td><td>Up to +$2M/yr</td><td>Year 2+ only after deepen saturation confirmed</td><td>High-transmission underserved geographies only (PfPR &gt;5%); triggered only after deepening pool saturates (~$2–3M/yr)</td><td>PfPR &lt;3% in target geography → do not extend; additionality &lt;0.35 → do not extend</td></tr>
+  </tbody>
+</table>
+
+<details>
+<summary>Why a mortality-endpoint RCT is the best $2–4M in the entire retail malaria space</summary>
+<div class="details-body">
+<p>No retail malaria subsidy program — AMFm, GF PSCM, UNITAID, CPM — has a verified mortality endpoint. All published $/DALY estimates (including this analysis's $137) are modeled from process metrics: treatment rates, testing rates, drug availability. <a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(12)61843-1/abstract">Tougher et al. 2012 (Lancet AMFm)</a> documented market-level outcomes. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5405529/">Tougher 2017</a> documented availability and price. Neither measured deaths.</p>
+<p>The value-of-information calculation: a $2–4M RCT with mortality as the primary endpoint would resolve the dominant uncertainty (whd, the top tornado driver) before the larger commodity commitment is renewed. The decision is binary: if the RCT confirms a mortality benefit, the case strengthens to $112/DALY and the field gains its first retail malaria subsidy mortality endpoint. If it null replicates TESTsmART, the commodity rail is abandoned at scale and $7–13M in future wasted subsidy is avoided. The RCT is cheap relative to the stakes.</p>
+<p><strong>Design parameters:</strong> cluster-randomized at pharmacy level, N=~200 pharmacies (100 intervention, 100 control) in high-transmission Uganda/Nigeria geographies; household registration for U5 births in 1km catchment areas; 24-month primary endpoint; vital status assessment at 28 days and 24 months; verbal autopsy for cause; 80% power for 20% relative U5 mortality reduction (from ~40/1,000 to ~32/1,000 in catchment areas) at α=0.05. Independence: randomization and analysis by an entity other than Maisha Meds — icddr,b-equivalent African academic institution. Pre-registered kill-switch: if HR (control vs. intervention) CI includes 1.0 at interim with p(positive outcome) &lt;20% → stop and publish.</p>
+</div>
+</details>
+
+<!-- =================== VERDICT =================== -->
+<h2 id="verdict">Verdict</h2>
+
+<p>Maisha's commodity rail occupies a specific and honest position: $137/DALY median — inside the $150/DALY threshold at the median (55% of draws), inside the cash bar with near-certainty, matching SMC at roughly 46% of draws, and clearing the GiveWell bar (~$100) at only 24%. That places it in the "fundable with conditions" tier rather than the "clearly should fund" or "clearly should not fund" tiers. The appropriate response to at-threshold uncertainty is time-limited bridge funding combined with a mortality evaluation that forces a clear answer before the larger, longer commitment is made.</p>
+
+<p>The AMFm lesson is the most important context: a well-designed, generously funded, large-scale retail malaria subsidy program can succeed on market metrics while producing uncertain health benefit — because market penetration and appropriate treatment are not the same thing. Maisha Meds has solved the enforcement problem that AMFm could not solve. Whether enforcement actually changes who lives and who dies is the specific question the evidence cannot currently answer. Funding the mortality endpoint is not a risk hedge; it is the only intellectually honest way to decide whether to continue funding at scale.</p>
+
+<p><strong>Recommended action:</strong> Fund commodity rail at $5M/yr × 2–3yr (deepen-first). Fund mortality-endpoint RCT at $2–4M one-time. Do not fund the AI/CDS layer. Do not fund extension into low-PfPR geographies. Require quarterly additionality monitoring; trigger K3 kill-switch if GF/domestic absorption exceeds 70%.</p>
+
+<div style="margin-top:5rem;padding-top:2rem;border-top:1px solid #e0deda;">
+  <div style="font-family:system-ui,sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:#bbb;margin-bottom:1rem;">Deep research runs — click to read full analysis</div>
+  <ul style="list-style:none;margin:0;padding:0;font-family:system-ui,sans-serif;font-size:13px;">
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1lTZSX270tfgBXAtgAlWF-NIJMfApyHSDbM2wqd_DXCE/edit">Maisha Meds — malaria-only deep dive, CEA + TESTsmART (summary)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1urSnslQf8MwvK8eQm742IdkgmVeFIEbeXkHAL-HNyKA/edit">Maisha Meds — malaria-only deep dive, CEA + TESTsmART (full)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1OLNGHfiIWHmH1Xn9Hb8xx0MpT8uNIoFWBbesWs9DyGE/edit">Maisha Meds — commodity subsidy rail investment case (summary)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1p-OS-nDPlrJoq76BP2McTGFICAYVz_v8umxPFo858KU/edit">Maisha Meds — commodity subsidy rail investment case (full)</a></li>
+  </ul>
+</div>
+</main>
+</div>
+
+<script>
+let allOpen = false;
+function toggleAll() {
+  allOpen = !allOpen;
+  document.querySelectorAll('details').forEach(d => d.open = allOpen);
+  document.getElementById('expand-all-btn').textContent = allOpen ? 'Collapse all' : 'Expand all details';
+}
+
+const sections = document.querySelectorAll('h2[id]');
+const navLinks = document.querySelectorAll('nav ul li a[href^="#"]');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`nav a[href="#${e.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

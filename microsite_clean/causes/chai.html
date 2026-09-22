@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHAI — Cause Area Report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --accent: #3b0764;
+    --accent-light: #faf5ff;
+    --accent-border: #d8b4fe;
+    --text: #1a1a1a;
+    --muted: #555;
+    --border: #e0deda;
+    --bg: #fafaf8;
+    --surface: #fff;
+    --surface-alt: #f7f6f4;
+  }
+
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.88; color: var(--text); background: var(--bg); }
+
+  .layout { display: flex; min-height: 100vh; }
+
+  nav { width: 232px; flex-shrink: 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 2.25rem 1.5rem; background: var(--surface-alt); border-right: 1px solid var(--border); }
+  nav .home { display: block; font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; color: #999; text-decoration: none; margin-bottom: 1.5rem; }
+  nav .home:hover { color: #333; }
+  nav h5 { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #bbb; margin-bottom: .6rem; margin-top: 1.5rem; }
+  nav ul { list-style: none; }
+  nav ul li a { font-family: system-ui, sans-serif; font-size: 12.5px; color: #666; text-decoration: none; display: block; padding: .22rem .6rem; border-left: 2px solid transparent; }
+  nav ul li a:hover { color: var(--text); }
+  nav ul li a.active { color: var(--text); border-left-color: var(--accent); font-weight: 600; }
+  nav .current { color: var(--accent) !important; font-weight: 600; }
+  nav .sep { height: 1px; background: var(--border); margin: 1.5rem 0; }
+
+  main { flex: 1; max-width: 800px; padding: 4rem 3.5rem 7rem; }
+
+  .eyebrow { font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin-bottom: .6rem; }
+  h1 { font-size: 2.5rem; line-height: 1.15; font-weight: 700; letter-spacing: -.025em; margin-bottom: .45rem; color: #0f0f0f; }
+  .dek { font-family: system-ui, sans-serif; font-size: 15.5px; color: #666; margin-bottom: 2.75rem; line-height: 1.5; }
+
+  .verdict { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 1.3rem 1.6rem; margin-bottom: 3.25rem; }
+  .verdict .vl { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #aaa; margin-bottom: .5rem; }
+  .verdict p { font-family: system-ui, sans-serif; font-size: 13.5px; color: #333; line-height: 1.65; margin-bottom: .55rem; }
+  .verdict p:last-child { margin-bottom: 0; }
+
+  .metrics { display: flex; gap: 1.25rem; margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .metric { background: var(--surface); border: 1px solid var(--border); padding: 1rem 1.25rem; flex: 1; min-width: 120px; }
+  .metric .mv { font-size: 1.45rem; font-weight: 700; color: #0f0f0f; font-family: system-ui, sans-serif; letter-spacing: -.02em; line-height: 1.1; }
+  .metric .ml { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: #aaa; margin-top: .3rem; }
+
+  h2 { font-size: 1.6rem; font-weight: 700; margin-top: 4rem; margin-bottom: 1.25rem; letter-spacing: -.015em; padding-bottom: .5rem; border-bottom: 1px solid var(--border); scroll-margin-top: 1.5rem; }
+  h3 { font-size: 1.1rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: .7rem; color: #222; }
+
+  p { margin-bottom: 1.2rem; }
+  a { color: #1d4ed8; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:hover { color: #1e3a8a; }
+  sup a { font-size: 0.75em; text-underline-offset: 1px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 2.25rem; font-family: system-ui, sans-serif; font-size: 13px; }
+  th { text-align: left; padding: .6rem .85rem; background: var(--surface-alt); border: 1px solid var(--border); font-weight: 600; color: #333; }
+  td { padding: .55rem .85rem; border: 1px solid var(--border); color: #444; vertical-align: top; line-height: 1.5; }
+  tr:nth-child(even) td { background: #faf9f7; }
+
+  .callout { background: var(--accent-light); border: 1px solid var(--accent-border); padding: 1.1rem 1.5rem; margin: 2rem 0; font-size: .94rem; line-height: 1.72; }
+  .callout strong { color: var(--accent); }
+
+  .note { background: #f8f9fa; border: 1px solid #d0d5dd; padding: 1.1rem 1.5rem; margin: 1.75rem 0; font-size: .93rem; font-family: system-ui, sans-serif; line-height: 1.7; }
+  .note .nt { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: #888; margin-bottom: .5rem; }
+
+  details { border: 1px solid var(--border); margin: 1.5rem 0; }
+  details summary {
+    padding: .9rem 1.15rem;
+    font-family: system-ui, sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    background: var(--surface-alt);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    user-select: none;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::before {
+    content: '▶';
+    font-size: 10px;
+    color: #aaa;
+    transition: transform .15s;
+    flex-shrink: 0;
+  }
+  details[open] summary::before { transform: rotate(90deg); }
+  details summary:hover { background: #efede9; }
+  .details-body {
+    padding: 1.25rem 1.5rem;
+    font-family: system-ui, sans-serif;
+    font-size: 13.5px;
+    line-height: 1.72;
+    color: #333;
+    border-top: 1px solid var(--border);
+  }
+  .details-body p { font-family: system-ui, sans-serif; font-size: 13.5px; margin-bottom: .9rem; }
+  .details-body table { font-size: 12.5px; }
+  .details-body h4 { font-weight: 700; margin: 1rem 0 .4rem; color: #222; font-size: 13.5px; }
+  .details-body ul { margin: .4rem 0 .9rem 1.4rem; }
+  .details-body ul li { margin-bottom: .3rem; }
+
+  .node-card { border: 1px solid var(--border); margin: 1.5rem 0 2rem; }
+  .node-card .nh { background: var(--surface-alt); padding: .85rem 1.15rem; border-bottom: 1px solid var(--border); font-family: system-ui, sans-serif; font-weight: 700; font-size: 14px; color: #111; display: flex; align-items: baseline; gap: .75rem; flex-wrap: wrap; }
+  .node-card .nh .cea { font-size: 12px; font-weight: 400; color: #666; }
+  .node-card .nb { padding: 1.15rem 1.25rem 1rem; font-family: system-ui, sans-serif; font-size: 13.5px; line-height: 1.7; color: #333; }
+  .node-card .nb p { font-family: system-ui, sans-serif; font-size: 13.5px; margin-bottom: .8rem; }
+  .node-card .nb p:last-child { margin-bottom: 0; }
+
+  .era { border-left: 3px solid var(--accent-border); padding: .6rem 1.1rem; margin: 1.3rem 0; background: var(--accent-light); }
+  .era .el { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); margin-bottom: .3rem; font-weight: 700; }
+  .era p { font-family: system-ui, sans-serif; font-size: 13.5px; margin-bottom: .4rem; color: #333; }
+  .era p:last-child { margin-bottom: 0; }
+
+  .threshold-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: .6rem; margin: 1.5rem 0 2rem; }
+  .tg-cell { border: 1px solid var(--border); padding: .8rem 1rem; text-align: center; font-family: system-ui, sans-serif; }
+  .tg-cell .tv { font-size: 1.25rem; font-weight: 700; letter-spacing: -.02em; margin-bottom: .2rem; }
+  .tg-cell .tl { font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: #888; margin-bottom: .4rem; }
+  .tg-cell .ts { font-size: 12px; padding: .15rem .45rem; border-radius: 2px; display: inline-block; }
+  .tg-cell.pass { background: #f0fdf4; border-color: #86efac; }
+  .tg-cell.fail { background: #fef2f2; border-color: #fca5a5; }
+  .tg-cell.warn { background: #fffbeb; border-color: #fcd34d; }
+  .tg-cell.pass .ts { background: #dcfce7; color: #166534; }
+  .tg-cell.fail .ts { background: #fee2e2; color: #991b1b; }
+  .tg-cell.warn .ts { background: #fef3c7; color: #92400e; }
+
+  .svg-wrap { margin: 2rem 0; background: var(--surface); border: 1px solid var(--border); padding: 1.25rem; overflow-x: auto; }
+  .svg-caption { font-family: system-ui, sans-serif; font-size: 12px; color: #888; margin-top: .6rem; text-align: center; }
+
+  ul.bl, ol.bl { margin: .5rem 0 1.2rem 1.7rem; }
+  ul.bl li, ol.bl li { margin-bottom: .5rem; }
+
+  #expand-all-btn { font-family: system-ui, sans-serif; font-size: 12px; color: #888; background: none; border: 1px solid #ddd; padding: .3rem .7rem; cursor: pointer; float: right; margin-top: 3.8rem; }
+  #expand-all-btn:hover { background: var(--surface-alt); }
+
+  .cea-calc { background: #f0f4ff; border: 1px solid #bfdbfe; padding: .85rem 1.1rem; margin: .75rem 0 .5rem; font-family: system-ui, sans-serif; font-size: 12.5px; line-height: 1.68; color: #1e3a8a; }
+  .cea-calc .cc-label { font-size: 10px; text-transform: uppercase; letter-spacing: .07em; color: #6b7280; margin-bottom: .35rem; font-weight: 600; }
+  .cea-calc code { font-family: 'Courier New', monospace; font-size: 11.5px; background: #dbeafe; padding: .05rem .3rem; border-radius: 2px; }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav>
+  <h5>This report</h5>
+  <ul>
+    <li><a href="#landscape">Landscape</a></li>
+    <li><a href="#aiframing">The AI framing problem</a></li>
+    <li><a href="#supplychain">Supply-chain analytics</a></li>
+    <li><a href="#tsu">TSU fiscal-triage</a></li>
+    <li><a href="#lenacapavir">Lenacapavir</a></li>
+    <li><a href="#cea">CEA by pathway</a></li>
+    <li><a href="#threshold">$150/DALY threshold</a></li>
+    <li><a href="#usaid">The USAID vacuum</a></li>
+    <li><a href="#approaches">Grant structure</a></li>
+    <li><a href="#verdict">Verdict</a></li>
+  </ul>
+</nav>
+
+<main>
+<button id="expand-all-btn" onclick="toggleAll()">Expand all details</button>
+
+<div class="eyebrow">Cause Area Report · September 2026</div>
+<h1>CHAI</h1>
+<div class="dek">Clinton Health Access Initiative: an access, market-shaping, and fiscal-triage organization whose supply-chain "AI" is peripheral classical analytics — and whose most cost-effective work has no AI at all.</div>
+
+<div class="verdict">
+  <div class="vl">Bottom line</div>
+  <p><strong>Fund $7–15M total as kill-switched tranches across TSU fiscal-triage ($5–8M), lenacapavir acceleration ($2–4M), and optionally a supply-chain analytics evaluation (≤$3M). Do not fund CHAI's supply-chain AI as an open-ended grant.</strong> The AI/supply-chain pathway costs a median $4,813/DALY (P10 $1,751, P90 $14,527; N=300k MC) — 5–24× cash, nowhere near any defensible threshold. Swapping ML for classical statistical rules loses approximately zero DALYs, because forecasting accuracy is not the binding constraint on stockouts.</p>
+  <p>The cost-effective CHAI work is exactly where there is no AI: <strong>TSU fiscal-triage</strong> ($16/DALY = 13–28× cash, GiveWell-rated, non-AI government budget-reallocation advisory) and <strong>lenacapavir market-shaping</strong> ($100–222/DALY, additionality-gated). Both clear the $150/DALY threshold — one decisively, one conditionally. Neither requires believing the AI narrative.</p>
+  <p><strong>Absorptive capacity: ~$10M/yr (band $7–15M).</strong> The AI-specific worthwhile spend is ≤$4M and mostly one-time (a head-to-head evaluation, not open-ended scale). The largest cost-effective slice is TSU fiscal-triage at ~$575k/country for 10–15 high-cut countries beyond GiveWell's current five.</p>
+</div>
+
+<div class="metrics">
+  <div class="metric"><div class="mv">$16</div><div class="ml">$/DALY — TSU fiscal-triage (13–28× cash)</div></div>
+  <div class="metric"><div class="mv">$100–222</div><div class="ml">$/DALY — lenacapavir (leverage ↔ full cost)</div></div>
+  <div class="metric"><div class="mv">$4,813</div><div class="ml">$/DALY — supply-chain analytics</div></div>
+  <div class="metric"><div class="mv">2.5/10</div><div class="ml">AI-centrality score</div></div>
+</div>
+
+<!-- =================== LANDSCAPE =================== -->
+<h2 id="landscape">Landscape — CHAI, the PEPFAR shock, and who does what in global health supply chains</h2>
+
+<p>CHAI was born from a procurement negotiation. In 2002, the Clinton Foundation's Ira Magaziner approached generic ARV manufacturers — Cipla, Ranbaxy, Aspen — and negotiated the first preferential pricing agreements for first-line antiretrovirals in developing countries. First-line ART fell from ~$15,000/person-year to ~$300 in under three years. This early success defined what CHAI fundamentally is: an organization with unusual access to manufacturer and government relationships, skilled at the specific kind of bilateral negotiation that produces price and access breakthroughs. The organization has grown to ~1,800 staff across 36 countries and ~$246M in annual revenue — but it remains at its core a market-shaping and government-embedding TA shop, not a technology company.</p>
+
+<div class="era">
+  <div class="el">CHAI — what it has actually built (2002–2025)</div>
+  <p><strong>Market shaping:</strong> ARV first-line prices from $15,000 to $45/person-year (2002–2023 arc); TDF reduction ~80% historically; ~$1.2B in DTG savings over seven years. These are CHAI's most unambiguous achievements, and none of them involve AI. They involve CHAI economists and country directors sitting with ministers and procurement officers and negotiating based on volume commitments and aggregate LMIC demand data.</p>
+  <p><strong>Technical assistance:</strong> Embedded analysts in Ministries of Health in 30+ countries. Work includes quantification/forecasting (statistical methods, not ML), procurement planning, eLMIS/DHIS2 systems implementation, and distribution network redesign. CHAI also runs programs in TB detection, malaria commodity access, maternal/neonatal health, and vaccines financing — all non-AI.</p>
+  <p><strong>Digital health:</strong> CHAI's Digital Health program helps governments implement EHR/DHIS2/eLMIS systems. This is digitization infrastructure — the foundation on which any analytics sits. CHAI does not operate a flagship deployed ML product with publicly documented accuracy metrics.</p>
+  <p><strong>TSUs (2025):</strong> The newest program, triggered specifically by the PEPFAR funding shock. See below.</p>
+</div>
+
+<div class="era">
+  <div class="el">The PEPFAR / USAID collapse — scale and timing</div>
+  <p>The 2025 US foreign aid shock was the largest disruption to global health financing since the HIV crisis. Specific facts: PEPFAR's implementing-partner funding was cut by approximately 77% in the first wave (January–March 2025), with the Trump administration freezing most new obligations and terminating large portions of existing awards. By May 2025, <a href="https://www.unaids.org/en/impact-US-funding-cuts/About">UNAIDS documented &gt;1,700 PEPFAR sites closed and &gt;16,000 FTE laid off globally</a>. GHSC-PSM — the USAID-funded supply chain management contractor (operated by Chemonics International) operating in 73 countries on a ~$1.15B budget — was terminated with no designated in-country logistics successor. VLS (viral load suppression) monitoring stopped in multiple countries. ART coverage was at risk in at minimum 15 countries with PEPFAR providing &gt;50% of ARV financing.</p>
+  <p>The Global Fund 8th replenishment (late 2025) aimed to close part of the gap: the ask was $18B; the final outcome was <a href="https://www.theglobalfund.org/en/news/2026/2026-02-18-global-fund-board-welcomes-final-eighth-replenishment-outcome/">$12.64B — approximately 30% short</a>. Combined with the PEPFAR cuts, the total external health financing gap for HIV/TB/malaria programs is estimated in the $3–5B/yr range for 2025–2027.</p>
+</div>
+
+<div class="era">
+  <div class="el">Who does what in global health supply chains — the actual landscape</div>
+  <p>Understanding CHAI's position requires knowing who else is in the space. Before the 2025 cuts, the landscape was: <strong>USAID/GHSC-PSM</strong> (Chemonics; $1.15B/yr; logistics, commodity procurement, customs clearance, last-mile distribution in 73 countries — now terminated); <strong>Global Fund wambo.org</strong> (direct procurement platform for GF-funded commodities, handling ~$1.5B in commodity transactions/yr); <strong>UNICEF Supply Division</strong> (Copenhagen; largest global procurement agent for vaccines, RDTs, ORS, and other essential medicines; ~$3.5B/yr); <strong>CHAI</strong> (TA + market shaping + country-embedded advisors; does not do logistics); <strong>MSH</strong> (Management Sciences for Health; similar TA/advisory role to CHAI, USAID-funded, also cut heavily in 2025); <strong>PATH</strong> (received a TSU grant from GiveWell in parallel with CHAI April 2025).</p>
+  <p>The critical point: GHSC-PSM did logistics — warehousing, cold chain, customs, last-mile delivery. CHAI does not do this and cannot substitute for it. The USAID/PEPFAR shock removed the logistics and financing layer, not the advisory layer. CHAI's most valuable USAID-shock response is advisory (TSU fiscal triage), not supply chain logistics. The supply-chain AI narrative — that better forecasting will solve the post-USAID supply chain gap — is structurally wrong: perfect forecasts of unfunded shortfalls avert zero DALYs.</p>
+</div>
+
+<h3>The WHO is active in the AI health supply chain space and what has been learned</h3>
+
+<table>
+  <thead><tr><th>Org</th><th>What they actually do</th><th>AI claim</th><th>Evidence quality</th></tr></thead>
+  <tbody>
+    <tr><td>GHSC-PSM (Chemonics/USAID)</td><td>Physical logistics: warehousing, procurement, last-mile distribution in 73 countries. Terminating 2025.</td><td>Minimal; rule-based inventory software</td><td>Before/after stockout data (process metrics, no RCT)</td></tr>
+    <tr><td>Global Fund wambo.org</td><td>Direct procurement platform; price transparency; some demand aggregation</td><td>Statistical forecasting</td><td>Process metrics; no mortality endpoint</td></tr>
+    <tr><td>CHAI (Market Shaping + TA)</td><td>Price negotiation, MoH embedding, quantification, eLMIS implementation</td><td>ML demand forecasting (branding layer over statistical methods)</td><td>ARV/price milestones (documented); stockout outcomes (before/after, uncontrolled)</td></tr>
+    <tr><td>Zambia cross-docking RCT (Vledder 2019)</td><td>Supply network redesign: pediatric malaria stockouts from 47.9% → 13.3%</td><td>No AI; network redesign + ops research</td><td>✅ Cluster-RCT, but process metric only (no mortality)</td></tr>
+    <tr><td>Kenya SMS-for-Life</td><td>Mobile stock-reporting: 79% count accuracy / 93% stockout detection</td><td>No AI; mobile reporting</td><td>Process metric; <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3547931/">PMC3547931</a></td></tr>
+    <tr><td>EPSS Gondar 9-model bakeoff</td><td>Ethiopian essential-medicine demand forecasting</td><td>XGBoost vs ARIMA/classical: "comparable fitness, lower error estimates"</td><td>Forecast accuracy only; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC13197753/">PMC13197753</a></td></tr>
+  </tbody>
+</table>
+
+<p>The pattern across the landscape is consistent: <strong>AI provides marginal (if any) improvement over classical statistical methods on the one metric it's evaluated on (forecast accuracy), and no controlled study links any AI forecasting layer to reduced stockouts, let alone to averted deaths.</strong> The stockout wins that are most robustly documented (Zambia cross-docking) credit network redesign and operations research — methods that predate machine learning by decades.</p>
+
+<!-- =================== AI FRAMING PROBLEM =================== -->
+<h2 id="aiframing">The AI framing problem — what CHAI does vs. what they call it</h2>
+
+<p>CHAI describes its supply-chain work using language that invokes machine learning, AI-driven forecasting, and algorithmic optimization. The description does not match the underlying technology. CHAI's HIV/TB/malaria forecasting tools are classical statistical instruments. The ARV "Simple Tool" is a morbidity-based forecasting spreadsheet. The global malaria commodity forecast is a Gates-funded statistical consortium (MAP/IVCC/RBM/MMV), not an AI product. CHAI operates at genuine scale — <a href="https://www.clintonhealthaccess.org/annual-report/2024/">29M people across 125 countries, 21M on HIV/TB/malaria medicines, ~$208M operating budget</a> — but the "AI" descriptor attaches to a peripheral layer, not to the work doing the heavy lifting.</p>
+
+<p>The best head-to-head evidence confirms the AI edge is thin even on its own terms. A 9-model bakeoff on Ethiopian essential-medicine demand at EPSS Gondar found XGBoost gave only <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC13197753/">"comparable model fitness with lower error estimates" vs. ARIMA and classical methods</a> — a forecast-error improvement several causal links upstream of any averted death. Better forecast accuracy does not automatically translate to fewer stockouts; stockouts are driven primarily by funding constraints, procurement delays, supply-chain systems, and governance fragmentation, not by forecasting inaccuracy.</p>
+
+<details>
+<summary>Why forecasting is not the binding constraint on stockouts — the systematic review evidence</summary>
+<div class="details-body">
+<p>A <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC13452151/">2025 systematic review of stock-outs in HIV/TB/malaria programs</a> identifies the dominant causes as: (1) funding gaps and cash-flow timing mismatches (the single most cited cause — no forecast fixes an unfunded shortfall); (2) procurement system delays and bureaucratic bottlenecks (tenders, supplier lead times); (3) weak supply-chain management capacity at subnational level; (4) governance fragmentation between central stores and implementing partners; and (5) manufacturing and supplier reliability issues. Inaccurate demand forecasting appears as a secondary or tertiary factor in most settings.</p>
+<p>Post-USAID, the causal picture is even clearer: the binding constraint has shifted almost entirely to <em>financing</em> (commodity purchasing) and <em>logistics capacity</em> (no GHSC-PSM successor). Even perfect ML forecasting of a $3B annual shortfall produces zero averted DALYs if the commodities are not purchased. This is the structural flaw in the AI-supply-chain investment thesis as applied to the 2026 crisis context.</p>
+<p>The flagship Zambia national supply-chain cluster-RCT (<a href="https://www.tandfonline.com/doi/full/10.1080/23288604.2019.1596050">Vledder et al. 2019</a>) measured availability of tracer drugs (process) with no mortality endpoint; it credits <em>cross-docking network redesign</em>, not ML. The multi-country eLMIS evaluation covering Guinea, Honduras, Rwanda, Tanzania (<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8544866/">Reynolds 2021</a>) reports reduced stockout odds (process) without linking to deaths. No independent study links CHAI forecasting analytics to averted deaths.</p>
+</div>
+</details>
+
+<!-- =================== SUPPLY CHAIN ANALYTICS =================== -->
+<h2 id="supplychain">Supply-chain analytics — the MC model and why it fails the threshold</h2>
+
+<p>The Monte Carlo model (N=300,000) for CHAI's supply-chain analytics pathway follows the causal chain: AI tool → forecast accuracy → ↓ stockouts → ↑ uptake → ↓ mortality. The chain breaks at every link except epidemiology.</p>
+
+<p style="font-family: monospace; font-size: 13px; background: #f7f6f4; padding: .8rem 1rem; margin: 1rem 0; border: 1px solid var(--border);">$/DALY = cost ÷ (patients × stockout_rate × forecast_frac × capture_frac × mort_per × DALYs/death × additionality)</p>
+
+<details>
+<summary>Full parameter table and tornado for supply-chain analytics pathway</summary>
+<div class="details-body">
+<table>
+  <thead><tr><th>Parameter</th><th>Distribution</th><th>Key rationale</th></tr></thead>
+  <tbody>
+    <tr><td>patients (on CHAI-adjacent supply chains)</td><td>Tri(10M, 21M, 30M)</td><td>CHAI 2024 Annual Report: 21M on HIV/TB/malaria medicines</td></tr>
+    <tr><td>stockout_rate (fraction with stockout)</td><td>Tri(0.03, 0.07, 0.15)</td><td>GHSC-PSM and facility survey ranges; highly variable by commodity and country</td></tr>
+    <tr><td>forecast_frac (share of stockouts fixable by better forecasting)</td><td>Tri(0.05, 0.15, 0.30)</td><td>Systematic review (PMC13452151): forecasting is a secondary cause; upper bound is generous</td></tr>
+    <tr><td>capture_frac (share of fixable stockouts CHAI captures)</td><td>Tri(0.05, 0.20, 0.40)</td><td>Heavy crowding from GHSC-PSM successor programs, GF wambo.org, UNICEF Supply Division</td></tr>
+    <tr><td>mort_per (mortality per stockout patient-month)</td><td>Tri(0.0005, 0.0015, 0.004)</td><td>ART interruption literature; highly commodity-specific; very uncertain</td></tr>
+    <tr><td>additionality</td><td>Tri(0.15, 0.30, 0.50)</td><td>Heavy crowding in the supply-chain advisory space; Gates, GF, governments all active</td></tr>
+  </tbody>
+</table>
+
+<h4>Tornado chart (Spearman ρ vs $/DALY) — supply-chain analytics</h4>
+<table>
+  <thead><tr><th>Input</th><th>ρ</th><th>Interpretation</th></tr></thead>
+  <tbody>
+    <tr><td>mort_per</td><td>−0.53</td><td>Top driver; extremely uncertain and commodity-specific. ART interruption ≠ ACT stockout ≠ vaccine stockout.</td></tr>
+    <tr><td>forecast_frac</td><td>−0.39</td><td>Second; the share of stockouts that better forecasting actually fixes — directly contradicted by the binding-constraint literature</td></tr>
+    <tr><td>capture_frac</td><td>−0.36</td><td>Third; CHAI's additionality share given crowded landscape and Gates/GF/UNICEF presence</td></tr>
+    <tr><td>patients</td><td>−0.35</td><td>Scale matters; well-estimated from CHAI own reports but does not improve the per-case economics</td></tr>
+    <tr><td>stockout_rate</td><td>−0.29</td><td>Fifth; variable; getting worse post-USAID but also not fixable by forecasting</td></tr>
+    <tr><td>additionality</td><td>−0.27</td><td>Sixth; separate from capture_frac; crowded space</td></tr>
+  </tbody>
+</table>
+<p><strong>Key structural finding:</strong> AI parameters do not enter the main tornado — the dominant uncertainties are about the causal chain (does better forecasting fix stockouts? do stockouts cause deaths?) not about AI vs. classical forecasting accuracy. Even the optimistic corner (P90-good) yields ~$292/DALY — and that requires forecasting to be a major stockout cause, directly contradicted by the systematic review. The <strong>AI-marginal frame</strong> (isolating ML over classical rules) is even worse: median $8,554/DALY. Swapping AI for rules loses approximately zero DALYs because the mortality is determined by the non-AI parameters.</p>
+</div>
+</details>
+
+<!-- =================== TSU =================== -->
+<h2 id="tsu">TSU fiscal-triage — the actual cost-effective work</h2>
+
+<p>CHAI's Technical Support Units (TSUs) embed fiscal and programmatic advisors in government health ministries in countries facing severe US funding cuts. The advisor's job: help government officials make better decisions about a shrinking health budget — which programs to protect, which domestic resources to reallocate, and how to make the case to the Global Fund or Gavi for emergency replenishment.</p>
+
+<p><a href="https://www.givewell.org/research/grants/clinton-health-access-initiative-chai-technical-support-units-tsus-april-2025">GiveWell's April 2025 grant</a> ($4,657,500 across Burkina Faso, Malawi, Nigeria, Uganda, Zambia plus a global cross-cutting team) rates this work at <strong>13–28× cash on a leverage basis</strong>. The leverage arithmetic: a ~$575k/country/yr TSU team enables a 12–14% cost-effectiveness improvement across a $20–40M government health expenditure envelope, plus additional efficiencies (4–30% waste reduction within existing spend) and crowded-in funding ($2–20M in external/domestic co-finance that would not otherwise flow to high-CE programs). Benefit assumed to accrue ~6 months beyond grant end.</p>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 700 180" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;display:block;margin:0 auto;">
+  <text x="350" y="22" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#333">TSU Leverage Mechanism — how $575k generates 13–28× cash returns</text>
+
+  <!-- TSU grant box -->
+  <rect x="10" y="40" width="110" height="60" rx="3" fill="#faf5ff" stroke="#d8b4fe" stroke-width="1.5"/>
+  <text x="65" y="64" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#3b0764" font-weight="700">TSU Grant</text>
+  <text x="65" y="78" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#555">~$575k/yr</text>
+  <text x="65" y="92" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#555">3–4 advisors</text>
+
+  <!-- Arrow to advisory -->
+  <line x1="120" y1="70" x2="148" y2="70" stroke="#9333ea" stroke-width="1.5" marker-end="url(#ap)"/>
+
+  <!-- Advisory box -->
+  <rect x="148" y="40" width="140" height="60" rx="3" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1.5"/>
+  <text x="218" y="60" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#3b0764" font-weight="700">Embedded advisory</text>
+  <text x="218" y="75" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#555">Map USAID gaps</text>
+  <text x="218" y="89" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#555">CEA → reprioritize</text>
+
+  <!-- Arrow to three outputs -->
+  <line x1="288" y1="70" x2="316" y2="70" stroke="#9333ea" stroke-width="1.5" marker-end="url(#ap)"/>
+
+  <!-- Output 1: Budget reallocation -->
+  <rect x="316" y="20" width="175" height="34" rx="3" fill="#e9d5ff" stroke="#a855f7" stroke-width="1"/>
+  <text x="403" y="37" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#3b0764" font-weight="700">Budget reallocation to high-CE</text>
+  <text x="403" y="49" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#555">12–14% CE improvement on $20–40M envelope</text>
+
+  <!-- Output 2: Efficiency gains -->
+  <rect x="316" y="63" width="175" height="34" rx="3" fill="#e9d5ff" stroke="#a855f7" stroke-width="1"/>
+  <text x="403" y="80" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#3b0764" font-weight="700">Cost efficiencies within existing spend</text>
+  <text x="403" y="92" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#555">4–30% waste reduction identified</text>
+
+  <!-- Output 3: Crowded-in funding -->
+  <rect x="316" y="106" width="175" height="34" rx="3" fill="#e9d5ff" stroke="#a855f7" stroke-width="1"/>
+  <text x="403" y="123" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#3b0764" font-weight="700">GF / Gavi proposal support</text>
+  <text x="403" y="135" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#555">$2–20M crowded-in co-finance</text>
+
+  <!-- Arrow to result -->
+  <line x1="491" y1="37" x2="530" y2="70" stroke="#9333ea" stroke-width="1" stroke-dasharray="4 2"/>
+  <line x1="491" y1="80" x2="530" y2="80" stroke="#9333ea" stroke-width="1" stroke-dasharray="4 2"/>
+  <line x1="491" y1="123" x2="530" y2="90" stroke="#9333ea" stroke-width="1" stroke-dasharray="4 2"/>
+
+  <!-- Result box -->
+  <rect x="530" y="50" width="158" height="60" rx="3" fill="#3b0764" stroke="#3b0764"/>
+  <text x="609" y="71" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#fff" font-weight="700">13–28× cash return</text>
+  <text x="609" y="85" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#d8b4fe">≈ $16/DALY median</text>
+  <text x="609" y="98" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#d8b4fe">GiveWell-rated</text>
+
+  <!-- Marker -->
+  <defs>
+    <marker id="ap" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <polygon points="0 0, 7 3.5, 0 7" fill="#9333ea"/>
+    </marker>
+  </defs>
+
+  <!-- Note -->
+  <text x="350" y="165" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#888">The DALYs come from the reallocated health budget, not from the TA itself. This is a leverage CE structure.</text>
+  <text x="350" y="178" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#888">A $1M TSU needs 31% CE savings + 20% improvement across $8M+ influenced to clear the 10× bar (GiveWell's own threshold test).</text>
+</svg>
+<div class="svg-caption">TSU leverage mechanism. The critical dependency: the DALYs come from the envelope the TSU influences (government health budgets, GF proposals), not from the TA grant itself. Additionality is real but must be audited against domestic-spending displacement (Lu et al. estimate $0.14–0.43 displaced per $1 aid).</div>
+</div>
+
+<details>
+<summary>What TSU advisors specifically do in each of the five GiveWell-covered countries</summary>
+<div class="details-body">
+<h4>Country breakdown — GiveWell April 2025 grant ($4,657,500)</h4>
+<table>
+  <thead><tr><th>Country</th><th>Budget</th><th>Staffing</th><th>Priority activities</th><th>Specific context</th></tr></thead>
+  <tbody>
+    <tr><td>Nigeria (7 states + national)</td><td>$1,725,000</td><td>Larger team (~6–8 FTE for multi-state scope)</td><td>Map PEPFAR program losses across Bauchi, FCT, Ondo, Ogun, Gombe, Akwa Ibom, Enugu; support GF R16 proposal for HIV; identify domestic NESS/BHCPF reallocation opportunities</td><td>Nigeria was PEPFAR's largest single country program (~$680M/yr); the multi-state scope reflects the scale of cuts</td></tr>
+    <tr><td>Burkina Faso</td><td>$575,000</td><td>3–4 FTE</td><td>Map USAID malaria program losses (PMI was the primary external funder); support GF proposal for malaria; advise MoH on domestic budget prioritization for SSKI/LLINs</td><td>PMI-Burkina among the first cut in 2025; active Sahel conflict context limits some health system access</td></tr>
+    <tr><td>Malawi</td><td>$575,000</td><td>3–4 FTE</td><td>ART program protection (large PEPFAR footprint, ~$170M/yr); identify Global Fund emergency HIV grant opportunities; domestic fiscal-space analysis</td><td>Malawi among most PEPFAR-dependent nations; ART interruption risk was rated "critical" by UNAIDS</td></tr>
+    <tr><td>Uganda</td><td>$575,000</td><td>3–4 FTE</td><td>ART continuity planning; HIV prevention (PrEP scale-up for LEN); support GF proposal; liaison with Maisha Meds GF award for malaria commodity continuity</td><td>Uganda's domestic HIV spending is relatively strong vs. SSA peers; TSU focus on optimizing the remaining external envelope</td></tr>
+    <tr><td>Zambia</td><td>$575,000</td><td>3–4 FTE</td><td>ART + TB programs; Zambia had significant GHSC-PSM logistics support that terminated; partial logistics substitute advisory; GF 8th replenishment proposal support</td><td>Zambia's supply chain was heavily GHSC-PSM dependent; TSU here has a stronger logistics-advisory component than other countries</td></tr>
+    <tr><td>Global/cross-cutting</td><td>$632,500</td><td>Small global team</td><td>Country TSU augmentation; GF/Gavi proposal templates; knowledge management across countries; M&amp;E framework for displacement audit</td><td>Enables the country TSUs without requiring full duplicated expertise in each country</td></tr>
+  </tbody>
+</table>
+<h4>Pipeline countries (GiveWell's own unverified pipeline): Eswatini, Ghana, Ethiopia, Kenya, Lesotho, Cameroon</h4>
+<p>These six countries appear in GiveWell's verification-gap note — CHAI has relationships and pipeline in each but GiveWell did not verify government support. For a scale-out tranche, these represent the natural first-tier expansion with reduced relationship-building friction. <strong>Priority ranking for an OAIF TSU scale-out</strong>: Ethiopia (large PEPFAR program, weak domestic health financing), Mozambique (highly PEPFAR-dependent, large HIV burden), Kenya (better domestic financing but large program loss), Tanzania (similar). Cameroon and Lesotho have smaller programs; Ghana has stronger domestic fiscal capacity (less additionality).</p>
+<h4>PATH also received a TSU grant — what this means for crowding</h4>
+<p>GiveWell also funded PATH's TSU (<a href="https://www.givewell.org/research/grants/PATH-technical-support-unit-TSU-april-2025">GiveWell PATH TSU, April 2025</a>). This implies country-level crowding is possible — a CHAI TSU and a PATH TSU operating in the same country would have overlapping mandates. For an OAIF scale-out, require CHAI to coordinate with PATH (and MSH/other TSU providers) to avoid duplicate advisory in any single country. A simple "which countries are you already covering?" check before committing avoids this issue.</p>
+</div>
+</details>
+
+<details>
+<summary>The displacement caveat — why 13–28× is an upper bound</summary>
+<div class="details-body">
+<p>The leverage framing carries a specific empirical risk: development assistance for health is observed to displace domestic government health spending. <a href="https://ncbi.nlm.nih.gov/pmc/articles/PMC3348162/">Lu et al. (PMC3348162)</a> estimate that each $1 of external health aid displaces ~$0.14–0.43 of domestic government health spending; the estimate is contested and varies substantially by country (Rwanda: near-zero displacement; several lower-income SSA countries: high substitution effects).</p>
+<p>If the TSU's budget-reallocation advice is partially offset by governments reducing domestic health commitments in response to the reallocated external funding, the net leverage multiple falls. The 13–28× GiveWell estimate assumes net additive reallocation — a reasonable but not verified assumption. A displacement audit (pre-registered tracking of domestic health budget trends against a synthetic control) should be a condition on Year 2 renewal.</p>
+<p>Even with a 50% displacement rate, 6.5–14× cash is competitive with GiveWell top charities (~10× is the bar). The caveat matters for calibration; it does not reverse the recommendation.</p>
+</div>
+</details>
+
+<!-- =================== LENACAPAVIR =================== -->
+<h2 id="lenacapavir">Lenacapavir — the single strongest node in the CHAI portfolio</h2>
+
+<p>Lenacapavir (twice-yearly subcutaneous injectable PrEP) is the most efficacious HIV prevention intervention ever tested in a randomized trial. <a href="https://www.nejm.org/doi/full/10.1056/NEJMoa2407001">PURPOSE 1 (NEJM 2024)</a>: zero incident infections among 2,134 cisgender women in South Africa and Uganda who received lenacapavir — 100% efficacy vs. 16/1,000 person-years in the TDF/FTC arm. <a href="https://www.gilead.com/news/news-details/2024/full-efficacy-and-safety-results-for-gilead-investigational-twice-yearly-lenacapavir-for-hiv-prevention-presented-at-aids-2024">PURPOSE 2</a>: 96% efficacy reduction vs. TDF/FTC in a global trial including men, transgender women, and people who inject drugs. These are not observational data — they are well-powered, double-blind RCTs with adjudicated endpoints. The evidence quality is qualitatively stronger than almost anything else in this portfolio.</p>
+
+<p>Generic access is the only constraint. Gilead's originator list price is $28,218/person-year. CHAI's lenacapavir acceleration work — in partnership with Unitaid and Wits RHI — secured a <a href="https://www.clintonhealthaccess.org/news/unitaid-chai-wits-rhi-dr-reddys-lenacapavir-agreement/">generic access agreement in September 2025</a> targeting $40/person-year for LMICs by 2027, with Dr. Reddy's and Hetero as lead manufacturers. <a href="https://www.thelancet.com/journals/lanhiv/article/PIIS2352-3018(24)00239-X/fulltext">Lancet HIV modelling (Jamieson et al. 2024)</a> finds lenacapavir averts 12.3–18% of HIV infections over 10 years in high-incidence settings, with $/DALY clearing &lt;$500 at the $40/PY commodity floor.</p>
+
+<details>
+<summary>Lenacapavir science — the capsid inhibitor mechanism and why it enables twice-yearly dosing</summary>
+<div class="details-body">
+
+<svg viewBox="0 0 640 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:640px;display:block;margin:1rem auto;">
+  <!-- HIV virion -->
+  <circle cx="80" cy="100" r="58" fill="#fee2e2" stroke="#fca5a5" stroke-width="1.5"/>
+  <text x="80" y="88" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#991b1b" font-weight="700">HIV virion</text>
+  <!-- Capsid cone inside -->
+  <polygon points="60,80 100,80 110,125 50,125" fill="#fecaca" stroke="#ef4444" stroke-width="1"/>
+  <text x="80" y="108" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#991b1b">Capsid cone</text>
+  <text x="80" y="119" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#991b1b">(hexamer/pentamer lattice)</text>
+
+  <!-- Arrow: without LEN -->
+  <line x1="138" y1="80" x2="185" y2="80" stroke="#555" stroke-width="1.5" marker-end="url(#ag)"/>
+  <text x="161" y="73" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#555">Without LEN</text>
+
+  <!-- Normal uncoating -->
+  <rect x="185" y="55" width="135" height="55" rx="3" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
+  <text x="252" y="76" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#991b1b" font-weight="700">Normal uncoating</text>
+  <text x="252" y="90" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#555">Capsid disassembles in</text>
+  <text x="252" y="102" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#555">nucleus → RT + integration</text>
+
+  <!-- Arrow: with LEN -->
+  <line x1="138" y1="120" x2="185" y2="120" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#av)"/>
+  <text x="161" y="113" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#7c3aed">With LEN</text>
+
+  <!-- LEN blocks box -->
+  <rect x="185" y="100" width="135" height="55" rx="3" fill="#ede9fe" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="252" y="122" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#3b0764" font-weight="700">LEN binds hexamer groove</text>
+  <text x="252" y="136" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#555">Capsid locked in immature</text>
+  <text x="252" y="149" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#555">state → no integration</text>
+
+  <!-- Downstream: no integration -->
+  <line x1="320" y1="120" x2="360" y2="120" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#av)"/>
+  <rect x="360" y="100" width="155" height="55" rx="3" fill="#3b0764"/>
+  <text x="437" y="122" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#fff" font-weight="700">No HIV replication</text>
+  <text x="437" y="136" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#d8b4fe">Also blocks: nuclear pore import</text>
+  <text x="437" y="149" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#d8b4fe">+ reverse transcription</text>
+
+  <!-- LEN half-life note -->
+  <text x="437" y="170" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#888">Terminal t½ ~50 days</text>
+  <text x="437" y="182" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#888">→ twice-yearly dosing achievable</text>
+
+  <defs>
+    <marker id="ag" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <polygon points="0 0, 7 3.5, 0 7" fill="#555"/>
+    </marker>
+    <marker id="av" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <polygon points="0 0, 7 3.5, 0 7" fill="#7c3aed"/>
+    </marker>
+  </defs>
+</svg>
+
+<h4>The capsid inhibitor mechanism</h4>
+<p>Lenacapavir is the first-in-class HIV capsid inhibitor, developed by Gilead Sciences and FDA-approved in 2022 (initially for treatment-experienced HIV in combination with other agents). Its target is the HIV-1 capsid protein (CA, p24), which assembles from ~1,500 monomers into pentamers and hexamers that form a conical lattice encapsulating the viral genome, reverse transcriptase, and integrase. This lattice protects the viral contents during cell entry and early replication steps.</p>
+<p>LEN binds at a specific groove at the <em>interface between hexamers</em> — a hydrophobic pocket on the CA C-terminal domain that is also the binding site for the cellular cofactors CPSF6 and Nup153. By occupying this groove, LEN: (1) locks the capsid lattice in an abnormally stable conformation, preventing the normal disassembly ("uncoating") required for nuclear import and integration; (2) blocks the interaction with CPSF6 and nuclear pore machinery needed for nuclear transport; (3) at high concentrations, disrupts reverse transcription by preventing proper positioning of the RNA template within the capsid. The result is multi-stage inhibition — LEN acts during late stages of viral assembly in producer cells AND during early stages in newly infected cells, making resistance very difficult to select because mutations at the capsid hexamer interface typically compromise viral fitness severely.</p>
+<p><strong>Why the long half-life:</strong> LEN is highly lipophilic and binds extensively to plasma proteins and tissue. After subcutaneous injection into gluteal or abdominal tissue, it forms a depot that releases slowly. The terminal elimination half-life of ~50 days allows therapeutic plasma concentrations to be maintained for 6 months with a single 927mg subcutaneous dose (two injections at a single site). This half-life is fundamentally different from anything in existing PrEP (TDF/FTC daily oral; cabotegravir monthly or every 2-month injection). For populations where daily pill adherence is the barrier to PrEP access — adolescent girls, sex workers, people in unstable living situations — twice-yearly dosing removes the primary compliance obstacle.</p>
+
+<h4>PURPOSE trials — evidence summary</h4>
+<table>
+  <thead><tr><th>Trial</th><th>Population</th><th>Efficacy</th><th>Infections (LEN vs. control)</th><th>Comparator</th></tr></thead>
+  <tbody>
+    <tr><td>PURPOSE 1 (<a href="https://www.nejm.org/doi/full/10.1056/NEJMoa2407001">NEJM 2024</a>)</td><td>5,338 cisgender women, South Africa + Uganda</td><td><strong>100%</strong></td><td>0 vs. 16/1,000 person-years in TDF/FTC arm</td><td>TDF/FTC (Truvada daily oral)</td></tr>
+    <tr><td>PURPOSE 2 (<a href="https://www.gilead.com/news/news-details/2024/full-efficacy-and-safety-results-for-gilead-investigational-twice-yearly-lenacapavir-for-hiv-prevention-presented-at-aids-2024">CROI 2025</a>)</td><td>Global; men, transgender women, people who inject drugs</td><td><strong>96%</strong></td><td>2 vs. 26 in TDF/FTC arm (per 1,000 PY)</td><td>TDF/FTC daily oral</td></tr>
+  </tbody>
+</table>
+</div>
+</details>
+
+<details>
+<summary>Two honest caveats on the $100/DALY leverage estimate</summary>
+<div class="details-body">
+<h4>Caveat 1 — The leverage framing credits CHAI with donor-financed DALYs</h4>
+<p>The ~$100/DALY leverage number credits CHAI with DALYs financed by PEPFAR, Global Fund, CIFF, and Gates commodity budgets — not by CHAI's own $2–4M grant. The calculation: CHAI's attributed 2-year acceleration of generic availability → X million person-years of earlier access → Y averted infections → Z DALYs per CHAI dollar. This is legitimate only if the 2-year acceleration is (a) real, (b) attributable to CHAI specifically, and (c) not double-counted across the crowd of accelerators.</p>
+<p>The crowding is significant: Gilead signed direct licensing with six generic manufacturers in October 2024 in parallel with the CHAI/Unitaid pathway. The <a href="https://www.theglobalfund.org/en/news/2024/2024-12-17-global-fund-pepfar-coordinated-effort-2-million-people-lenacapavir-prep/">GF/PEPFAR coordinated effort targeting 2 million people on LEN-PrEP</a> and a <a href="https://www.gatesfoundation.org/ideas/media-center/press-releases/2025/09/hiv-prevention-lenacapavir">$912M Gates commitment</a> were announced independently. CHAI's marginal acceleration contribution is difficult to isolate. A pre-registered counterfactual (when would generic registration have occurred without CHAI involvement in each country?) should be a condition on the grant.</p>
+<h4>Caveat 2 — $40/PY is a commodity floor, not a delivered cost</h4>
+<p>Real-world PrEP service delivery in Zambia ran <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10021804/">$394–655/client-year</a> (PMC10021804) — a 10–16× premium over the commodity price. Delivered costs include clinic visits, counseling, adherence support, and structural enablers that are essential for PrEP effectiveness. The full-cost $/DALY framing ($222/DALY median, P10 $142, P90 $359) is more honest than the leverage framing. Even $222/DALY is optimistic if real-world delivery costs approach Zambian levels; LEN's advantages (no daily adherence required) should reduce some delivery costs but not clinic infrastructure.</p>
+<p>The defensible honest range: <strong>$100–250/DALY, additionality-gated, cash-competitive but not GiveWell top-charity class at current evidence.</strong> The RCT evidence is stronger than almost any other HIV prevention approach, which supports the upper end. The delivery-cost uncertainty pulls toward the lower end.</p>
+</div>
+</details>
+
+<!-- =================== CEA BY PATHWAY =================== -->
+<h2 id="cea">CEA by pathway — the full comparison</h2>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 680 250" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:0 auto;">
+  <text x="340" y="20" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#333">CHAI Pathways — $/DALY vs. $150 Threshold</text>
+
+  <!-- Y axis label -->
+  <text x="10" y="195" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#888" transform="rotate(-90,10,195)">$/DALY (log scale)</text>
+
+  <!-- Scale: log scale from $10 to $10,000 -->
+  <!-- $10 = x=80, $100 = x=230, $150 = x=278, $300 = x=380, $1000 = x=530, $5000 = x=648 -->
+  <!-- Using: x = 80 + 170 * log10(val/10) / log10(1000) -->
+  <!-- $10 → x=80, $100 → x=80+113.3=193, $150 → x=80+126.9=207, $1000 → x=80+226.7=307, $10000 → x=80+340=420 -->
+  <!-- Better: linear for display purpose; bars proportional to log scale value -->
+
+  <!-- Bars are horizontal, scale label shows actual $/DALY -->
+  <!-- Axis baseline x=80, log scale: scale(v) = 80 + 520 * log10(v/10) / log10(500) -->
+  <!-- log10(500) ≈ 2.699; scale($16) = 80 + 520 * log10(1.6)/2.699 = 80 + 520*0.204/2.699 = 80+39 = 119 -->
+  <!-- scale($100) = 80 + 520 * 1/2.699 = 80+193 = 273 -->
+  <!-- scale($150) = 80 + 520 * log10(15)/2.699 = 80 + 520*1.176/2.699 = 80+226 = 306 -->
+  <!-- scale($222) = 80 + 520 * log10(22.2)/2.699 = 80 + 520*1.346/2.699 = 80+259 = 339 -->
+  <!-- scale($4813) = 80 + 520 * log10(481.3)/2.699 = 80 + 520*2.682/2.699 = 80+517 = 597 -->
+  <!-- scale($8554) would go off scale -->
+
+  <!-- Row labels area -->
+  <text x="72" y="65" text-anchor="end" font-family="system-ui,sans-serif" font-size="11.5" fill="#333" font-weight="700">TSU fiscal-triage</text>
+  <text x="72" y="110" text-anchor="end" font-family="system-ui,sans-serif" font-size="11.5" fill="#333" font-weight="700">LEN leverage</text>
+  <text x="72" y="155" text-anchor="end" font-family="system-ui,sans-serif" font-size="11.5" fill="#333" font-weight="700">LEN full cost</text>
+  <text x="72" y="200" text-anchor="end" font-family="system-ui,sans-serif" font-size="11.5" fill="#333" font-weight="700">Supply-chain AI</text>
+
+  <!-- TSU bar: $16/DALY, scale ≈ 119 - 80 = 39px wide -->
+  <rect x="80" y="48" width="39" height="26" rx="2" fill="#064e3b"/>
+  <text x="124" y="65" font-family="system-ui,sans-serif" font-size="11" fill="#064e3b" font-weight="700">$16/DALY ✓</text>
+
+  <!-- LEN leverage: $100/DALY, scale ≈ 273-80=193px -->
+  <rect x="80" y="93" width="193" height="26" rx="2" fill="#1d4ed8"/>
+  <text x="278" y="110" font-family="system-ui,sans-serif" font-size="11" fill="#1d4ed8" font-weight="700">$100/DALY ✓</text>
+
+  <!-- LEN full cost: $222/DALY, scale ≈ 339-80=259px -->
+  <rect x="80" y="138" width="259" height="26" rx="2" fill="#7c3aed"/>
+  <text x="344" y="155" font-family="system-ui,sans-serif" font-size="11" fill="#7c3aed" font-weight="700">$222/DALY ≈</text>
+
+  <!-- Supply chain AI: $4,813/DALY — show as large bar hitting boundary, then ellipsis -->
+  <rect x="80" y="183" width="555" height="26" rx="2" fill="#991b1b"/>
+  <!-- Clipped at boundary -->
+  <text x="450" y="200" font-family="system-ui,sans-serif" font-size="11" fill="#fff" font-weight="700">$4,813/DALY ✗</text>
+
+  <!-- $150 threshold line -->
+  <line x1="306" y1="38" x2="306" y2="222" stroke="#dc2626" stroke-width="2" stroke-dasharray="5 3"/>
+  <text x="306" y="235" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#dc2626" font-weight="700">$150/DALY threshold</text>
+
+  <!-- Axis tick labels -->
+  <text x="80" y="230" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#aaa">$10</text>
+  <text x="193" y="230" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#aaa">$100</text>
+  <text x="339" y="230" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#aaa">$222</text>
+  <text x="520" y="230" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#aaa">$2k</text>
+  <text x="600" y="230" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#aaa">$5k</text>
+
+  <!-- Axis line -->
+  <line x1="80" y1="222" x2="635" y2="222" stroke="#ddd" stroke-width="1"/>
+
+  <!-- Note: log scale -->
+  <text x="635" y="247" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="#bbb">approximate log scale</text>
+</svg>
+<div class="svg-caption">Pathway comparison on log scale. The $150/DALY threshold (red dashed) is clearly crossed by TSU and lenacapavir (leverage frame); lenacapavir at full delivered cost is marginal; supply-chain AI is nowhere near. Funding the AI pathway as a "CHAI grant" is effectively a $4,813–8,554/DALY decision, not a $16/DALY one.</div>
+</div>
+
+<table>
+  <thead><tr><th>Pathway</th><th>Median $/DALY</th><th>P10</th><th>P90</th><th>P(≤$150)</th><th>Note</th></tr></thead>
+  <tbody>
+    <tr><td><strong>TSU fiscal-triage</strong></td><td><strong>$16</strong></td><td>$10</td><td>$27</td><td>~1.00</td><td>13–28× cash (GiveWell-rated); non-AI; displacement caveat</td></tr>
+    <tr><td><strong>Lenacapavir (leverage framing)</strong></td><td><strong>$100</strong></td><td>$45</td><td>$240</td><td>~0.65</td><td>Credits CHAI with donor-financed DALYs; crowding caveat</td></tr>
+    <tr><td>Lenacapavir (full drug cost)</td><td>$222</td><td>$142</td><td>$359</td><td>~0.08</td><td>More honest but delivery-cost optimistic; Zambia PrEP $394–655/client-yr</td></tr>
+    <tr><td><strong>Supply-chain analytics</strong></td><td><strong>$4,813</strong></td><td>$1,751</td><td>$14,527</td><td>~0.00</td><td>P(&lt;$800) = 0.009; not cash-competitive</td></tr>
+    <tr><td>AI-marginal (ML over classical rules)</td><td>$8,554</td><td>$2,482</td><td>$34,766</td><td>~0.00</td><td>Worse than full pathway — swapping AI→rules loses ≈0 DALYs</td></tr>
+    <tr><td>Portfolio (60% LEN / 40% analytics)</td><td>$164</td><td>$74</td><td>$385</td><td>~0.37</td><td>If you must take a position across all pillars; driven by the TSU/LEN piece</td></tr>
+  </tbody>
+</table>
+
+<!-- =================== $150 THRESHOLD =================== -->
+<h2 id="threshold">$150/DALY threshold analysis by pathway</h2>
+
+<div class="threshold-grid">
+  <div class="tg-cell pass">
+    <div class="tl">TSU fiscal-triage</div>
+    <div class="tv">$16</div>
+    <div style="font-size:11px;color:#555;margin:.2rem 0;">13–28× cash; P(≤$150) ≈ 100%</div>
+    <div class="ts">Strongly inside</div>
+  </div>
+  <div class="tg-cell pass">
+    <div class="tl">Lenacapavir (leverage)</div>
+    <div class="tv">$100</div>
+    <div style="font-size:11px;color:#555;margin:.2rem 0;">P(≤$150) ≈ 65%</div>
+    <div class="ts">Inside (additionality-gated)</div>
+  </div>
+  <div class="tg-cell warn">
+    <div class="tl">Lenacapavir (full cost)</div>
+    <div class="tv">$222</div>
+    <div style="font-size:11px;color:#555;margin:.2rem 0;">P(≤$150) ≈ 8%</div>
+    <div class="ts">Outside (delivery costs)</div>
+  </div>
+</div>
+<div class="threshold-grid" style="grid-template-columns:1fr 1fr;">
+  <div class="tg-cell fail">
+    <div class="tl">Supply-chain analytics</div>
+    <div class="tv">$4,813</div>
+    <div style="font-size:11px;color:#555;margin:.2rem 0;">P(≤$150) ≈ 0%</div>
+    <div class="ts">Far outside threshold</div>
+  </div>
+  <div class="tg-cell fail">
+    <div class="tl">AI-marginal (ML vs. rules)</div>
+    <div class="tv">$8,554</div>
+    <div style="font-size:11px;color:#555;margin:.2rem 0;">P(≤$150) ≈ 0%</div>
+    <div class="ts">Worst pathway</div>
+  </div>
+</div>
+
+<p>The threshold analysis maps exactly to the grant recommendation: fund the two pathways inside the threshold (TSU, lenacapavir leverage frame), do not fund the two outside it. The lenacapavir leverage-frame caveat: if CHAI's attribution claim cannot be verified (the crowding problem), the leverage-frame $/DALY should be discounted toward the full-cost frame — which is outside the threshold. Conditionality on the grant should include a pre-registered attribution counterfactual.</p>
+
+<!-- =================== USAID VACUUM =================== -->
+<h2 id="usaid">The USAID vacuum — what CHAI can and cannot backfill</h2>
+
+<p>The 2025 funding shock is structural, not cyclical. PEPFAR cut &gt;77% of implementing partners; GHSC-PSM — the supply chain management backbone for 73 countries on $1.15B/yr — is terminating with no designated successor. The <a href="https://www.theglobalfund.org/en/news/2026/2026-02-18-global-fund-board-welcomes-final-eighth-replenishment-outcome/">Global Fund 8th replenishment raised $12.64B vs. $18B ask (~30% short)</a>. The combined gap is in the $3–5B/yr range — roughly four to eight times CHAI's entire annual operating budget.</p>
+
+<p>The vacuum is overwhelmingly <strong>commodities + physical logistics + frontline labor</strong>. CHAI's analytics layer cannot backfill any of these. A supply-chain AI that improves forecast accuracy is useless if the commodities aren't purchased, shipped, or managed by a functioning logistics system — all of which are the things PEPFAR/GHSC-PSM funded that are now absent. There is a real risk that funders experiencing acute guilt about the USAID collapse will fund "supply chain AI" as a technically-adjacent response to a crisis that requires commodity financing and logistics infrastructure. This would be expensive inaction dressed as action.</p>
+
+<p>The one genuinely valuable CHAI response to the USAID shock — and the one that maps to what CHAI is actually skilled at — is the TSU fiscal-triage advisory: helping government health ministries navigate the worst of the cuts, identify which programs to protect first, and activate alternate financing. This is exactly the work GiveWell already rates at 13–28× cash. It also happens to have nothing to do with AI.</p>
+
+<!-- =================== GRANT STRUCTURE =================== -->
+<h2 id="approaches">Grant structure — three tranches, kill-switched</h2>
+
+<div class="node-card">
+  <div class="nh">Tranche 1 — TSU fiscal-triage scale-out <span class="cea">$5–8M, 18–24 months</span></div>
+  <div class="nb">
+    <p>Expand the TSU model to 10–15 high-cut countries beyond GiveWell's current five (Burkina Faso, Malawi, Nigeria, Uganda, Zambia). First-tier additions: Ethiopia (large PEPFAR program, weak domestic health financing), Mozambique (most PEPFAR-dependent nation by share of total health spending), Kenya (large program, established CHAI relationships), Tanzania (similar). Coordinate with PATH to avoid duplicate advisory in the same country.</p>
+    <p>Staffing: $575k/country/yr × 10 countries = $5.75M for a 10-country expansion, consistent with absorptive capacity. Country teams: 3–4 FTE each, embedded in MoH, supported by the global cross-cutting unit.</p>
+    <p><strong>Endpoint:</strong> $ of government/donor budget reallocated to higher-CE interventions, audited against a pre-registered counterfactual with domestic budget displacement tracking (Lu et al. methodology). <strong>Kill-switch:</strong> net reallocation &lt;15% of TSU-advised budget at 18 months, OR displacement audit shows &gt;50% substitution → do not renew. Require CHAI to report attributable reallocation by country against the GiveWell BOTEC benchmarks.</p>
+  </div>
+</div>
+
+<div class="node-card">
+  <div class="nh">Tranche 2 — Lenacapavir acceleration/market-shaping <span class="cea">$2–4M, one-time</span></div>
+  <div class="nb">
+    <p>Fund CHAI's market-shaping work on lenacapavir generic introduction: accelerating national regulatory registration timelines (EMA approved June 2025; country-by-country WHO-prequalification and national registration is the bottleneck), supporting health ministry formulary inclusion in high-incidence priority countries, and bridging financing for early rollout in high-incidence populations (sex workers, MSM, adolescent girls) where PEPFAR and GF funding is delayed.</p>
+    <p>Geographic prioritization: countries where CHAI has existing MoH relationships AND where HIV incidence remains &gt;1% in the priority population AND where PEPFAR/GF pipeline is &gt;6 months delayed. Likely top tier: South Africa (large adolescent girls pool, strong CHAI presence), Uganda, Zimbabwe, Mozambique, Tanzania.</p>
+    <p><strong>Endpoint:</strong> months of generic availability acceleration vs. a pre-registered counterfactual (when would registration have occurred without CHAI involvement) + PrEP person-years initiated in target populations vs. a control-arm comparison. <strong>Kill-switch:</strong> if attribution CI includes zero acceleration (i.e., CHAI's involvement demonstrably didn't matter given Gilead's direct licensing) → decline renewal. Only fund high-incidence settings where $/DALY &lt;$300 under conservative delivery-cost assumptions.</p>
+  </div>
+</div>
+
+<div class="node-card">
+  <div class="nh">Tranche 3 (optional) — Supply-chain analytics HEAD-TO-HEAD <span class="cea">≤$3M, one-time</span></div>
+  <div class="nb">
+    <p>If a funder is genuinely uncertain whether there is an AI effect in supply-chain analytics (and OAIF may be, given the AI mandate): fund a pre-registered stepped-wedge or cluster-RCT comparing ML forecasting vs. classical statistical rules on verified stockout-days and treatment continuity (not forecast accuracy) at 12 months. This is the value-of-information calculation: $3M to resolve whether the supply-chain AI pathway is a $4,813 or $292/DALY proposition.</p>
+    <p><strong>Kill-switch:</strong> if ML does not beat classical rules by a pre-specified margin at 12 months (CI lower bound excludes zero improvement in stockout-days) → publish the null and do not scale the AI layer. Require independent analysis by an entity other than CHAI or its partners. Only fund this if there is genuine equipoise — not as a courtesy or relationship-maintenance grant.</p>
+  </div>
+</div>
+
+<!-- =================== VERDICT =================== -->
+<h2 id="verdict">Verdict</h2>
+
+<p>CHAI is an access, market-shaping, and government fiscal-capacity organization operating during the most acute global health financing crisis since the AIDS epidemic. Its supply-chain "AI" is peripheral classical analytics at $4,813–8,554/DALY — not cash-competitive, not GiveWell-class, and structurally unable to reach the $150/DALY threshold because forecasting accuracy is not what kills patients. The binding constraint is now commodity financing and logistics infrastructure — neither of which ML can provide.</p>
+
+<p>Its cost-effective work — TSU fiscal-triage ($16/DALY, well inside threshold) and lenacapavir market-shaping ($100–222/DALY, conditionally inside threshold) — is exactly where there is no AI. Fund those as $7–15M in kill-switched tranches. Do not fund the AI premise. Do not fund open-ended scale without mortality measurement. Require displacement auditing on TSU and attribution verification on lenacapavir — both are tractable measurement problems that distinguish a $16/DALY grant from a $50/DALY or worse one.</p>
+
+<p>The PEPFAR/USAID shock creates genuine additionality for the TSU work: governments that just lost major bilateral funding partners need exactly the kind of fiscal-triage capacity CHAI's TSU model provides. That is the legitimate additionality story. It has nothing to do with machine learning.</p>
+
+<div style="margin-top:5rem;padding-top:2rem;border-top:1px solid #e0deda;">
+  <div style="font-family:system-ui,sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:#bbb;margin-bottom:1rem;">Deep research runs — click to read full analysis</div>
+  <ul style="list-style:none;margin:0;padding:0;font-family:system-ui,sans-serif;font-size:13px;">
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1_vV7TTnT0VjGdVDehcYiPGMBt4YimKPwdRXcz4d5Th4/edit">CHAI — CEA deepening, AI centrality, TSU + lenacapavir pathways (summary)</a></li>
+    <li style="margin-bottom:.5rem;"><a href="https://docs.google.com/document/d/1yjvN49V4b8jKQpWwjhtfmJl780RrhIqFvSBsqz1PAHQ/edit">CHAI — CEA deepening, AI centrality, TSU + lenacapavir pathways (full)</a></li>
+  </ul>
+</div>
+</main>
+</div>
+
+<script>
+let allOpen = false;
+function toggleAll() {
+  allOpen = !allOpen;
+  document.querySelectorAll('details').forEach(d => d.open = allOpen);
+  document.getElementById('expand-all-btn').textContent = allOpen ? 'Collapse all' : 'Expand all details';
+}
+
+const sections = document.querySelectorAll('h2[id]');
+const navLinks = document.querySelectorAll('nav ul li a[href^="#"]');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`nav a[href="#${e.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
