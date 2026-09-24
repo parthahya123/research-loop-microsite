@@ -158,7 +158,7 @@
     <li><a href="#verdict">Where we land</a></li>
     <li><a href="#disagreements">Key disagreements</a></li>
     <li><a href="#open-questions">Open cruxes</a></li>
-    <li><a href="#research">Research runs (77)</a></li>
+    <li><a href="#research">Research runs (79)</a></li>
     <div class="sep"></div>
     <h5>Technical detail</h5>
     <li><a href="#what-is-botec">How the modelling works</a></li>
@@ -178,9 +178,9 @@
 <main>
 <button id="expand-all-btn" onclick="toggleAll()">Expand all</button>
 
-<div class="eyebrow">NeoTest Diligence · September 2026 · 77 research runs + Akhil Bansal (CGD) dialogue</div>
+<div class="eyebrow">NeoTest Diligence · September 2026 · 79 research runs + Akhil Bansal (CGD) dialogue</div>
 <h1>NeoTest: A $60M Bet on Neonatal Sepsis Diagnostics</h1>
-<div class="dek">A proposed $60M advance market commitment would incentivize development of a rapid blood test for newborn sepsis. We spent 77 research iterations — plus a formal back-and-forth with the lead modeller at CGD — stress-testing whether it's worth it. Here are our biggest unresolved concerns.</div>
+<div class="dek">A proposed $60M advance market commitment would incentivize development of a rapid blood test for newborn sepsis. We spent 79 research iterations — plus a formal back-and-forth with the lead modeller at CGD — stress-testing whether it's worth it. Here are our biggest unresolved concerns.</div>
 
 <p style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:0.8em 1.1em;font-family:system-ui,sans-serif;font-size:12.5px;line-height:1.65;margin-top:0.8em"><strong>Jargon guide:</strong> <strong>DALY</strong> = one year of healthy life lost to death or disability. <strong>$/DALY</strong> = cost per healthy year saved; GiveWell's bar for "exceptional" is ~$50–100. <strong>AMC</strong> = Advance Market Commitment. <strong>SNCU</strong> = Special Newborn Care Unit. <strong>PSBI</strong> = Possible Serious Bacterial Infection. <strong>Se/Sp</strong> = sensitivity/specificity.</p>
 
@@ -398,7 +398,7 @@
 <div class="callout-red" style="margin-top:1.5rem">
   <div class="ct">The deployment paradox — the cheapest DALYs live in the smallest arms</div>
   <p>72% of all tests will be administered in Indian SNCUs operating in de-escalation mode (Mode B). These deliver $3,094/DALY corrected — the most expensive arm, dominated by stewardship value (HAI/NEC averted). The cheapest DALYs — $747–951/DALY — live in the 28% minority arms (SSA secondary hospitals and community/PHC) operating in initiation-gate mode (Mode A), where genuine treatment gaps exist. But the minority arms are gated on Se≥0.90 in neonatal capillary blood, which no existing candidate (including NeoSep-SAA at 73% specificity) has fully cleared. The AMC as designed pays $7/test uniformly — it optimizes for market development (India volume), not cost-effectiveness (SSA+community mortality). The tension is structural and irresolvable within the current design.</p>
-  <p style="margin-bottom:0"><strong>If Se≥0.90 is achieved (P≈20–30%):</strong> Portfolio collapses to ~$825–949/DALY stewardship-optimistic — still 10× GiveWell bar. <strong>If Se fails (P≈40–50%):</strong> only de-escalation value survives at $3,094+/DALY. <strong>Either way:</strong> this is not a mortality-DALY buy. Fund as market-shaping, with mortality as conditional upside.</p>
+  <p style="margin-bottom:0"><strong>If Se≥0.90 is achieved (P≈20–30%):</strong> Portfolio collapses to ~$825–949/DALY stewardship-optimistic — still 10× GiveWell bar. <strong>If Se fails (P≈40–50%):</strong> only de-escalation value survives at $3,094+/DALY. <strong>Community arm caveat (Run 78)</strong>: The community initiation-gate mechanism is contradicted by the CGD source model (which uses triage, f_cf=1.0) and by PSBI evidence (PHC f_cf 0.70–0.97). Under honest f_cf, community arm DALYs drop 63–74% and the arm is net harmful at median LMIC referral acceptance. This further concentrates portfolio value in the hospital arms. <strong>Either way:</strong> this is not a mortality-DALY buy. Fund as market-shaping, with mortality as conditional upside gated on high referral acceptance in community settings.</p>
 </div>
 
 <table>
@@ -457,6 +457,12 @@
       <td class="red">Without it: worse than doing nothing</td>
       <td>Safeguard at $1.75M converts −27,750 to +1,706 DALYs/yr (swing ~30,000 DALYs/yr). Clause 1 alone is necessary but not sufficient — all 5 clauses needed to prevent post-milestone Mode A drift. If Se≥0.95 is achieved, Clause 5 relaxes the audit requirement.</td>
       <td><span style="background:#fee2e2;color:#991b1b;font-size:11px;padding:.1em .4em;border-radius:2px;font-weight:700">RESOLVED: must include — non-negotiable</span></td>
+    </tr>
+    <tr>
+      <td><strong>Community/PHC f_cf and the initiation-gate mechanism — does the "59% of value" claim hold?</strong> The portfolio claims community/PHC arms (28% of tests) deliver 59% of value at $182–260/DALY via "initiation-gate" (f_cf ~0.30–0.50 = large treatment gap). <em>Run 78 finds this claim fails on two independent grounds.</em> (1) <strong>Wrong mechanism</strong>: The CGD/Chevalier source model (OFID ofaf652) actually uses <em>triage</em> at community level (f_cf = 1.0 — all infants get antibiotics; value comes from optimizing referral, not triggering treatment). Portfolio attributed a mechanism the source model doesn't use. (2) <strong>Wrong f_cf</strong>: Functioning PHCs with active PSBI programs show f_cf 0.70–0.97 (PSBI protocol mandates empiric antibiotics for all danger-sign presentations). PHCs without PSBI programs can't deploy POCTs (same inputs required). Low-f_cf and POCT deployment are mutually exclusive.</td>
+      <td class="red">Major structural concern — initiation-gate mechanism not supported at community level</td>
+      <td><strong>Under honest initiation-gate f_cf (0.70–0.80)</strong>: DALYs/test drops 63–74%, $/DALY rises to $450–760. Community arm share of portfolio DALYs: 12–20% (not 59%). <strong>Under CGD's actual triage mechanism</strong>: net harmful at median LMIC referral acceptance (18.7%); break-even = 37%. Kenya (referral ~70%) could support triage mode at $50–75/DALY; India and most of Nigeria cannot. Portfolio honest $/DALY range: <strong>$80–252</strong> (vs CGD's $58). <strong>New condition required</strong>: gate community AMC disbursement on demonstrated referral acceptance ≥37% in deployment setting. Community arm should be reclassified from initiation-gate to triage mode with referral acceptance as the primary swing variable.</td>
+      <td><span style="background:#fee2e2;color:#991b1b;font-size:11px;padding:.1em .4em;border-radius:2px;font-weight:700">RESOLVED: mechanism wrong; f_cf wrong; net harmful at typical referral rates without conditions</span></td>
     </tr>
     <tr>
       <td><strong>Market-shaping premium — does the non-DALY case close the gap to GiveWell bar?</strong> NeoTest conditional $/DALY (~$3,500–4,300) is 47–57× GiveWell bar. Three non-DALY components: (1) category creation / pathway spillover — $350–650 reduction, but mostly embedded in conditional $/DALY already; (2) AMR stewardship / insurance — $1,000–2,000 reduction, structurally capped because NeoTest is host-response triage, NOT AST/pathogen-ID (can't guide drug choice in a resistance scenario); (3) platform spillover for future indications — $600–1,500 reduction. Maximum combined credits: ~$1,950–4,150.</td>
