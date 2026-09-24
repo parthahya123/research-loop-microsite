@@ -158,7 +158,7 @@
     <li><a href="#verdict">Where we land</a></li>
     <li><a href="#disagreements">Key disagreements</a></li>
     <li><a href="#open-questions">Open cruxes</a></li>
-    <li><a href="#research">Research runs (62)</a></li>
+    <li><a href="#research">Research runs (74)</a></li>
     <div class="sep"></div>
     <h5>Technical detail</h5>
     <li><a href="#what-is-botec">How the modelling works</a></li>
@@ -178,9 +178,9 @@
 <main>
 <button id="expand-all-btn" onclick="toggleAll()">Expand all</button>
 
-<div class="eyebrow">NeoTest Diligence · September 2026 · 62 research runs + Akhil Bansal (CGD) dialogue</div>
+<div class="eyebrow">NeoTest Diligence · September 2026 · 74 research runs + Akhil Bansal (CGD) dialogue</div>
 <h1>NeoTest: A $60M Bet on Neonatal Sepsis Diagnostics</h1>
-<div class="dek">A proposed $60M advance market commitment would incentivize development of a rapid blood test for newborn sepsis. We spent 62 research iterations — plus a formal back-and-forth with the lead modeller at CGD — stress-testing whether it's worth it. Here are our biggest unresolved concerns.</div>
+<div class="dek">A proposed $60M advance market commitment would incentivize development of a rapid blood test for newborn sepsis. We spent 74 research iterations — plus a formal back-and-forth with the lead modeller at CGD — stress-testing whether it's worth it. Here are our biggest unresolved concerns.</div>
 
 <p style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:0.8em 1.1em;font-family:system-ui,sans-serif;font-size:12.5px;line-height:1.65;margin-top:0.8em"><strong>Jargon guide:</strong> <strong>DALY</strong> = one year of healthy life lost to death or disability. <strong>$/DALY</strong> = cost per healthy year saved; GiveWell's bar for "exceptional" is ~$50–100. <strong>AMC</strong> = Advance Market Commitment. <strong>SNCU</strong> = Special Newborn Care Unit. <strong>PSBI</strong> = Possible Serious Bacterial Infection. <strong>Se/Sp</strong> = sensitivity/specificity.</p>
 
@@ -232,14 +232,14 @@
 <h2 id="verdict">Where we land — and what we're still not sure about</h2>
 
 <div class="verdict">
-  <div class="vl">After 72 runs + Akhil rebuttal fact-checks — Sep 2026</div>
+  <div class="vl">After 74 runs + Akhil rebuttal fact-checks — Sep 2026</div>
   <p><strong>This analysis has been materially updated after Akhil Bansal's formal rebuttal.</strong> Two of our six corrections were errors on our part; a third has been revised downward. The program looks substantially more competitive than our prior estimate suggested.</p>
   <table style="margin:0.8em 0 1em;font-size:13px;">
     <tr><td style="padding:0.35em 0.7em;border:1px solid #e0deda;font-weight:600;background:#fafaf8;width:45%">What CGD claims (conservative)</td><td style="padding:0.35em 0.7em;border:1px solid #e0deda;width:55%">$48/DALY with 7-year counterfactual — potentially GiveWell-competitive</td></tr>
     <tr><td style="padding:0.35em 0.7em;border:1px solid #e0deda;font-weight:600;background:#dcfce7">Corrections we retract (our errors)</td><td style="padding:0.35em 0.7em;border:1px solid #e0deda">Leverage attribution (×2.5): the HTA is a textbook incremental CEA — health system costs cancel between arms. Our correction was a category error. Community deployment (×1.1): we misidentified the parameter; the model's 30% is total TAM penetration, not a CHW-specific term. Both retracted.</td></tr>
     <tr><td style="padding:0.35em 0.7em;border:1px solid #e0deda;font-weight:600;background:#fffbeb">Remaining corrections we defend</td><td style="padding:0.35em 0.7em;border:1px solid #e0deda">Adoption rate (×2.0, revised from ×2.5): GeneXpert reached only ~38% of TB patients in India after 14 years with every advantage NeoTest lacks. CGD's S-curve reaches 30% of PSBI in 5–8 years — faster than any comparable LMIC diagnostic. Timeline (×1.15): Akhil accepts ~2-year slip; our regulatory runs support ~2037 public-sector uptake.</td></tr>
     <tr><td style="padding:0.35em 0.7em;border:1px solid #e0deda;font-weight:600;background:#fffbeb">Under review</td><td style="padding:0.35em 0.7em;border:1px solid #e0deda">Test-trigger denominator (×1.5): Akhil disputes — says 8.5% PSBI is within our stated range and 22% is moderate-risk share <em>of</em> PSBI, not of births. Fact-check pending.</td></tr>
-    <tr><td style="padding:0.35em 0.7em;border:1px solid #e0deda;font-weight:600;background:#fafaf8">Revised implied range</td><td style="padding:0.35em 0.7em;border:1px solid #e0deda"><strong>Decision band: $1,000–2,500/DALY. Central $1,757.</strong> Portfolio-weighted across 3 arms: India SNCU de-escalation (72% of tests, $3,094/DALY corrected); SSA secondary initiation-gate (16%, $747); community (12%, $951). India arm contributes 41% of corrected DALYs despite 72% of volume — 59% of value lives in the minority initiation-gate arms conditional on Se≥0.90, which no candidate has demonstrated. Optimistic steel (both cruxes, LMIC HAI data): $949. Conservative (Se fails): $3,094+. CGD dm_tx 0.13 is a 6× overstatement; corrected blended = 0.022. Akhil has not responded to deployment-mode or dm_tx findings.</td></tr>
+    <tr><td style="padding:0.35em 0.7em;border:1px solid #e0deda;font-weight:600;background:#fafaf8">Revised implied range</td><td style="padding:0.35em 0.7em;border:1px solid #e0deda"><strong>Decision band: $1,000–2,500/DALY. Central ~$1,100 (revised from $1,757 after HAI CFR validation).</strong> Portfolio-weighted across 3 arms: India SNCU de-escalation (72% of tests, $3,094/DALY → revised ~$1,800 with validated HAI CFR 0.30); SSA secondary initiation-gate (16%, $747); community (12%, $951). The CGD model's hospital-acquired infection CFR of 0.12 is structurally inapplicable to Indian SNCUs — it is a transposed US NICU CLABSI figure. Indian SNCU data (Lancet GH 2024, five-district, n=6,612): culture-positive CFR 36.6%; organism-weighted central ~0.30 (70% MDR gram-negative vs HIC gram-positive dominant). Moving HAI CFR from 0.12→0.30 compresses portfolio from $1,757 to ~$1,100 central (defensible band $950–1,400). India arm contributes 41% of corrected DALYs despite 72% of volume — 59% of value lives in the minority initiation-gate arms conditional on Se≥0.90, which no candidate has demonstrated. CGD dm_tx 0.13 is a 6× overstatement; corrected blended = 0.022. Akhil has not responded to deployment-mode, dm_tx, or HAI CFR findings.</td></tr>
     <tr><td style="padding:0.35em 0.7em;border:1px solid #e0deda;font-weight:600;background:#fafaf8">What we recommend</td><td style="padding:0.35em 0.7em;border:1px solid #e0deda"><strong>This is a market-shaping/AMR-stewardship bet, not a $/DALY mortality buy.</strong> $1,757 central is 10–50× GiveWell bar. Proven neonatal interventions (HBB ~$12–23, KMC ~$40–80) are 20–80× better per DALY. The mortality case rests on the minority initiation-gate arms (28% of tests) conditional on Se≥0.90 in neonatal capillary blood — the single hardest technical gate, unmet by any candidate. Fund as market-shaping: <strong>~$5–10M one-time catalytic</strong> (pivotal trial funding, milestone prize), not $60M standing facility. Gate further disbursement on Kenya/Uganda deployment data and Se≥0.90 validation.</td></tr>
   </table>
   <p style="font-family:system-ui,sans-serif;font-size:13px;color:#555;margin-bottom:0.8em"><strong>Critical: without the deployment-mode safeguard, the AMC causes net harm.</strong> At Indian SNCUs (72% of tests), if the product is used in Mode A (initiation-gate) at f_cf=0.80 with Se&lt;0.90, it withholds antibiotics from sick neonates — false-negatives die. A 50/50 Mode A/Mode B default produces ~−27,750 DALYs/yr at Indian SNCUs alone. A five-clause safeguard converts this to +1,706 DALYs/yr benefit at a cost of ~$1.75M (2.9% of $60M). No diagnostic AMC has ever gated disbursement on clinical use mode — this would be first-of-kind but is the highest-return-per-dollar design change available. India's baseline de-escalation rate is 3–20% nationally (91% of neonatologists say they practice stewardship; &lt;10% actually stop by 72h — the largest guideline-practice gap in the analysis).</p>
@@ -249,11 +249,11 @@
 <div class="metrics">
   <div class="metric" style="border-top: 3px solid #b91c1c;">
     <div class="mv">$1,000–2,500</div>
-    <div class="ml">Decision band — portfolio-weighted, all corrections. Central $1,757. 10–50× GiveWell bar.</div>
+    <div class="ml">Decision band — portfolio-weighted, all corrections. Central ~$1,100 (revised from $1,757 after Indian SNCU HAI CFR validated at 0.30 vs CGD's 0.12). Still 11–25× GiveWell bar.</div>
   </div>
   <div class="metric hl" style="border-top: 3px solid var(--accent);">
-    <div class="mv">$825–950</div>
-    <div class="ml">Best-case: SSA+community only ($825) or India stewardship-optimistic ($949). Still 10× GiveWell.</div>
+    <div class="mv">~$1,100</div>
+    <div class="ml">Revised central after HAI CFR validation. HAI CFR 0.30 central (0.25–0.40 range) is organism-weighted (70% MDR gram-negative); CGD's 0.12 is HIC-anchored and inapplicable.</div>
   </div>
   <div class="metric" style="border-top: 3px solid #d1d5db;">
     <div class="mv">$10–15M</div>
@@ -339,7 +339,7 @@
 
 <h3 style="margin-top:2.5rem">The one remaining genuine dispute: adoption speed</h3>
 
-<p>After retracting corrections 1 and 4, the adoption correction (correction 3) is now the dominant driver of the gap between CGD's $48 and our ~$169. The question is not whether the model correctly defines its parameters — it does — but whether the S-curve speed is calibrated correctly.</p>
+<p>After retracting corrections 1 and 4, the adoption correction (correction 3) is now the dominant driver of the gap between CGD's $48 and our ~$169. The question is not whether the model correctly defines its parameters — it does — but whether the S-curve speed is calibrated correctly. (Note: the portfolio arm analysis below has separately validated a ~$1,100 portfolio central after correcting the India SNCU HAI CFR from CGD's 0.12 to the evidenced 0.30 — see the verdict table above.)</p>
 
 <p>CGD calibrates the adoption curve to malaria RDTs (~48% of febrile children in Africa by year 8) and GeneXpert (which Akhil reads as ~47% of TB diagnoses globally). We agree these are the right analogues. The dispute is whether NeoTest's diffusion speed will match them.</p>
 
@@ -393,7 +393,7 @@
   <p style="margin-bottom:0"><strong>Bottom line:</strong> The regulatory timeline correction (2031 → 2037) is now supported by three independent lines of evidence. It is no longer a "disputed" crux — it is a settled correction. Akhil's optimistic case on timeline requires conditions that do not currently exist.</p>
 </div>
 
-<p><strong>After Akhil's rebuttal and nine additional research runs, the honest portfolio range is $1,000–2,500/DALY (central $1,757).</strong> Two of our original corrections were retracted. The dominant factors driving the portfolio estimate are: (1) India SNCU arm (72% of tests) operates in de-escalation mode at ~0.013 DALYs/test → $3,094/DALY corrected; (2) the minority initiation-gate arms (SSA secondary + community, 28% of tests) deliver $747–951/DALY but are entirely conditional on Se≥0.90 in neonatal capillary blood, which no candidate has yet demonstrated; (3) CGD dm_tx = 0.13 is a 6× overstatement of the global blended (corrected ~0.022). This is <strong>not a $/DALY buy</strong>. It is a market-shaping/AMR-stewardship bet. Akhil has not responded to the deployment-mode or dm_tx findings.</p>
+<p><strong>After Akhil's rebuttal and 11 additional research runs, the honest portfolio range is $1,000–2,500/DALY (central ~$1,100, revised from $1,757 after Indian SNCU HAI CFR validation).</strong> Two of our original corrections were retracted. The dominant factors driving the portfolio estimate are: (1) India SNCU arm (72% of tests) operates in de-escalation mode at ~0.013 DALYs/test → $3,094/DALY corrected; (2) the minority initiation-gate arms (SSA secondary + community, 28% of tests) deliver $747–951/DALY but are entirely conditional on Se≥0.90 in neonatal capillary blood, which no candidate has yet demonstrated; (3) CGD dm_tx = 0.13 is a 6× overstatement of the global blended (corrected ~0.022). This is <strong>not a $/DALY buy</strong>. It is a market-shaping/AMR-stewardship bet. Akhil has not responded to the deployment-mode or dm_tx findings.</p>
 
 <div class="callout-red" style="margin-top:1.5rem">
   <div class="ct">The deployment paradox — the cheapest DALYs live in the smallest arms</div>
@@ -447,10 +447,10 @@
       <td><span style="background:#fffbeb;color:#92400e;font-size:11px;padding:.1em .4em;border-radius:2px;font-weight:700">OPEN — AMC design fix needed</span></td>
     </tr>
     <tr>
-      <td><strong>NeoSep-SAA specificity:</strong> binding constraint is specificity (73% in single-site neonatal study), not sensitivity (92%). The WHO TPP floor is 75% specificity. Five exploitable gaps in the current milestone spec — no reference standard definition, no multi-site requirement, no adjudicator, no capillary mandate, no price commitment.</td>
+      <td><strong>NeoSep-SAA specificity:</strong> binding constraint is specificity (73% in single-site Uganda study, n=714), not sensitivity (92%). The WHO TPP hospital floor is 80%; our milestone gate is 75%. <em>Is 73% a hard biological wall or a remediable study artifact?</em> Decomposition: ~5–7pp is reference-standard inflation (blood culture misses 60% of true infections), ~5–8pp is the LFA fixed-threshold format gap vs ROC-optimized lab assay, ~3–5pp is population-specific stress (HIE elevates SAA to 146.9 µg/mL without infection). Biological floor ~70–75% in high-stress populations.</td>
       <td class="red">Worse — blocks prize eligibility</td>
-      <td>NeoSep-SAA must demonstrate ≥75% specificity in a rigorous multi-site consecutive-enrollment study to clear even the floor. A game-proof 7-element spec reduces P(any product qualifies by 2035) from naive ~30% to ~15–20%. NeoSep-SAA is the only plausible candidate within 5 years; MeMed BV (37.5% neonatal sensitivity) and all others fail outright.</td>
-      <td><span style="background:#fffbeb;color:#92400e;font-size:11px;padding:.1em .4em;border-radius:2px;font-weight:700">OPEN — specificity in multi-site study</span></td>
+      <td><strong>P(Sp≥75%) with reader-assisted semi-quantification: 0.55–0.70.</strong> P(Sp≥75%) with dual-strip SAA+CRP (lab evidence: 98.3% combined Sp, PMC11780256; POC-discounted ~85–95%): <strong>0.80–0.90</strong>. CRP LFT costs $1–2 additional. Central P(Sp≥75%) = 0.50–0.60; P(Se≥85% AND Sp≥75%) = 0.40–0.55. Sharma 2024 India POC-SAA achieved 80.4% Sp at AIIMS — proves 75% is achievable at POC in LMIC. <strong>The specificity gate is the single largest technical risk in the NeoTest portfolio</strong> (59% of value gated on it). Funder must require reader + CRP dual-strip arm in validation study; gate milestone on EITHER SAA alone OR SAA+CRP meeting 75%.</td>
+      <td><span style="background:#fffbeb;color:#92400e;font-size:11px;padding:.1em .4em;border-radius:2px;font-weight:700">PARTLY RESOLVED — P(Sp≥75%) = 0.50–0.60 alone, 0.80–0.90 w/ CRP arm</span></td>
     </tr>
     <tr>
       <td><strong>Deployment-mode safeguard — 5-clause framework:</strong> Without conditionality, the AMC (50/50 Mode A/B default) causes ~−27,750 DALYs/yr at Indian SNCUs. Five clauses costing ~$1.75M convert this to +1,706 DALYs/yr. Clause 1 (pivotal study design gate) is the single most important — mandates de-escalation protocol in pivotal trial, no withholding arm, costs $0. The safeguard's own $/DALY ≈ $130 (GiveWell-adjacent). India baseline de-escalation &lt;10% nationally despite 91% of neonatologists claiming stewardship — largest guideline-practice gap in the analysis. No diagnostic AMC has ever gated on clinical use mode.</td>
@@ -468,9 +468,9 @@
 </table>
 
 <div class="note" style="margin:1.5rem 0">
-  <div class="nt">Optimistic scenario and portfolio reconciliation (Sep 2026)</div>
-  <p style="margin-bottom:0.6em">Running the full model with both cruxes resolved in Akhil's favor: <strong>$299/DALY at STEEL DALYs/test (0.042)</strong>. Portfolio reconciliation reveals the $299 sits at P10–P20 of an honest distribution: it requires 1.35× on clinical parameters AND 2.3× lighter funder corrections than the portfolio-weighted estimate. Reconciled: the $299 optimistic ≈ the $949 stewardship-optimistic scenario ÷ 3.1× (combined clinical + correction gap). The honest portfolio central is <strong>$1,757/DALY</strong>; decision band $1,000–2,500.</p>
-  <p style="margin-bottom:0">NeoTest is 10–50× worse than GiveWell alternatives at the portfolio central. Even the stewardship-optimistic scenario ($949) is 10× worse. The single most important binary is whether Se≥0.90 is achieved in neonatal capillary blood — this gates 59% of all portfolio value. The dominant secondary uncertainty is the India SNCU HAI CFR anchor (LMIC data: CFR~0.25–0.37 → $949; HIC anchor: CFR~0.12 → $2,453). Neither is knowable in advance.</p>
+  <div class="nt">Optimistic scenario, portfolio reconciliation, and HAI CFR correction (Sep 2026)</div>
+  <p style="margin-bottom:0.6em">Running the full model with both cruxes resolved in Akhil's favor: <strong>$299/DALY at STEEL DALYs/test (0.042)</strong>. Portfolio reconciliation reveals the $299 sits at P10–P20 of an honest distribution: it requires 1.35× on clinical parameters AND 2.3× lighter funder corrections than the portfolio-weighted estimate. <strong>HAI CFR update: Indian SNCU HAI CFR validated at 0.25–0.40, central 0.30 — 2.5× the CGD anchor of 0.12.</strong> CGD's 0.12 aligns with US NICU CLABSI data; Indian SNCUs are 70% MDR gram-negative (not gram-positive dominant), Level II care (not Level III–IV). Moving HAI CFR to 0.30 compresses portfolio central from $1,757 to <strong>~$1,100</strong>; decision band $950–1,400.</p>
+  <p style="margin-bottom:0">NeoTest is 11–25× worse than GiveWell alternatives at the revised portfolio central (~$1,100). Even the stewardship-optimistic scenario (~$949) is 10× worse. The single most important binary is whether Se≥0.90 AND Sp≥75% are achieved in neonatal capillary blood — these gate 59% of all portfolio value. <strong>Specificity is the binding constraint</strong>: P(Sp≥75%) = 0.50–0.60 with reader-assisted multi-site study; 0.80–0.90 with CRP dual-strip arm ($1–2 additional). This is now the largest quantified risk to the portfolio.</p>
 </div>
 
 <p><strong>If the AMC is funded at all, the deployment-mode safeguard is non-negotiable.</strong> An unconditioned AMC at Indian SNCUs causes net harm. The five-clause safeguard costs ~$1.75M (2.9% of $60M) and converts the investment from −27,750 to +1,706 DALYs/yr. The safeguard itself has a $/DALY of ~$130 — the single most cost-effective component of the entire program. Clause 1 (pivotal study design gate requiring de-escalation protocol) should be added immediately at no cost. The other four clauses should be non-negotiable conditions before milestone disbursement.</p>
@@ -485,7 +485,7 @@
 
 <p>CGD's Akhil Bansal built the original model. His headline: $89/DALY — better than bed nets. CGD also ran a conservative version (halved adoption, 4% discount rate): $119/DALY. We built an independent model and got $111/DALY — essentially the same answer through a different route. That close agreement was actually suspicious: it obscured three large errors that largely cancelled out.</p>
 
-<p>After 72 research runs and Akhil's formal rebuttal, the revised honest range is ~$110–170/DALY — potentially GiveWell-competitive depending on adoption speed. Two of our original six corrections were retracted as errors; the dominant remaining correction is adoption speed (×2.0). See the "Revised decomposition" section above for current analysis. The original $111/DALY comparison is preserved below for historical context.</p>
+<p>After 74 research runs and Akhil's formal rebuttal, the revised honest range is ~$110–170/DALY — potentially GiveWell-competitive depending on adoption speed. Two of our original six corrections were retracted as errors; the dominant remaining correction is adoption speed (×2.0). See the "Revised decomposition" section above for current analysis. The original $111/DALY comparison is preserved below for historical context.</p>
 
 <p><em>The original $111 model used these structural choices:</em></p>
 
@@ -500,7 +500,7 @@
 
 <!-- ===================== SCORECARD ===================== -->
 <h2 id="scorecard">Original side-by-side scorecard</h2>
-<div class="note"><div class="nt">Context — historical scorecard</div>This scorecard compares our original model against CGD's. After 72 research runs and Akhil's formal rebuttal, the revised range is <strong>~$110–170/DALY</strong>. Two original corrections (leverage ×2.5, community ×1.1) were retracted as errors; adoption (×2.0, revised reasoning) and timeline (×1.15) corrections remain. See the "Revised decomposition" section for the current analysis.</div>
+<div class="note"><div class="nt">Context — historical scorecard</div>This scorecard compares our original model against CGD's. After 74 research runs and Akhil's formal rebuttal, the revised range is <strong>~$110–170/DALY</strong>. Two original corrections (leverage ×2.5, community ×1.1) were retracted as errors; adoption (×2.0, revised reasoning) and timeline (×1.15) corrections remain. See the "Revised decomposition" section for the current analysis.</div>
 
 <table>
   <thead>
