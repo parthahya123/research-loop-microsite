@@ -82,7 +82,6 @@
   ul.bl, ol.bl { margin: .5rem 0 1.2rem 1.7rem; }
   ul.bl li, ol.bl li { margin-bottom: .5rem; }
 
-  /* Evidence scorecard */
   .scorecard { display: grid; gap: 0; margin: 1.5rem 0 2rem; border: 1px solid var(--border); }
   .sc-row { display: grid; grid-template-columns: 2fr 1fr 2fr; border-bottom: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 13px; }
   .sc-row:last-child { border-bottom: none; }
@@ -95,7 +94,6 @@
   .badge.red { background: #fee2e2; color: #991b1b; }
   .badge.grey { background: #f3f4f6; color: #374151; }
 
-  /* Staging */
   .stage-grid { display: grid; gap: 0; margin: 1.5rem 0 2.5rem; }
   .stage { border: 1px solid var(--border); border-bottom: none; padding: 1.25rem 1.4rem; }
   .stage:last-child { border-bottom: 1px solid var(--border); }
@@ -111,13 +109,6 @@
   .kill-flag { margin-top: .6rem; background: #fef3c7; border: 1px solid #fde68a; padding: .5rem .9rem; font-size: 12px; color: #92400e; }
   .kill-flag .kl { font-size: 10px; text-transform: uppercase; letter-spacing: .07em; color: #b45309; margin-bottom: .2rem; }
 
-  /* Sensitivity bars */
-  .sensitivity-bar { margin: .5rem 0 1.1rem; }
-  .sens-label { font-family: system-ui, sans-serif; font-size: 12px; color: #333; display: flex; justify-content: space-between; margin-bottom: .25rem; }
-  .sens-track { height: 8px; background: #e5e7eb; border-radius: 2px; position: relative; }
-  .sens-fill { height: 100%; border-radius: 2px; }
-
-  /* Binary scenarios */
   .binary { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0 2rem; }
   .bin-card { border: 1px solid var(--border); padding: 1.15rem 1.25rem; font-family: system-ui, sans-serif; font-size: 13px; line-height: 1.65; }
   .bin-card.optimistic { border-color: #6ee7b7; background: #f0fdf4; }
@@ -140,12 +131,11 @@
   <h5>This report</h5>
   <ul>
     <li><a href="#idea">The idea</a></li>
-    <li><a href="#what-we-know">Evidence scorecard</a></li>
+    <li><a href="#what-we-know">What's been shown</a></li>
     <li><a href="#the-bet">The open questions</a></li>
-    <li><a href="#bistable">Stage 2 release design</a></li>
-    <li><a href="#durability">Durability &amp; resistance</a></li>
-    <li><a href="#reach">Realistic reach</a></li>
-    <li><a href="#sensitivities">Key sensitivities</a></li>
+    <li><a href="#stage2">The field release</a></li>
+    <li><a href="#durability">Will it last?</a></li>
+    <li><a href="#reach">How many people</a></li>
     <li><a href="#staging">Staged funding</a></li>
     <li><a href="#cea">Cost-effectiveness</a></li>
     <li><a href="#comparators">Comparators</a></li>
@@ -154,38 +144,36 @@
     <li><a href="#verdict">Verdict</a></li>
   </ul>
   <div class="sep"></div>
-  <h5>Phase 1 loops (Aug 2026)</h5>
+  <h5>Phase 1 research (Aug 2026)</h5>
   <ul>
     <li><a href="https://docs.google.com/document/d/1liMP0V_TbC15mUbaqjVOh6wOjO5WFi9CxcDA8meL148/edit" target="_blank">Investment memo (full)</a></li>
     <li><a href="https://docs.google.com/document/d/1hEPPwiMFQwzGQKFTCGuc-dwKflVCGfZLKXVGVT6CBH4/edit" target="_blank">Investment memo (summary)</a></li>
-    <li><a href="https://docs.google.com/document/d/1mWQEOO17p5t23ogs0GB5VcNS6tvfzUpjjIzNFhVu_Qg/edit" target="_blank">Pop dynamics model (full)</a></li>
-    <li><a href="https://docs.google.com/document/d/1KvS11w8ZbTh9dGpKh2INBBb75AKl85PlA93pgqtPVVs/edit" target="_blank">Pop dynamics (summary)</a></li>
+    <li><a href="https://docs.google.com/document/d/1mWQEOO17p5t23ogs0GB5VcNS6tvfzUpjjIzNFhVu_Qg/edit" target="_blank">Population dynamics (full)</a></li>
+    <li><a href="https://docs.google.com/document/d/1KvS11w8ZbTh9dGpKh2INBBb75AKl85PlA93pgqtPVVs/edit" target="_blank">Population dynamics (summary)</a></li>
     <li><a href="https://docs.google.com/document/d/14TSfXLhn90hIYxyGNA22aL2WmMTi-eFk737yArvPF3s/edit" target="_blank">Regulatory pathway (full)</a></li>
     <li><a href="https://docs.google.com/document/d/1PMkLAWJdrlr5qYHhOa6AjYDBoHysLWXINWWwOw-Gwxk/edit" target="_blank">Regulatory (summary)</a></li>
   </ul>
-  <h5>Concept-note loops (Sep 2026)</h5>
+  <h5>Concept-note research (Sep 2026)</h5>
   <ul>
     <li><a href="https://docs.google.com/document/d/1hRVnvQWJ7ycPh1F-1fNYE_sSSwrR6OZXVzz2PLTSTgw/edit" target="_blank">Main cause report (full)</a></li>
     <li><a href="https://docs.google.com/document/d/1VullE0K5BG33Ue6bYJketakwPDiMs4adXWxH1reYsks/edit" target="_blank">Main cause report (summary)</a></li>
-    <li><a href="https://docs.google.com/document/d/19rHUQQ26HmBkbnaqlqD5am3Yr_yto1z5IeGkY8i5PNs/edit" target="_blank">Revised CEA + p(success) (full)</a></li>
-    <li><a href="https://docs.google.com/document/d/1TnUZTK6HV3fPZIu27EhyiVCdRelYXVCbQGsIqaLZCRk/edit" target="_blank">Revised CEA (summary)</a></li>
-    <li><a href="https://docs.google.com/document/d/1HnwurWFS6wiyp_SgTOR-m3U5NOlMzQiLmzKhr4tJcLw/edit" target="_blank">Ahero seasonal dynamics (full)</a></li>
-    <li><a href="https://docs.google.com/document/d/1xCD3oxAG68yu2jZdrTVuV3LZ7qUqsPSNvJlABDTHv9c/edit" target="_blank">Ahero dynamics (summary)</a></li>
+    <li><a href="https://docs.google.com/document/d/19rHUQQ26HmBkbnaqlqD5am3Yr_yto1z5IeGkY8i5PNs/edit" target="_blank">Revised cost model (full)</a></li>
+    <li><a href="https://docs.google.com/document/d/1TnUZTK6HV3fPZIu27EhyiVCdRelYXVCbQGsIqaLZCRk/edit" target="_blank">Revised cost model (summary)</a></li>
+    <li><a href="https://docs.google.com/document/d/1HnwurWFS6wiyp_SgTOR-m3U5NOlMzQiLmzKhr4tJcLw/edit" target="_blank">Field data analysis (full)</a></li>
+    <li><a href="https://docs.google.com/document/d/1xCD3oxAG68yu2jZdrTVuV3LZ7qUqsPSNvJlABDTHv9c/edit" target="_blank">Field data (summary)</a></li>
     <li><a href="https://docs.google.com/document/d/1eACW28PyFb5Z6rdYSG4oaUQkw-5e7iAEQCnt4Pto05Y/edit" target="_blank">Realistic reach (full)</a></li>
     <li><a href="https://docs.google.com/document/d/1C_b4V3dfUkoqrA6xtdh048UeqRTAIrCyevP3-qXBJUU/edit" target="_blank">Realistic reach (summary)</a></li>
-    <li><a href="https://docs.google.com/document/d/1l2ed9Lowdx-K2eX6OMmoRUSliKnhYnMJQ4NZQCIkfnQ/edit" target="_blank">Spore/Moina delivery (full)</a></li>
-    <li><a href="https://docs.google.com/document/d/1Lxm7XAukwcRseKPLEYJUUMJ9kFm6z2GSKQRwexNUQXk/edit" target="_blank">Spore/Moina (summary)</a></li>
-    <li><a href="https://docs.google.com/document/d/1o4XB2FSES9gWR8AsL2njqbdT4WYc5lCAqKR0uzgJm0g/edit" target="_blank">Bistable dynamics (full)</a></li>
-    <li><a href="https://docs.google.com/document/d/1xpuZDoa7ZGG2ce_sFEy36KHLKTZJ6o1S_6f6I5zT8oE/edit" target="_blank">Bistable dynamics (summary)</a></li>
-    <li><a href="https://docs.google.com/document/d/1_TzlyquAyCdCpQtJx-YyYKzy5gLwEis2Y0AbHb2g3lE/edit" target="_blank">Resistance + durability (full)</a></li>
-    <li><a href="https://docs.google.com/document/d/14cgWD02_Z5wEWKlkJNejpSh7mou2EdpWEwsQGZtRT8U/edit" target="_blank">Resistance (summary)</a></li>
+    <li><a href="https://docs.google.com/document/d/1l2ed9Lowdx-K2eX6OMmoRUSliKnhYnMJQ4NZQCIkfnQ/edit" target="_blank">Delivery route (full)</a></li>
+    <li><a href="https://docs.google.com/document/d/1Lxm7XAukwcRseKPLEYJUUMJ9kFm6z2GSKQRwexNUQXk/edit" target="_blank">Delivery route (summary)</a></li>
+    <li><a href="https://docs.google.com/document/d/1o4XB2FSES9gWR8AsL2njqbdT4WYc5lCAqKR0uzgJm0g/edit" target="_blank">Field release design (full)</a></li>
+    <li><a href="https://docs.google.com/document/d/1xpuZDoa7ZGG2ce_sFEy36KHLKTZJ6o1S_6f6I5zT8oE/edit" target="_blank">Field release design (summary)</a></li>
+    <li><a href="https://docs.google.com/document/d/1_TzlyquAyCdCpQtJx-YyYKzy5gLwEis2Y0AbHb2g3lE/edit" target="_blank">Durability (full)</a></li>
+    <li><a href="https://docs.google.com/document/d/14cgWD02_Z5wEWKlkJNejpSh7mou2EdpWEwsQGZtRT8U/edit" target="_blank">Durability (summary)</a></li>
   </ul>
   <div class="sep"></div>
-  <h5>Source</h5>
+  <h5>Source document</h5>
   <ul>
-    <li><a href="#" style="color:#aaa;cursor:default;">SYMBIOVECTOR concept note, Sep 14 2026</a></li>
-    <li><a href="#" style="color:#aaa;cursor:default;">Mfangnia et al. 2026, Sci Rep</a></li>
-    <li><a href="#" style="color:#aaa;cursor:default;">Herren et al. 2020, Nat Commun</a></li>
+    <li><a href="../SYMBIOVECTOR_SCALE14SEPT2026.docx">SYMBIOVECTOR concept note, Sep 2026</a></li>
   </ul>
 </nav>
 
@@ -194,247 +182,202 @@
 
 <div class="eyebrow">Cause Area Report · September 2026</div>
 <h1>Microsporidia MB</h1>
-<div class="dek">A naturally occurring microbe already living inside malaria mosquitoes in Africa blocks malaria transmission and can spread itself through wild mosquito populations. SYMBIOVECTOR (led by ICIPE) is asking for $50M over five years across three countries (Kenya, Rwanda, Benin) to take it from field-validated discovery to regional deployment.</div>
+<div class="dek">A tiny, naturally occurring microbe already living inside malaria-carrying mosquitoes in Kenya appears to make those mosquitoes completely unable to transmit malaria — and it spreads on its own through mosquito populations. The team behind it (SYMBIOVECTOR, run out of Africa's leading insect research institute) is asking for $50M over five years to prove it works in the real world and deploy it across three countries.</div>
 
 <div class="verdict">
   <div class="vl">Bottom line</div>
-  <p><strong>Fund Stage 1 (~$9M) now. Co-fund Stage 2 (~$24M, alongside Open Philanthropy, Gates, Wellcome) conditional on Stage 1 gate clearing. Do not commit to Stage 3 ($17M) until open-field prevalence data exists.</strong> The programme has more evidence than most early-stage global health bets — cage stability at ~80% for 2+ years, 37,879 mosquitoes screened over 30 months in the field showing ≥49.3% transmission-blocking, and a delivery route (spore-seeding via Moina microcrustaceans) that removes the need for mass mosquito rearing. But the gap between lab cages and wild field populations has never been crossed, and our bistable dynamics run shows that a self-locking "seed once, done forever" outcome appears in only ~1.2% of plausible parameter draws.</p>
-  <p><strong>Key numbers:</strong> Conditional cost-effectiveness (if it all works) ~$47–227/DALY depending on assumptions. Ex-ante (probability-weighted, p(field success) ~7–15%) ~$900–3,000/DALY. Resistance risk is structural low — P(Plasmodium escape in 10yr) ~1.4–17%; median time-to-resistance ~277 years vs. 9 years for pyrethroids in the same district. At Tier-2 scale (East African arabiensis range) the blended conditional estimate drops to ~$36/DALY, and at pan-African scale to ~$6.5/DALY — but those numbers are contingent on open-field establishment working.</p>
-  <p><strong>The funding logic:</strong> Stage 1 ($9M) establishes the spore/Moina production system, the 10-country scientific alliance, and begins regulatory pre-engagement in Kenya, Rwanda, and Benin. Stage 2 ($24M) runs manufacturing, regulatory, and pilot releases in three countries in parallel — the critical field experiment. The ~$1.9M Stage 2 pilot (our independent costing) is the highest-VoI dollar in the case: it either confirms open-field establishment (making Tier-2/3 scale the strongest malaria bet in the portfolio) or reveals that MB needs a drive mechanism to work, and the case descopes cleanly.</p>
+  <p><strong>Fund the first phase (~$9M) now. Reserve the second phase (~$24M) until the first phase shows the delivery method actually works. Don't commit to the third phase ($17M) until there's real-world data from a field release.</strong> The science is genuinely impressive for something this early — 37,879 wild mosquitoes tested over 30 months show the microbe cuts malaria transmission by roughly half. But the gap between "works in mosquito cages" and "works in wild populations after a one-time release" has never been crossed, and our modelling suggests it's harder to cross than the proposal implies.</p>
+  <p><strong>If it works:</strong> this could protect millions of people from malaria at $47 per year of healthy life — competitive with bednets, but without needing to re-buy or re-distribute anything after the initial release. It would also reach the people bednets miss: those bitten by mosquitoes outdoors.</p>
+  <p><strong>If the field release fails:</strong> we're out ~$15–30M, the programme either pivots or ends, and the field learns something important. The downside is bounded and the upside is enormous, which is why this is a reasonable bet at the right stage size.</p>
 </div>
 
 <div class="metrics">
-  <div class="metric"><div class="mv">610k</div><div class="ml">Malaria deaths/yr (2024)</div></div>
-  <div class="metric"><div class="mv">$12M</div><div class="ml">Invested so far (Phases 1+2)</div></div>
-  <div class="metric"><div class="mv">~$47</div><div class="ml">$/DALY (programme estimate, scale)</div></div>
-  <div class="metric"><div class="mv">$50M</div><div class="ml">5-year ask (S1+S2+S3)</div></div>
-  <div class="metric"><div class="mv">7–15%</div><div class="ml">p(open-field establishment)</div></div>
-  <div class="metric"><div class="mv">~1.2%</div><div class="ml">p(self-locking, one seeding)</div></div>
+  <div class="metric"><div class="mv">610k</div><div class="ml">Malaria deaths per year</div></div>
+  <div class="metric"><div class="mv">$12M</div><div class="ml">Invested so far</div></div>
+  <div class="metric"><div class="mv">~$47</div><div class="ml">$/DALY if it works at scale</div></div>
+  <div class="metric"><div class="mv">$50M</div><div class="ml">5-year ask (3 stages)</div></div>
+  <div class="metric"><div class="mv">7–15%</div><div class="ml">Our estimate: chance wild release succeeds</div></div>
 </div>
 
-<h2 id="idea">The idea — explained for a non-biologist</h2>
 
-<p>Malaria is spread by mosquitoes. A mosquito bites an infected person, the malaria parasite develops inside the mosquito over about two weeks, and then when the mosquito bites again it injects the parasite into the next person. Every existing tool — bednets, spraying, drugs — tries to interrupt this cycle at one point: either stop the bite, kill the mosquito, or cure the person after they're infected. All of them are expensive to sustain because they have to be re-applied every year, and mosquitoes are steadily evolving resistance to the chemicals.</p>
+<h2 id="idea">The idea — what it is and why it's different</h2>
 
-<p>Microsporidia MB (MB) attacks a link nobody else reaches cheaply. It is a naturally occurring microbe — already living inside some wild Kenyan mosquitoes — that makes those mosquitoes <strong>unable to transmit the malaria parasite at all</strong>. Not less likely to transmit it. Unable to. The parasite simply doesn't develop properly inside an MB-carrying mosquito.</p>
+<p>Malaria is spread by mosquitoes. A mosquito bites someone with malaria, the parasite grows inside the mosquito for a couple of weeks, and then when the mosquito bites someone else, it injects the parasite into them. Every existing tool works by interrupting this somewhere: bednets stop the bite, indoor spraying kills the mosquito, drugs treat the person after infection. All of these have to be bought and distributed every year. And mosquitoes keep evolving resistance to the insecticides, so the tools keep getting weaker.</p>
 
-<p>The reason this matters is how MB spreads. It passes from a mother mosquito to her offspring (63.5–99.5% of the time, average ~74%, per gonotrophic cycle), and also passes between adults when they mate — colonising the female spermatheca at ~70% efficiency within three days. This means if you can get enough MB-carrying mosquitoes into a wild population, the symbiont can spread and maintain itself without any further human action. The innovation in the SYMBIOVECTOR concept note (Sep 14, 2026) is that you don't even need to release adult mosquitoes: MB produces environmentally stable <strong>spores</strong> that infect <em>Moina</em> microcrustaceans, which amplify the infection and release a second spore form highly infectious to <em>Anopheles</em> larvae in the same breeding site. Centralized spore production + distributed <em>Moina</em>-based amplification removes the single largest cost driver in comparable programmes.</p>
+<p>Microsporidia MB takes a different approach. It's a tiny, naturally occurring microbe — essentially a fungal parasite of mosquitoes — that was discovered living inside wild mosquitoes near Lake Victoria in Kenya in 2018. When a mosquito carries this microbe, the malaria parasite can't complete its development inside the mosquito. The mosquito bites as normal, but it can no longer pass malaria on. The block isn't partial — infected mosquitoes appear to be completely unable to transmit malaria.</p>
 
-<p>The analogy is <em>Wolbachia</em> for dengue — already deployed across 15 countries protecting 16 million people. MB aims for the same "pay once, protect forever" prize, but for malaria and through a different mechanism.</p>
+<p>The important part is <em>how the microbe spreads</em>. It passes from a mother mosquito to her offspring (on average about 74% of the time), and also spreads between adult mosquitoes when they mate. This means once you get enough of it into a wild population, the microbe can spread and hold its position without any further action — no re-spraying, no re-buying, no annual campaign. The idea is a one-time seeding that then runs itself.</p>
 
-<h2 id="what-we-know">What has actually been shown — the evidence scorecard</h2>
+<p>The innovation in the programme's September 2026 concept note is the delivery method. Rather than releasing infected adult mosquitoes (which is expensive and politically tricky), the team has found that the microbe produces spores that can infect tiny water crustaceans called <em>Moina</em>. These crustaceans live naturally in mosquito breeding sites — stagnant water, irrigation channels, rice paddies — and when infected, they release a form of the spore that's highly infectious to mosquito larvae growing in the same water. So the plan is: produce spores centrally, distribute them to breeding sites, and let the crustaceans do the amplification. No mosquito releases needed.</p>
+
+<p>The closest thing to this that's worked in the real world is <em>Wolbachia</em>, a different microbe used to stop dengue transmission. The <em>Wolbachia</em> programme now protects 16 million people in 15 countries. MB is attempting to do the same thing for malaria.</p>
+
+
+<h2 id="what-we-know">What's actually been shown — and what hasn't</h2>
 
 <div class="scorecard">
   <div class="sc-row header">
     <div class="sc-cell">Claim</div>
     <div class="sc-cell">Status</div>
-    <div class="sc-cell">Evidence &amp; caveats</div>
+    <div class="sc-cell">What the evidence actually shows</div>
   </div>
   <div class="sc-row">
-    <div class="sc-cell">MB blocks P. falciparum transmission completely</div>
+    <div class="sc-cell">The microbe stops mosquitoes from transmitting malaria</div>
     <div class="sc-cell"><span class="badge green">Confirmed</span></div>
-    <div class="sc-cell">Membrane feeding assays; MB+ mosquitoes show 0 sporozoites within detection limits (<a href="https://doi.org/10.1038/s41467-020-16121-y" target="_blank">Herren et al. 2020</a>). Block is complete, not partial — a key asymmetry vs resistance risk.</div>
+    <div class="sc-cell">Shown in lab tests where mosquitoes are fed infected blood: mosquitoes carrying the microbe can't develop transmissible malaria parasites. The block appears complete, not partial. (<a href="https://doi.org/10.1038/s41467-020-16121-y" target="_blank">Herren et al. 2020</a>)</div>
   </div>
   <div class="sc-row">
-    <div class="sc-cell">Transmission blocking confirmed in wild mosquitoes</div>
+    <div class="sc-cell">It's cutting malaria transmission in wild mosquitoes right now</div>
     <div class="sc-cell"><span class="badge green">Confirmed</span></div>
-    <div class="sc-cell">37,879 wild-caught <em>An. arabiensis</em> screened, 30 months at Ahero. MB+ mosquitoes had OR=0.51 (≥49.3% protection); high-intensity vertical infections ≥59.7%. Host genetics ruled out as confounder. Two independent field datasets corroborate (concept note, Sep 2026).</div>
+    <div class="sc-cell">37,879 wild mosquitoes were caught and tested over 30 months at Ahero, western Kenya. Mosquitoes carrying the microbe were about half as likely to be carrying transmissible malaria (49% lower odds). A second independent dataset confirms the same pattern.</div>
   </div>
   <div class="sc-row">
-    <div class="sc-cell">MB spreads vertically (mother to offspring)</div>
+    <div class="sc-cell">The microbe passes from mother to offspring</div>
     <div class="sc-cell"><span class="badge green">Confirmed</span></div>
-    <div class="sc-cell">63.5–99.5%, average 74% per gonotrophic cycle. MB enters germline stem cells early in mosquito development (<a href="https://doi.org/10.1371/journal.ppat.1012340" target="_blank">Nattoh/Herren 2024</a>). Intracellular vertical transmission shields MB from microbial competition.</div>
+    <div class="sc-cell">Passes to offspring on average 74% of the time (range 63–99%). It embeds itself in the mosquito's reproductive cells early in development, which is why it's inherited so reliably. (<a href="https://doi.org/10.1371/journal.ppat.1012340" target="_blank">Nattoh/Herren 2024</a>)</div>
   </div>
   <div class="sc-row">
-    <div class="sc-cell">MB spreads horizontally (sexual transmission)</div>
-    <div class="sc-cell"><span class="badge green">Confirmed (caged)</span></div>
-    <div class="sc-cell">Male→female ~70% efficiency; female establishes systemic, germline infection within 3 days. MB-infected males show mating advantage (faster pupation, higher competitiveness, greater female longevity). Mechanism: sexually transferred into female spermatheca → systemic infection.</div>
+    <div class="sc-cell">It spreads between adult mosquitoes when they mate</div>
+    <div class="sc-cell"><span class="badge green">Confirmed (in cages)</span></div>
+    <div class="sc-cell">Passes from infected males to females about 70% of the time during mating. Infected males also tend to be more competitive — they mate more, live longer offspring, which helps the microbe spread further. All of this is from cage experiments, not wild populations.</div>
   </div>
   <div class="sc-row">
-    <div class="sc-cell">MB self-sustains at high prevalence in cage populations</div>
-    <div class="sc-cell"><span class="badge green">Confirmed (cage/semi-field)</span></div>
-    <div class="sc-cell">Highly infected colonies reach ~80% MB prevalence and hold it for 2+ years across different mosquito genetic backgrounds. Stable in semi-field enclosures <em>except</em> under high external temperature stress — a key caveat for tropical deployment during hot seasons.</div>
+    <div class="sc-cell">Once seeded in a mosquito population, it holds at high levels without further intervention</div>
+    <div class="sc-cell"><span class="badge green">Confirmed (in cages)</span></div>
+    <div class="sc-cell">In laboratory mosquito colonies, the microbe reaches ~80% of the population and holds there for 2+ years without further seeding, across different mosquito genetic backgrounds. This also held in large semi-field enclosures — except when temperatures got very high, when prevalence dropped. Temperature sensitivity is a real caveat for field deployment.</div>
   </div>
   <div class="sc-row">
-    <div class="sc-cell">MB infects multiple major African malaria vectors</div>
-    <div class="sc-cell"><span class="badge green">Confirmed</span></div>
-    <div class="sc-cell">Genome sequencing: single MB strain naturally infects <em>An. gambiae</em>, <em>An. coluzzii</em>, <em>An. funestus</em>, <em>An. coustani</em>, <em>An. pharoensis</em>. Blocking confirmed in multiple species — but germline tropism in <em>funestus</em> untested (critical gate).</div>
+    <div class="sc-cell">It infects all the main malaria-carrying mosquito species</div>
+    <div class="sc-cell"><span class="badge green">Confirmed (detection)</span></div>
+    <div class="sc-cell">Genetic analysis shows one MB strain naturally infects the five main African malaria vector species. The concept note claims transmission-blocking has been shown in multiple species. However, whether MB can self-sustain and spread in other species (not just block in the moment of infection) is the critical unresolved question — see below.</div>
   </div>
   <div class="sc-row">
-    <div class="sc-cell">Spore/Moina delivery route works</div>
-    <div class="sc-cell"><span class="badge yellow">Preclinical</span></div>
-    <div class="sc-cell">MB produces environmentally stable spores → infect <em>Moina</em> microcrustaceans → release spore form infectious to <em>An</em>. larvae. This removes mass mosquito rearing requirement. Not yet confirmed at production scale in primary literature (concept note describes as development goal).</div>
+    <div class="sc-cell">The spore/<em>Moina</em> delivery route works</div>
+    <div class="sc-cell"><span class="badge yellow">In development</span></div>
+    <div class="sc-cell">The concept note describes this as the intended delivery method, and early lab work exists. But the concept note's language — production is "expected to combine" the two methods — suggests this hasn't been demonstrated at field scale. Confirming it is Stage 1's primary job.</div>
   </div>
   <div class="sc-row">
-    <div class="sc-cell">MB self-sustains after open-field release</div>
-    <div class="sc-cell"><span class="badge red">Unconfirmed — the crux</span></div>
-    <div class="sc-cell">Never attempted. Bistable dynamics run (Mfangnia et al. 2026 model) puts tipping-point prevalence p* ≈ 0.39 (range 0.30–0.49); self-locking regime appears in ~1.2% of plausible parameter space. Wild prevalence at Ahero averages 12.8%, peaks 38.8%, troughs 0.6% — naturally sits near low stable state.</div>
-  </div>
-  <div class="sc-row">
-    <div class="sc-cell">Community acceptance</div>
-    <div class="sc-cell"><span class="badge green">Positive</span></div>
-    <div class="sc-cell">High public acceptance established in western Kenya. Spore-seeding approach (no mosquito release) further increases acceptance relative to GM mosquito programmes.</div>
+    <div class="sc-cell">It self-sustains after a real-world release into wild mosquito populations</div>
+    <div class="sc-cell"><span class="badge red">Never tested — the central bet</span></div>
+    <div class="sc-cell">This has never been attempted. In the wild at Ahero, natural MB levels average 13% of mosquitoes, sometimes spike to 39%, but then fall back — the population naturally sits at a low level and never locks in high on its own. Whether a deliberate release could tip it over permanently is the central open question this whole programme is designed to answer.</div>
   </div>
 </div>
 
-<h2 id="the-bet">The open questions — what decides the case</h2>
 
-<h3>1. Does MB self-sustain after an open-field release? (dominant driver)</h3>
+<h2 id="the-bet">The open questions — what decides whether this works</h2>
 
-<p>This is the pivotal question. In cage populations, MB reaches ~80% prevalence and holds for 2+ years. In the wild at Ahero, it averages 12.8% and swings from 0.6% to 38.8% across seasons — the population naturally hovers near the low stable state.</p>
+<h3>The central question: will one release be enough, or does it need topping up forever?</h3>
 
-<p>Our bistable dynamics run reconstructed the Mfangnia et al. 2026 (Sci Rep) model and found that the system <strong>does not generically self-sustain on a single seeding</strong>. The tipping-point prevalence p* is approximately 0.39 (range 0.30–0.49), meaning you must seed MB in roughly 39% of the adult population before it self-amplifies rather than decaying. A self-locking regime — where a finite seeding permanently converts the population — exists in only ~1.2% of the plausible parameter space. The central prediction for a single seeding is that MB decays back toward zero.</p>
+<p>Here's the problem in plain terms. In a mosquito cage, MB reaches ~80% of mosquitoes and stays there without any further seeding — it spreads on its own. But in wild Kenyan mosquito populations, MB naturally sits at around 13% and never tips over to high levels on its own. That gap is the central unanswered question.</p>
 
-<p>The mechanism gap is structural, not mysterious: MB has no cytoplasmic incompatibility (CI) drive. <em>Wolbachia</em>'s CI punishes uninfected females mating with infected males, creating a self-reinforcing ratchet that lifts prevalence past the tipping point with a threshold of only ~20–30%. MB must climb on imperfect vertical transmission plus a weak mating advantage alone — a shallower drive requiring a much higher seeding to overcome stochastic decay.</p>
+<p>Our modelling of the underlying population dynamics suggests why: for the microbe to permanently take over a wild population, you need to seed enough infected mosquitoes at once to cross a tipping point — above which the microbe spreads faster than it fades, below which it just dies back. We estimate that tipping point at roughly 39% of the adult mosquito population in a given area. Our models also suggest that after a single release, the microbe self-sustains permanently (rather than eventually fading) in only about 1 in 80 scenarios under realistic conditions.</p>
+
+<p>This is the big difference from <em>Wolbachia</em>/dengue, which has a much lower tipping point (~20–30%) and locks in more easily. <em>Wolbachia</em> has a biological mechanism (it makes uninfected females partially sterile when they mate with infected males) that actively helps it take over. MB doesn't have this — it spreads more slowly and needs more help to cross the threshold.</p>
+
+<p>The concept note is optimistic about this — projecting six years of protection from two spore releases. The truth is we don't know yet, which is exactly why the field release (Stage 2) is the most important thing the programme will do.</p>
 
 <div class="binary">
   <div class="bin-card optimistic">
-    <div class="bh">If open-field establishment works</div>
+    <div class="bh">If it self-sustains after a real-world release</div>
     <div class="bd">~$36</div>
-    <div>per DALY at Tier-2 (East African arabiensis range). Approaches or beats bednet cost-effectiveness. Self-sustaining for 6+ years. Attacks outdoor biting that nets cannot reach. Resistance timeline: 277 years vs 9 years for pyrethroids.</div>
+    <div>per year of healthy life protected, across East Africa. Cheaper than bednets on a per-year-of-coverage basis, and reaches outdoor transmission that bednets miss. Once established, ongoing cost is near zero.</div>
   </div>
   <div class="bin-card pessimistic">
-    <div class="bh">If it requires repeated re-seeding (SIT-like)</div>
-    <div class="bd">~$232+</div>
-    <div>per DALY if MB behaves like SIT (never self-sustains). Still potentially useful but loses the "pay once" property that makes the case extraordinary. Revisit Tier-1/2 economics entirely.</div>
+    <div class="bh">If it needs repeated re-seeding like a pesticide</div>
+    <div class="bd">~$230+</div>
+    <div>per year of healthy life. The "pay once" advantage disappears. The programme would need to be fundamentally redesigned around a recurring application model — similar economics to what it's trying to replace.</div>
   </div>
 </div>
 
-<h3>2. Does MB block transmission in <em>An. funestus</em>? (~2× swing)</h3>
+<h3>Does it actually self-sustain in the other mosquito species?</h3>
 
-<p>Across East and Southern Africa, <em>An. funestus</em> has resurged to dominate transmission — 85–97% of transmission in parts of SE Tanzania. The existing field data shows MB in <em>funestus</em> but blocking has never been directly confirmed in funestus germline. Our August 2026 integrated CEA ran three scenarios:</p>
+<p>The concept note claims MB blocks malaria transmission in multiple mosquito species, including <em>An. funestus</em>, which has become the dominant malaria-carrier across much of East and Southern Africa. If that's true, the programme's potential reach roughly doubles. If MB can only spread and sustain itself in the species it was originally found in (<em>An. arabiensis</em>), the reach is significantly smaller and the cost per person protected is higher.</p>
+
+<p>The subtlety here: "blocking transmission in a lab test" is not the same as "spreading through a wild population on its own." A 2021 study in Ghana found MB in 0 out of 181 <em>An. funestus</em> specimens tested. The concept note claims evidence of blocking across species but doesn't clarify whether this means the microbe can also pass from mother to offspring in those species. That distinction matters enormously for whether the multi-species reach claim holds up.</p>
 
 <table>
-  <tr><th>Funestus scenario</th><th>Median $/DALY</th><th>P10–P90</th><th>P(≤$150)</th></tr>
-  <tr><td>MB blocks in funestus (full)</td><td>$117</td><td>$76–208</td><td>0.73</td></tr>
-  <tr><td>Partial coverage (50%)</td><td>$155</td><td>$100–278</td><td>0.46</td></tr>
-  <tr><td>Arabiensis-only (MB fails in funestus)</td><td>$232</td><td>$145–423</td><td>0.12</td></tr>
-  <tr><td><strong>Blended</strong></td><td><strong>$146</strong></td><td>$93–264</td><td>0.52</td></tr>
+  <tr><th>Scenario</th><th>Cost per year of healthy life</th><th>What it requires</th></tr>
+  <tr><td>MB works in all major vector species</td><td>~$117</td><td>Funestus blocking + inheritance confirmed</td></tr>
+  <tr><td>MB partially works in other species</td><td>~$155</td><td>Partial funestus coverage</td></tr>
+  <tr><td>MB only works in original species</td><td>~$232</td><td>Current confirmed evidence base</td></tr>
+  <tr><td><strong>Our best guess (blended)</strong></td><td><strong>~$146</strong></td><td>Mix of the above scenarios</td></tr>
 </table>
 
-<p>A ~$0.5–2M funestus blocking experiment is the single highest-VoI dollar in the case — it's a near-binary gate that swings the central estimate by nearly 2×.</p>
+<p>A targeted experiment to test whether MB can pass to offspring in <em>An. funestus</em> would cost roughly $0.5–2M and resolve this near-binary question. It's the single cheapest high-value piece of information available.</p>
 
-<h3>3. Does the spore/<em>Moina</em> delivery route work at production scale?</h3>
 
-<p>The spore→<em>Moina</em>→larvae delivery route is the operational innovation that makes the programme cheap and politically tractable (no mosquito releases). MB produces environmentally stable spores; these infect <em>Moina</em> microcrustaceans, which amplify the infection and release a second spore form highly infectious to <em>An</em>. larvae in the same breeding site. This is described in the concept note and supported by preliminary lab work, but has not been demonstrated at field production scale. The concept note proposes centralised mosquito-derived spore production combined with distributed <em>Moina</em>-based amplification — substantially lower cost than mass mosquito rearing. Stage 1 resolves this.</p>
+<h2 id="stage2">The field release — what it involves and what we'd learn</h2>
 
-<h3>4. How long does protection last after seeding?</h3>
+<p>The Stage 2 field release at Ahero in western Kenya is the pivotal moment. It's the first time anyone will try to seed MB into a real wild mosquito population and see if it takes hold.</p>
 
-<p>The concept note states "six years of protection" after a two-round well-timed spore-release campaign. But the Ahero data shows MB prevalence moving up and down with temperature and rainfall — some periodic top-up is a reasonable planning assumption. Durability run (Sep 2026): the more decision-relevant durability question is parasite resistance risk, which is addressed in the next section. The duration assumption ($47/DALY figure uses a six-year window) is optimistic; the field data suggests monitoring and periodic reinforcement are needed.</p>
+<p>Based on our modelling of the population dynamics, the release needs to be substantial enough to cross the tipping point — roughly 39% of the adult mosquito population in the target area infected. At typical wild mosquito densities, that means releasing around 10,000 infected mosquitoes per hectare, per round, over 4–6 rounds spread across a 10–14 week campaign. The release should be timed for the dry season, when mosquito numbers are low and a given number of released mosquitoes represents a larger fraction of the total. Total mosquitoes needed: roughly 1–6 million. Our estimated cost for the Ahero pilot alone: about $1.9M.</p>
 
-<h2 id="bistable">Stage 2 release design — what the bistable dynamics run found</h2>
+<p>The key question the programme hasn't answered publicly: is their planned release designed around this threshold? If they release fewer mosquitoes than needed to cross the tipping point, the experiment will show MB fading away — but that might be a design failure rather than evidence that MB can't work. Getting the design right is as important as doing the release.</p>
 
-<p>Our September 2026 research loop reconstructed the Mfangnia et al. 2026 (Scientific Reports) bistable population dynamics model and added transparent Python modelling of the threshold (separatrix) the paper does not itself report. Key findings:</p>
-
-<h3>The threshold</h3>
-<p>Tipping-point prevalence p* ≈ 0.39 (median; plausible range 0.30–0.49). At realistic wild mosquito density (~3,000 adults/hectare) and realistic establishment efficiency (~25% of released mosquitoes survive and mate competitively), this means releasing roughly <strong>~10,000 MB-infected adults per hectare per round</strong> — an overflooding ratio of ~3–4 released per wild mosquito.</p>
-
-<h3>Self-locking probability</h3>
-<p>Across the plausible parameter space, a robust "seed-it-once-and-it-locks" regime appears in only <strong>~1.2% of cases</strong>. The central prediction is that a single seeding decays back toward zero. This is driven by the lack of CI drive: MB relies only on imperfect vertical transmission (avg 74%) plus a weak mating advantage — a shallower ratchet than Wolbachia's near-100% CI.</p>
-
-<h3>Stage 2 release design</h3>
-<p>The design that falls out: blanket-seed a ~25–100 hectare isolated block; release female-biased cohorts (~60–70% MB-positive females, because MB spreads primarily mother-to-offspring); over 4–6 rounds spaced one mosquito generation apart (~2–3 weeks); across a ~10–14 week campaign; timed to begin in the late dry season (population small, cheap to overwhelm), then let the rains amplify the raised frequency. Total: roughly 1–6 million MB-infected mosquitoes. Budget: <strong>~$1.9M (P10 $1.5M, P90 $2.6M)</strong>, dominated by mosquito rearing plus staff. This is comfortably within ICIPE's current rearing capacity.</p>
-
-<h3>Implications</h3>
-<p>Stage 2 is best understood as a <strong>value-of-information purchase, not a deployment</strong>. ~$1.9M buys the first definitive field answer to whether MB can self-sustain without CI — the question that decides the entire strategy. If it self-locks: the case accelerates dramatically. If it decays: the programme must either develop a CI-equipped strain (gene drive path) or operate as a periodic-re-application intervention (SIT economics), and the budget case changes entirely. No experiment has ever tested this. Money is not the binding constraint; biology is.</p>
-
-<h2 id="durability">Durability and resistance risk</h2>
-
-<p>The durability research loop (Sep 15, 2026) addressed whether <em>Plasmodium</em> can evolve to defeat the MB transmission block. The verdict is that <strong>resistance risk should not deter investment — it structurally favours MB over the insecticide toolkit it would supplement.</strong></p>
-
-<h3>Why the block is likely durable</h3>
-<p>Three facts carry the durability verdict:</p>
+<p>What Stage 2 would tell us:</p>
 <ul class="bl">
-  <li><strong>Oocyst bottleneck:</strong> MB acts at the <em>Plasmodium</em> oocyst stage inside the mosquito midgut, where only 1–20 parasites are present versus ~10¹¹ in a human blood-stage infection. This is an 8–12 order-of-magnitude collapse in the mutation supply available for resistance evolution. Resistance cannot evolve from variants that never arise.</li>
-  <li><strong>Multi-factorial mechanism:</strong> Transcriptomic work (BMC Genomics 2025) shows the block is not a single molecular lock but a coordinated shift of the mosquito's immunity, metabolism, and gut microbiome — a change of state distributed across three systems. A parasite cannot mutate past this the way it mutates past a single drug-binding pocket. The block is also complete (zero sporozoites), leaving no fitness gradient for selection to climb.</li>
-  <li><strong>Historical track record:</strong> Across every symbiont-biocontrol system where a pathogen is blocked at a small in-vector bottleneck — Wolbachia/dengue, <em>Enterobacter/Plasmodium</em>, Spiroplasma/<em>Drosophila</em> — no pathogen has ever evolved a heritable escape, including under deliberate laboratory selection.</li>
+  <li><strong>If MB levels stay high after release:</strong> the self-sustaining mechanism works in the wild. The programme moves to Stage 3 with strong evidence and the cost model ($36–47/DALY at scale) becomes credible.</li>
+  <li><strong>If MB levels fade back to the natural ~13%:</strong> the "pay once" model doesn't work. The programme either needs to develop a stronger biological drive mechanism (a bigger scientific challenge) or pivot to treating MB like a recurring pesticide application (which changes the economics entirely).</li>
 </ul>
 
-<h3>The numbers</h3>
+
+<h2 id="durability">Will it last? The malaria parasite won't just give up</h2>
+
+<p>A fair question: if MB blocks malaria in mosquitoes, can the malaria parasite eventually evolve a way around it — the same way mosquitoes evolved resistance to the insecticides in bednets?</p>
+
+<p>Our dedicated research loop on this found that <strong>resistance is very unlikely, and structurally so</strong> — not just lucky. Three reasons:</p>
+
+<ol class="bl">
+  <li><strong>The bottleneck is tiny.</strong> For the malaria parasite to evolve resistance, a resistant variant needs to arise by random mutation at exactly the right moment. In a human body, there are hundreds of billions of malaria parasites — plenty of chances for mutations. But inside a mosquito, the parasite population shrinks to just 1–20 individuals at the stage where MB kills it. That's a billion-fold fewer opportunities for resistance to arise. The math strongly disfavours it.</li>
+  <li><strong>The block works through multiple mechanisms at once.</strong> MB doesn't just block one step in the malaria parasite's development — it appears to trigger a broad change in the mosquito's immune state, gut chemistry, and microbiome simultaneously. For the parasite to escape, it would need to overcome all of these at once, which is far harder than evolving past a single chemical or protein.</li>
+  <li><strong>The historical track record.</strong> Every known case of a microbe blocking a pathogen inside an insect — including <em>Wolbachia</em> blocking dengue — has stayed effective. There is no documented case of a pathogen evolving around this kind of symbiont-based block, even under deliberately hostile laboratory conditions.</li>
+</ol>
+
+<p>Our modelling put numbers on this. Even under pessimistic assumptions, the probability of malaria developing resistance to MB within 10 years is roughly 1–17%. The median time for resistance to appear, even generously assuming it's possible, is around 277 years. Compare that to pyrethroids — the insecticide in most bednets — where resistance in the exact region where MB would be deployed rose from near-zero to near-complete in about 9 years.</p>
+
+<p>In short: MB's durability advantage over insecticides is enormous. Resistance risk should not weigh heavily against this investment.</p>
+
+
+<h2 id="reach">How many people could it realistically protect?</h2>
+
+<p>The programme's own estimate projects coverage across much of Africa's malaria belt — areas where temperatures are right for MB to thrive and mosquito populations are large enough to matter. That's a reasonable long-term vision.</p>
+
+<p>Near-term, the picture is more constrained. The Lake Victoria basin (where Ahero is) has the right mosquito species and is the natural starting point, but roughly 60% of malaria transmission there comes from mosquito species other than the one MB has been most studied in. That means the near-term protected population is smaller than the headline addressable numbers suggest, and the near-term cost per person protected is higher.</p>
+
+<p>The cost-effectiveness picture improves significantly with scale:</p>
+
 <table>
-  <tr><th>Metric</th><th>MB (blended)</th><th>MB (host-mediated mechanism)</th><th>Pyrethroids (same district)</th></tr>
-  <tr><td>P(resistance ≤ 10 yr)</td><td>~17%</td><td>~1.4%</td><td>~100% (kdr swept in ~9 yr)</td></tr>
-  <tr><td>Median years-to-resistance</td><td>~277 yr</td><td>&gt;500 yr</td><td>~9 yr</td></tr>
-  <tr><td>Model sensitivity</td><td colspan="2">Insensitive to deployment scale; sensitive only to mechanism biology</td><td>—</td></tr>
+  <tr><th>Scale</th><th>Geography</th><th>Cost per year of healthy life (conditional on working)</th></tr>
+  <tr><td>Near-term pilot</td><td>Lake Victoria basin</td><td>~$164</td></tr>
+  <tr><td>If expanded</td><td>East African arabiensis mosquito range</td><td>~$36</td></tr>
+  <tr><td>If fully scaled</td><td>Pan-African range</td><td>~$6.50</td></tr>
 </table>
 
-<p>The sensitivity result is the most decision-relevant output: you cannot make MB more or less durable by deploying more cautiously. Durability is a property of the mechanism, not the deployment strategy. The highest-value next research step is a <strong>serial-passage selection experiment</strong> — repeatedly passing <em>P. falciparum</em> through MB-positive mosquitoes to test whether any escape lineage emerges. Cheap, definitive, and a genuine early-warning kill-switch.</p>
+<p>The near-term number ($164) is 2–3× above the typical benchmark for highly cost-effective global health programmes (~$50–100). The investment case isn't that the pilot is cost-effective on its own — it's that the pilot unlocks a credible path to ~$36 at East African scale, which is extremely cost-effective. A funder who commits through to the East African phase would see a blended average across the whole programme of roughly $27–34 per year of healthy life.</p>
 
-<p>Recommended discount to the MB benefit stream for resistance risk: <strong>~1–2% per year</strong> — too small to change the investment case.</p>
+<p>One important caveat on reach: MB appears to spread best within a specific temperature range. The concept note shows this range coincides with a large fraction of Africa's malaria burden. But during the hottest months, prevalence drops in semi-field conditions. The programme hasn't yet quantified exactly which areas fall outside the optimal range during which parts of the year.</p>
 
-<h2 id="reach">Realistic addressable population</h2>
 
-<p>The realistic reach run (Sep 14, 2026) interrogated whether MB's reach assumptions hold up. The concept note's $47/DALY figure assumes 90% MB prevalence and 75% transmission blocking across a thermally suitable population at 20% baseline malaria prevalence. Key findings:</p>
+<h2 id="staging">How to stage the funding</h2>
 
-<h3>Thermal suitability constraint</h3>
-<p>MB's bistable dynamics are temperature-sensitive — semi-field cage data shows prevalence stability "except under high external temperature stress." The concept note maps "moderate to high malaria burden + thermally suitable for MB" to East and Central Africa, West Africa, and Madagascar. This is consistent with the areas concentrating most of Africa's malaria cases, but the thermal boundary is not yet precisely characterised at operational resolution.</p>
-
-<h3>The arabiensis vs funestus issue</h3>
-<p>In the Lake Victoria basin (Tier-1 near-term), <em>An. arabiensis</em> accounts for only ~40% of transmission after a zoophagy correction — the prior estimates that inflated Tier-1 attractiveness were based on arabiensis-dominant assumptions. The integrated CEA corrects for this: Tier-1 attributable burden drops to ~172k DALYs/yr (arabiensis fraction only), which is why the near-term figure is $164/DALY, not sub-$100.</p>
-
-<h3>Tier scaling</h3>
-<table>
-  <tr><th>Tier</th><th>Geography</th><th>$/DALY (conditional)</th><th>Scale multiplier</th></tr>
-  <tr><td>Tier 1</td><td>Lake Victoria basin</td><td>$164</td><td>1×</td></tr>
-  <tr><td>Tier 1+2</td><td>East African arabiensis range</td><td>$36</td><td>~5×</td></tr>
-  <tr><td>Tier 1+2+3</td><td>Pan-African arabiensis range</td><td>$6.5</td><td>~106×</td></tr>
-</table>
-
-<p>The investment case is not made by Tier-1 alone. It is made by a credible ramp to ~$36/DALY at Tier-2 and ~$6.5/DALY at Tier-3 — where MB would rival or beat every marginal malaria dollar. A funder committing through Tier-2 realizes a blended-program NPV figure of ~$27–34/DALY.</p>
-
-<h2 id="sensitivities">Key sensitivities</h2>
-
-<h3>1. Open-field equilibrium prevalence — dominant continuous driver (Spearman ρ = −0.85)</h3>
-<div class="sensitivity-bar">
-  <div class="sens-label"><span>pop_cap (open-field equilibrium)</span><span>ρ = −0.85</span></div>
-  <div class="sens-track"><div class="sens-fill" style="width:85%;background:#ef4444;"></div></div>
-</div>
-<p>Enters multiplicatively over a 0.10–0.75 range and can move the estimate up to ~7.5×. Resolvable only by the contained field trial (Stage 2). Wolbachia-like establishment → sub-$100; stall near 10% natural floor → $300–450.</p>
-
-<h3>2. Additionality (ρ = −0.29)</h3>
-<div class="sensitivity-bar">
-  <div class="sens-label"><span>Additionality vs bednets + spraying</span><span>ρ = −0.29</span></div>
-  <div class="sens-track"><div class="sens-fill" style="width:29%;background:#f59e0b;"></div></div>
-</div>
-<p>MB attacks outdoor biting (48% of <em>An. arabiensis</em> bites at Ahero are outdoors) that bednets structurally cannot reach — high additionality in residual-transmission settings. Lower in settings with low coverage of existing tools.</p>
-
-<h3>3. Arabiensis fraction of transmission (ρ = −0.27)</h3>
-<div class="sensitivity-bar">
-  <div class="sens-label"><span>Arabiensis fraction (and HBI)</span><span>ρ = −0.27</span></div>
-  <div class="sens-track"><div class="sens-fill" style="width:27%;background:#f59e0b;"></div></div>
-</div>
-<p>The shoreline ~2.5% HBI is a site-specific extreme vs regional 25–44%. A higher true HBI raises <code>arabiensis_frac</code> and improves Tier-1 by up to ~30%.</p>
-
-<h3>4. Funestus coverage (near-binary gate, top VoI despite ρ = −0.20)</h3>
-<div class="sensitivity-bar">
-  <div class="sens-label"><span>Funestus blocking confirmed?</span><span>ρ = −0.20, but 2× swing between scenarios</span></div>
-  <div class="sens-track"><div class="sens-fill" style="width:60%;background:#8b5cf6;"></div></div>
-</div>
-<p>Ranks only 4th on continuous variance but is the #1 VoI item: ~$0.5–2M experiment, near-binary outcome, swings central estimate from $232 (funestus-only arabiensis) to $117 (full funestus blocking). Fund this experiment unconditionally — it's the cheapest resolution of the largest binary uncertainty in the case.</p>
-
-<h3>5. Regulatory timeline (ρ = +0.06 — negligible)</h3>
-<p>Non-GMO classification (the <em>Wolbachia</em>/World Mosquito Program precedent is directly applicable) is worth ~$20–30/NPV-DALY in saved regulatory drag and costs ~$150–400k. Modest drag even without it. Running three regulatory pathways in parallel (Kenya, Rwanda, Benin) reduces dependence on any single country's approval timeline.</p>
-
-<h2 id="staging">How to stage the funding — concept-note structure vs our recommended structure</h2>
-
-<p>The SYMBIOVECTOR concept note (Sep 14, 2026) proposes three stages with the following structure and budgets:</p>
+<p>The programme's concept note proposes three stages. Here's what each one actually does and what we think the right commitment structure is.</p>
 
 <div class="stage-grid">
   <div class="stage active-stage">
     <div class="stage-header">
       <div class="stage-label">Stage 1 · Years 1–2</div>
-      <div class="stage-title">Biology, production, and scientific alliance</div>
+      <div class="stage-title">Prove the delivery method works; build the alliance</div>
       <div class="stage-cost">~$9M</div>
     </div>
     <div class="stage-body">
-      <p>Establishes the biology, production methods, and delivery technologies required for scalable deployment using the spore/<em>Moina</em> route. Sets up a scientific alliance in <strong>up to 10 countries across Africa</strong> (Cameroon, Côte d'Ivoire, Ethiopia, Madagascar, Nigeria, Tanzania, Uganda plus the 3 pilot countries) for data sharing and capacity building. Begins regulatory pre-engagement.</p>
+      <p>The primary job of Stage 1 is confirming that the spore/crustacean delivery method — the innovation that makes this whole programme cheaper and more tractable than alternatives — actually works at field-relevant scale. This hasn't been demonstrated yet. Stage 1 also sets up a 10-country scientific network across Africa (Cameroon, Côte d'Ivoire, Ethiopia, Madagascar, Nigeria, Tanzania, Uganda, plus the three pilot countries) for data sharing and capacity building, and begins regulatory conversations in Kenya, Rwanda, and Benin.</p>
       <div class="stage-resolves">
-        <div class="rl">Resolves</div>
-        Spore/Moina production scale-up feasibility. Regulatory pre-submission in Kenya, Rwanda, Benin. Multi-country scientific infrastructure.
+        <div class="rl">This stage resolves</div>
+        Can we actually produce and deliver MB spores at the scale needed for a field release? Is the crustacean amplification step reliable?
       </div>
       <div class="kill-flag">
-        <div class="kl">Stage 1 kill-gate</div>
-        Spore/Moina production cannot be demonstrated at field-relevant throughput → descope to research grant, redirect to funestus blocking experiment only.
+        <div class="kl">Stop funding if</div>
+        The spore delivery system cannot be shown to work at field-relevant production volumes. Redirect remaining budget to the funestus-blocking experiment instead.
       </div>
     </div>
   </div>
@@ -442,19 +385,19 @@
   <div class="stage">
     <div class="stage-header">
       <div class="stage-label">Stage 2 · Years 2–4</div>
-      <div class="stage-title">Manufacturing, regulatory approval, pilot releases in 3 countries</div>
+      <div class="stage-title">The field release — does it work in the wild?</div>
       <div class="stage-cost">~$24M</div>
     </div>
     <div class="stage-body">
-      <p>Develops the manufacturing, regulatory, safety, and field-implementation platform needed for pilot releases in <strong>Kenya, Rwanda, and Benin</strong> in parallel rather than sequentially. Kenya serves as the primary R&D hub; Rwanda provides a pro-innovation regulatory gateway to the Great Lakes; Benin establishes the West African hub for Francophone expansion. Three parallel regulatory pathways reduce single-country dependence.</p>
-      <p>Our independent Stage 2 release costing: <strong>~$1.9M</strong> (P10 $1.5M, P90 $2.6M) for the Ahero pilot alone; the larger $24M covers three-country manufacturing, regulatory, and monitoring infrastructure. The pilot release design: 4–6 rounds over 10–14 weeks, late dry season timing, ~25–100 hectare isolated block, ~1–6M infected mosquitoes total, female-biased cohorts.</p>
+      <p>Stage 2 runs pilot releases in Kenya, Rwanda, and Benin simultaneously rather than one after another. The parallel approach generates evidence across three different ecological and regulatory contexts at once, and means the programme isn't hostage to any single country's approval process. Kenya is the R&D hub (where MB was discovered); Rwanda adds a second pathway through a government known for fast adoption of health innovations and serves as a gateway to the high-burden Great Lakes region; Benin establishes a West African hub for eventual expansion into countries like Nigeria and Côte d'Ivoire.</p>
+      <p>The actual pilot release at Ahero that resolves the central question would cost roughly $1.9M by our independent estimate. The larger $24M covers manufacturing infrastructure, three parallel regulatory processes, and monitoring across all three countries.</p>
       <div class="stage-resolves">
-        <div class="rl">Resolves</div>
-        Open-field prevalence after release (the dominant continuous driver, ρ = −0.85). Whether MB can self-sustain without CI drive. Whether the tipping point of p* ≈ 0.39 can be crossed in practice.
+        <div class="rl">This stage resolves</div>
+        Does MB take hold in wild populations after a deliberate release, or does it fade back? This is the question the entire investment case turns on.
       </div>
       <div class="kill-flag">
-        <div class="kl">Stage 2 kill-gate</div>
-        Equilibrium prevalence stalls &lt;10% after optimal release design → MB behaves like SIT (never self-sustaining); revisit scale economics or require CI mechanism. Do not proceed to Stage 3.
+        <div class="kl">Stop funding if</div>
+        MB consistently fades back to background levels after a well-designed release in multiple sites. This would mean the "pay once" model doesn't work and the programme needs fundamental redesign.
       </div>
     </div>
   </div>
@@ -462,132 +405,133 @@
   <div class="stage">
     <div class="stage-header">
       <div class="stage-label">Stage 3 · Year 4+</div>
-      <div class="stage-title">Field trial and regional deployment platform</div>
+      <div class="stage-title">Build demonstration sites; hand off to national programmes</div>
       <div class="stage-cost">~$17M</div>
     </div>
     <div class="stage-body">
-      <p>Initiates a field trial and establishes "demonstration landscapes" — real-world sites where MB is established and operating in wild mosquito populations at operational scale, not just characterised under trial conditions. Builds the organizational capacity (government partnerships, manufacturing, surveillance, long-term programme management) for regional deployment. The end goal is creating a visible, working model that governments, global health funders, and NMPs can evaluate directly and replicate.</p>
-      <p>Once demonstration landscapes exist, the pathway to full scale is expected to run through redirected malaria-control financing (nets, IRS, chemoprevention budgets) rather than new philanthropic capital.</p>
-      <div class="stage-resolves">
-        <div class="rl">Resolves</div>
-        Epidemiological impact at operational scale. Government and NMP willingness to integrate MB into national malaria programmes. Long-term programme sustainability.
-      </div>
+      <p>Stage 3 isn't about proving MB works — that's Stage 2's job. It's about creating "demonstration landscapes": real communities where MB is established and running at operational scale, which governments, national malaria programmes, and other funders can visit, evaluate, and decide to replicate using their existing budgets. The long-term goal is for MB to be funded through redirected malaria-control budgets (which currently pay for bednets, spraying, and drugs every year) rather than requiring new philanthropic capital indefinitely.</p>
     </div>
   </div>
 </div>
 
-<p><strong>Our recommended funding structure</strong> (staged by gate, not by year):</p>
-<ul class="bl">
-  <li><strong>Fund now (~$9M):</strong> Stage 1 in full. Also separately fund the funestus blocking experiment (~$0.5–2M) as the highest-VoI standalone action.</li>
-  <li><strong>Reserve (do not disburse) ~$24M:</strong> Stage 2, contingent on Stage 1 production gate clearing + funestus gate resolving favorably.</li>
-  <li><strong>Decision point:</strong> Open-field prevalence data from Stage 2 pilot before committing Stage 3. If establishment confirmed → Stage 3 becomes a near-certain fund; if not → descope to research programme.</li>
-</ul>
+<p><strong>Our recommended structure:</strong> Fund Stage 1 now. Also fund the funestus-blocking experiment (~$1–2M) as a separate standalone — it's the cheapest question that most changes the cost estimate. Reserve Stage 2 funding (~$24M) without disbursing, conditional on Stage 1 delivery confirmation. Commit to Stage 3 only after Stage 2 field data exists.</p>
 
-<h2 id="cea">Cost-effectiveness</h2>
 
-<h3>Programme's own estimate</h3>
-<p>The concept note models a two-round well-timed spore-release campaign achieving 90% MB prevalence, 75% transmission blocking, and six years of protection. The programme's estimate: <strong>$24–188/DALY ($47/DALY at 20% baseline malaria prevalence)</strong>. This conservatively assumes MB spore production costs 10× more than <em>Bacillus thuringiensis subsp. israelensis</em> (Bti) larvicide — but even with that penalty, two applications over six years vs. ~15/yr for Bti makes MB far cheaper on a per-year-of-protection basis. The programme's own BCR is not reported.</p>
+<h2 id="cea">Cost-effectiveness — what the numbers actually mean</h2>
 
-<h3>Our integrated CEA (Aug 2026 investment memo)</h3>
-<p>400,000-draw Monte Carlo integrating five research runs. Blended median: <strong>$146/DALY (P10 $93, P90 $264)</strong> at 3% discount, conditional on establishment working. At 3%/3%: $146; at 5%: $161. The discount rate is not a swing factor because MB's benefit stream is long and self-sustaining.</p>
-
-<h3>Ex-ante estimate (Sep 2026 cause report)</h3>
-<p>Our independent reconstruction of the programme's p(success), incorporating the concept-note data, revised p(field establishment succeeds) downward to <strong>~7–8% central</strong> (range 5–15%) from the earlier 15–20%. Two factors drove the revision: (1) the spore/<em>Moina</em> delivery mechanism is not yet confirmed in primary literature; (2) semi-field enclosure data shows prevalence rising then declining — not stable as claimed. At 7–8% probability-weighting: <strong>ex-ante ~$900–3,000/DALY</strong>. This is a research bet, not a delivery buy. But a ~$30M Stage 1+2 commitment either delivers a transformative tool or teaches the field something critical.</p>
+<p>Cost-effectiveness in global health is measured in dollars per DALY — "disability-adjusted life year." One DALY is roughly one year of healthy life lost to illness or premature death. A programme costs $50/DALY if spending $50 prevents one year of healthy life being lost. GiveWell's rough benchmark for "highly cost-effective" is around $50–100/DALY.</p>
 
 <table>
-  <tr><th>Model</th><th>Central $/DALY</th><th>Key assumption</th></tr>
-  <tr><td>Programme (concept note)</td><td>$47 (range $24–188)</td><td>90% prev, 75% blocking, 6yr, 20% baseline</td></tr>
-  <tr><td>Our CEA, funestus-full</td><td>$117 (P10–P90: $76–208)</td><td>MB blocks in funestus; conditional on establishment</td></tr>
-  <tr><td>Our CEA, blended</td><td>$146 (P10–P90: $93–264)</td><td>Mixed funestus scenarios; conditional on establishment</td></tr>
-  <tr><td>Our CEA, arabiensis-only</td><td>$232 (P10–P90: $145–423)</td><td>MB fails in funestus; conditional on establishment</td></tr>
-  <tr><td>Tier-2 scale (East African range)</td><td>$36</td><td>Conditional on Tier-1 success + expansion</td></tr>
-  <tr><td>Ex-ante (probability-weighted)</td><td>~$900–3,000</td><td>p(success) ~7–8%, field establishment unproven</td></tr>
+  <tr><th>Who calculated it</th><th>Central estimate</th><th>Key assumption</th></tr>
+  <tr><td>Programme's own model</td><td>$47/DALY</td><td>90% prevalence after release, 75% transmission reduction, 6-yr durability, 20% baseline malaria rate</td></tr>
+  <tr><td>Our model — if MB works in all main species</td><td>$117/DALY</td><td>MB spreads and sustains in all major mosquito species; field establishment works</td></tr>
+  <tr><td>Our model — blended (uncertain on species)</td><td>$146/DALY</td><td>Mix of species scenarios; field establishment works</td></tr>
+  <tr><td>Our model — original species only</td><td>$232/DALY</td><td>MB only works in An. arabiensis; field establishment works</td></tr>
+  <tr><td>At East African scale (if Stage 2 succeeds)</td><td>$36/DALY</td><td>Programme expands beyond pilot region</td></tr>
+  <tr><td>Probability-weighted (our 7–15% success estimate)</td><td>~$900–3,000/DALY</td><td>Accounts for chance the field release doesn't work</td></tr>
 </table>
 
-<h2 id="comparators">How it compares to existing tools</h2>
+<p>The probability-weighted number looks bad, but it's the right framing for a research bet at this stage — it's comparable to how we'd evaluate a drug candidate in early trials. The point isn't that the expected value is guaranteed to be good; it's that if it works, the payoff is large enough to justify a staged bet, and if it doesn't, the losses are bounded and the field learns something.</p>
+
+
+<h2 id="comparators">How it compares to what we're already doing</h2>
 
 <details>
-  <summary>Bednets and indoor residual spraying</summary>
+  <summary>Bednets and indoor spraying</summary>
   <div class="details-body">
-    <p>The incumbents. GiveWell estimates ~$50–100/DALY for nets at the margin. They are the right comparison at Tier-1 near-term, where MB is $164/DALY conditional — 2–3× the bar, but with a credible ramp to sub-$36 at scale. MB's structural advantage is attacking outdoor and residual biting (~48% of <em>An. arabiensis</em> bites at Ahero are outdoors) that bednets cannot reach regardless of coverage.</p>
+    <p>The incumbent tools. GiveWell estimates roughly $50–100 per year of healthy life protected at the margin. MB near-term is $164/DALY — worse than bednets — but has two structural advantages bednets don't: it's potentially self-sustaining (once established, cost drops close to zero), and it reaches outdoor biting, which accounts for roughly half of transmission in the Lake Victoria region and which bednets simply can't reach regardless of how many people use them.</p>
   </div>
 </details>
 
 <details>
-  <summary>Wolbachia / World Mosquito Program (dengue)</summary>
+  <summary>Wolbachia for dengue — the closest analogy</summary>
   <div class="details-body">
-    <p>The closest analogue and the regulatory precedent. WMP took wMel from bench to the AWED RCT (77.1% dengue reduction) over ~15 years and $100M+. MB has ~$12M behind it and has achieved roughly the same evidence depth as WMP had ~10–15 years ago. The critical difference: Wolbachia has CI drive (sets its threshold at ~20–30% and locks near-fixation), while MB has no CI drive (threshold ~39%, self-locking in ~1.2% of draws). WMP's large-city deployment target: ~US$1/person. MB's comparable target has not been achieved. Wolbachia is not being developed for malaria (<em>Anopheles</em>); MB is natively an <em>Anopheles</em> symbiont.</p>
+    <p><em>Wolbachia</em> is a different microbe that blocks dengue transmission in <em>Aedes</em> mosquitoes. It's been deployed in 15 countries and now protects 16 million people from dengue, at around $1 per person at scale. The World Mosquito Program spent roughly 15 years and hundreds of millions of dollars developing it. MB is at a comparable stage to where <em>Wolbachia</em> was about 10–15 years ago.</p>
+    <p>The key difference: <em>Wolbachia</em> has a biological property that helps it spread aggressively through wild populations (it causes partial infertility in uninfected females, punishing the uninfected). MB doesn't have this — it spreads more slowly and needs a higher initial seeding density to take hold. This is why the field release is harder and less certain for MB than it was for <em>Wolbachia</em>.</p>
   </div>
 </details>
 
 <details>
   <summary>Gene drives</summary>
   <div class="details-body">
-    <p>Attract the most attention as a self-sustaining malaria tool. Significant technical hurdles remain unresolved (resistance alleles, population cage results haven't matched field prediction). Regulatory pathway and public acceptability harder than anticipated. MB's advantage: naturally occurring (non-GMO path via Wolbachia precedent), already field-validated for transmission blocking, has a defined regulatory pathway via VCAG. Gates review document in the portfolio covers gene drive. MB and gene drive are not competing near-term — gene drive is 10+ years from deployment; MB could be at field release within 2–4 years.</p>
+    <p>Gene drives are genetic modifications designed to spread through mosquito populations and either suppress them or make them unable to transmit malaria. They've attracted significant attention but face major unresolved technical hurdles (the drives keep breaking down in lab populations), and their regulatory and public-acceptance challenges have proven harder than expected. MB's advantage is that it's naturally occurring — it's a microbe already present in these mosquito populations — which makes the regulatory path much clearer and public acceptance higher. MB could be deployable in 2–4 years; gene drives are realistically 10+ years away.</p>
   </div>
 </details>
 
 <details>
-  <summary>Portfolio fit — snakebite and CMAM</summary>
+  <summary>How it fits the broader portfolio</summary>
   <div class="details-body">
-    <p>Against working portfolio benchmarks — snakebite fund ~$97–118/DALY, CMAM outcomes-based finance ~$54/DALY marginal — MB is complementary, not competing. CMAM OBF and snakebite are deployable, lower-variance, near-term buys that form the portfolio's stable core. MB is a high-variance, back-loaded, option-value bet whose expected value lives in the tail where funestus and open-field spread both resolve favorably. They draw on different capital appetites and do not meaningfully crowd each other (MB's early constraint is ICIPE capacity and gate resolution, not delivery dollars). Illustrative allocation: ~60–70% deployable core, ~10–15% MB as a staged option, remainder reserve.</p>
+    <p>MB is a different kind of bet from the more immediate global health investments in the portfolio (bednets, direct cash, treatment programmes). Those are high-confidence, lower-upside; MB is low-confidence, very high-upside if it works. They serve different purposes and don't compete for the same capital. A reasonable framing: ~60–70% of philanthropy dollars in deployable, proven programmes; ~10–15% in a staged option like MB that pays off massively if the field release succeeds.</p>
   </div>
 </details>
 
-<h2 id="jeremy">Crux questions for Jeremy Herren</h2>
 
-<p style="font-family:system-ui,sans-serif;font-size:13px;color:#666;margin-bottom:1.5rem;">These are the questions whose answers would change the funding decision — not just interesting gaps. Several obvious questions are already answered by the concept note (see collapsed section below).</p>
+<h2 id="jeremy">The four questions that would change our view</h2>
 
-<h3>The four cruxes</h3>
+<p style="font-family:system-ui,sans-serif;font-size:13px;color:#666;margin-bottom:1.5rem;">These are the questions whose answers would change whether — and how much — to fund. Not just interesting gaps: things that would shift the verdict. Several obvious questions are already answered by the concept note (see below).</p>
+
+<h3>What we'd want to know before committing Stage 2</h3>
 
 <ol class="bl">
-  <li><strong>Is the spore/<em>Moina</em> cycle confirmed in the lab, or still theoretical?</strong> The concept note says scalable production is "expected to combine" spore production with <em>Moina</em>-based amplification — the word "expected" is doing a lot of work. If the spore→<em>Moina</em>→larvae infectious cycle has not been confirmed beyond preliminary lab observations, Stage 1's primary deliverable is at risk and the cost model (which assumes this route works) breaks. <em>What scale has it reached: confirmed infectious cycle in lab? Semi-field? What is the current infectious dose per hectare?</em></li>
-  <li><strong>Is funestus germline infection confirmed, or is the blocking evidence from membrane feeding only?</strong> The concept note claims "evidence that MB blocks transmission in multiple vector species including <em>An. funestus</em>" — but transmission blocking in a membrane assay ≠ MB establishing in funestus germline and spreading vertically. The 2021 Ghana paper found MB in 0/181 funestus specimens. If MB cannot self-sustain in funestus (only transiently infect and block), the funestus-full scenario ($117/DALY) is not achievable and we're stuck in the arabiensis-only scenario ($232/DALY). <em>Has vertical transmission in funestus been demonstrated, and in what experiment?</em></li>
-  <li><strong>Is Stage 2's release design capable of crossing the bistable threshold?</strong> Our reconstruction of the Mfangnia 2026 model puts the tipping-point at p* ≈ 0.39 — you must seed ~39% of the adult population. At ~3,000 adults/hectare and ~25% establishment efficiency, that means ~10,000 infected mosquitoes per hectare per round, over 4–6 rounds. If ICIPE's Stage 2 plan uses lower densities or a single release round, the experiment will likely decay regardless of whether MB can self-sustain — and you'll have spent $24M without answering the question. <em>What is the planned seeding density and number of release rounds, and has it been designed around the bistable threshold?</em></li>
-  <li><strong>If Stage 2 shows MB decays rather than self-sustains — is there a Plan B?</strong> The concept note is silent on this. MB's lack of CI drive means self-locking appears in only ~1.2% of parameter draws. If the field release confirms decay: does the programme pivot to (a) developing a CI-equipped MB strain via gene drive partnership, (b) operating as a periodic re-seeding programme (SIT-like economics, fundamentally different cost model), or (c) ending? The answer changes how to structure the Stage 2 commitment — specifically whether kill-gate failure means exit or redirect. <em>What is ICIPE's contingency if the Stage 2 pilot shows MB doesn't lock in?</em></li>
+  <li>
+    <strong>Is the spore/crustacean delivery method confirmed in the lab, or is it still theoretical?</strong>
+    <p style="font-family:system-ui,sans-serif;font-size:14px;color:#444;margin-top:.4rem;">The concept note describes this as the delivery plan and cites a couple of references. But it also says that at-scale production is "expected to combine" the two methods — the word "expected" is a flag. If the full spore→crustacean→mosquito-larvae infectious chain hasn't been confirmed beyond preliminary experiments, Stage 1 might not succeed at its own primary goal. We'd want to know: has this chain been shown to work end-to-end in a lab setting? What's the current production rate and how far is it from what a field release would need?</p>
+  </li>
+  <li>
+    <strong>Can the microbe spread from mother to offspring in the <em>funestus</em> mosquito species — or does it just block transmission without spreading?</strong>
+    <p style="font-family:system-ui,sans-serif;font-size:14px;color:#444;margin-top:.4rem;">The concept note says MB blocks malaria in multiple species including <em>An. funestus</em>, which now dominates transmission across much of East Africa. But there's a crucial difference between "blocks transmission in a lab test" and "can spread through a wild <em>funestus</em> population on its own." A 2021 study in Ghana found MB in zero out of 181 <em>funestus</em> mosquitoes tested. If MB can only transiently infect <em>funestus</em> (block it once but not pass to offspring), the programme's reach is significantly smaller and the cost-per-person-protected roughly doubles. Has inheritance in <em>funestus</em> been demonstrated, and in what experiment?</p>
+  </li>
+  <li>
+    <strong>Is Stage 2's release designed around the tipping point — or is it likely to be too small to answer the question?</strong>
+    <p style="font-family:system-ui,sans-serif;font-size:14px;color:#444;margin-top:.4rem;">Our modelling of wild mosquito population dynamics suggests MB needs to be seeded in roughly 39% of the adult population at once before it spreads on its own rather than fading back. At typical densities, that means releasing around 10,000 infected mosquitoes per hectare per round, over 4–6 rounds. If the programme's Stage 2 plan uses lower densities or a single release, the experiment might show MB fading back — not because MB can't work, but because the design wasn't ambitious enough. Spending $24M on a poorly-designed experiment that can't answer the question it's supposed to answer is the specific risk to avoid. What is their planned release size, and has it been chosen with this threshold in mind?</p>
+  </li>
+  <li>
+    <strong>If the field release fails, what happens next — does the programme end, or pivot to something else?</strong>
+    <p style="font-family:system-ui,sans-serif;font-size:14px;color:#444;margin-top:.4rem;">The concept note doesn't address this. If Stage 2 shows that MB fades back to low levels after release, the two options are: (a) try to add a stronger biological driver (essentially becoming a gene-drive programme, which is a much bigger scientific challenge), or (b) treat MB as a recurring-application tool like a pesticide, which means the economics look more like $230+/DALY than $47/DALY. The answer changes how to structure the Stage 2 commitment. If there's a viable Plan B that would still be worth pursuing, that changes the downside calculation. If the answer is "the programme ends," that's also fine — but it should be stated explicitly so the kill-gate is clear.</p>
+  </li>
 </ol>
 
-<h3>Already answered by the concept note — no need to ask</h3>
+<h3>Already answered — no need to ask</h3>
 
 <details>
-  <summary>Questions the concept note addresses</summary>
+  <summary>Questions the concept note already addresses</summary>
   <div class="details-body">
     <ul>
-      <li><strong>Does MB block in funestus at all?</strong> Yes — concept note: "evidence that MB blocks transmission in multiple vector species...including <em>An. funestus</em>." The crux question is germline tropism/vertical transmission specifically, not the blocking itself.</li>
-      <li><strong>Is the spore/<em>Moina</em> route the intended delivery plan?</strong> Yes — explicitly described, refs 30–31 cited. The crux is how far the development is, not whether they intend to use it.</li>
-      <li><strong>3-country rationale?</strong> Answered: Kenya (R&D hub), Rwanda (Great Lakes gateway, pro-innovation), Benin (Francophone West Africa hub).</li>
-      <li><strong>Current funders?</strong> Phase 1: OP $2.2M + Gates $2M + CIFF $1M. Phase 2: OP $3M (¾ expended) + Gates $2.5M (½ expended). ~$12M total.</li>
-      <li><strong>Community acceptance?</strong> "High public acceptance established in western Kenya." Spore-seeding (no mosquito release) increases acceptance further.</li>
-      <li><strong>Why parallel 3-country vs sequential?</strong> Explicitly argued: parallel reduces single-country dependence and generates broader evidence base faster.</li>
-      <li><strong>Non-GMO path?</strong> Concept note frames MB as non-GMO via the <em>Wolbachia</em>/WMP precedent and cites community acceptance work. Country-specific legal status is still worth confirming but is not a first-meeting crux.</li>
-      <li><strong>6-year protection claim?</strong> "Based on field and laboratory experiments" — cage stability data is the main reference. Worth one follow-up but not a decision-changer at Stage 1.</li>
+      <li><strong>Does MB block malaria in funestus at all?</strong> Yes — the concept note claims "evidence that MB blocks transmission in multiple vector species including <em>An. funestus</em>." Our open question above is specifically about whether it can also spread through funestus populations on its own, which is different.</li>
+      <li><strong>Is the spore/crustacean route the delivery plan?</strong> Yes — explicitly described in the concept note with references. Our question is about how far the development is, not whether they intend to use it.</li>
+      <li><strong>Why three countries at once rather than one at a time?</strong> Answered: running three regulatory and implementation pathways in parallel reduces the risk of being stuck if one country's process stalls, and generates evidence across three different ecological contexts faster.</li>
+      <li><strong>Why those three countries specifically?</strong> Kenya is where MB was discovered and has the most scientific infrastructure; Rwanda has a government known for fast health innovation adoption and is a gateway to the high-burden Great Lakes region; Benin gives a foothold in West Africa and a path to expansion in French-speaking countries.</li>
+      <li><strong>Who else is funding this?</strong> Open Philanthropy and the Gates Foundation have both funded Phases 1 and 2. Phase 1 also included funding from the Children's Investment Fund Foundation. Combined investment to date: ~$12M.</li>
+      <li><strong>Is the community likely to accept this?</strong> Yes — the concept note cites research establishing high public acceptance in western Kenya. The spore-seeding approach (no mosquito releases) appears to increase acceptance further compared to programmes that release mosquitoes.</li>
+      <li><strong>Is it classified as a GMO?</strong> The microbe is naturally occurring, not genetically engineered, which puts it on a clearer regulatory path. The <em>Wolbachia</em>/dengue programme has already navigated this classification in multiple countries. Country-specific legal status is worth confirming but isn't expected to be a fundamental barrier.</li>
     </ul>
   </div>
 </details>
 
-<h2 id="calculator">Interactive calculator</h2>
+
+<h2 id="calculator">Calculator — explore the cost-effectiveness yourself</h2>
 
 <div id="mb-tool" style="border:1px solid #6ee7b7;background:#f0fdf4;padding:1.5rem 1.75rem;margin:0 0 2.5rem;font-family:system-ui,sans-serif;">
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem;margin-bottom:1.25rem;">
     <div>
-      <div style="font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;margin-bottom:.3rem;">Conditional $/DALY</div>
+      <div style="font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;margin-bottom:.3rem;">If it works: cost per DALY</div>
       <div id="mb-conditional" style="font-size:2.4rem;font-weight:800;letter-spacing:-.03em;line-height:1;color:#065f46;">—</div>
-      <div style="font-size:11px;color:#9ca3af;">if field establishment works</div>
+      <div style="font-size:11px;color:#9ca3af;">assuming field release succeeds</div>
     </div>
     <div>
-      <div style="font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;margin-bottom:.3rem;">Ex-ante $/DALY</div>
+      <div style="font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;margin-bottom:.3rem;">Probability-weighted cost per DALY</div>
       <div id="mb-exante" style="font-size:2.4rem;font-weight:800;letter-spacing:-.03em;line-height:1;color:#1f2937;">—</div>
-      <div style="font-size:11px;color:#9ca3af;">probability-weighted</div>
+      <div style="font-size:11px;color:#9ca3af;">accounting for chance of failure</div>
     </div>
     <div>
-      <div style="font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;margin-bottom:.3rem;">Verdict</div>
+      <div style="font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;margin-bottom:.3rem;">Assessment</div>
       <div id="mb-verdict" style="font-size:13px;font-weight:700;padding:.45rem .9rem;border-radius:3px;display:inline-block;margin-top:.2rem;">—</div>
     </div>
   </div>
   <div style="font-size:11.5px;color:#374151;line-height:2;margin-bottom:1.5rem;background:#fff;border:1px solid #d1fae5;padding:.85rem 1.1rem;" id="mb-breakdown"></div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
     <div>
-      <label style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;font-weight:600;">p(field establishment succeeds): <span id="ps-val">10%</span></label>
+      <label style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;font-weight:600;">Chance the field release works: <span id="ps-val">10%</span></label>
       <input type="range" id="ps-slider" min="5" max="40" value="10" step="1" oninput="mbRecalc()" style="width:100%;margin-top:.4rem;accent-color:#064e3b;">
     </div>
     <div>
@@ -599,41 +543,42 @@
       <input type="range" id="ss-slider" min="0" max="1" value="1" step="1" oninput="mbRecalc()" style="width:100%;margin-top:.4rem;accent-color:#064e3b;">
     </div>
     <div>
-      <label style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;font-weight:600;">Effective reach fraction: <span id="eff-val">23%</span></label>
+      <label style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;font-weight:600;">Fraction of population reached: <span id="eff-val">23%</span></label>
       <input type="range" id="eff-slider" min="5" max="80" value="23" step="1" oninput="mbRecalc()" style="width:100%;margin-top:.4rem;accent-color:#064e3b;">
     </div>
     <div>
-      <label style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;font-weight:600;">Malaria burden (DALYs/1,000/yr): <span id="burden-val">50</span></label>
+      <label style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;font-weight:600;">Malaria burden (DALYs per 1,000 people/yr): <span id="burden-val">50</span></label>
       <input type="range" id="burden-slider" min="10" max="150" value="50" step="5" oninput="mbRecalc()" style="width:100%;margin-top:.4rem;accent-color:#064e3b;">
     </div>
     <div>
-      <label style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;font-weight:600;">Your share of programme cost ($M): <span id="cost-val">—</span></label>
+      <label style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;font-weight:600;">Your share of programme cost: <span id="cost-val">—</span></label>
       <input type="range" id="cost-slider" min="2" max="50" value="10" step="1" oninput="mbRecalc()" style="width:100%;margin-top:.4rem;accent-color:#064e3b;">
     </div>
   </div>
 </div>
 
+
 <h2 id="verdict">Verdict</h2>
 
-<p>Microsporidia MB is <strong>the most promising genuinely novel malaria tool in the portfolio</strong> — and among the most uncertain. After 10 research loops across two phases, the picture is clearer than when we started but the central open question is unresolved by design: it can only be resolved by a field release.</p>
+<p>This is a genuine bet, not a sure thing. After 10 research loops across two phases, the honest picture is: the underlying biology is real and impressive, the delivery innovation is clever, the resistance risk is low, and the potential scale is enormous — but the single most important question (does it actually work in the wild?) has never been tested, and our modelling suggests it's harder than the programme implies.</p>
 
-<p>The case for funding is not that MB will certainly work. It is that:</p>
+<p>The case for funding isn't certainty. It's this:</p>
 
 <ul class="bl">
-  <li>The blocking mechanism is real, field-confirmed in 37,879 mosquitoes over 30 months, and structurally durable against parasite resistance.</li>
-  <li>The operational innovation (spore/<em>Moina</em> delivery without mosquito releases) makes Stage 2 tractable and cheap compared to any precedent.</li>
-  <li>Stage 1 ($9M) + the funestus gate ($0.5–2M) + Stage 2 pilot ($1.9M) together buy the three cheapest pieces of information that unlock — or rule out — a $36–6.50/DALY scale case.</li>
-  <li>If it works, it fills the structural gap bednets and spraying cannot: outdoor and residual transmission, without requiring any human action or behaviour change, once established.</li>
-  <li>If Stage 2 fails cleanly, MB exits at ≤$15–30M sunk, the field learns something important about symbiont-based malaria control, and the portfolio core is untouched.</li>
+  <li>The malaria-blocking mechanism is real, confirmed in nearly 38,000 wild mosquitoes over 30 months. This isn't a lab curiosity.</li>
+  <li>The new delivery approach — spreading spores through water crustaceans rather than releasing mosquitoes — makes Stage 2 tractable and inexpensive compared to anything similar that's been tried.</li>
+  <li>If Stage 2 works, the programme becomes one of the most cost-effective malaria interventions available, at a fraction of the cost of bednets on a long-run basis, reaching populations bednets can't protect.</li>
+  <li>If Stage 2 fails, the programme exits at $15–30M total spent, the science community learns something important, and the portfolio is otherwise unaffected.</li>
+  <li>The Stage 1 ($9M) + funestus experiment ($1–2M) together are the cheapest way to dramatically reduce uncertainty before committing to Stage 2.</li>
 </ul>
 
-<p><strong>Recommended action:</strong> Fund Stage 1 (~$9M) now. Separately fund the funestus blocking experiment (~$1–2M) as the highest-VoI standalone study. Reserve Stage 2 funding ($24M, co-funded with OP/Gates/Wellcome) conditional on Stage 1 production gate and funestus gate. Do not commit to Stage 3 ($17M) until Stage 2 open-field prevalence data exists. Attach serial-passage resistance monitoring to Stage 2 from day one.</p>
+<p><strong>Recommended action:</strong> Fund Stage 1 (~$9M) now. Separately fund the funestus-inheritance experiment (~$1–2M) — it's the cheapest single question that most changes the cost estimate. Hold Stage 2 (~$24M) in reserve, to be co-funded with Open Philanthropy and Gates, conditional on Stage 1 confirming the delivery method works. Don't commit Stage 3 ($17M) until the Stage 2 field data exists.</p>
 
 <div class="callout">
-  <strong>The cost of delay matters here.</strong> The concept note's own analysis — consistent with historical evidence from vaccines and diagnostics — finds that the greatest delays in global health occur between scientific proof-of-concept and routine implementation, not in the science itself. Every year MB spends waiting for the next funding round rather than running Stage 2 is a year of potential malaria burden not addressed. The downside of funding and being wrong is ≤$30M. The downside of not funding and being right is measured in tens of millions of DALYs.
+  <strong>The cost of waiting matters here.</strong> The biggest delays in global health typically happen not during the science, but in the gap between "it works in the lab" and "someone commits to finding out if it works in the real world." Every year MB waits for the next funding cycle rather than running Stage 2 is a year of potential malaria burden not addressed. The downside of funding and being wrong is at most $30M. The downside of not funding and being right is measured in lives.
 </div>
 
-<p style="font-family:system-ui,sans-serif;font-size:12px;color:#aaa;margin-top:3rem;">Report compiled September 2026. Sources: SYMBIOVECTOR concept note (Sep 14, 2026); Mfangnia et al. 2026, Sci Rep; Herren et al. 2020, Nat Commun; Nattoh/Herren et al. 2024, PLOS Pathogens; WHO World Malaria Report 2024; 10 independent deep-research loops (Aug–Sep 2026). All loop documents linked in sidebar.</p>
+<p style="font-family:system-ui,sans-serif;font-size:12px;color:#aaa;margin-top:3rem;">Report compiled September 2026. Based on: SYMBIOVECTOR concept note (Sep 14, 2026); 10 independent deep-research loops (Aug–Sep 2026); Mfangnia et al. 2026, Sci Rep; Herren et al. 2020, Nat Commun; Nattoh/Herren et al. 2024, PLOS Pathogens; WHO World Malaria Report 2024. All research documents linked in sidebar.</p>
 
 </main>
 </div>
@@ -657,30 +602,30 @@ function mbRecalc() {
   const dalysPerPerson = burden / 1000;
   const reach = reachM * 1e6;
   const years = ss ? 8 : 2;
-  const totalDalys = reach * eff * dalysPerPerson * years * 0.6; // 60% blocking × effective reach
+  const totalDalys = reach * eff * dalysPerPerson * years * 0.6;
   const costDollars = costM * 1e6;
 
   const conditional = totalDalys > 0 ? costDollars / totalDalys : Infinity;
   const exante = conditional / ps;
 
-  document.getElementById('mb-conditional').textContent = conditional < 10000 ? '$' + Math.round(conditional) : '>$10,000';
-  document.getElementById('mb-exante').textContent = exante < 50000 ? '$' + Math.round(exante) : '>$50,000';
+  document.getElementById('mb-conditional').textContent = conditional < 10000 ? '$' + Math.round(conditional) : '>$10k';
+  document.getElementById('mb-exante').textContent = exante < 50000 ? '$' + Math.round(exante) : '>$50k';
 
   const v = document.getElementById('mb-verdict');
   if (conditional < 100 && exante < 500) {
     v.textContent = 'Strong fund'; v.style.background = '#d1fae5'; v.style.color = '#065f46';
   } else if (conditional < 200 && exante < 2000) {
-    v.textContent = 'Stage 1+2 fund'; v.style.background = '#fef3c7'; v.style.color = '#92400e';
+    v.textContent = 'Fund stages 1+2'; v.style.background = '#fef3c7'; v.style.color = '#92400e';
   } else if (exante < 5000) {
     v.textContent = 'Research bet'; v.style.background = '#fef3c7'; v.style.color = '#92400e';
   } else {
-    v.textContent = 'Speculative'; v.style.background = '#fee2e2'; v.style.color = '#991b1b';
+    v.textContent = 'Too speculative'; v.style.background = '#fee2e2'; v.style.color = '#991b1b';
   }
 
   document.getElementById('mb-breakdown').innerHTML =
-    `Reach: ${reachM >= 1000 ? (reachM/1000).toFixed(1) + 'B' : reachM + 'M'} people × ${Math.round(eff*100)}% eff × ${burden}/1,000 DALYs/yr × ${years} yrs × 60% blocking = ${Math.round(totalDalys/1000)}k DALYs<br>` +
-    `Conditional: $${costM}M ÷ ${Math.round(totalDalys/1000)}k DALYs = $${Math.round(conditional)}/DALY<br>` +
-    `Ex-ante: $${Math.round(conditional)}/DALY ÷ ${Math.round(ps*100)}% p(success) = $${Math.round(exante)}/DALY`;
+    `${reachM >= 1000 ? (reachM/1000).toFixed(1) + 'B' : reachM + 'M'} people × ${Math.round(eff*100)}% reached × ${burden}/1,000 DALYs/yr × ${years} yrs × 60% of transmission blocked = ${Math.round(totalDalys/1000)}k DALYs protected<br>` +
+    `If it works: $${costM}M ÷ ${Math.round(totalDalys/1000)}k DALYs = $${Math.round(conditional)}/DALY<br>` +
+    `Probability-weighted: $${Math.round(conditional)}/DALY ÷ ${Math.round(ps*100)}% chance of success = $${Math.round(exante)}/DALY`;
 }
 
 function toggleAll() {
