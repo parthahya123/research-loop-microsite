@@ -593,8 +593,9 @@
       <input type="range" id="burden-slider" min="10" max="150" value="50" step="5" oninput="mbRecalc()" style="width:100%;margin-top:.4rem;accent-color:#064e3b;">
     </div>
     <div>
-      <label style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;font-weight:600;">Your share of programme cost: <span id="cost-val">—</span></label>
+      <label style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;font-weight:600;">Our contribution: <span id="cost-val">—</span></label>
       <input type="range" id="cost-slider" min="2" max="50" value="10" step="1" oninput="mbRecalc()" style="width:100%;margin-top:.4rem;accent-color:#064e3b;">
+      <div style="font-size:10px;color:#9ca3af;margin-top:.3rem;">Model assumes we're the enabling funder — we get credit for all DALYs regardless of what others co-fund. Smaller contribution = better CE if others cover the rest.</div>
     </div>
   </div>
 </div>
@@ -666,7 +667,7 @@ function mbRecalc() {
 
   document.getElementById('mb-breakdown').innerHTML =
     `${reachM >= 1000 ? (reachM/1000).toFixed(1) + 'B' : reachM + 'M'} people × ${Math.round(eff*100)}% reached × ${burden}/1,000 DALYs/yr × ${years} yrs × 60% of transmission blocked = ${Math.round(totalDalys/1000)}k DALYs protected<br>` +
-    `If it works: $${costM}M ÷ ${Math.round(totalDalys/1000)}k DALYs = $${Math.round(conditional)}/DALY<br>` +
+    `If it works: our $${costM}M contribution ÷ ${Math.round(totalDalys/1000)}k DALYs (full programme credit as enabling funder) = $${Math.round(conditional)}/DALY<br>` +
     `Probability-weighted: $${Math.round(conditional)}/DALY ÷ ${Math.round(ps*100)}% chance of success = $${Math.round(exante)}/DALY`;
 }
 
