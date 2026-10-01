@@ -108,6 +108,8 @@
     <li><a href="#landscape">Technology landscape</a></li>
     <li><a href="#sbbc">Bet 1: SBBC scale-up</a></li>
     <li><a href="#ai-ctg">Bet 2: AI-assisted CTG</a></li>
+    <li><a href="#gates-proposal">The Gates proposal</a></li>
+    <li><a href="#op-gating">Operational gating</a></li>
     <li><a href="#pocus">Bet 3: Intrapartum POCUS</a></li>
     <li><a href="#janitri">Janitri / Keyar</a></li>
     <li><a href="#ce">Cost-effectiveness</a></li>
@@ -123,6 +125,8 @@
     <li><a href="#" style="color:#bbb;">Janitri / Keyar deep dive</a></li>
     <li><a href="#" style="color:#bbb;">Intrapartum POCUS platform</a></li>
     <li><a href="#" style="color:#bbb;">SBBC decomposition</a></li>
+    <li><a href="#" style="color:#bbb;">Gates CE model (Oct 2026)</a></li>
+    <li><a href="#" style="color:#bbb;">Operational gating (Oct 2026)</a></li>
   </ul>
 </nav>
 
@@ -133,9 +137,9 @@
 
   <div class="verdict">
     <div class="vl">Verdict</div>
-    <p><strong>Fund the Safer Births Bundle of Care (SBBC) scale-up — it is the only intrapartum intervention with both measured cost-effectiveness ($144/DALY) and large-scale evidence (281,000 mothers, NEJM 2025).</strong></p>
-    <p>AI-assisted CTG interpretation is a speculative bet worth a small RCT — the single dramatic outcome claim in the field hasn't been replicated, and the best evidence we have (a 47,000-woman trial) says the approach has no effect on survival. Intrapartum POCUS integration is premature: too few facilities have the basics yet to justify building an integrated platform.</p>
-    <p>The binding constraint across all of this is <em>response capacity</em> — surgical teams, trained staff, functioning referral systems — not detection hardware or AI. Every dollar has a higher return improving what happens after a distress signal than improving how that signal is generated.</p>
+    <p><strong>Fund SBBC scale-up ($144/DALY, measured) and an AI-CTG replication RCT ($6–12M). For the Gates Bihar hub-and-spoke proposal: fund the $5M measurement tranche now, gate $15M on a 12-month conversion rate, and hold $30M for 24-month outcome data. Do not commit the full $50M upfront.</strong></p>
+    <p>The Gates proposal's 250M DALY headline is implausible by 3–50× as a central estimate. The honest expected value is dominated by a ~60–80% probability of null effect — the INFANT trial (47,000 women, aRR 1.01) is the most relevant prior. The hub-and-spoke mechanism is genuinely different and worth testing, but it is untested. Operational metrics at 12 months can gate the $15M tranche; they cannot substitute for the outcome data the $30M tranche requires.</p>
+    <p>The binding constraint is <em>response capacity</em> — Bihar has 39% anaesthetist coverage and a 2.7% C-section rate. HBB training at $12–23/DALY addresses that constraint directly and is proven. Any AI-CTG investment is a bet that a remote OB hub overrides it.</p>
   </div>
 
   <div class="metrics">
@@ -156,8 +160,12 @@
       <div class="ml">benefit-cost ratio (SBBC)</div>
     </div>
     <div class="metric">
-      <div class="mv">$0</div>
-      <div class="ml">RCT evidence for AI-CTG on LMIC outcomes</div>
+      <div class="mv">~20%</div>
+      <div class="ml">p(hub-and-spoke effect is real)</div>
+    </div>
+    <div class="metric">
+      <div class="mv">$16</div>
+      <div class="ml">$/DALY Bihar central (if 10% effect)</div>
     </div>
   </div>
 
@@ -317,6 +325,96 @@
 
   <p>A rigorous test would need to be a cluster randomized trial in LMIC facilities, with outcomes (deaths, encephalopathy, appropriate vs. inappropriate C-sections) as the primary measure — not trace-reading accuracy. It would need to compare against the real counterfactual: a birth attendant with no CTG training, not a specialist. It would need to separately test the acquisition, interpretation, and telemonitoring legs, so you can tell which part (if any) is driving the effect. Estimated cost: $6–12M. If the effect replicates, AI-CTG could become a $2–8/DALY intervention. If it doesn't, the loss is contained.</p>
 
+  <h2 id="gates-proposal">The Gates proposal — hub-and-spoke in Bihar</h2>
+
+  <p>In October 2026 a Gates Foundation MNCH briefing described a specific AI-CTG deployment proposal: smart CTG with an AI interpretation layer across C-MONQ facilities in India (UP, Bihar, Assam, Meghalaya), using a hub-and-spoke model where a remote obstetrician at a central hub supervises CTGs from multiple peripheral sites simultaneously. The briefing cited a headline impact figure of <strong>250 million DALYs averted</strong> for intrapartum sensors at 60% effective coverage.</p>
+
+  <p>We independently modeled this. The headline number doesn't survive scrutiny — but the hub-and-spoke mechanism is genuinely interesting.</p>
+
+  <h3>Stress-testing the 250M DALY claim</h3>
+
+  <p>Working backwards: the global intrapartum DALY pool is roughly 85 million per year (neonatal encephalopathy ~59M + intrapartum stillbirths ~25M + maternal ~1.5M). Reaching 250 million cumulative over 20 years — roughly 19M per year in steady state — at 60% coverage requires an effect size of at least 25%. Every RCT ever run on this class of intervention shows an effect size of approximately zero. The 250M figure is a theoretical global ceiling at the most optimistic corner of a multi-dimensional uncertainty space. It should not be used as an expected value for funding decisions.</p>
+
+  <p>At evidence-based effect sizes the number collapses: a 10% effect gives ~98M cumulative; 5% gives ~49M; 0% (the INFANT prior) gives zero. The India proposal specifically — $10–50M targeting UP/Bihar/Assam/Meghalaya C-MONQ facilities — addresses roughly 2–4M births per year and plausibly generates 1–11M DALYs over 20 years. That's 24–192× below the headline.</p>
+
+  <h3>The India BOTEC</h3>
+
+  <p>For the specific $25M/10yr India proposal, the cost-effectiveness is entirely determined by one variable: the effect size.</p>
+
+  <table>
+    <tr><th>Scenario</th><th>Effect size</th><th>$/DALY</th><th>Basis</th></tr>
+    <tr><td>Optimistic</td><td>30%</td><td><strong>$5.40</strong></td><td>Kenya/Malawi before-after at face value</td></tr>
+    <tr><td>Central</td><td>10%</td><td><strong>$16</strong></td><td>Hub-and-spoke adds real value; INFANT prior discounted</td></tr>
+    <tr><td>Pessimistic</td><td>2%</td><td><strong>$81</strong></td><td>Some effect, heavily attenuated by response chain</td></tr>
+    <tr><td>INFANT prior</td><td>0%</td><td><strong>∞</strong></td><td>Best RCT evidence; aRR 1.01 on 47,062 women</td></tr>
+  </table>
+
+  <p>The range spans from "among the most cost-effective global health buys ever" to "complete waste of money." No other parameter — cost structure, DALY weighting, coverage, time horizon — has remotely comparable leverage. This is a one-variable problem: is the effect real?</p>
+
+  <h3>The one mechanism that might work</h3>
+
+  <p>The INFANT trial added AI decision-support to the same clinician who was already reading the CTG. The hub-and-spoke model adds a <em>remote expert who decides and overrides</em> — closer to telemedicine consultation than software advice. This is a structurally different intervention. If the remote obstetrician can effectively direct emergency management — including transfer decisions, anesthesia guidance, and operative sequencing — the mechanism bypasses the binding constraint of absent local expertise.</p>
+
+  <p>But this mechanism is completely untested by any RCT. The Bihar hub-and-spoke implementation is early. The <strong>transfer conversion rate</strong> — the fraction of AI-flagged fetal distress alerts that result in a clinical decision change within 60 minutes — is currently unmeasured. It is also the single most decision-relevant datum for any funding decision.</p>
+
+  <div class="note">
+    <div class="nt">Bihar infrastructure reality</div>
+    Public C-section rate: 2.7–3.6% (well below the ~10% unmet-need floor). FRUs with an anaesthetist: 39%. FRUs with a functioning OR: 84% — but an OR without an anaesthetist is unusable for emergencies. LaQshya-certified labor rooms: 7%. Median 108 ambulance response time: 60–90 min. When the hub OB says "deliver now," 61% of peripheral sites cannot comply and must transfer. Transfer takes an hour. That's the chain the hub-and-spoke model has to overcome.
+  </div>
+
+  <h2 id="op-gating">Can we gate funding on operational metrics instead of waiting for an RCT?</h2>
+
+  <p>A reasonable question. The answer is: yes, but only for the first $20M. The largest tranche still requires outcome data.</p>
+
+  <h3>Which metrics actually predict mortality</h3>
+
+  <p>The evidence sorts process metrics into a clear hierarchy. <strong>Time-to-proven-treatment</strong> metrics work — door-to-balloon time in STEMI predicts 1-year mortality because PCI is a proven treatment and the chain from metric to outcome is near-complete. <strong>Detection and recognition metrics do not work</strong> — the Moyo device detected abnormal FHR 5× more often, C-sections went up, deaths were unchanged. INFANT showed CTG interpretation accuracy and provider compliance with AI alerts didn't predict outcomes either.</p>
+
+  <p>The hub-and-spoke conversion rate sits between these tiers: it goes beyond detection (measures whether the distress signal led to a clinical action), but falls short of Tier 1 (doesn't measure whether the action produced a live non-asphyxiated baby). It is the best available gate for this program — but not a proven predictor of mortality.</p>
+
+  <div class="callout">
+    <strong>The INFANT lesson on operational gating:</strong> In the INFANT trial, providers used the AI guidance at high rates (measurable process metric), acted on alerts quickly (DDI metric), and escalated appropriately. Every operational gate would have passed. The RCT showed aRR 1.01. A funder who gated on operational metrics at 12 months would have released the scale-up tranche — and wasted it.
+  </div>
+
+  <h3>The proposed tranche structure</h3>
+
+  <table>
+    <tr><th>Tranche</th><th>Size</th><th>Timeline</th><th>Gate</th></tr>
+    <tr>
+      <td><strong>1 — Launch</strong></td>
+      <td>$5M</td>
+      <td>Months 0–12</td>
+      <td>No outcome gate — this IS the measurement investment. Pre-conditions: ≥40% of sites have operative capacity, ≥40% don't (ensures results generalise); independent clinical auditor reporting to funder, not implementer.</td>
+    </tr>
+    <tr>
+      <td><strong>2 — Expand</strong></td>
+      <td>$15M</td>
+      <td>Month 12</td>
+      <td>All three must pass: (A) conversion rate ≥40% overall, ≥60% at operative facilities; (B) retrospective capture ≥50% of asphyxiated babies flagged pre-delivery; (C) C-section rate increase &lt;5pp above secular trend (no overtriage signal).</td>
+    </tr>
+    <tr>
+      <td><strong>3 — Scale</strong></td>
+      <td>$30M</td>
+      <td>Month 18–24</td>
+      <td>Perinatal mortality ≥10% below matched comparison facilities. No substitute. This is the gate that catches the INFANT pattern — and it takes outcome-length time to answer.</td>
+    </tr>
+  </table>
+
+  <p>Operational gating compresses the timeline for Tranche 2 from 24 months to 12 months. It does not compress the Tranche 3 decision. The $30M question is an outcome question. Funder instinct to skip Tranche 3 by using process metrics is understandable — but it accepts the INFANT-sized risk (~60–80% probability of null effect) on a $30M bet.</p>
+
+  <details>
+    <summary>Stop conditions and harm signals</summary>
+    <div class="details-body">
+      <p>Four triggers should cause immediate pause and external review:</p>
+      <ol>
+        <li><strong>C-section rate &gt;5pp above secular trend without mortality benefit</strong> — the Cochrane pattern (63% relative C-section increase, no mortality reduction). In Bihar, where C-section access is already constrained, overtriage creates real surgical harm.</li>
+        <li><strong>Alert volume &gt;25% of monitored deliveries</strong> — true intrapartum distress requiring intervention is ~5–10%. Above 25%, the hub is overcalling or the system is being gamed.</li>
+        <li><strong>≥2 maternal deaths directly attributable to a hub-recommended emergency C-section or transfer</strong> — immediate pause and external clinical review.</li>
+        <li><strong>Transfer failure rate &gt;20%</strong> — if more than 1 in 5 emergency transfers result in delivery before reaching the receiving facility, the transfer pathway does not function and the hub-and-spoke model breaks down.</li>
+      </ol>
+    </div>
+  </details>
+
   <h2 id="pocus">Bet 3 — Intrapartum POCUS (premature)</h2>
 
   <p>POCUS stands for point-of-care ultrasound — a handheld ultrasound device used at the bedside. During labor, it can tell you the baby's position and how far down the birth canal it has descended. This matters because conventional clinical examination (manually feeling the baby's position) is wrong 20–70% of the time.</p>
@@ -382,10 +480,16 @@
       <td>Would be extraordinarily cost-effective — but the INFANT trial suggests this won't replicate.</td>
     </tr>
     <tr>
-      <td>AI-CTG (INFANT trial prior)</td>
+      <td>AI-CTG hub-and-spoke India — central (10% effect)</td>
+      <td>$16</td>
+      <td>Modeled BOTEC — no outcome RCT</td>
+      <td>Gates proposal, $25M/10yr, Bihar/UP C-MONQ facilities. Assumes hub-and-spoke breaks INFANT null. p(this is real) ≈ 20%.</td>
+    </tr>
+    <tr>
+      <td>AI-CTG hub-and-spoke India — INFANT prior (0%)</td>
       <td>∞</td>
       <td>47,000-woman RCT</td>
-      <td>Best evidence says zero effect on deaths.</td>
+      <td>Best RCT evidence; aRR 1.01. Expected $/DALY dominated by ~60–80% null probability.</td>
     </tr>
     <tr>
       <td>Intrapartum POCUS platform</td>
@@ -451,8 +555,26 @@
     </li>
   </ol>
 
-  <h3 style="font-size:15px;margin-top:1.5rem;">On the broader opportunity</h3>
+  <h3 style="font-size:15px;margin-top:1.5rem;">On the Gates hub-and-spoke proposal</h3>
   <ol class="bl" start="8">
+    <li>
+      <strong>★ What is the current Bihar hub-and-spoke conversion rate — of AI alerts, what fraction result in a documented clinical action within 60 minutes?</strong>
+      <p style="font-family:system-ui,sans-serif;font-size:14px;color:#444;margin-top:.3rem;">This is the single most decision-relevant unmeasured number. Conversion rate &lt;20% confirms the Moyo pattern (detection up, outcomes unchanged) and makes a scale-up case very hard. Conversion rate &gt;40% at operative facilities gives a legitimate basis for Tranche 2 funding. If Gates doesn't have this number, it means the program is being planned without its most critical operational datum.</p>
+      <p style="font-family:system-ui,sans-serif;font-size:13px;color:#666;margin-top:.3rem;"><em>For the analyst: ask Piramal/Janitri for the Bihar hub log — how many alerts generated, how many resulted in a documented clinical decision change, within what time window.</em></p>
+    </li>
+    <li>
+      <strong>★ Is Gates willing to hold the Tranche 3 ($30M) commitment for 18–24 months pending outcome data — or do they need to commit the full amount upfront?</strong>
+      <p style="font-family:system-ui,sans-serif;font-size:14px;color:#444;margin-top:.3rem;">The operational gating structure only works if the funder is genuinely willing to withhold the scale-up tranche pending outcomes. If the $50M is effectively pre-committed and the gates are cosmetic, you're back to "fund the RCT." Understanding Gates' actual flexibility on the Tranche 3 gate is necessary before recommending any co-investment structure.</p>
+    </li>
+    <li>
+      <strong>Would Gates accept a stepped-wedge cluster RCT design built into the Bihar rollout from day one?</strong>
+      <p style="font-family:system-ui,sans-serif;font-size:14px;color:#444;margin-top:.3rem;">The best possible outcome is that the scale-up and the RCT are the same thing. A stepped-wedge design — facilities switching on sequentially in randomised order — costs ~$5–8M on top of the implementation budget and produces publishable causal evidence within 2–3 years. If the result is positive, it unlocks global scale-up with a quality of evidence that monitored implementation never can. If Gates is resistant to this, it's worth understanding why.</p>
+      <p style="font-family:system-ui,sans-serif;font-size:13px;color:#666;margin-top:.3rem;"><em>For the analyst: find out who the research partners are on the Bihar deployment. Is Piramal running any evaluation? Is there an academic partner (AIIMS, PHFI)?</em></p>
+    </li>
+  </ol>
+
+  <h3 style="font-size:15px;margin-top:1.5rem;">On the broader opportunity</h3>
+  <ol class="bl" start="11">
     <li>
       <strong>What is Gates and Open Philanthropy's current view on SBBC — are they funding scale-up, and what's the gap?</strong>
       <p style="font-family:system-ui,sans-serif;font-size:14px;color:#444;margin-top:.3rem;">The GFF $15M innovations challenge is live. Gates has funded Laerdal and Sibel Health (a competing FHR platform). Understanding what's already committed and what the gap is would shape the size and structure of any commitment.</p>
@@ -466,21 +588,23 @@
 
   <h2 id="verdict">Verdict</h2>
 
-  <p>The intrapartum space has one clear, investable opportunity and two speculative bets.</p>
+  <p>The intrapartum space has one clear, investable opportunity and two speculative bets — with a specific funding decision on the Gates Bihar proposal now live.</p>
 
-  <p><strong>SBBC scale-up</strong> is the only intervention with measured cost-effectiveness and large-scale evidence. The $144/DALY figure is real, the NEJM evidence is strong for its design type, and there is an active deployment pathway through GFF and Laerdal. The key risk is non-replication outside Tanzania — the Nigeria data (2027–28) should be the primary gate for a large commitment. Fund Stage 1 in Nigeria and one other high-burden country now ($5–15M); hold the major scale-up commitment conditional on replication.</p>
+  <p><strong>SBBC scale-up</strong> is the only intervention with measured cost-effectiveness and large-scale evidence. The $144/DALY figure is real, the NEJM evidence is strong for its design type, and there is an active deployment pathway through GFF and Laerdal. The key risk is non-replication outside Tanzania — the Nigeria data (2027–28) should be the primary gate for a large commitment. Fund Stage 1 in Nigeria and one other high-burden country now ($5–15M); hold the major scale-up commitment conditional on replication. For context: HBB training alone is $12–23/DALY with RCT-level evidence and addresses the binding constraint (response, not detection). Any intrapartum sensing program needs to beat this bar to justify the technology premium.</p>
 
-  <p><strong>AI-CTG replication RCT</strong> ($6–12M) is the highest value-of-information experiment available. The single dramatic outcome claim in the field (Malawi, 75–82% reduction) is unreplicated and runs against the grain of the best evidence (47,000-woman INFANT trial, null). If a well-designed LMIC trial replicates it even partially, AI-CTG becomes extraordinarily cost-effective. If it fails, the loss is contained. This is worth funding alongside SBBC.</p>
+  <p><strong>The Gates Bihar hub-and-spoke proposal:</strong> the hub-and-spoke mechanism is genuinely different from what INFANT tested and worth investigating. But the 250M DALY headline is implausible by 3–50× as a central estimate, and the expected $/DALY is dominated by a ~60–80% probability of null effect. The right structure is a three-tranche commitment: $5M now to build measurement infrastructure, $15M at 12 months gated on conversion rate ≥40% and no overtriage signal, $30M at 18–24 months gated on ≥10% perinatal mortality reduction versus matched controls. <strong>Do not commit the $30M tranche on operational metrics alone — that is the INFANT error.</strong> If Gates is unwilling to hold the scale-up tranche for 24 months pending outcome data, push for a stepped-wedge RCT design built into the rollout from day one.</p>
+
+  <p><strong>AI-CTG replication RCT</strong> ($6–12M) is the highest value-of-information experiment available independent of the Gates proposal. A well-designed LMIC cluster RCT with outcomes as the primary endpoint would resolve the core uncertainty for the whole category. VoI: ~$34M in decision value against ~$8M cost (4:1). Worth funding alongside SBBC regardless of what Gates does on Bihar.</p>
 
   <p><strong>Janitri/Keyar</strong> is the right India partner for an evidence-generation study. Fund the outcome trial (stepped-wedge, powered on deaths) as a public good for the category — but make the consumable cost disclosure and a functioning response-chain at target sites conditions of funding. Don't fund India deployment without evidence, and don't fund SSA entry until CE/WHO-PQ is secured and a distribution partner is in place.</p>
 
-  <p><strong>Intrapartum POCUS</strong> is premature. Come back when Moyo-class monitoring has meaningful LMIC penetration and there's evidence on the workflow feasibility question (will midwives actually perform intrapartum scans when prompted?).</p>
+  <p><strong>Intrapartum POCUS</strong> is premature. Come back when Moyo-class monitoring has meaningful LMIC penetration and there's evidence on the workflow feasibility question.</p>
 
   <div class="callout">
-    <strong>The meta-point:</strong> Every promising technology in this space runs into the same wall — detecting distress doesn't save babies if the facility can't act. The highest-return investment in intrapartum survival is probably not a better monitor. It's improving what happens in the 30 minutes after a distress signal: training, referral systems, surgical capacity, and the organizational culture to actually use what's already there. SBBC is valuable precisely because it attacks that problem directly.
+    <strong>The meta-point:</strong> Every promising technology in this space runs into the same wall — detecting distress doesn't save babies if the facility can't act. The INFANT trial, Moyo RCTs, and Bihar's 39% anaesthetist coverage all point to the same constraint. The highest-return investment in intrapartum survival is probably not a better monitor — it's improving what happens in the 30 minutes after a distress signal. SBBC is valuable precisely because it attacks that problem directly. Any AI-CTG investment is a bet that the hub-and-spoke mechanism overcomes this constraint. That bet is interesting but unproven, and it takes 24 months of outcome data to evaluate properly.
   </div>
 
-  <p style="font-family:system-ui,sans-serif;font-size:12px;color:#aaa;margin-top:3rem;">Report compiled October 2026. Based on 5 deep-research loops (Sep–Oct 2026): intrapartum sensing landscape, AI-CTG interpretation, Janitri/Keyar deep dive, intrapartum POCUS platform, SBBC bundle decomposition. Key sources: Mduma et al. NEJM 2025; SBBC Cost-Effectiveness PLOS ONE 2025; INFANT trial Lancet 2017; Alfirevic Cochrane 2017; Moyo RCT Tanzania PubMed 30678354; MICCAI Intrapartum Ultrasound Grand Challenge 2024.</p>
+  <p style="font-family:system-ui,sans-serif;font-size:12px;color:#aaa;margin-top:3rem;">Report compiled October 2026. Based on 7 deep-research loops (Sep–Oct 2026): intrapartum sensing landscape, AI-CTG interpretation, Janitri/Keyar deep dive, intrapartum POCUS platform, SBBC bundle decomposition, Gates CE model (Oct 2026), operational gating framework (Oct 2026). Key sources: Mduma et al. NEJM 2025; SBBC Cost-Effectiveness PLOS ONE 2025; INFANT trial Lancet 2017; Alfirevic Cochrane 2017; Moyo RCT Tanzania PMC6388236; GBD 2021 NE-BAT PMC12460252; Bihar FRU capacity PMC10158535; HBB meta-analysis PMC9698464.</p>
 
 </main>
 </div>
