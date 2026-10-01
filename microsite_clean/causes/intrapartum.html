@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intrapartum Sensing & POCUS — Cause Area Report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --accent: #1e3a5f;
+    --accent-mid: #2563eb;
+    --accent-light: #eff6ff;
+    --accent-border: #93c5fd;
+    --text: #1a1a1a;
+    --muted: #555;
+    --border: #e0deda;
+    --bg: #fafaf8;
+    --surface: #fff;
+    --surface-alt: #f7f6f4;
+  }
+
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.88; color: var(--text); background: var(--bg); }
+  .layout { display: flex; min-height: 100vh; }
+
+  nav { width: 232px; flex-shrink: 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 2.25rem 1.5rem; background: var(--surface-alt); border-right: 1px solid var(--border); }
+  nav .home { display: block; font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; color: #999; text-decoration: none; margin-bottom: 1.5rem; }
+  nav .home:hover { color: #333; }
+  nav h5 { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #bbb; margin-bottom: .6rem; margin-top: 1.5rem; }
+  nav ul { list-style: none; }
+  nav ul li a { font-family: system-ui, sans-serif; font-size: 12.5px; color: #666; text-decoration: none; display: block; padding: .22rem .6rem; border-left: 2px solid transparent; }
+  nav ul li a:hover { color: var(--text); }
+  nav ul li a.active { color: var(--text); border-left-color: var(--accent); font-weight: 600; }
+  nav .sep { height: 1px; background: var(--border); margin: 1.5rem 0; }
+
+  main { flex: 1; max-width: 800px; padding: 4rem 3.5rem 7rem; }
+  .eyebrow { font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin-bottom: .6rem; }
+  h1 { font-size: 2.5rem; line-height: 1.15; font-weight: 700; letter-spacing: -.025em; margin-bottom: .45rem; color: #0f0f0f; }
+  .dek { font-family: system-ui, sans-serif; font-size: 15.5px; color: #666; margin-bottom: 2.75rem; line-height: 1.5; }
+
+  .verdict { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 1.3rem 1.6rem; margin-bottom: 3.25rem; }
+  .verdict .vl { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #aaa; margin-bottom: .5rem; }
+  .verdict p { font-family: system-ui, sans-serif; font-size: 13.5px; color: #333; line-height: 1.65; margin-bottom: .55rem; }
+  .verdict p:last-child { margin-bottom: 0; }
+
+  .metrics { display: flex; gap: 1.25rem; margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .metric { background: var(--surface); border: 1px solid var(--border); padding: 1rem 1.25rem; flex: 1; min-width: 120px; }
+  .metric .mv { font-size: 1.45rem; font-weight: 700; color: #0f0f0f; font-family: system-ui, sans-serif; letter-spacing: -.02em; line-height: 1.1; }
+  .metric .ml { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: #aaa; margin-top: .3rem; }
+
+  h2 { font-size: 1.6rem; font-weight: 700; margin-top: 4rem; margin-bottom: 1.25rem; letter-spacing: -.015em; padding-bottom: .5rem; border-bottom: 1px solid var(--border); scroll-margin-top: 1.5rem; }
+  h3 { font-size: 1.1rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: .7rem; color: #222; }
+
+  p { margin-bottom: 1.2rem; }
+  a { color: #1e3a5f; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:hover { color: #0f1f35; }
+
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 2.25rem; font-family: system-ui, sans-serif; font-size: 13px; }
+  th { text-align: left; padding: .6rem .85rem; background: var(--surface-alt); border: 1px solid var(--border); font-weight: 600; color: #333; }
+  td { padding: .55rem .85rem; border: 1px solid var(--border); color: #444; vertical-align: top; line-height: 1.5; }
+  tr:nth-child(even) td { background: #faf9f7; }
+
+  .callout { background: var(--accent-light); border: 1px solid var(--accent-border); padding: 1.1rem 1.5rem; margin: 2rem 0; font-size: .94rem; line-height: 1.72; }
+  .callout strong { color: var(--accent); }
+
+  .note { background: #f8f9fa; border: 1px solid #d0d5dd; padding: 1.1rem 1.5rem; margin: 1.75rem 0; font-size: .93rem; font-family: system-ui, sans-serif; line-height: 1.7; }
+  .note .nt { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: #888; margin-bottom: .5rem; }
+
+  details { border: 1px solid var(--border); margin: 1.5rem 0; }
+  details summary { padding: .9rem 1.15rem; font-family: system-ui, sans-serif; font-size: 13.5px; font-weight: 600; color: #333; cursor: pointer; background: var(--surface-alt); list-style: none; display: flex; align-items: center; gap: .6rem; user-select: none; }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::before { content: '▶'; font-size: 10px; color: #aaa; transition: transform .15s; flex-shrink: 0; }
+  details[open] summary::before { transform: rotate(90deg); }
+  details summary:hover { background: #efede9; }
+  .details-body { padding: 1.25rem 1.5rem; font-family: system-ui, sans-serif; font-size: 13.5px; line-height: 1.72; color: #333; border-top: 1px solid var(--border); }
+  .details-body p { font-family: system-ui, sans-serif; font-size: 13.5px; margin-bottom: .9rem; }
+  .details-body table { font-size: 12.5px; }
+  .details-body h4 { font-weight: 700; margin: 1rem 0 .4rem; color: #222; font-size: 13.5px; }
+  .details-body ul, .details-body ol { margin: .4rem 0 .9rem 1.4rem; }
+  .details-body ul li, .details-body ol li { margin-bottom: .3rem; }
+
+  ul.bl, ol.bl { margin: .5rem 0 1.2rem 1.7rem; }
+  ul.bl li, ol.bl li { margin-bottom: .5rem; }
+
+  .scorecard { display: grid; gap: 0; margin: 1.5rem 0 2rem; border: 1px solid var(--border); }
+  .sc-row { display: grid; grid-template-columns: 2fr 1fr 2fr; border-bottom: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 13px; }
+  .sc-row:last-child { border-bottom: none; }
+  .sc-row.header { background: var(--surface-alt); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: #666; }
+  .sc-cell { padding: .65rem .9rem; border-right: 1px solid var(--border); line-height: 1.45; }
+  .sc-cell:last-child { border-right: none; }
+  .badge { display: inline-block; padding: .15rem .5rem; font-size: 10.5px; font-weight: 700; letter-spacing: .03em; }
+  .badge.green { background: #d1fae5; color: #065f46; }
+  .badge.yellow { background: #fef3c7; color: #92400e; }
+  .badge.red { background: #fee2e2; color: #991b1b; }
+  .badge.grey { background: #f3f4f6; color: #374151; }
+  .badge.blue { background: #dbeafe; color: #1e40af; }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav>
+  <a class="home" href="../index.html">← All causes</a>
+
+  <h5>On this page</h5>
+  <ul>
+    <li><a href="#problem">The problem</a></li>
+    <li><a href="#insight">The core insight</a></li>
+    <li><a href="#landscape">Technology landscape</a></li>
+    <li><a href="#sbbc">Bet 1: SBBC scale-up</a></li>
+    <li><a href="#ai-ctg">Bet 2: AI-assisted CTG</a></li>
+    <li><a href="#pocus">Bet 3: Intrapartum POCUS</a></li>
+    <li><a href="#janitri">Janitri / Keyar</a></li>
+    <li><a href="#ce">Cost-effectiveness</a></li>
+    <li><a href="#questions">Questions for diligence</a></li>
+    <li><a href="#verdict">Verdict</a></li>
+  </ul>
+
+  <div class="sep"></div>
+  <h5>Research runs</h5>
+  <ul>
+    <li><a href="#" style="color:#bbb;">Intrapartum sensing landscape</a></li>
+    <li><a href="#" style="color:#bbb;">AI-CTG interpretation</a></li>
+    <li><a href="#" style="color:#bbb;">Janitri / Keyar deep dive</a></li>
+    <li><a href="#" style="color:#bbb;">Intrapartum POCUS platform</a></li>
+    <li><a href="#" style="color:#bbb;">SBBC decomposition</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="eyebrow">Cause area report · October 2026</div>
+  <h1>Intrapartum Sensing & POCUS</h1>
+  <p class="dek">About 2 million babies die every year at or just after birth — most from preventable complications during labor. The technology to detect these complications already exists and is cheap. The problem is that detecting danger doesn't save babies if the facility can't act on it.</p>
+
+  <div class="verdict">
+    <div class="vl">Verdict</div>
+    <p><strong>Fund the Safer Births Bundle of Care (SBBC) scale-up — it is the only intrapartum intervention with both measured cost-effectiveness ($144/DALY) and large-scale evidence (281,000 mothers, NEJM 2025).</strong></p>
+    <p>AI-assisted CTG interpretation is a speculative bet worth a small RCT — the single dramatic outcome claim in the field hasn't been replicated, and the best evidence we have (a 47,000-woman trial) says the approach has no effect on survival. Intrapartum POCUS integration is premature: too few facilities have the basics yet to justify building an integrated platform.</p>
+    <p>The binding constraint across all of this is <em>response capacity</em> — surgical teams, trained staff, functioning referral systems — not detection hardware or AI. Every dollar has a higher return improving what happens after a distress signal than improving how that signal is generated.</p>
+  </div>
+
+  <div class="metrics">
+    <div class="metric">
+      <div class="mv">~2M</div>
+      <div class="ml">intrapartum deaths/year</div>
+    </div>
+    <div class="metric">
+      <div class="mv">$144</div>
+      <div class="ml">DALY averted (SBBC, measured)</div>
+    </div>
+    <div class="metric">
+      <div class="mv">18%</div>
+      <div class="ml">perinatal mortality reduction (SBBC NEJM)</div>
+    </div>
+    <div class="metric">
+      <div class="mv">BCR 36</div>
+      <div class="ml">benefit-cost ratio (SBBC)</div>
+    </div>
+    <div class="metric">
+      <div class="mv">$0</div>
+      <div class="ml">RCT evidence for AI-CTG on LMIC outcomes</div>
+    </div>
+  </div>
+
+  <h2 id="problem">The problem</h2>
+
+  <p>Every year, roughly 2 million babies die during or immediately after birth — about 1 million stillbirths plus 900,000 neonatal deaths in the first 24 hours. The leading cause is <strong>birth asphyxia</strong>: the baby doesn't get enough oxygen during labor. Most of these deaths happen in low- and middle-income countries at facilities that have some staff and some equipment, but not enough of either.</p>
+
+  <p>The sequence of events is usually the same: the baby's heart rate changes in ways that signal distress. If that signal is detected and acted on fast enough — by speeding up delivery, performing an emergency cesarean, or resuscitating the baby at birth — the baby survives. If not, it doesn't.</p>
+
+  <p>The obvious solution sounds simple: better monitoring so the distress signal is caught earlier. That's the pitch behind most of the technology in this space. The problem, as we'll explain, is that catching the signal is not actually the hard part.</p>
+
+  <h2 id="insight">The core insight that changes everything</h2>
+
+  <p>Here is the single most important finding from all of our research on this topic:</p>
+
+  <div class="callout">
+    <strong>Detecting fetal distress does not save babies. Acting on fetal distress does.</strong> Those are two different problems, and the second one is much harder.
+  </div>
+
+  <p>The best evidence for this comes from a rigorous study of the Moyo fetal heart rate monitor in Tanzania — a continuous, purpose-built device that genuinely does detect distress better and faster than the alternatives. In a study of nearly 3,000 women, Moyo detected abnormal heart rate patterns significantly more often than standard care. C-section rates went up. But deaths did not go down.</p>
+
+  <p>What happened? The facilities detected more danger signals, but their capacity to respond — emergency surgery, trained staff, time — didn't change. Detecting danger and not being able to act on it doesn't help the baby.</p>
+
+  <p>This pattern recurs throughout the literature. The facilities where intrapartum death rates are highest are exactly the facilities where response capacity is weakest. A better monitor is upstream of the bottleneck.</p>
+
+  <h2 id="landscape">Technology landscape — what exists and where it stands</h2>
+
+  <p>We mapped 11 technologies across the intrapartum monitoring space. They fall into three tiers:</p>
+
+  <div class="scorecard">
+    <div class="sc-row header">
+      <div class="sc-cell">Technology</div>
+      <div class="sc-cell">LMIC readiness</div>
+      <div class="sc-cell">What the evidence actually shows</div>
+    </div>
+    <div class="sc-row">
+      <div class="sc-cell"><strong>SBBC bundle</strong><br><span style="color:#888;font-size:11px;">Moyo monitor + training + QI + resuscitation gear</span></div>
+      <div class="sc-cell"><span class="badge green">Deploy now</span></div>
+      <div class="sc-cell">18% reduction in perinatal deaths, 75% reduction in maternal deaths. $144/DALY. NEJM stepped-wedge, 281k mothers. The only intrapartum intervention with measured CE and large-scale LMIC evidence.</div>
+    </div>
+    <div class="sc-row">
+      <div class="sc-cell"><strong>Moyo alone</strong><br><span style="color:#888;font-size:11px;">Continuous fetal heart rate monitor, $198</span></div>
+      <div class="sc-cell"><span class="badge yellow">Deploy with bundle</span></div>
+      <div class="sc-cell">RCT (n=2,973): detected distress more often, raised C-sections, no mortality benefit. Works as part of SBBC — does not work alone.</div>
+    </div>
+    <div class="sc-row">
+      <div class="sc-cell"><strong>Handheld Doppler</strong><br><span style="color:#888;font-size:11px;">Intermittent checks, $30–1,200</span></div>
+      <div class="sc-cell"><span class="badge yellow">Current standard</span></div>
+      <div class="sc-cell">Better than a Pinard stethoscope but checks only between contractions, not continuously. Misses prolonged distress. Still the standard in many LMIC facilities.</div>
+    </div>
+    <div class="sc-row">
+      <div class="sc-cell"><strong>AI-assisted CTG</strong><br><span style="color:#888;font-size:11px;">Software that reads the fetal heart trace</span></div>
+      <div class="sc-cell"><span class="badge yellow">Unproven</span></div>
+      <div class="sc-cell">The biggest RCT ever run (47,000 women, INFANT trial) found zero effect on deaths even in well-resourced hospitals. No LMIC outcome data exists. May have value in specific settings — see below.</div>
+    </div>
+    <div class="sc-row">
+      <div class="sc-cell"><strong>Janitri Keyar</strong><br><span style="color:#888;font-size:11px;">Beltless electrical monitor + AI dashboard, India</span></div>
+      <div class="sc-cell"><span class="badge yellow">Promising, unproven</span></div>
+      <div class="sc-cell">Real product, growing government adoption in India. Validated only for signal accuracy, not for whether it saves lives. No outcome RCT exists for any LMIC device including Keyar.</div>
+    </div>
+    <div class="sc-row">
+      <div class="sc-cell"><strong>Standard CTG</strong><br><span style="color:#888;font-size:11px;">Hospital fetal monitor, $500–30,000</span></div>
+      <div class="sc-cell"><span class="badge red">Wrong fit</span></div>
+      <div class="sc-cell">Gold standard in rich-country hospitals. Fails in LMICs: requires a specialist to read it, needs continuous power, requires 1:1 nursing. Cochrane: no mortality benefit even in HIC.</div>
+    </div>
+    <div class="sc-row">
+      <div class="sc-cell"><strong>Intrapartum POCUS</strong><br><span style="color:#888;font-size:11px;">Ultrasound during labor to assess baby position</span></div>
+      <div class="sc-cell"><span class="badge grey">Too early</span></div>
+      <div class="sc-cell">Genuine clinical value when CTG is abnormal — tells you whether a C-section is really needed. But zero combined CTG+POCUS LMIC trials exist. Only 739 Moyo units sold globally despite being available since 2015. Solve deployment before integration.</div>
+    </div>
+    <div class="sc-row">
+      <div class="sc-cell"><strong>Smartphone fetal Doppler</strong><br><span style="color:#888;font-size:11px;">DopFone / m-CTG</span></div>
+      <div class="sc-cell"><span class="badge red">5–8 yrs away</span></div>
+      <div class="sc-cell">Validated in 23 antepartum patients. Not deployable for intrapartum use yet. Option value only.</div>
+    </div>
+  </div>
+
+  <h2 id="sbbc">Bet 1 — SBBC scale-up (the clear opportunity)</h2>
+
+  <p>The Safer Births Bundle of Care is not a single device. It is four things deployed together:</p>
+  <ol class="bl">
+    <li><strong>Simulation training</strong> — midwives practice resuscitation and emergency deliveries on realistic mannequins</li>
+    <li><strong>Continuous quality improvement</strong> — facilities track outcomes, audit deaths, and share learning across sites</li>
+    <li><strong>Clinical devices</strong> — Moyo (continuous fetal heart rate monitor), NeoBeat (newborn heart rate), suction and bag-mask for resuscitation</li>
+    <li><strong>Sustainability systems</strong> — government integration, local ownership, mentorship networks</li>
+  </ol>
+
+  <p>This is the only intervention in the intrapartum space that attacks both the detection problem and the response problem at once. Training improves what staff do when they see a distress signal. QI systems create accountability for outcomes. The equipment is cheap and purpose-built for LMIC settings.</p>
+
+  <h3>What the evidence shows</h3>
+
+  <p>A <a href="https://www.nejm.org/doi/full/10.1056/NEJMoa2406295">2025 NEJM study</a> across 30 facilities in Tanzania (281,000 mothers) found:</p>
+  <ul class="bl">
+    <li>18% reduction in deaths in the first 24 hours after birth</li>
+    <li>40% reduction in early newborn deaths</li>
+    <li>75% reduction in maternal deaths in hospital</li>
+    <li>~580 lives saved at those 30 facilities</li>
+  </ul>
+
+  <p>A companion cost-effectiveness analysis found $144/DALY — competitive with GiveWell's top interventions and a benefit-cost ratio of 36.</p>
+
+  <div class="note">
+    <div class="nt">Important caveat</div>
+    The Tanzania study used a stepped-wedge design, not a randomized controlled trial. That means facilities switched over sequentially and there was no pure control group. Secular trends and the Hawthorne effect (staff performing better because they're being observed) cannot be ruled out. The effect could be smaller than the headline figure. The Nigeria expansion (now underway) is the first real replication test — its results, expected 2027–28, should gate major scale-up commitments.
+  </div>
+
+  <h3>The deployment trajectory</h3>
+  <table>
+    <tr><th>Year</th><th>What happened</th></tr>
+    <tr><td>2015</td><td>Moyo introduced in Tanzania research settings</td></tr>
+    <tr><td>2019</td><td>GFF funding for 30 hospitals across 5 regions</td></tr>
+    <tr><td>2023</td><td>GFF $8.5M for scale-up to 150+ facilities in Tanzania</td></tr>
+    <tr><td>2025</td><td>NEJM publication + Nigeria expansion begins (Borno + Gombe)</td></tr>
+    <tr><td>2026</td><td>GFF $15M innovations challenge for SBBC expansion to 10+ countries</td></tr>
+  </table>
+
+  <h3>What $30–60M could buy</h3>
+  <p>At $144/DALY (the measured rate) and $80–150k per facility:</p>
+  <ul class="bl">
+    <li>$30M → ~208,000 DALYs averted, ~6,500 lives saved (at measured rate)</li>
+    <li>$42M → ~292,000 DALYs averted, ~9,100 lives saved</li>
+    <li>At projected scale efficiencies ($80/DALY), the same money saves ~11,700 lives</li>
+  </ul>
+  <p>Priority countries by burden: India, Nigeria, DRC, Ethiopia, Pakistan together account for over half of global intrapartum deaths.</p>
+
+  <h2 id="ai-ctg">Bet 2 — AI-assisted CTG interpretation (the speculative bet)</h2>
+
+  <p>A cardiotocograph, or CTG, is the squiggly line that traces a baby's heart rate during labor. Reading it well requires training — you have to recognize which patterns signal distress and which are normal variation. The pitch for AI-CTG is: most LMIC facilities don't have a specialist who can read this trace well, so an AI that reads it for them could save lives.</p>
+
+  <p>The pitch makes logical sense. The problem is that it doesn't seem to work in practice — and we have unusually strong evidence for why.</p>
+
+  <h3>The INFANT trial — the decisive test</h3>
+
+  <p>The <a href="https://pubmed.ncbi.nlm.nih.gov/28341515/">INFANT trial</a> randomized 47,000 women across 24 hospitals in the UK and Ireland to labor with or without a real-time AI system that reads the CTG trace and alerts clinicians to danger patterns. This is the largest trial ever run of this type of technology, in hospitals with skilled staff, good equipment, and strong response capacity. The result: deaths occurred in 0.7% of the AI group and 0.7% of the control group. No difference at all. C-section rates didn't improve either.</p>
+
+  <p>Why? Because even in those hospitals, the problem wasn't that clinicians were missing the signals — it was that the chain from signal to action was slower and more complex than the AI could fix. This is the response-capacity problem in a well-resourced setting. In an under-resourced LMIC facility, the same problem is much worse.</p>
+
+  <h3>What about the Malawi result?</h3>
+
+  <p>One study in Malawi reported a 75–82% reduction in intrapartum deaths with an AI-CTG system (PeriGen). That number is striking. But it comes from a single before-after comparison at one unusually well-resourced hospital with 24-hour obstetrician coverage — the opposite of a typical LMIC setting. It has not been replicated anywhere.</p>
+
+  <h3>The accuracy problem</h3>
+
+  <p>When AI-CTG systems are tested on how accurately they read traces, they perform reasonably well at identifying abnormal patterns. But the accuracy improvement is mainly on the <em>sensitivity</em> axis (catching real danger). The <em>specificity</em> (not falsely flagging normal babies as in danger) is stubbornly around 60% — meaning a lot of false alarms, which drive unnecessary C-sections and erode trust in the system.</p>
+
+  <h3>So what is AI-CTG actually useful for?</h3>
+
+  <p>Two things appear genuinely valuable, independent of the interpretation claim:</p>
+  <ul class="bl">
+    <li><strong>Signal acquisition</strong> — battery-powered, beltless devices like the Janitri Keyar (see below) that can capture a fetal heart trace in settings without the power, consumables, and infrastructure of a conventional CTG machine. This is a real hardware advance.</li>
+    <li><strong>Telemonitoring</strong> — streaming the trace to a remote specialist who can read it. A scarce obstetrician in a district hub could supervise multiple rural labor wards simultaneously. This is valuable where connectivity is reliable.</li>
+  </ul>
+
+  <p>The interpretation claim — AI substituting for the absent expert — is the part that hasn't been proven and may not work for the reasons the INFANT trial exposed.</p>
+
+  <h3>What would it take to settle the question?</h3>
+
+  <p>A rigorous test would need to be a cluster randomized trial in LMIC facilities, with outcomes (deaths, encephalopathy, appropriate vs. inappropriate C-sections) as the primary measure — not trace-reading accuracy. It would need to compare against the real counterfactual: a birth attendant with no CTG training, not a specialist. It would need to separately test the acquisition, interpretation, and telemonitoring legs, so you can tell which part (if any) is driving the effect. Estimated cost: $6–12M. If the effect replicates, AI-CTG could become a $2–8/DALY intervention. If it doesn't, the loss is contained.</p>
+
+  <h2 id="pocus">Bet 3 — Intrapartum POCUS (premature)</h2>
+
+  <p>POCUS stands for point-of-care ultrasound — a handheld ultrasound device used at the bedside. During labor, it can tell you the baby's position and how far down the birth canal it has descended. This matters because conventional clinical examination (manually feeling the baby's position) is wrong 20–70% of the time.</p>
+
+  <p>The clinical value of knowing position is real but specific: when the CTG shows distress, knowing whether the baby is face-up (which might respond to repositioning) versus face-down changes whether a C-section is truly needed. Getting that answer faster and more accurately could prevent unnecessary C-sections and enable earlier decisions when they are needed.</p>
+
+  <h3>Why it's premature to invest now</h3>
+
+  <p>The problem is the deployment gap. Only ~739 Moyo units have been sold globally since 2015, despite the device costing $198 and being explicitly designed for LMIC facilities. Handheld POCUS has essentially zero intrapartum use in LMICs — it is used almost entirely for antenatal care. No trial has ever combined electronic fetal monitoring with intrapartum POCUS in any LMIC setting.</p>
+
+  <p>More fundamentally: the median time from a decision to emergency C-section in eastern Uganda is 110 minutes — and only 2% of cases meet the 30-minute target. Better diagnostic information doesn't fix the theater, the surgeon, or the anesthesiologist.</p>
+
+  <p>The right sequencing: deploy SBBC broadly → once Moyo-class monitoring is in widespread use, test whether POCUS decision-support improves outcomes on top → if that feasibility test succeeds, build the integrated platform. The product gap is closable ($3–5M, 2–3 years to prototype). The deployment gap is 5–10x larger and harder.</p>
+
+  <h2 id="janitri">Janitri / Keyar — the Indian device worth watching</h2>
+
+  <p>Janitri is a Bangalore-based medtech company that makes the Keyar monitor — a beltless, battery-powered device that captures fetal heart rate and uterine contractions using electrical signals from abdominal patches (rather than the Doppler ultrasound approach used by Moyo). It pairs with a software platform called Daksh that auto-generates the partograph (the standardized labor chart), sends AI-generated distress alerts, and lets a remote doctor supervise multiple labor beds from a single dashboard.</p>
+
+  <h3>What makes it interesting</h3>
+  <ul class="bl">
+    <li>The task-shifting concept is valuable: one scarce obstetrician supervising many labor beds remotely is exactly the right model for India's health system</li>
+    <li>Real government traction: statewide procurement in Assam, presence in Karnataka, Rajasthan, and Delhi</li>
+    <li>Revenue growing >2x year-over-year, small but real (~$1M FY24–25)</li>
+    <li>More feature-rich than alternatives: the only LMIC device combining contractions, auto-partograph, AI alerts, and remote supervision</li>
+  </ul>
+
+  <h3>The gap that matters</h3>
+  <p>There is no evidence that using Keyar reduces deaths. The validation studies confirm the device captures a signal that agrees with a conventional CTG trace. That is not the same as proving the device prevents birth asphyxia. Crucially, <strong>no LMIC intrapartum monitor has outcome RCT evidence</strong> — this is a gap for the whole category, not just Janitri. The best proper RCT in the field (Moyo, Tanzania, n=2,973) was null on mortality.</p>
+
+  <p>The per-patch consumable cost has never been publicly disclosed. This is the single most important missing number for any cost-effectiveness assessment — it determines whether facilities can sustain use after a grant runs out.</p>
+
+  <h3>The right role for Janitri</h3>
+  <ul class="bl">
+    <li><strong>India:</strong> natural prime partner. It has the government rails, the software, and the regulatory clearance that a foreign device lacks.</li>
+    <li><strong>Sub-Saharan Africa:</strong> too early. No CE or WHO-PQ clearance. No distribution network. Laerdal and iCTG (Melody) are ahead on both evidence and relationships. The right play is Janitri's Daksh software paired with an established hardware partner, not Janitri building SSA infrastructure from scratch.</li>
+  </ul>
+
+  <h2 id="ce">Cost-effectiveness at a glance</h2>
+
+  <table>
+    <tr>
+      <th>Intervention</th>
+      <th>$/DALY</th>
+      <th>Evidence quality</th>
+      <th>Notes</th>
+    </tr>
+    <tr>
+      <td><strong>SBBC (Moyo + bundle)</strong></td>
+      <td><strong>$144</strong></td>
+      <td>NEJM stepped-wedge, 281k</td>
+      <td>Only intervention addressing both detection and response. Best evidence in the field.</td>
+    </tr>
+    <tr>
+      <td>Helping Babies Breathe (HBB)</td>
+      <td>$12–23</td>
+      <td>Before-after studies</td>
+      <td>Cheaper but resuscitation only — doesn't prevent the asphyxia, just treats it. Included in SBBC.</td>
+    </tr>
+    <tr>
+      <td>AI-CTG (if Malawi result replicates)</td>
+      <td>$2–8</td>
+      <td>Single unreplicated before-after</td>
+      <td>Would be extraordinarily cost-effective — but the INFANT trial suggests this won't replicate.</td>
+    </tr>
+    <tr>
+      <td>AI-CTG (INFANT trial prior)</td>
+      <td>∞</td>
+      <td>47,000-woman RCT</td>
+      <td>Best evidence says zero effect on deaths.</td>
+    </tr>
+    <tr>
+      <td>Intrapartum POCUS platform</td>
+      <td>Unknown</td>
+      <td>No LMIC trials</td>
+      <td>No cost-per-DALY estimate possible yet.</td>
+    </tr>
+    <tr>
+      <td>Kangaroo mother care</td>
+      <td>$40–80</td>
+      <td>RCTs</td>
+      <td>Post-birth, preterm focus — different mechanism.</td>
+    </tr>
+    <tr>
+      <td>GiveWell ITNs (bednets)</td>
+      <td>$50–100</td>
+      <td>Multiple RCTs</td>
+      <td>Different disease. Benchmark for comparison.</td>
+    </tr>
+  </table>
+
+  <h2 id="questions">Questions for diligence</h2>
+
+  <p style="font-family:system-ui,sans-serif;font-size:13px;color:#666;margin-bottom:1.5rem;">Organized by theme. <strong>★</strong> marks true cruxes — things whose answers would change the funding verdict.</p>
+
+  <h3 style="font-size:15px;margin-top:1.5rem;">On SBBC scale-up</h3>
+  <ol class="bl">
+    <li>
+      <strong>★ What are the early Nigeria (Borno + Gombe) results showing, and when will they be reportable?</strong>
+      <p style="font-family:system-ui,sans-serif;font-size:14px;color:#444;margin-top:.3rem;">Nigeria is the first replication of the Tanzania NEJM result in a different health system. If the effect size is similar, it substantially de-risks a large SBBC commitment. If it's smaller or null, we'd want to understand why before committing $30M+.</p>
+      <p style="font-family:system-ui,sans-serif;font-size:13px;color:#666;margin-top:.3rem;"><em>For the analyst: ask Laerdal Global Health directly for interim data or site visit reports.</em></p>
+    </li>
+    <li>
+      <strong>What is the per-facility total cost in Tanzania — and does that hold in Nigeria?</strong>
+      <p style="font-family:system-ui,sans-serif;font-size:14px;color:#444;margin-top:.3rem;">The PLOS ONE paper reports ~$150k per facility, but that's a specific health system and cost structure. Nigeria, India, and DRC could be meaningfully different. The cost-effectiveness case hinges on this number holding at scale across diverse systems.</p>
+      <p style="font-family:system-ui,sans-serif;font-size:13px;color:#666;margin-top:.3rem;"><em>For the analyst: request the SBBC cost model, including recurrent vs. capital split and government co-financing expectations.</em></p>
+    </li>
+    <li>
+      <strong>★ How does SBBC work in facilities that don't have emergency C-section capability?</strong>
+      <p style="font-family:system-ui,sans-serif;font-size:14px;color:#444;margin-top:.3rem;">The bundle's training and resuscitation components help at any facility. But the monitoring component is most valuable when the facility can act on a distress signal surgically. In primary health centers without an operating theater, a Moyo alert may lead to a referral rather than an intervention — and referral time in many settings exceeds safe thresholds. This determines whether SBBC should be targeted at CEmONC-capable facilities only, or whether it has value at a lower level of the health system too.</p>
+    </li>
+  </ol>
+
+  <h3 style="font-size:15px;margin-top:1.5rem;">On AI-CTG / Janitri</h3>
+  <ol class="bl" start="4">
+    <li>
+      <strong>★ What is the consumable cost per delivery for Keyar's adhesive patches — and is there a published number anywhere?</strong>
+      <p style="font-family:system-ui,sans-serif;font-size:14px;color:#444;margin-top:.3rem;">This is the single most important missing number in the Janitri case. The device hardware is a one-time cost. The patches are recurring — every delivery needs them. If they're $5/delivery at a facility doing 200 deliveries a month, that's $12,000/year just in consumables. If the government doesn't reimburse them, the device idles. We couldn't find a public figure anywhere.</p>
+      <p style="font-family:system-ui,sans-serif;font-size:13px;color:#666;margin-top:.3rem;"><em>For the analyst: this needs to come directly from Janitri. Ask for the fully-loaded per-delivery cost including patch, SaaS, data/SIM, and maintenance.</em></p>
+    </li>
+    <li>
+      <strong>Is there an outcome trial of Keyar planned — and would Janitri accept an independently-run evaluation as a condition of funding?</strong>
+      <p style="font-family:system-ui,sans-serif;font-size:14px;color:#444;margin-top:.3rem;">The philanthropic case for Keyar funding is strongest if it funds the missing outcome evidence rather than deployment of an unproven device. A stepped-wedge cluster study in high-burden Indian facilities, powered on deaths and asphyxia, would be the right design — and would de-risk not just Janitri but the whole category. Is that something Janitri would support, and who would run it?</p>
+    </li>
+    <li>
+      <strong>What does the Assam NHM deployment actually look like in practice — is the remote dashboard being used?</strong>
+      <p style="font-family:system-ui,sans-serif;font-size:14px;color:#444;margin-top:.3rem;">Assam is the flagship government deployment: 82 devices across 41 hospitals with a centralized monitoring dashboard. The question is whether the remote supervision model is working — are obstetricians actually watching the dashboard and responding to alerts? Or is this closer to "device installed, software running, not much changing"? A site visit or implementation review would answer this.</p>
+    </li>
+    <li>
+      <strong>★ If we funded a replication RCT for AI-CTG broadly (not just Keyar), what would the right design be and who would run it?</strong>
+      <p style="font-family:system-ui,sans-serif;font-size:14px;color:#444;margin-top:.3rem;">The $6–12M AI-CTG replication study is potentially the highest-value-of-information experiment in the whole intrapartum space. It would need: outcomes (deaths, HIE) as primary endpoints; a true LMIC counterfactual comparator (birth attendant without CTG training); separate arms for acquisition, interpretation, and telemonitoring; and sites in diverse health systems. Who are the credible research groups to lead this?</p>
+      <p style="font-family:system-ui,sans-serif;font-size:13px;color:#666;margin-top:.3rem;"><em>For the analyst: map the academic groups doing LMIC intrapartum research — Muhimbili (Tanzania), AIIMS (India), KCMC, IHI. Who has done the strongest work and has existing site infrastructure?</em></p>
+    </li>
+  </ol>
+
+  <h3 style="font-size:15px;margin-top:1.5rem;">On the broader opportunity</h3>
+  <ol class="bl" start="8">
+    <li>
+      <strong>What is Gates and Open Philanthropy's current view on SBBC — are they funding scale-up, and what's the gap?</strong>
+      <p style="font-family:system-ui,sans-serif;font-size:14px;color:#444;margin-top:.3rem;">The GFF $15M innovations challenge is live. Gates has funded Laerdal and Sibel Health (a competing FHR platform). Understanding what's already committed and what the gap is would shape the size and structure of any commitment.</p>
+      <p style="font-family:system-ui,sans-serif;font-size:13px;color:#666;margin-top:.3rem;"><em>For the analyst: map the current funder landscape for SBBC — GFF, Gates, CIFF, ELMA — and identify the gap by geography and stage.</em></p>
+    </li>
+    <li>
+      <strong>Is Sibel Health's ANNE platform (Gates-funded, $17.5M) a competitor or complement to Moyo/SBBC?</strong>
+      <p style="font-family:system-ui,sans-serif;font-size:14px;color:#444;margin-top:.3rem;">Sibel Health is developing a wireless, skin-patch FHR monitor that could slot into the SBBC framework. If it's a drop-in replacement for Moyo at lower cost or better performance, it could change the SBBC economics. If it's a different deployment model, it's a separate bet. We'd want to understand where it is in development and how Laerdal is thinking about it.</p>
+    </li>
+  </ol>
+
+  <h2 id="verdict">Verdict</h2>
+
+  <p>The intrapartum space has one clear, investable opportunity and two speculative bets.</p>
+
+  <p><strong>SBBC scale-up</strong> is the only intervention with measured cost-effectiveness and large-scale evidence. The $144/DALY figure is real, the NEJM evidence is strong for its design type, and there is an active deployment pathway through GFF and Laerdal. The key risk is non-replication outside Tanzania — the Nigeria data (2027–28) should be the primary gate for a large commitment. Fund Stage 1 in Nigeria and one other high-burden country now ($5–15M); hold the major scale-up commitment conditional on replication.</p>
+
+  <p><strong>AI-CTG replication RCT</strong> ($6–12M) is the highest value-of-information experiment available. The single dramatic outcome claim in the field (Malawi, 75–82% reduction) is unreplicated and runs against the grain of the best evidence (47,000-woman INFANT trial, null). If a well-designed LMIC trial replicates it even partially, AI-CTG becomes extraordinarily cost-effective. If it fails, the loss is contained. This is worth funding alongside SBBC.</p>
+
+  <p><strong>Janitri/Keyar</strong> is the right India partner for an evidence-generation study. Fund the outcome trial (stepped-wedge, powered on deaths) as a public good for the category — but make the consumable cost disclosure and a functioning response-chain at target sites conditions of funding. Don't fund India deployment without evidence, and don't fund SSA entry until CE/WHO-PQ is secured and a distribution partner is in place.</p>
+
+  <p><strong>Intrapartum POCUS</strong> is premature. Come back when Moyo-class monitoring has meaningful LMIC penetration and there's evidence on the workflow feasibility question (will midwives actually perform intrapartum scans when prompted?).</p>
+
+  <div class="callout">
+    <strong>The meta-point:</strong> Every promising technology in this space runs into the same wall — detecting distress doesn't save babies if the facility can't act. The highest-return investment in intrapartum survival is probably not a better monitor. It's improving what happens in the 30 minutes after a distress signal: training, referral systems, surgical capacity, and the organizational culture to actually use what's already there. SBBC is valuable precisely because it attacks that problem directly.
+  </div>
+
+  <p style="font-family:system-ui,sans-serif;font-size:12px;color:#aaa;margin-top:3rem;">Report compiled October 2026. Based on 5 deep-research loops (Sep–Oct 2026): intrapartum sensing landscape, AI-CTG interpretation, Janitri/Keyar deep dive, intrapartum POCUS platform, SBBC bundle decomposition. Key sources: Mduma et al. NEJM 2025; SBBC Cost-Effectiveness PLOS ONE 2025; INFANT trial Lancet 2017; Alfirevic Cochrane 2017; Moyo RCT Tanzania PubMed 30678354; MICCAI Intrapartum Ultrasound Grand Challenge 2024.</p>
+
+</main>
+</div>
+</body>
+</html>
