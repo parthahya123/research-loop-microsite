@@ -328,74 +328,75 @@
 
   <p>A rigorous test would need to be a cluster randomized trial in LMIC facilities, with outcomes (deaths, encephalopathy, appropriate vs. inappropriate C-sections) as the primary measure — not trace-reading accuracy. It would need to compare against the real counterfactual: a birth attendant with no CTG training, not a specialist. It would need to separately test the acquisition, interpretation, and telemonitoring legs, so you can tell which part (if any) is driving the effect. Estimated cost: $6–12M. If the effect replicates, AI-CTG could become a $2–8/DALY intervention. If it doesn't, the loss is contained.</p>
 
-  <h2 id="gates-proposal">The Gates proposal — what's actually being asked</h2>
+  <h2 id="gates-proposal">The Gates proposal — the case for and against</h2>
 
-  <p>In October 2026, the Gates Foundation MNCH team brought a specific proposal to potential co-funders. Understanding it requires separating three things: what is being built, why they think it will work, and what the evidence actually says.</p>
+  <p>In October 2026, the Gates Foundation MNCH team brought a specific proposal to potential co-funders. The core idea is genuinely interesting and addresses a real gap in India's health system. We spent significant time trying to understand both the strongest case for it and where the honest uncertainties lie.</p>
 
   <h3>What is being proposed</h3>
 
-  <p>Gates wants to deploy AI-assisted fetal monitoring across hundreds of public hospitals in India's poorest states — primarily Bihar, Uttar Pradesh, Assam, and Meghalaya. The specific device (Janitri's Keyar) attaches patches to a laboring woman's abdomen, reads her baby's heart rate continuously, and streams that data to a central dashboard. An obstetrician sitting at that dashboard — potentially in a city hundreds of kilometers away — watches multiple labor wards simultaneously. When the AI flags a baby in distress, the remote OB reviews the trace and decides whether to call for immediate action: speed up the delivery, perform an emergency C-section, or send an ambulance to transfer the mother to a better-equipped hospital.</p>
+  <p>Gates wants to deploy AI-assisted fetal monitoring at C-section-capable public hospitals in India's highest-burden states — Bihar, Uttar Pradesh, Assam, and Meghalaya. The device (Janitri's Keyar) attaches patches to a laboring woman's abdomen, reads her baby's heart rate continuously, and streams that data to a central dashboard. A senior obstetrician at that dashboard watches multiple labor wards simultaneously. When the AI flags a baby in distress, the remote OB reviews the trace and directs the on-site team — call the anesthesiologist, prep the theater, operate now. One expert, many facilities. The pitch: India has a severe shortage of obstetricians in rural areas; this puts them where they can do the most good without asking them to physically be everywhere at once.</p>
 
-  <p>This is called a "hub-and-spoke" model. One expert hub. Many peripheral spokes. The implied pitch: India doesn't have enough obstetricians in rural areas, so put them somewhere central and use technology to extend their reach.</p>
+  <p>Critically, the program is restricted to <strong>facilities that already have C-section capability</strong> — operating theaters, anaesthetists, surgeons. This is not about building new infrastructure. It is about closing the gap between a facility's theoretical capacity and its actual use of that capacity.</p>
 
-  <p>The briefing's headline claim: this approach could avert <strong>250 million DALYs</strong> — a figure presented as evidence that this is the highest-impact product in Gates' entire MNCH portfolio.</p>
+  <h3>The honest case for this program</h3>
 
-  <h3>Why the 250 million DALY number is wrong</h3>
+  <p>Bihar's public hospitals with C-section capability have an average C-section rate of 2.7–3.6%, against an estimated unmet need of ~10%. That 6–7 percentage point gap represents tens of thousands of babies every year who needed a C-section and didn't get one — not because the theater wasn't there, but because the distress wasn't identified in time, or the local provider hesitated, or the decision was made too late. Bihar's own QI Collaborative documented this directly: at facilities that received quality improvement support including senior OB mentorship, C-section rates rose from 2.9% to 5.9%. The capacity existed. The decision-making didn't.</p>
 
-  <p>We independently modeled this figure. It doesn't survive basic arithmetic.</p>
+  <p>This is exactly the gap hub-and-spoke targets. The remote OB is not replacing missing infrastructure — they are providing the expert judgment and decision confidence that is absent at these facilities even when the infrastructure exists. A junior provider who isn't sure if the CTG pattern is truly alarming will hesitate. A senior OB watching remotely who says "yes, this is real, operate now" changes that calculation.</p>
 
-  <p>Start with the total global pool of harm this intervention could possibly address: roughly 85 million DALYs per year from intrapartum complications (birth asphyxia deaths, brain damage in survivors, and intrapartum stillbirths). To accumulate 250 million DALYs over 20 years — at 60% coverage — the program would need to eliminate at least 25% of all intrapartum harm globally. The best randomized trial ever run on this class of intervention found it eliminated exactly zero percent.</p>
+  <p>The closest analogy from the evidence base is telestroke. Remote neurologists directing tPA administration at rural hospitals — facilities that had the drug, the nurses, and the IV lines, but lacked the specialist confidence to use them — roughly doubled tPA utilization rates and reduced 30-day mortality by ~4.5 percentage points. The spoke could execute the treatment; what was missing was the expert decision. Hub-and-spoke AI-CTG at C-section-capable Bihar facilities is structurally similar: the spoke can execute; what is missing is expert oversight and decision authority.</p>
 
-  <p>That trial — the INFANT trial, 47,000 women across 24 hospitals in the UK — tested AI-assisted CTG interpretation in hospitals with skilled staff, reliable power, and functioning operating theaters. The result: deaths occurred at the same rate in both groups. If AI-CTG has zero effect in a well-resourced setting, the 250M DALY figure requires it to have a 25%+ effect in one of India's most under-resourced health systems. That is not a central estimate. It is a best-case ceiling that requires every assumption to go right simultaneously.</p>
+  <h3>Why INFANT doesn't fully apply here</h3>
 
-  <p>At realistic effect sizes, the number collapses by orders of magnitude. Even being generous — a 10% effect, which would make this more effective than any RCT of this technology has ever shown — the 20-year cumulative impact for the India program specifically is roughly 10 million DALYs, not 250 million. The headline is off by 25×.</p>
+  <p>The INFANT trial — 47,000 women across 24 UK hospitals, zero effect — is the most important prior for AI-CTG programs. But our deep analysis of why INFANT was null reveals something important: <strong>it failed because of a problem that doesn't exist at Bihar's C-section-capable facilities in the same way.</strong></p>
 
-  <h3>Why hub-and-spoke might work where INFANT didn't</h3>
+  <p>A detailed analysis of adverse-outcome cases from INFANT (Steer BJOG 2019) found the problem was "failure to take appropriate management decisions once the abnormality had been recognised" — not failure to recognise the abnormality. The AI's reading was deemed "completely valid" in only 34% of cases. So in INFANT, expert clinicians were present, they saw the alerts, they made decisions — and still failed to act optimally. Adding a computer to an already-present expert who was already failing at the decision stage predictably did nothing.</p>
 
-  <p>The INFANT trial tested giving an AI system to the same clinician who was already reading the CTG. The AI gave advice; the clinician could take it or leave it. Hub-and-spoke is structurally different: instead of advising a local clinician, a senior obstetrician at the hub has decision authority and can direct clinical action remotely — not just flag, but decide.</p>
+  <p>Bihar's C-section-capable facilities don't have expert clinicians present in the labor ward who are seeing the signals and failing to act. They often have no OB at all. The counterfactual is not "present expert + old software vs present expert + AI" — it is "no expert making decisions vs. remote expert making decisions." That is a categorically larger intervention. The ceiling hypothesis that hobbled INFANT (UK experts were already good; there was little room to improve) doesn't apply to a setting where the baseline is zero expert presence.</p>
 
-  <p>More importantly: INFANT was null partly because UK hospitals were already good at CTG interpretation. A 2019 analysis of adverse-outcome cases from INFANT found the problem was "failure to take appropriate management decisions once the abnormality had been recognised" — not failure to detect. The computer's reading was "completely valid" in only 34% of adverse cases. Adding better software to a setting where detection wasn't the bottleneck predictably did nothing.</p>
+  <p>What INFANT does tell us: even where response capacity exists, the chain from signal to saved baby is long and lossy. Decision-to-incision times at capable Indian public hospitals average 45–90 minutes. Not every hub OB call will convert to a timely operative delivery. The program has to overcome these frictions even at well-equipped spokes.</p>
 
-  <p>Bihar is different. At C-section-capable facilities, there is often no obstetrician at the bedside at all. The baseline is not "expert + old software" (INFANT) but "no expert + intermittent auscultation." A remote OB making decisions that literally no one at the facility could make is a larger treatment contrast — and Bihar's C-section rate of 2.7–3.6% against an unmet need of ~10% suggests genuine missed distress, not a ceiling problem.</p>
+  <h3>What the other telemedicine evidence shows</h3>
 
-  <p>The closest analogy where hub-and-spoke telemedicine <em>does</em> work is telestroke: remote neurologist directs tPA administration at rural hospitals, doubling tPA utilization and reducing 30-day mortality by ~4.5 percentage points. That works because the remote expert's decision can be immediately executed at the spoke. The question for Bihar is whether the response chain is short enough to capture the same benefit.</p>
+  <p>Hub-and-spoke telemedicine works when the spoke can execute the treatment that the hub's expert decides on. It fails when the treatment is complex and the execution chain is long or unreliable. The evidence breaks cleanly along this line:</p>
 
-  <div class="note">
-    <div class="nt">Important: Gates is limiting deployment to C-section-capable facilities</div>
-    The program targets C-MONQ facilities — those with confirmed C-section capability. This removes the hardest infrastructure problem (61% of FRUs have no anaesthetist). At C-section-capable facilities, the response chain is: hub flags distress → hub OB directs C-section → on-site anaesthetist and surgeon → surgery. That is much closer to the telestroke model. Bihar's QI Collaborative showed C-section rates rising from 2.9% to 5.9% when anaesthetists were posted and equipment improved — the capacity exists but is underused. Hub-and-spoke may help close that gap by overcoming decision hesitancy and expertise gaps at the spoke level.
-  </div>
+  <ul class="bl">
+    <li><strong>Telestroke (works):</strong> Remote neurologist decides → nurse pushes drug. One action, five minutes. Rural tPA utilization doubled. Mortality fell. The treatment was locally executable.</li>
+    <li><strong>TELESCOPE tele-ICU (JAMA 2024, null):</strong> Remote intensivist monitors 15,000+ complex ICU patients, conducts rounds, makes recommendations. Null on all outcomes. The remote expert could see deterioration but the local team's response capacity was already the bottleneck.</li>
+    <li><strong>Hub-and-spoke AI-CTG in obstetrics:</strong> No published RCT exists anywhere. Bihar would be among the first to attempt this at scale in an LMIC.</li>
+  </ul>
 
-  <h3>What our independent analysis found</h3>
+  <p>For C-section-capable Bihar facilities, the mechanism sits closer to the telestroke end of this spectrum than to tele-ICU — the treatment (C-section) is locally executable, and the gap being addressed is expert decision authority rather than execution capacity. But C-section is a more complex execution than pushing tPA, and decision-to-delivery times have more variance. The program is a reasonable bet; it is not a proven one.</p>
 
-  <p>We ran three deep research loops to answer: how applicable is INFANT, what effect size should we expect, and can operational metrics substitute for a mortality RCT? Here are the key findings.</p>
+  <h3>Our independent analysis — what the evidence says about effect size</h3>
 
-  <p><strong>On INFANT applicability:</strong> INFANT should update the Bihar prior downward, but less so for C-section-capable facilities. The mechanism that made INFANT null — response failure, not detection failure — is still present in Bihar (decision-to-incision times average 45–90 min even at capable Indian public hospitals), but the treatment contrast is genuinely larger (absent expert vs. present expert). The TELESCOPE trial (JAMA 2024, 30 ICUs, stepped-wedge RCT) — remote intensivist monitoring complex patients — was also null, reinforcing that remote expertise only helps when the spoke can execute. But the telestroke evidence shows it can work when the treatment is locally executable. Bihar at C-section-capable facilities sits between these cases.</p>
-
-  <p><strong>On realistic effect size</strong> — we built an explicit Bayesian prior from all available evidence:</p>
-
-  <table>
-    <tr><th>Scenario</th><th>Effect on mortality</th><th>Probability</th><th>$/DALY (probability-weighted)</th></tr>
-    <tr><td>Null (all RCTs generalize)</td><td>0–3%</td><td><strong>45%</strong></td><td>∞</td></tr>
-    <tr><td>Small (mechanism works, infrastructure limits)</td><td>3–10%</td><td><strong>35%</strong></td><td>~$700–1,500</td></tr>
-    <tr><td>Moderate (hub-and-spoke breaks INFANT null)</td><td>10–20%</td><td><strong>15%</strong></td><td>~$200–700</td></tr>
-    <tr><td>Large (before-after evidence replicates)</td><td>>20%</td><td><strong>5%</strong></td><td>~$50–200</td></tr>
-  </table>
-
-  <p>Expected effect: <strong>~6–10%</strong> (higher for C-section-capable-only deployment). Probability-weighted $/DALY: roughly <strong>$800–1,500</strong> — well above SBBC's measured $144 and not GiveWell-class. This is the number that matters for the funding decision, not the best-case $16.</p>
-
-  <h3>What the cost-effectiveness model shows</h3>
-
-  <p>We built an independent BOTEC for the $25M/10yr India program. The CE is entirely driven by one question: does the hub-and-spoke model produce a real effect on mortality?</p>
+  <p>We ran three deep research loops to build an explicit probability distribution over possible effect sizes, drawing on all available evidence weighted by quality. The before-after studies from Malawi (75–82% reduction) and Kenya (~48%) look compelling but are probably overestimates by a large factor: in this specific domain, before-after effects have historically collapsed to roughly 0–20% of their observed magnitude when tested in rigorous trials. The INFANT pattern — promising observational data, null RCT — has repeated itself multiple times. After appropriate shrinkage, those before-after results suggest something in the 3–5% range is real, not 50–80%.</p>
 
   <table>
-    <tr><th>Scenario</th><th>Assumed effect on deaths</th><th>$/DALY</th><th>What would have to be true</th></tr>
-    <tr><td>Optimistic</td><td>30% reduction</td><td><strong>$5.40</strong></td><td>Kenya/Malawi before-after results replicate in a rigorous test</td></tr>
-    <tr><td>Central</td><td>10% reduction</td><td><strong>$16</strong></td><td>Hub-and-spoke overcomes INFANT null; Bihar infrastructure partially cooperates</td></tr>
-    <tr><td>Pessimistic</td><td>2% reduction</td><td><strong>$81</strong></td><td>Effect real but mostly lost to broken response chain</td></tr>
-    <tr><td>INFANT prior</td><td>0%</td><td><strong>∞</strong></td><td>The only RCT evidence available generalises to this setting</td></tr>
+    <tr><th>Scenario</th><th>Effect on perinatal mortality</th><th>Our probability</th><th>Implied $/DALY</th></tr>
+    <tr><td>Null — RCT null generalizes to C-section-capable Bihar</td><td>0–3%</td><td><strong>40%</strong></td><td>∞</td></tr>
+    <tr><td>Small — mechanism real, execution chain loses most of the gain</td><td>3–10%</td><td><strong>35%</strong></td><td>~$500–1,500</td></tr>
+    <tr><td>Moderate — hub-and-spoke breaks the INFANT null at capable facilities</td><td>10–20%</td><td><strong>20%</strong></td><td>~$100–500</td></tr>
+    <tr><td>Large — before-after evidence partially replicates</td><td>&gt;20%</td><td><strong>5%</strong></td><td>~$30–100</td></tr>
   </table>
 
-  <p>Every other variable — how many facilities, what the devices cost, how long they last — is a rounding error compared to this one. The program is either extraordinarily cost-effective or a complete waste of money, depending on an answer we don't yet have.</p>
+  <p>The 40% null probability is lower than for general Bihar deployment (where it was 45%) because restricting to C-section-capable facilities meaningfully improves the mechanism. The probability-weighted expected $/DALY is roughly <strong>$600–1,200</strong> — above SBBC's measured $144, but the uncertainty range includes outcomes that would be genuinely extraordinary if the moderate or large scenarios materialise. A 15% perinatal mortality reduction across Bihar's C-section-capable facilities would affect tens of thousands of births per year and generate one of the stronger evidence bases the field has ever seen.</p>
+
+  <p>The single most important unmeasured number: the <strong>conversion rate</strong> — of hub OB alerts, what fraction result in an emergency delivery within 60 minutes? A ~$100k audit of existing Bihar deployment logs would answer this within months. If conversion is below 20%, the mechanism is broken regardless of the theory. If it's above 40%, the program has real momentum. This should be funded before committing to the full tranche structure.</p>
+
+  <h3>The CE model</h3>
+
+  <p>For a $25M/10yr program at C-section-capable Bihar facilities, the cost-effectiveness is almost entirely a function of effect size:</p>
+
+  <table>
+    <tr><th>Scenario</th><th>Effect on deaths</th><th>$/DALY</th><th>What needs to be true</th></tr>
+    <tr><td>Large</td><td>30% reduction</td><td><strong>$5–15</strong></td><td>Before-after evidence substantially replicates; decision-to-incision times improve significantly</td></tr>
+    <tr><td>Moderate</td><td>10–15% reduction</td><td><strong>$30–80</strong></td><td>Hub breaks the INFANT null at C-section-capable facilities; Bihar QI Collaborative pattern repeats</td></tr>
+    <tr><td>Small</td><td>4–6% reduction</td><td><strong>$200–500</strong></td><td>Effect real but partially attenuated by execution frictions</td></tr>
+    <tr><td>Null</td><td>0%</td><td><strong>∞</strong></td><td>INFANT generalizes; detection and decision-making not the binding constraint even at capable facilities</td></tr>
+  </table>
+
+  <p>The 250M DALY figure from the briefing represents the global ceiling if every optimistic assumption holds simultaneously across 20 years — not a central estimate for this program. The India program specifically, modeled honestly, generates 1–20M cumulative DALYs depending on effect size. The program doesn't need to be worth 250M DALYs to be worth funding — at even 5% effect across Bihar's capable facilities, it would be a significant program and one of the largest bodies of real-world evidence on hub-and-spoke intrapartum telemedicine in the world.</p>
 
   <h2 id="op-gating">Can we structure the funding to reduce risk without waiting years for an RCT?</h2>
 
