@@ -127,6 +127,9 @@
     <li><a href="#" style="color:#bbb;">SBBC decomposition</a></li>
     <li><a href="#" style="color:#bbb;">Gates CE model (Oct 2026)</a></li>
     <li><a href="#" style="color:#bbb;">Operational gating (Oct 2026)</a></li>
+    <li><a href="#" style="color:#bbb;">INFANT applicability (Oct 2026)</a></li>
+    <li><a href="#" style="color:#bbb;">Effect size prior (Oct 2026)</a></li>
+    <li><a href="#" style="color:#bbb;">Surrogate endpoints (Oct 2026)</a></li>
   </ul>
 </nav>
 
@@ -347,28 +350,38 @@
 
   <p>At realistic effect sizes, the number collapses by orders of magnitude. Even being generous — a 10% effect, which would make this more effective than any RCT of this technology has ever shown — the 20-year cumulative impact for the India program specifically is roughly 10 million DALYs, not 250 million. The headline is off by 25×.</p>
 
-  <h3>Why hub-and-spoke might still be worth investigating</h3>
+  <h3>Why hub-and-spoke might work where INFANT didn't</h3>
 
-  <p>Here is the honest case for the program, stated fairly.</p>
+  <p>The INFANT trial tested giving an AI system to the same clinician who was already reading the CTG. The AI gave advice; the clinician could take it or leave it. Hub-and-spoke is structurally different: instead of advising a local clinician, a senior obstetrician at the hub has decision authority and can direct clinical action remotely — not just flag, but decide.</p>
 
-  <p>The INFANT trial tested something specific: giving an AI system to the same clinician who was already reading the CTG. The AI gave advice; the clinician could take it or leave it. Hub-and-spoke is structurally different. Instead of advising a local clinician, it brings in a senior obstetrician who has authority to override local judgment and direct a course of action — transfer this patient now, call the anesthesiologist, prep the theater. That is closer to a telemedicine consultation than a decision-support tool.</p>
+  <p>More importantly: INFANT was null partly because UK hospitals were already good at CTG interpretation. A 2019 analysis of adverse-outcome cases from INFANT found the problem was "failure to take appropriate management decisions once the abnormality had been recognised" — not failure to detect. The computer's reading was "completely valid" in only 34% of adverse cases. Adding better software to a setting where detection wasn't the bottleneck predictably did nothing.</p>
 
-  <p>If the remote OB genuinely can direct emergency management effectively — and if the peripheral facility has even minimal capacity to execute those instructions — the hub-and-spoke model bypasses the binding constraint that killed the INFANT trial. It's not just better software; it's a scarce expert being deployed more efficiently.</p>
+  <p>Bihar is different. At C-section-capable facilities, there is often no obstetrician at the bedside at all. The baseline is not "expert + old software" (INFANT) but "no expert + intermittent auscultation." A remote OB making decisions that literally no one at the facility could make is a larger treatment contrast — and Bihar's C-section rate of 2.7–3.6% against an unmet need of ~10% suggests genuine missed distress, not a ceiling problem.</p>
 
-  <p>That's a real and interesting hypothesis. The problem is that it is completely untested. No randomized trial has ever evaluated hub-and-spoke AI-CTG in an LMIC setting. All the encouraging before-after data comes from studies too weak to be trusted — and we know this because before-after AI-CTG data in the UK also looked encouraging before the INFANT RCT showed it was wrong.</p>
-
-  <h3>The infrastructure problem</h3>
-
-  <p>Even if the hub works perfectly — the AI flags distress, the remote OB sees it immediately, calls the peripheral facility, and orders an emergency delivery — the chain then hits a hard wall.</p>
+  <p>The closest analogy where hub-and-spoke telemedicine <em>does</em> work is telestroke: remote neurologist directs tPA administration at rural hospitals, doubling tPA utilization and reducing 30-day mortality by ~4.5 percentage points. That works because the remote expert's decision can be immediately executed at the spoke. The question for Bihar is whether the response chain is short enough to capture the same benefit.</p>
 
   <div class="note">
-    <div class="nt">What Bihar's hospitals actually look like</div>
-    Only 39% of Bihar's referral hospitals have an on-site anesthesiologist — which means 61% cannot perform an emergency C-section at all. The median response time for an emergency ambulance is 60–90 minutes. Among women who are transferred in emergency obstetric situations, 8.4% deliver before they reach the receiving hospital. Bihar's public C-section rate is 2.7–3.6%, against a WHO-estimated unmet need of ~10%. The operating rooms exist on paper; the people to staff them often don't.
+    <div class="nt">Important: Gates is limiting deployment to C-section-capable facilities</div>
+    The program targets C-MONQ facilities — those with confirmed C-section capability. This removes the hardest infrastructure problem (61% of FRUs have no anaesthetist). At C-section-capable facilities, the response chain is: hub flags distress → hub OB directs C-section → on-site anaesthetist and surgeon → surgery. That is much closer to the telestroke model. Bihar's QI Collaborative showed C-section rates rising from 2.9% to 5.9% when anaesthetists were posted and equipment improved — the capacity exists but is underused. Hub-and-spoke may help close that gap by overcoming decision hesitancy and expertise gaps at the spoke level.
   </div>
 
-  <p>When the hub OB says "this baby needs to be delivered now," what actually happens at the spoke? At 61% of facilities, a C-section is not possible regardless of the decision. The only option is to call an ambulance, load the mother, and hope she reaches a better hospital in time. That is a 60–90 minute window for a baby in documented acute distress.</p>
+  <h3>What our independent analysis found</h3>
 
-  <p>This is not a reason to abandon the program. It is a reason to know, before committing $50M, whether the hub-and-spoke conversion rate — the fraction of alerts that actually result in a timely clinical action — is high enough to move the needle on outcomes. That number is currently unmeasured.</p>
+  <p>We ran three deep research loops to answer: how applicable is INFANT, what effect size should we expect, and can operational metrics substitute for a mortality RCT? Here are the key findings.</p>
+
+  <p><strong>On INFANT applicability:</strong> INFANT should update the Bihar prior downward, but less so for C-section-capable facilities. The mechanism that made INFANT null — response failure, not detection failure — is still present in Bihar (decision-to-incision times average 45–90 min even at capable Indian public hospitals), but the treatment contrast is genuinely larger (absent expert vs. present expert). The TELESCOPE trial (JAMA 2024, 30 ICUs, stepped-wedge RCT) — remote intensivist monitoring complex patients — was also null, reinforcing that remote expertise only helps when the spoke can execute. But the telestroke evidence shows it can work when the treatment is locally executable. Bihar at C-section-capable facilities sits between these cases.</p>
+
+  <p><strong>On realistic effect size</strong> — we built an explicit Bayesian prior from all available evidence:</p>
+
+  <table>
+    <tr><th>Scenario</th><th>Effect on mortality</th><th>Probability</th><th>$/DALY (probability-weighted)</th></tr>
+    <tr><td>Null (all RCTs generalize)</td><td>0–3%</td><td><strong>45%</strong></td><td>∞</td></tr>
+    <tr><td>Small (mechanism works, infrastructure limits)</td><td>3–10%</td><td><strong>35%</strong></td><td>~$700–1,500</td></tr>
+    <tr><td>Moderate (hub-and-spoke breaks INFANT null)</td><td>10–20%</td><td><strong>15%</strong></td><td>~$200–700</td></tr>
+    <tr><td>Large (before-after evidence replicates)</td><td>>20%</td><td><strong>5%</strong></td><td>~$50–200</td></tr>
+  </table>
+
+  <p>Expected effect: <strong>~6–10%</strong> (higher for C-section-capable-only deployment). Probability-weighted $/DALY: roughly <strong>$800–1,500</strong> — well above SBBC's measured $144 and not GiveWell-class. This is the number that matters for the funding decision, not the best-case $16.</p>
 
   <h3>What the cost-effectiveness model shows</h3>
 
@@ -400,11 +413,30 @@
 
   <h3>What you can and can't gate on</h3>
 
-  <p>Not all process metrics are equally useless. The most predictive one for this program is the <strong>conversion rate</strong>: of all the cases the hub OB flags as "urgent action required," what fraction result in a documented clinical action — an emergency C-section, instrumental delivery, or transfer initiated — within 60 minutes? This goes beyond mere detection. It measures whether the hub's expert decision is actually being executed at the spoke. A conversion rate below 20% almost certainly means the program is ineffective; the hub is making calls the spokes can't follow. A conversion rate above 40% at facilities with operative capacity is a meaningful signal that the mechanism is functioning.</p>
+  <p>Not all process metrics are equally useless. The most informative one for this program is the <strong>conversion rate</strong>: of all cases the hub OB flags as "urgent action required," what fraction result in a documented clinical action within 60 minutes? A conversion rate below 20% almost certainly means the mechanism is broken — the hub calls, the spoke can't or won't act. Above 40% at operative facilities is a meaningful signal the chain is functioning.</p>
 
-  <p>What you cannot reliably gate on: how fast the team responds to alerts (this can look good while outcomes are still null, as in INFANT), whether the AI accurately reads the trace (detection accuracy ≠ outcomes), or whether providers are "engaged" with the system.</p>
+  <p>But our surrogate endpoint analysis found that conversion rate fails every formal surrogate validation criterion. Specifically, Prentice Criterion 2 — that the surrogate must be correlated with the true endpoint — has no supporting evidence for intrapartum monitoring and is actually contradicted by INFANT, where clinicians responded to AI alerts at high rates and outcomes were still null. Conversion rate tells you the <em>system is working</em>. It cannot tell you <em>babies are surviving</em>.</p>
 
-  <h3>The recommended tranche structure</h3>
+  <h3>The Gate 3 power problem</h3>
+
+  <p>This is the most important technical finding from our analysis, and it substantially changes how to think about the gating framework.</p>
+
+  <p>Gate 3 proposes to release $30M based on observing ≥10% perinatal mortality reduction at 30 intervention facilities vs. 20 matched comparison facilities at month 18–24. The power calculation:</p>
+
+  <table>
+    <tr><th>ICC assumption</th><th>Design effect</th><th>Minimum detectable effect</th><th>Power to detect 10% effect</th></tr>
+    <tr><td>0.001 (most optimistic ever reported)</td><td>5.5×</td><td>17.7%</td><td>23%</td></tr>
+    <tr><td>0.01 (central LMIC estimate)</td><td>46×</td><td>51.1%</td><td><strong>8%</strong></td></tr>
+    <tr><td>0.02 (conservative)</td><td>91×</td><td>71.8%</td><td>6%</td></tr>
+  </table>
+
+  <p>At the central ICC, Gate 3 has <strong>8% power to detect its own stated threshold</strong>. The minimum detectable effect is 51% — five times the gate condition. A true 10% mortality reduction would fail Gate 3 92% of the time. A positive Gate 3 result is approximately as likely to reflect confounding (selection effects, secular trends, Hawthorne) as a true effect.</p>
+
+  <div class="callout">
+    <strong>The INFANT stress-test:</strong> We applied the proposed gating framework retrospectively to the INFANT trial — an intervention we know had zero effect on 47,000 women. Gate 2 (operational metrics) would likely have <strong>passed</strong>: the system generated alerts, clinicians responded, C-section rates were unchanged. Gate 3 would have been <strong>indeterminate</strong> — the CI includes both a 10% reduction and a 25% increase, so the gate would pass or fail essentially at random. The framework would have released at least $15M, and possibly $30M, on a definitively null intervention.
+  </div>
+
+  <h3>The recommended tranche structure (revised)</h3>
 
   <table>
     <tr><th>Tranche</th><th>Size</th><th>Decision point</th><th>What gates it</th></tr>
@@ -412,23 +444,23 @@
       <td><strong>1 — Launch</strong></td>
       <td>$5M</td>
       <td>Now</td>
-      <td>No outcome gate — this money builds the measurement infrastructure you need to evaluate Tranches 2 and 3. Two non-negotiable conditions: at least 40% of deployment sites must have operative capacity (so results aren't cherry-picked from the best facilities), and an independent clinical auditor — hired by the funder, not the implementer — reviews a random sample of cases monthly.</td>
+      <td>No outcome gate. Builds measurement infrastructure. Non-negotiable: independent clinical auditor hired by funder (not implementer); randomized rollout timing across facilities pre-specified so data accumulates in a stepped-wedge design from day one.</td>
     </tr>
     <tr>
       <td><strong>2 — Expand</strong></td>
       <td>$15M</td>
       <td>Month 12</td>
-      <td>Three gates, all must pass: (A) conversion rate ≥40% overall and ≥60% at operative facilities — confirming the hub-spoke mechanism is actually working; (B) ≥50% of babies who end up asphyxiated were flagged by the hub before delivery — confirming the system catches the cases that matter; (C) C-section rate not rising more than 5 percentage points above baseline without a corresponding mortality improvement — confirming the program isn't just creating unnecessary surgeries.</td>
+      <td>Operational gates confirming the system is functioning — not that it is saving lives. Conversion rate ≥40%; retrospective capture ≥50% of asphyxiated babies; C-section rate &lt;5pp above secular trend. Releasing Tranche 2 is a bet on an operationally proven experiment continuing, not a scale-up decision.</td>
     </tr>
     <tr>
       <td><strong>3 — Scale</strong></td>
       <td>$30M</td>
-      <td>Month 18–24</td>
-      <td>Perinatal mortality at hub-and-spoke facilities at least 10% lower than matched comparison facilities. This is the only gate that catches the INFANT pattern — a program where all the process metrics look good but babies are dying at the same rate. There is no shortcut here. This takes the time it takes.</td>
+      <td>Month 30–36</td>
+      <td><strong>Must use stepped-wedge design, not matched comparison.</strong> Pre-registered primary analysis. Independent data monitoring committee. At central ICC, a stepped-wedge with within-facility temporal comparison has MDE ~10–15% — actually detectable. A matched-comparison design at 18 months with 8% power is a gate in name only.</td>
     </tr>
   </table>
 
-  <p>The tranche structure buys something real: you get a legitimate 12-month decision point for Tranche 2, rather than committing everything upfront. But it does not eliminate the wait for Tranche 3. The $30M question is fundamentally an outcomes question, and outcomes take time to accumulate. A funder who is unwilling to hold the scale-up tranche for 24 months is effectively making a $50M bet at ~20% odds — which may be a reasonable bet, but should be understood as a bet, not an evidence-based decision.</p>
+  <p>The critical fix is converting the Gate 3 comparison from "intervention facilities vs. matched controls at 18 months" to a stepped-wedge randomized rollout analyzed at 30–36 months. This delays Tranche 3 by 6–12 months but produces actual evidence. A stepped-wedge design — where facilities cross over to the intervention at randomized times, each serving as its own control — reduces the effective ICC dramatically and is exactly the design used by SBBC to achieve 99% power for a 25% mortality reduction at 30 facilities.</p>
 
   <details>
     <summary>What should trigger an immediate stop</summary>
@@ -632,7 +664,7 @@
     <strong>The meta-point:</strong> Every promising technology in this space runs into the same wall — detecting distress doesn't save babies if the facility can't act. The INFANT trial, Moyo RCTs, and Bihar's 39% anaesthetist coverage all point to the same constraint. The highest-return investment in intrapartum survival is probably not a better monitor — it's improving what happens in the 30 minutes after a distress signal. SBBC is valuable precisely because it attacks that problem directly. Any AI-CTG investment is a bet that the hub-and-spoke mechanism overcomes this constraint. That bet is interesting but unproven, and it takes 24 months of outcome data to evaluate properly.
   </div>
 
-  <p style="font-family:system-ui,sans-serif;font-size:12px;color:#aaa;margin-top:3rem;">Report compiled October 2026. Based on 7 deep-research loops (Sep–Oct 2026): intrapartum sensing landscape, AI-CTG interpretation, Janitri/Keyar deep dive, intrapartum POCUS platform, SBBC bundle decomposition, Gates CE model (Oct 2026), operational gating framework (Oct 2026). Key sources: Mduma et al. NEJM 2025; SBBC Cost-Effectiveness PLOS ONE 2025; INFANT trial Lancet 2017; Alfirevic Cochrane 2017; Moyo RCT Tanzania PMC6388236; GBD 2021 NE-BAT PMC12460252; Bihar FRU capacity PMC10158535; HBB meta-analysis PMC9698464.</p>
+  <p style="font-family:system-ui,sans-serif;font-size:12px;color:#aaa;margin-top:3rem;">Report compiled October 2026. Based on 10 deep-research loops (Sep–Oct 2026): intrapartum sensing landscape, AI-CTG interpretation, Janitri/Keyar deep dive, intrapartum POCUS platform, SBBC bundle decomposition, Gates CE model, operational gating, INFANT trial applicability, effect size prior (Bayesian), surrogate endpoint validity. Key sources: Mduma et al. NEJM 2025; INFANT trial Lancet 2017; TELESCOPE JAMA 2024; Alfirevic Cochrane 2017; Moyo RCTs PMC6388236 + PMC39883112; Steer BJOG 2019; Prentice Stat Med 1989; GBD 2021 PMC12460252; Bihar FRU capacity PMC10158535; BetterBirth NEJM 2017.</p>
 
 </main>
 </div>
