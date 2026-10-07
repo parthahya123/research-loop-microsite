@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OAF Agroforestry — Cause Area Report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --accent: #1c4a1c;
+    --accent-mid: #2d6a2d;
+    --accent-light: #f0f7f0;
+    --accent-border: #86c486;
+    --text: #1a1a1a;
+    --muted: #555;
+    --border: #e0deda;
+    --bg: #fafaf8;
+    --surface: #fff;
+    --surface-alt: #f7f6f4;
+    --warn: #92400e;
+    --warn-bg: #fffbeb;
+    --warn-border: #fcd34d;
+    --red: #b91c1c;
+    --red-bg: #fef2f2;
+    --red-border: #fca5a5;
+  }
+
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.88; color: var(--text); background: var(--bg); }
+
+  .layout { display: flex; min-height: 100vh; }
+
+  nav { width: 232px; flex-shrink: 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 2.25rem 1.5rem; background: var(--surface-alt); border-right: 1px solid var(--border); }
+  nav .home { display: block; font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; color: #999; text-decoration: none; margin-bottom: 1.5rem; }
+  nav .home:hover { color: #333; }
+  nav h5 { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #bbb; margin-bottom: .6rem; margin-top: 1.5rem; }
+  nav ul { list-style: none; }
+  nav ul li a { font-family: system-ui, sans-serif; font-size: 12.5px; color: #666; text-decoration: none; display: block; padding: .22rem .6rem; border-left: 2px solid transparent; }
+  nav ul li a:hover { color: var(--text); }
+  nav ul li a.active { color: var(--text); border-left-color: var(--accent); font-weight: 600; }
+  nav .sep { height: 1px; background: var(--border); margin: 1.5rem 0; }
+
+  main { flex: 1; max-width: 800px; padding: 4rem 3.5rem 7rem; }
+
+  .eyebrow { font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin-bottom: .6rem; }
+  h1 { font-size: 2.5rem; line-height: 1.15; font-weight: 700; letter-spacing: -.025em; margin-bottom: .45rem; color: #0f0f0f; }
+  .dek { font-family: system-ui, sans-serif; font-size: 15.5px; color: #666; margin-bottom: 2.75rem; line-height: 1.5; }
+
+  .verdict { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 1.3rem 1.6rem; margin-bottom: 3.25rem; }
+  .verdict .vl { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #aaa; margin-bottom: .5rem; }
+  .verdict p { font-family: system-ui, sans-serif; font-size: 13.5px; color: #333; line-height: 1.65; margin-bottom: .55rem; }
+  .verdict p:last-child { margin-bottom: 0; }
+
+  .metrics { display: flex; gap: 1.25rem; margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .metric { background: var(--surface); border: 1px solid var(--border); padding: 1rem 1.25rem; flex: 1; min-width: 120px; }
+  .metric .mv { font-size: 1.45rem; font-weight: 700; color: #0f0f0f; font-family: system-ui, sans-serif; letter-spacing: -.02em; line-height: 1.1; }
+  .metric .ml { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: #aaa; margin-top: .3rem; }
+  .metric.hi .mv { color: var(--accent); }
+
+  h2 { font-size: 1.6rem; font-weight: 700; margin-top: 4rem; margin-bottom: 1.25rem; letter-spacing: -.015em; padding-bottom: .5rem; border-bottom: 1px solid var(--border); scroll-margin-top: 1.5rem; }
+  h3 { font-size: 1.1rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: .7rem; color: #222; }
+  h4 { font-size: .95rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: .4rem; color: #333; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: .04em; }
+
+  p { margin-bottom: 1.2rem; }
+  a { color: #1d4ed8; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:hover { color: #1e3a8a; }
+  sup a { font-size: 0.75em; text-underline-offset: 1px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 2.25rem; font-family: system-ui, sans-serif; font-size: 13px; }
+  th { text-align: left; padding: .6rem .85rem; background: var(--surface-alt); border: 1px solid var(--border); font-weight: 600; color: #333; }
+  td { padding: .55rem .85rem; border: 1px solid var(--border); color: #444; vertical-align: top; line-height: 1.5; }
+  tr:nth-child(even) td { background: #faf9f7; }
+  td.good { color: var(--accent); font-weight: 600; }
+  td.warn { color: var(--warn); font-weight: 600; }
+  td.bad { color: var(--red); font-weight: 600; }
+
+  .callout { background: var(--accent-light); border: 1px solid var(--accent-border); padding: 1.1rem 1.5rem; margin: 2rem 0; font-size: .94rem; line-height: 1.72; }
+  .callout strong { color: var(--accent); }
+
+  .warn-box { background: var(--warn-bg); border: 1px solid var(--warn-border); padding: 1.1rem 1.5rem; margin: 1.75rem 0; font-size: .93rem; font-family: system-ui, sans-serif; line-height: 1.7; }
+  .warn-box .wt { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: #b45309; margin-bottom: .4rem; font-weight: 600; }
+
+  .error-box { background: var(--red-bg); border: 1px solid var(--red-border); padding: 1.1rem 1.5rem; margin: 1.75rem 0; font-size: .93rem; font-family: system-ui, sans-serif; line-height: 1.7; }
+  .error-box .et { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: var(--red); margin-bottom: .4rem; font-weight: 600; }
+
+  .note { background: #f8f9fa; border: 1px solid #d0d5dd; padding: 1.1rem 1.5rem; margin: 1.75rem 0; font-size: .93rem; font-family: system-ui, sans-serif; line-height: 1.7; }
+  .note .nt { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: #888; margin-bottom: .5rem; }
+
+  details { border: 1px solid var(--border); margin: 1.5rem 0; }
+  details summary { padding: .9rem 1.15rem; font-family: system-ui, sans-serif; font-size: 13.5px; font-weight: 600; color: #333; cursor: pointer; background: var(--surface-alt); user-select: none; }
+  details summary:hover { background: #f0efec; }
+  details[open] summary { border-bottom: 1px solid var(--border); }
+  details .inner { padding: 1.25rem 1.5rem; font-size: .92rem; font-family: system-ui, sans-serif; line-height: 1.7; }
+  details .inner table { margin: .75rem 0 1rem; font-size: 12px; }
+
+  /* BOTEC chain */
+  .chain { margin: 2rem 0; }
+  .chain-step { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: .75rem; }
+  .chain-num { font-family: system-ui, sans-serif; font-size: 11px; font-weight: 700; color: #fff; background: var(--accent); width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 3px; }
+  .chain-body { font-family: system-ui, sans-serif; font-size: 13.5px; color: #333; line-height: 1.6; }
+  .chain-body strong { color: #111; }
+  .chain-body .math { font-family: 'Courier New', monospace; font-size: 12px; background: #f5f4f0; padding: 2px 6px; border-radius: 2px; }
+  .chain-arrow { text-align: center; color: #bbb; font-size: 1.2rem; margin: .1rem 0 .1rem 11px; line-height: 1; }
+
+  /* CE bar chart */
+  .ce-bars { margin: 1.5rem 0 2rem; }
+  .ce-bar-row { display: flex; align-items: center; gap: .75rem; margin-bottom: .6rem; font-family: system-ui, sans-serif; font-size: 12.5px; }
+  .ce-bar-label { width: 90px; color: #444; flex-shrink: 0; }
+  .ce-bar-track { flex: 1; background: #e8e7e3; height: 22px; position: relative; }
+  .ce-bar-fill { height: 100%; background: var(--accent); opacity: .85; }
+  .ce-bar-fill.warn { background: #b45309; }
+  .ce-bar-fill.bad { background: var(--red); opacity: .7; }
+  .ce-bar-fill.disabled { background: #ccc; }
+  .ce-bar-value { width: 70px; color: #555; text-align: right; flex-shrink: 0; }
+  .ce-threshold { position: absolute; top: 0; bottom: 0; width: 2px; background: #dc2626; }
+  .ce-threshold-label { position: absolute; top: -18px; font-size: 10px; color: #dc2626; white-space: nowrap; transform: translateX(-50%); font-family: system-ui; }
+
+  /* TAM scenarios */
+  .scenario-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0 2.5rem; }
+  .scenario { border: 1px solid var(--border); padding: 1.15rem 1.25rem; }
+  .scenario .sc-label { font-family: system-ui, sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: #aaa; margin-bottom: .4rem; }
+  .scenario .sc-title { font-family: system-ui, sans-serif; font-size: 14px; font-weight: 700; color: #222; margin-bottom: .7rem; }
+  .scenario .sc-farmers { font-size: 1.5rem; font-weight: 700; font-family: system-ui, sans-serif; letter-spacing: -.02em; color: var(--accent); }
+  .scenario .sc-rff { font-family: system-ui, sans-serif; font-size: 12px; color: #666; margin-top: .2rem; }
+  .scenario .sc-countries { font-family: system-ui, sans-serif; font-size: 11.5px; color: #888; margin-top: .7rem; line-height: 1.5; }
+  .scenario.b2 { border-color: var(--accent-border); }
+  .scenario.b3 { border-color: #fcd34d; }
+
+  /* Country cards */
+  .country-card { border: 1px solid var(--border); margin-bottom: 1.5rem; }
+  .cc-header { display: flex; align-items: baseline; justify-content: space-between; padding: .85rem 1.15rem; background: var(--surface-alt); border-bottom: 1px solid var(--border); }
+  .cc-name { font-family: system-ui, sans-serif; font-size: 14px; font-weight: 700; color: #222; }
+  .cc-ce { font-family: system-ui, sans-serif; font-size: 13.5px; font-weight: 700; }
+  .cc-ce.green { color: var(--accent); }
+  .cc-ce.amber { color: #92400e; }
+  .cc-ce.red { color: var(--red); }
+  .cc-body { padding: .85rem 1.15rem; font-family: system-ui, sans-serif; font-size: 12.5px; color: #444; line-height: 1.65; }
+  .cc-body .cc-row { display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: .5rem; }
+  .cc-body .cc-stat { }
+  .cc-body .cc-stat .cv { font-weight: 600; color: #111; }
+  .cc-body .cc-stat .ck { color: #999; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; display: block; }
+  .cc-verdict { padding: .65rem 1.15rem; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 12px; line-height: 1.6; }
+  .cc-verdict.fund { background: #f0f7f0; color: var(--accent); }
+  .cc-verdict.eval { background: var(--warn-bg); color: var(--warn); }
+  .cc-verdict.skip { background: var(--red-bg); color: var(--red); }
+  .cc-verdict.watch { background: #fffbeb; color: #78350f; }
+
+  .refs { margin-top: 5rem; border-top: 1px solid var(--border); padding-top: 1.75rem; }
+  .refs h2 { font-size: 1rem; margin-top: 0; border-bottom: none; padding-bottom: 0; color: #666; }
+  .refs ol { font-family: system-ui, sans-serif; font-size: 12px; color: #777; line-height: 1.65; padding-left: 1.5rem; }
+  .refs ol li { margin-bottom: .4rem; }
+  .refs ol li a { color: #999; }
+
+  @media (max-width: 900px) {
+    nav { display: none; }
+    main { padding: 2rem 1.5rem 5rem; }
+    .scenario-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+
+<nav>
+  <a class="home" href="../index.html">← All causes</a>
+  <h5>On this page</h5>
+  <ul>
+    <li><a href="#mechanism">The mechanism</a></li>
+    <li><a href="#botec">BOTEC chain</a></li>
+    <li><a href="#carbon">Carbon co-benefit</a></li>
+    <li><a href="#ce-today">CE today</a></li>
+    <li><a href="#tam">TAM country-by-country</a></li>
+    <li><a href="#scenarios">TAM scenarios</a></li>
+    <li><a href="#scale">Scale potential</a></li>
+    <li><a href="#what-to-fund">What to fund</a></li>
+    <li><a href="#risks">Risks &amp; gaps</a></li>
+  </ul>
+  <div class="sep"></div>
+  <h5>Related runs</h5>
+  <ul>
+    <li><a href="#">Carbon/DALY review</a></li>
+    <li><a href="#">Scale potential</a></li>
+    <li><a href="#">TAM at &lt;$150</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <div class="eyebrow">One Acre Fund — Agroforestry</div>
+  <h1>From one tree to a DALY</h1>
+  <p class="dek">A bottom-up account of OAF's agroforestry cost-effectiveness, the total addressable market at &lt;$150/DALY, and the case for a $25–30M/yr commitment.</p>
+
+  <div class="verdict">
+    <div class="vl">Bottom line</div>
+    <p>OAF's Kenya and Burundi tree programs deliver <strong>$73–$93/DALY</strong> (income + corrected carbon), making them among the most cost-effective livelihood interventions with RCT validation. Current FP recommendation is $12.6M/yr. The near-term defensible ceiling is <strong>~$25–30M/yr</strong> — roughly double — once Malawi is evaluated and Kenya expanded. Nigeria is the long-run option bet but not bankable before 2029–2030.</p>
+    <p>The BOTEC contains one material error that FP's published model does not correct: using 0.00957 DALY/tCO2 (includes a 31% air-pollution co-benefit inapplicable to tree planting). Corrected to 0.00658, Kenya is $93 not $85, and Ethiopia is $126 not $113 — still below $150, but the margin on Ethiopia is thinner than claimed.</p>
+  </div>
+
+  <div class="metrics">
+    <div class="metric hi">
+      <div class="mv">$73</div>
+      <div class="ml">Burundi $/DALY (best)</div>
+    </div>
+    <div class="metric hi">
+      <div class="mv">$93</div>
+      <div class="ml">Kenya $/DALY (corrected)</div>
+    </div>
+    <div class="metric">
+      <div class="mv">$12.6M</div>
+      <div class="ml">Current FP RFF/yr</div>
+    </div>
+    <div class="metric">
+      <div class="mv">$25–30M</div>
+      <div class="ml">Near-term ceiling</div>
+    </div>
+    <div class="metric">
+      <div class="mv">3.5M</div>
+      <div class="ml">Farmers (conditional TAM)</div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <h2 id="mechanism">The mechanism</h2>
+
+  <p>OAF distributes tree seedlings to smallholder farmers alongside its core input package (seeds, fertilizer, credit). Farmers plant trees on farm boundaries and intercrop rows. Over 15 years, trees provide: <strong>timber and poles</strong> (primary income), <strong>firewood</strong>, <strong>soil nitrogen fixation</strong> (for companion species like Calliandra), and <strong>carbon sequestration</strong>.</p>
+
+  <p>The primary species is <em>Grevillea robusta</em> (~55% of Kenya trees), a fast-growing hardwood native to Australia. Secondary species include <em>Eucalyptus</em> (~25%), <em>Markhamia lutea</em>, and <em>Casuarina</em>. In Malawi and Nigeria, the mix shifts toward fruit trees (mango, citrus, cashew) with higher NPV but slower income realization.</p>
+
+  <p>The causal chain from intervention to DALY has six links, each with its own empirical evidence and uncertainty:</p>
+
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <h2 id="botec">BOTEC chain: one tree → one DALY</h2>
+
+  <div class="chain">
+
+    <div class="chain-step">
+      <div class="chain-num">1</div>
+      <div class="chain-body">
+        <strong>Tree distributed.</strong> OAF distributes seedlings through ~4,000 entrepreneur-run nurseries. Farmers receive a kit of seedlings + agronomic advice bundled with the main input loan. Distribution cost is ~$0.20–0.35/tree including nursery production, logistics, and field staff.
+      </div>
+    </div>
+    <div class="chain-arrow">↓</div>
+
+    <div class="chain-step">
+      <div class="chain-num">2</div>
+      <div class="chain-body">
+        <strong>Tree survives.</strong> Survival rate: <span class="math">Kenya 61% · Rwanda 59% · Burundi 54% · Malawi ~30% · Ethiopia ~70%</span>. Kenya's 61% is validated by the Laterite 2020 RCT (+11 grevillea trees per treatment farmer at 2-year follow-up). Malawi's low rate — drought, termites, narrow 5-species portfolio — is the program's biggest weakness.
+      </div>
+    </div>
+    <div class="chain-arrow">↓</div>
+
+    <div class="chain-step">
+      <div class="chain-num">3</div>
+      <div class="chain-body">
+        <strong>Counterfactual adjustment.</strong> Not all surviving trees are additional. BOTEC applies a counterfactual fraction: some farmers would have planted trees anyway. OAF's RCT design estimates the counterfactual through control group behavior (3.4% crossover in Kenya RCT — very low). For simplicity the BOTEC treats all RCT-measured trees as additional.
+      </div>
+    </div>
+    <div class="chain-arrow">↓</div>
+
+    <div class="chain-step">
+      <div class="chain-num">4</div>
+      <div class="chain-body">
+        <strong>Income effect over 15 years.</strong> Four independent NPV estimates for a Kenya grevillea tree:
+        <div style="margin: .6rem 0 .4rem; font-size: 12px; font-family: system-ui;">
+          <table style="margin:0; font-size:12px;">
+            <tr><th>Source</th><th>NPV/tree</th><th>Horizon</th></tr>
+            <tr><td>OAF conservative (used in BOTEC)</td><td><strong>$6.66</strong></td><td>15yr</td></tr>
+            <tr><td>Laterite Kenya RCT 2020</td><td><strong>$14.50</strong></td><td>20yr</td></tr>
+            <tr><td>Market price (trader survey)</td><td><strong>~$19</strong></td><td>—</td></tr>
+            <tr><td>Farmer willingness to pay</td><td><strong>~$26</strong></td><td>—</td></tr>
+          </table>
+        </div>
+        The BOTEC uses the lowest estimate. True NPV is likely 2–3× the BOTEC assumption.
+      </div>
+    </div>
+    <div class="chain-arrow">↓</div>
+
+    <div class="chain-step">
+      <div class="chain-num">5</div>
+      <div class="chain-body">
+        <strong>Validity haircut.</strong> OAF monitoring data → RCT-validated effect. Adjustment: <span class="math">0.45 (internal) × 0.80 (external) = 0.36</span>. This reflects regression-to-the-mean in self-reported monitoring data and generalizability concerns. The total validity adjustment is consistent with FP's standard methodology across programs.
+      </div>
+    </div>
+    <div class="chain-arrow">↓</div>
+
+    <div class="chain-step">
+      <div class="chain-num">6</div>
+      <div class="chain-body">
+        <strong>Convert income to DALYs.</strong> Benchmark: GiveDirectly cash transfers at $456/unit ln(income). Conversion: <span class="math">2.5 DCY = 1 DALY; 1 DCY = ln(2) ≈ 0.693 units ln(income)</span>. So 1 DALY = 2.5 × 0.693 = 1.733 units ln(income) = $790 at GiveWell benchmark.
+        <br><br>Income DALY per surviving tree (Kenya): <span class="math">$6.66 × 0.36 / ($456 × 1.733) = 0.00303 DALY/tree</span>. Cost per tree $0.46 → cost per income DALY before carbon: <span class="math">$0.46 / 0.00303 = $152</span>. Add carbon (see below): $93/DALY.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="note">
+    <div class="nt">Key conversion identity</div>
+    <strong>$/DALY = cost_per_surviving_CF_tree ÷ (income_DALY/tree + carbon_DALY/tree)</strong><br>
+    Income DALY/tree = NPV × 0.36 ÷ (2.5 × ln(2) × $456)<br>
+    Carbon DALY/tree = net_tCO2/tree × 0.00658 DALY/tCO2
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <h2 id="carbon">Carbon co-benefit</h2>
+
+  <p>Carbon sequestration adds ~20% to OAF's cost-effectiveness (not the 28% claimed by the BOTEC). The correction matters but does not change the bottom-line recommendation.</p>
+
+  <div class="error-box">
+    <div class="et">Material error in published BOTEC</div>
+    The BOTEC uses <strong>0.00957 DALY/tCO2</strong> for the carbon conversion. This figure includes a 31.2% component for avoided air pollution from fossil fuel displacement — which does not apply to tree planting. Trees sequester atmospheric CO2; they do not displace any combustion. The correct figure is <strong>0.00658 DALY/tCO2</strong> (GHG-only health damage pathway). This reduces the carbon improvement from ~28% to ~20%.
+  </div>
+
+  <h3>Carbon per tree</h3>
+  <p>Species-specific gross sequestration over a 15-year rotation (above + below ground biomass):</p>
+
+  <table>
+    <tr><th>Species</th><th>Share</th><th>Gross tCO2 (central)</th><th>Gross tCO2 (BOTEC)</th></tr>
+    <tr><td>Grevillea robusta</td><td>~55%</td><td>0.80</td><td>1.05</td></tr>
+    <tr><td>Eucalyptus spp.</td><td>~25%</td><td>1.20</td><td>1.50</td></tr>
+    <tr><td>Other (Markhamia, Casuarina)</td><td>~20%</td><td>0.40</td><td>0.60</td></tr>
+    <tr><td><strong>Weighted average</strong></td><td></td><td><strong>0.82</strong></td><td><strong>1.07</strong></td></tr>
+  </table>
+
+  <p>The BOTEC's 1.07 tCO2/tree sits at the 60–70th percentile of the defensible range. Both estimates are for surviving trees — mortality is already accounted for in the "surviving trees" count.</p>
+
+  <h3>Permanence (28%)</h3>
+
+  <p>OAF trees are harvested, not left standing. End use: ~40% firewood (combusted immediately, zero permanence), ~30% poles (10–15yr half-life), ~15% timber, ~15% left standing. Under tonne-year accounting (credit storage proportional to 100yr benchmark), the BOTEC's 28% permanence reconstructs accurately. Under IPCC HWP endpoint accounting, ~41% of carbon persists at 15yr — actually higher than the BOTEC claims. The tonne-year method is conservative on this dimension.</p>
+
+  <details>
+    <summary>Permanence breakdown by end use</summary>
+    <div class="inner">
+      <table>
+        <tr><th>End use</th><th>Share</th><th>Tonne-year fraction</th><th>Weighted</th></tr>
+        <tr><td>Firewood</td><td>40%</td><td>15% (grows, then combusts)</td><td>0.060</td></tr>
+        <tr><td>Poles</td><td>30%</td><td>27% (grow + ~12yr use)</td><td>0.081</td></tr>
+        <tr><td>Timber</td><td>15%</td><td>50% (grow + ~35yr use)</td><td>0.075</td></tr>
+        <tr><td>Standing</td><td>15%</td><td>50%+</td><td>0.075</td></tr>
+        <tr><td><strong>Total</strong></td><td></td><td></td><td><strong>~0.29 ≈ 28%</strong></td></tr>
+      </table>
+    </div>
+  </details>
+
+  <h3>Net tCO2/tree and DALY impact</h3>
+
+  <table>
+    <tr><th>Scenario</th><th>Gross tCO2</th><th>Permanence</th><th>Net tCO2</th><th>DALY/tCO2</th><th>Carbon DALY/tree</th></tr>
+    <tr><td>BOTEC (published)</td><td>1.07</td><td>28%</td><td>0.30</td><td class="warn">0.00957*</td><td>0.00145 (×14.5 too high)</td></tr>
+    <tr><td><strong>Corrected central</strong></td><td>1.07</td><td>28%</td><td>0.30</td><td class="good">0.00658</td><td><strong>0.00197</strong></td></tr>
+    <tr><td>Literature central</td><td>0.82</td><td>28%</td><td>0.23</td><td>0.00658</td><td>0.00151</td></tr>
+    <tr><td>Conservative</td><td>0.40</td><td>10%</td><td>0.04</td><td>0.002</td><td>0.00008</td></tr>
+  </table>
+  <p style="font-size:.85rem; color:#888; font-family:system-ui; margin-top:-.5rem;">*Includes 0.00299 air-pollution co-benefit not applicable to tree planting.</p>
+
+  <h3>What drives the variance?</h3>
+
+  <p>The dominant uncertainty is not the carbon science — it is the <em>philosophical choice</em> of how to value a tonne of CO2 in health terms. DALY/tCO2 conversion alone swings Kenya's combined $/DALY by $53 (from $116 to $63). The actual carbon parameters — gross sequestration and permanence — each swing it by $36–41. This means carbon due diligence should focus on the DALY/tCO2 assumption, not on measuring more trees.</p>
+
+  <p>The carbon co-benefit is a meaningful bonus (~20% improvement) but cannot by itself bring OAF into GiveWell territory. Adding carbon does not change OAF's tier.</p>
+
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <h2 id="ce-today">Cost-effectiveness today</h2>
+
+  <p>Corrected combined $/DALY (income + carbon, corrected 0.00658 DALY/tCO2, 0.30 net tCO2/tree):</p>
+
+  <div class="ce-bars">
+    <div style="position:relative; height:18px; font-family:system-ui; font-size:11px; color:#dc2626; margin-bottom:4px;">
+      <span style="position:absolute; left: calc(150/500 * 100%); transform:translateX(-50%);">← $150 threshold →</span>
+    </div>
+    <div class="ce-bar-row">
+      <div class="ce-bar-label">Burundi</div>
+      <div class="ce-bar-track">
+        <div class="ce-bar-fill" style="width:calc(73/500 * 100%)"></div>
+        <div class="ce-threshold" style="left:calc(150/500 * 100%)"></div>
+      </div>
+      <div class="ce-bar-value">$73/DALY</div>
+    </div>
+    <div class="ce-bar-row">
+      <div class="ce-bar-label">Rwanda</div>
+      <div class="ce-bar-track">
+        <div class="ce-bar-fill" style="width:calc(81/500 * 100%)"></div>
+        <div class="ce-threshold" style="left:calc(150/500 * 100%)"></div>
+      </div>
+      <div class="ce-bar-value">$81/DALY</div>
+    </div>
+    <div class="ce-bar-row">
+      <div class="ce-bar-label">Kenya</div>
+      <div class="ce-bar-track">
+        <div class="ce-bar-fill" style="width:calc(93/500 * 100%)"></div>
+        <div class="ce-threshold" style="left:calc(150/500 * 100%)"></div>
+      </div>
+      <div class="ce-bar-value">$93/DALY</div>
+    </div>
+    <div class="ce-bar-row">
+      <div class="ce-bar-label">Ethiopia*</div>
+      <div class="ce-bar-track">
+        <div class="ce-bar-fill warn" style="width:calc(126/500 * 100%)"></div>
+        <div class="ce-threshold" style="left:calc(150/500 * 100%)"></div>
+      </div>
+      <div class="ce-bar-value" style="color:#92400e">$126/DALY</div>
+    </div>
+    <div class="ce-bar-row">
+      <div class="ce-bar-label">Malawi†</div>
+      <div class="ce-bar-track">
+        <div class="ce-bar-fill" style="width:calc(105/500 * 100%); background:#888"></div>
+        <div class="ce-threshold" style="left:calc(150/500 * 100%)"></div>
+      </div>
+      <div class="ce-bar-value" style="color:#888">~$90–120?</div>
+    </div>
+    <div class="ce-bar-row">
+      <div class="ce-bar-label">Tanzania</div>
+      <div class="ce-bar-track">
+        <div class="ce-bar-fill bad" style="width:calc(325/500 * 100%)"></div>
+        <div class="ce-threshold" style="left:calc(150/500 * 100%)"></div>
+      </div>
+      <div class="ce-bar-value" style="color:#b91c1c">$250–400</div>
+    </div>
+    <div class="ce-bar-row">
+      <div class="ce-bar-label">Uganda</div>
+      <div class="ce-bar-track">
+        <div class="ce-bar-fill bad" style="width:calc(450/500 * 100%)"></div>
+        <div class="ce-threshold" style="left:calc(150/500 * 100%)"></div>
+      </div>
+      <div class="ce-bar-value" style="color:#b91c1c">~$400+</div>
+    </div>
+    <p style="font-family:system-ui; font-size:11px; color:#999; margin-top:.5rem;">*Ethiopia clears threshold but tree values unvetted + conflict risk. †Malawi CE estimated from scale; no published BOTEC.</p>
+  </div>
+
+  <h3>Why Kenya's CE deteriorated 70% in one year</h3>
+
+  <p>In October 2025, FP estimated Kenya at 10× cash ($0.27/surviving tree). By September 2026, that had fallen to 7× cash ($0.46/tree) — a 70% cost increase driven by two factors: (1) a large climate philanthropist pulled out in 2026, switching to pure carbon removal, which caused the program to contract and spread fixed costs over fewer trees; (2) OAF rebudgeted ~35% more operational costs to the tree program unit. The program quality did not change. The donor pullout directly caused the CE deterioration.</p>
+
+  <p>This also implies that <em>marginal</em> cost of additional trees is much lower than average cost. Fixed costs (tech/IT, finance, HR, offices) are ~$3–4M/yr and don't scale with tree volume. Variable costs (production, distribution, seasonal staff) are ~$2M/yr. A new funder effectively buys down the average by growing the denominator.</p>
+
+  <details>
+    <summary>Kenya budget breakdown (2026–2028, ~$6.1M/yr unfunded)</summary>
+    <div class="inner">
+      <table>
+        <tr><th>Line item</th><th>$/yr</th><th>% budget</th></tr>
+        <tr><td>Seedling production</td><td>$1.84–1.99M</td><td>30%</td></tr>
+        <tr><td>Tech/IT (tablets, call centers, tracking)</td><td>$0.89–0.92M</td><td>15%</td></tr>
+        <tr><td>Offices</td><td>$0.39–0.41M</td><td>6.5%</td></tr>
+        <tr><td>HR</td><td>$0.38–0.39M</td><td>6.3%</td></tr>
+        <tr><td>Field staff (352 FT + 660 seasonal)</td><td>$0.77–0.83M</td><td>13%</td></tr>
+        <tr><td>Finance/accounting</td><td>$0.37–0.38M</td><td>6.1%</td></tr>
+        <tr><td>Sourcing/logistics</td><td>$0.35–0.36M</td><td>5.8%</td></tr>
+        <tr><td>M&amp;E / R&amp;D</td><td>$0.33–0.34M</td><td>5.5%</td></tr>
+        <tr><td>Distribution</td><td>$0.26–0.28M</td><td>4.3%</td></tr>
+        <tr><td>Government/comms</td><td>$0.19–0.20M</td><td>3.2%</td></tr>
+        <tr><td>Fundraising/legal/global</td><td>$0.43–0.45M</td><td>7.3%</td></tr>
+      </table>
+      Tech/IT at 15% of the budget is surprisingly large — reflects the monitoring infrastructure (OAF tracks individual tree survival via tablets and GPS) that makes their evidence base trustworthy.
+    </div>
+  </details>
+
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <h2 id="tam">TAM: country by country</h2>
+
+  <p>The question is: which countries can deliver &lt;$150/DALY, how many farmers can be reached, and what would it take to unlock the ones that currently fail?</p>
+
+  <div class="country-card">
+    <div class="cc-header">
+      <span class="cc-name">Kenya</span>
+      <span class="cc-ce green">$93/DALY · 7× cash · FUND NOW</span>
+    </div>
+    <div class="cc-body">
+      <div class="cc-row">
+        <div class="cc-stat"><span class="cv">750,000</span><span class="ck">Current farmers</span></div>
+        <div class="cc-stat"><span class="cv">~1.5M</span><span class="ck">TAM ceiling</span></div>
+        <div class="cc-stat"><span class="cv">18.3</span><span class="ck">Surviving trees/adopter</span></div>
+        <div class="cc-stat"><span class="cv">$0.46</span><span class="ck">Cost/surviving CF tree</span></div>
+      </div>
+      <div class="cc-row">
+        <div class="cc-stat"><span class="cv">$10M/yr</span><span class="ck">FP RFF (current)</span></div>
+        <div class="cc-stat"><span class="cv">$15–20M/yr</span><span class="ck">RFF at 1.5M farmers</span></div>
+        <div class="cc-stat"><span class="cv">$6.66</span><span class="ck">NPV/tree (conservative)</span></div>
+        <div class="cc-stat"><span class="cv">Laterite 2020</span><span class="ck">RCT validated</span></div>
+      </div>
+      Scaling from 750k to 1.5M spreads fixed costs (~$3–4M/yr) further, potentially returning cost/tree to $0.30–0.35 and CE back toward 10× cash. 17% penetration of Kenya's ~4.5M smallholders — ample room.
+    </div>
+    <div class="cc-verdict fund">✓ Fund now. Expand to 1.5M farmers. Add $5–10M/yr to the current $10M recommendation.</div>
+  </div>
+
+  <div class="country-card">
+    <div class="cc-header">
+      <span class="cc-name">Burundi</span>
+      <span class="cc-ce green">$73/DALY · 9× cash · FUND NOW</span>
+    </div>
+    <div class="cc-body">
+      <div class="cc-row">
+        <div class="cc-stat"><span class="cv">180,000</span><span class="ck">Current farmers</span></div>
+        <div class="cc-stat"><span class="cv">~500,000</span><span class="ck">TAM ceiling</span></div>
+        <div class="cc-stat"><span class="cv">13.1</span><span class="ck">Surviving trees/adopter</span></div>
+        <div class="cc-stat"><span class="cv">$0.41</span><span class="ck">Cost/surviving CF tree</span></div>
+      </div>
+      <div class="cc-row">
+        <div class="cc-stat"><span class="cv">$2.6M/yr</span><span class="ck">FP RFF (current)</span></div>
+        <div class="cc-stat"><span class="cv">$5–7M/yr</span><span class="ck">RFF at 500k farmers</span></div>
+        <div class="cc-stat"><span class="cv">$270</span><span class="ck">GDP/capita</span></div>
+        <div class="cc-stat"><span class="cv">12%</span><span class="ck">Current penetration</span></div>
+      </div>
+      Best CE in the portfolio. Low labor costs in one of the world's poorest countries, compact delivery geography. Scale to 500k would reduce cost/tree further. Small country ceiling (~1.5M farming households).
+    </div>
+    <div class="cc-verdict fund">✓ Fund now. Scale to 500k. Add $2–4M/yr to the current $2.6M recommendation.</div>
+  </div>
+
+  <div class="country-card">
+    <div class="cc-header">
+      <span class="cc-name">Rwanda</span>
+      <span class="cc-ce green">$81/DALY · 8× cash · No RFF (well-funded)</span>
+    </div>
+    <div class="cc-body">
+      <div class="cc-row">
+        <div class="cc-stat"><span class="cv">1,010,000</span><span class="ck">Current farmers</span></div>
+        <div class="cc-stat"><span class="cv">~1.5M</span><span class="ck">TAM ceiling</span></div>
+        <div class="cc-stat"><span class="cv">44%</span><span class="ck">Penetration (near saturation)</span></div>
+        <div class="cc-stat"><span class="cv">Laterite 2024</span><span class="ck">RCT validated</span></div>
+      </div>
+      Strong CE, strongest evidence base (2023–2024 Rwanda RCT validated monitoring data quality), but already well-funded with no current room for more. GiveWell co-funded the RCT ($1.3M grant). Monitor for incremental expansion opportunity if new geographies open.
+    </div>
+    <div class="cc-verdict eval">⚬ No current RFF. Watch for marginal expansion opportunities at 50–70% penetration.</div>
+  </div>
+
+  <div class="country-card">
+    <div class="cc-header">
+      <span class="cc-name">Malawi — the biggest upside</span>
+      <span class="cc-ce amber">~$90–120/DALY? · Needs evaluation</span>
+    </div>
+    <div class="cc-body">
+      <div class="cc-row">
+        <div class="cc-stat"><span class="cv">560,000</span><span class="ck">Current farmers</span></div>
+        <div class="cc-stat"><span class="cv">~1M</span><span class="ck">TAM ceiling</span></div>
+        <div class="cc-stat"><span class="cv">4.7</span><span class="ck">Surviving trees/adopter</span></div>
+        <div class="cc-stat"><span class="cv">18.3</span><span class="ck">Kenya benchmark</span></div>
+      </div>
+      <div class="cc-row">
+        <div class="cc-stat"><span class="cv">~30%</span><span class="ck">Survival rate (est.)</span></div>
+        <div class="cc-stat"><span class="cv">5 species</span><span class="ck">Narrowest portfolio</span></div>
+        <div class="cc-stat"><span class="cv">Unimodal</span><span class="ck">Rainfall pattern</span></div>
+        <div class="cc-stat"><span class="cv">~5× cash</span><span class="ck">FP estimate (unconfirmed)</span></div>
+      </div>
+      <p style="margin-top:.5rem">Malawi has the worst survival in OAF's portfolio (4.7 vs Kenya's 18.3) but may already be ~$90–120/DALY due to its sheer scale efficiency: 560,000 farmers means delivery cost per farmer is low, partially compensating for poor trees-per-adopter. The CE reconciliation: even 4.7 trees × $6.66 NPV × 0.36 validity + carbon / ~$1.50/adopter cost ≈ $90–120/DALY.</p>
+      <p>Why survival is terrible: (1) unimodal rainfall — seedlings planted late face 5–6 dry months before establishment; (2) termites (farmers' #1 cited cause); (3) narrow 5-species portfolio; (4) seedling quality issues. OAF targets 65% survival by 2030 from ~30% now.</p>
+      <p>If survival improves to 8 trees/adopter (still below Kenya), Malawi would be the BEST country in the portfolio at ~$74/DALY. The species improvement pathway is clear: Gliricidia thrives under drought; mango and citrus trials underway; macadamia has strong export demand.</p>
+    </div>
+    <div class="cc-verdict eval">⚑ Spend $0.5–1M on Malawi evaluation. Highest value-of-information spend in the entire portfolio. Could unlock $5–10M/yr at potentially the best CE.</div>
+  </div>
+
+  <div class="country-card">
+    <div class="cc-header">
+      <span class="cc-name">Ethiopia</span>
+      <span class="cc-ce amber">$126/DALY · 5× cash · Conditional</span>
+    </div>
+    <div class="cc-body">
+      <div class="cc-row">
+        <div class="cc-stat"><span class="cv">165,000</span><span class="ck">Current farmers</span></div>
+        <div class="cc-stat"><span class="cv">~500,000</span><span class="ck">TAM ceiling</span></div>
+        <div class="cc-stat"><span class="cv">21.6</span><span class="ck">Surviving trees/adopter (highest!)</span></div>
+        <div class="cc-stat"><span class="cv">Unvetted</span><span class="ck">Tree NPV</span></div>
+      </div>
+      Highest trees-per-adopter in the portfolio, but NPV unvalidated (species mix differs from Kenya), income-only CE barely fails ($157/DALY), and political/conflict risk is real (Tigray aftermath, Amhara instability). Clears threshold only with carbon. FP explicitly does not recommend RFF. If NPV validates and stability holds, add $3–5M/yr.
+    </div>
+    <div class="cc-verdict eval">⚑ Commission $200–500K NPV validation study. Gate scale-up on results. Don't commit >$3M/yr until stable.</div>
+  </div>
+
+  <div class="country-card">
+    <div class="cc-header">
+      <span class="cc-name">Nigeria</span>
+      <span class="cc-ce amber">~$151/DALY BOTEC · Option bet</span>
+    </div>
+    <div class="cc-body">
+      <div class="cc-row">
+        <div class="cc-stat"><span class="cv">246,000</span><span class="ck">Current farmers</span></div>
+        <div class="cc-stat"><span class="cv">38M</span><span class="ck">National smallholders</span></div>
+        <div class="cc-stat"><span class="cv">Cashew, mango</span><span class="ck">Primary species</span></div>
+        <div class="cc-stat"><span class="cv">2yr old</span><span class="ck">Program age</span></div>
+      </div>
+      <p style="margin-top:.5rem">Nigeria is where the optimistic TAM scenario lives or dies. OAF distributes cashew, mango, citrus, oil palm, Moringa in Niger, Kwara, and Nasarawa states, targeting 4M farmers by 2030. Cashew NPV in Guinea Savanna could be $50–200/tree (major export crop) vs grevillea's $6.66 — potentially transformative for CE.</p>
+      <p>But: zero published survival data, zero independent CE evaluation, 2-year-old program at scale, single rainy season with harsh Harmattan dry period. If cashew and mango survive at 40%+, Nigeria unlocks 1–4M farmers at ~$150/DALY and $20–80M/yr RFF. If not: zero.</p>
+    </div>
+    <div class="cc-verdict watch">◈ Option bet. Monitor survival data. Don't commit meaningful dollars before 2029–2030 outcome evidence. Could be the biggest prize.</div>
+  </div>
+
+  <div class="country-card">
+    <div class="cc-header">
+      <span class="cc-name">Tanzania</span>
+      <span class="cc-ce red">$250–400/DALY · Scale-constrained</span>
+    </div>
+    <div class="cc-body">
+      <div class="cc-row">
+        <div class="cc-stat"><span class="cv">11,000</span><span class="ck">Current farmers</span></div>
+        <div class="cc-stat"><span class="cv">$0.80–1.20</span><span class="ck">Cost/surviving tree</span></div>
+        <div class="cc-stat"><span class="cv">Avocado ~$110</span><span class="ck">20yr NPV (highest in OAF)</span></div>
+        <div class="cc-stat"><span class="cv">~$172</span><span class="ck">$/DALY at 100k farmers</span></div>
+      </div>
+      Tanzania's program is 68× smaller than Kenya, so fixed costs dominate. The core program "long struggled to surpass an SROI of 1–1.5" before restructuring. Path to &lt;$150: 10× scale-up + fruit tree diversification (Tanzania avocado NPV is OAF's highest). Close but not quite — would need 200k+ farmers with aggressive avocado share.
+    </div>
+    <div class="cc-verdict skip">✗ Exclude from near-term proposal. Fund only if pilot at 50–100k farmers shows &lt;$150/DALY. Timeline: 3–5 years.</div>
+  </div>
+
+  <div class="country-card">
+    <div class="cc-header">
+      <span class="cc-name">Uganda &amp; Zambia</span>
+      <span class="cc-ce red">Below threshold — exclude</span>
+    </div>
+    <div class="cc-body">
+      <strong>Uganda</strong> (18,000 farmers, ~$400/DALY): fundamentally a coffee extension program. 1.4–2.2 SROI reflects the model complexity, not agroforestry economics. Would need restructuring, not just scaling.<br><br>
+      <strong>Zambia</strong> (4,573 farmers, ~$251/DALY): Faidherbia albida model is biologically sound (30–50% maize yield increase under canopy) but trees take 5–10 years to produce meaningful canopy. Carbon credits via Rabobank ACORN add $0.50–2.00/tree/yr but don't compensate for slow maturation. Could reach ~$200/DALY at 50k farmers with confirmed carbon revenue — still won't clear $150.
+    </div>
+    <div class="cc-verdict skip">✗ Exclude from all proposals at current evidence.</div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <h2 id="scenarios">TAM scenarios</h2>
+
+  <div class="scenario-grid">
+    <div class="scenario">
+      <div class="sc-label">Scenario A</div>
+      <div class="sc-title">Confident</div>
+      <div class="sc-farmers">2.0M farmers</div>
+      <div class="sc-rff">$20–27M/yr</div>
+      <div class="sc-countries">Kenya (1.5M) + Burundi (500k). Current evidence only. RFF roughly 2× the current FP recommendation.</div>
+    </div>
+    <div class="scenario b2">
+      <div class="sc-label">Scenario B</div>
+      <div class="sc-title">Conditional</div>
+      <div class="sc-farmers">3.5M farmers</div>
+      <div class="sc-rff">$28–42M/yr</div>
+      <div class="sc-countries">+ Malawi (1M) + Ethiopia (500k), pending evaluations completing successfully. 2–3yr horizon.</div>
+    </div>
+    <div class="scenario b3">
+      <div class="sc-label">Scenario C</div>
+      <div class="sc-title">Optimistic</div>
+      <div class="sc-farmers">4.7–7.2M farmers</div>
+      <div class="sc-rff">$51–127M/yr</div>
+      <div class="sc-countries">+ Nigeria (1–4M) + Tanzania (200k). Nigeria dominates the range. Requires 2029+ outcome data.</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>The $12.6M FP recommendation is a genuine lower bound.</strong> A defensible near-term commitment is ~$25–30M/yr: the current $12.6M plus ~$5–10M for Malawi evaluation and scale-up plus ~$5–10M for Kenya expansion to 1.5M farmers plus ~$3–5M for Ethiopia evidence (if politically stable). Against the Scenario B ceiling of $28–42M/yr, the practical 2027 ask is about half of total potential.
+  </div>
+
+  <h3>Absorptive capacity</h3>
+
+  <p>OAF pre-commits program scale ~1 year in advance (seedling growing lead time). Historical growth is 20–25%/yr. From the current $12.6M recommended base, organic absorption would grow to ~$20M by 2028 and ~$31M by 2030. An accelerated commitment of $25–30M/yr from 2027 would require OAF to expand its nursery network and staff ~18 months early — feasible but requires forward commitment now.</p>
+
+  <p>OAF's organizational ceiling for the tree program is ~$60–80M/yr total spend. The Scenario B ceiling of $28–42M/yr is well within that range. Scenario C ($51–127M) would require a step-change in organizational capacity, unlikely before 2031+.</p>
+
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <h2 id="scale">5-year scale potential: $120–180M</h2>
+
+  <p>Against a 5-year window with evidence gating:</p>
+
+  <table>
+    <tr><th>Country</th><th>Yr 1–2 ($/yr)</th><th>Yr 3–5 ($/yr)</th><th>5yr total</th><th>New farmers</th></tr>
+    <tr><td>Kenya</td><td>$10M</td><td>$15–18M</td><td>$55–64M</td><td>+1.0–1.5M</td></tr>
+    <tr><td>Rwanda (supplemental)</td><td>$5M</td><td>$7–8M</td><td>$26–29M</td><td>+400–600k</td></tr>
+    <tr><td>Burundi</td><td>$4M</td><td>$5–6M</td><td>$20–22M</td><td>+300–500k</td></tr>
+    <tr><td>Ethiopia (gated)</td><td>$3M evidence</td><td>$6–10M if validated</td><td>$24–36M</td><td>+200–500k</td></tr>
+    <tr><td>Evidence / M&amp;E</td><td>$2M</td><td>$2M</td><td>$10M</td><td>—</td></tr>
+    <tr><td><strong>Total</strong></td><td><strong>$24M/yr</strong></td><td><strong>$35–44M/yr</strong></td><td><strong>$135–161M</strong></td><td><strong>+1.9–3.1M</strong></td></tr>
+  </table>
+
+  <p>At maturity, blended $/DALY across all four countries (income + carbon, 15–20% CE degradation at scale): <strong>~$95–105/DALY</strong>. The floor scenario (35% CE degradation) yields $130–145/DALY — still below $150. The margin of safety is thin but real.</p>
+
+  <table>
+    <tr><th>CE degradation scenario</th><th>Blended $/DALY</th><th>DALYs/yr at maturity</th></tr>
+    <tr><td>Optimistic (CE holds)</td><td class="good">~$82</td><td>400–500k</td></tr>
+    <tr><td>Central (15–20% degradation)</td><td class="good">~$95–105</td><td>350–420k</td></tr>
+    <tr><td>Conservative (25–30% degradation)</td><td>~$115–125</td><td>280–340k</td></tr>
+    <tr><td>Floor (35%+ degradation)</td><td class="warn">~$130–145</td><td>230–280k</td></tr>
+  </table>
+
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <h2 id="what-to-fund">What to fund and when</h2>
+
+  <h3>Immediate (2027)</h3>
+  <ol style="font-family:system-ui; font-size:14px; line-height:1.8; padding-left:1.5rem; margin-bottom:1.5rem;">
+    <li><strong>Kenya + Burundi at $12.6M/yr</strong> — the no-brainer. RCT-validated, clear threshold, absorptive capacity confirmed.</li>
+    <li><strong>Malawi evaluation (~$0.5–1M)</strong> — highest value-of-information spend in the entire OAF portfolio. Confirms whether the CE estimate is real and whether the survival improvement pathway is credible.</li>
+    <li><strong>Kenya expansion to 1.5M farmers (+$5–10M/yr)</strong> — riding down the fixed cost curve; CE improves as fixed costs spread over more trees.</li>
+  </ol>
+
+  <h3>Near-term (2028–2029)</h3>
+  <ol style="font-family:system-ui; font-size:14px; line-height:1.8; padding-left:1.5rem; margin-bottom:1.5rem;">
+    <li><strong>Malawi scale-up ($5–10M/yr)</strong> if Malawi evaluation is positive — single largest expansion opportunity.</li>
+    <li><strong>Ethiopia evidence ($3M/yr)</strong> — commission NPV validation study and post-conflict operational assessment. Do not scale before results.</li>
+    <li><strong>Burundi to 500k farmers (+$2–4M/yr)</strong>.</li>
+  </ol>
+
+  <h3>Medium-term (2030+)</h3>
+  <ol style="font-family:system-ui; font-size:14px; line-height:1.8; padding-left:1.5rem; margin-bottom:1.5rem;">
+    <li><strong>Nigeria</strong> — if 3-year survival data shows cashew/mango viability, Nigeria becomes the biggest prize. Don't commit large dollars until outcome data exists.</li>
+    <li><strong>Ethiopia at scale</strong> (if political stability and NPV both confirmed) — +$3–5M/yr.</li>
+    <li><strong>Tanzania</strong> only if fruit tree diversification succeeds at pilot scale.</li>
+  </ol>
+
+  <h3>What NOT to fund</h3>
+  <ul style="font-family:system-ui; font-size:14px; line-height:1.8; padding-left:1.5rem; margin-bottom:1.5rem;">
+    <li>Uganda — wrong model, wrong economics</li>
+    <li>Zambia at scale — Faidherbia too slow, won't clear $150</li>
+    <li>Nigeria at scale before survival data (3+ years out)</li>
+    <li>Beyond-OAF organizations (TFTF, Vi Agroforestry, FMNR) without independent CE evaluation matching FP standard</li>
+    <li>OAF's core crop program — different CE profile, different evaluation</li>
+  </ul>
+
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <h2 id="risks">Risks and evidence gaps</h2>
+
+  <h3>The single most important unknown</h3>
+  <p><strong>Malawi survival trajectory.</strong> If OAF achieves its 65% survival target by 2030 (from ~30% now), Malawi goes from the worst to the best country in the portfolio. If survival stays stuck, Malawi never enters the TAM. One study, $0.5–1M, would answer this with enough certainty to commit or pass on a $5–10M/yr line.</p>
+
+  <h3>Key evidence gaps ranked by decision impact</h3>
+
+  <table>
+    <tr><th>Gap</th><th>Decision impact</th><th>Cost to close</th><th>Timeline</th></tr>
+    <tr><td><strong>Malawi survival trajectory + NPV validation</strong></td><td class="warn">$5–10M/yr unlock</td><td>$0.5–1M</td><td>12–18 mo</td></tr>
+    <tr><td>Ethiopia NPV validation</td><td>$24–36M 5yr unlock</td><td>$200–500k</td><td>12–18 mo</td></tr>
+    <tr><td>Kenya marginal-farmer CE at 30–50% penetration</td><td>$55–64M allocation sizing</td><td>$300–500k</td><td>18–24 mo</td></tr>
+    <tr><td>Nigeria cashew/mango 3yr survival data</td><td>$20–80M/yr potential unlock</td><td>Already in-field</td><td>2029</td></tr>
+    <tr><td>Carbon credit certification pathway</td><td>~20% CE improvement</td><td>Pilots underway</td><td>2–3 yr</td></tr>
+  </table>
+
+  <h3>Key risks</h3>
+
+  <table>
+    <tr><th>Risk</th><th>Prob.</th><th>Impact</th><th>Mitigation</th></tr>
+    <tr><td>Another large donor pulls out</td><td>Medium</td><td>High — CE worsens, TAM contracts</td><td>Multi-year commitment reduces this risk for your slice</td></tr>
+    <tr><td>Ethiopia conflict/disruption</td><td>20–30%</td><td>High — $24–36M allocation lost</td><td>Gate; maintain at evidence-level until stable</td></tr>
+    <tr><td>Survival rates drop as marginal farmers added</td><td>25–35%</td><td>Medium — 20–40% CE degradation</td><td>Species diversification, M&amp;E feedback loops</td></tr>
+    <tr><td>NPV per tree lower than assumed (income realization fails)</td><td>Low-medium</td><td>High — income-only CE crosses $150</td><td>BOTEC already uses lowest of 4 independent estimates; conservative bias</td></tr>
+    <tr><td>OAF organizational strain at higher funding levels</td><td>10–15%</td><td>Medium — quality drops</td><td>OAF has scaled from 0 to 5.9M farmers; infrastructure in place</td></tr>
+  </table>
+
+  <div class="warn-box">
+    <div class="wt">Key uncertainties that would change this analysis</div>
+    <strong>If Malawi survival → 8 trees/adopter:</strong> +1M farmers at ~$74/DALY, +$5–10M/yr<br>
+    <strong>If Nigeria cashew survival &gt;40%:</strong> +1–4M farmers at ~$150/DALY, +$20–80M/yr<br>
+    <strong>If Kenya costs fall back to $0.27/tree (new large donor joins):</strong> Kenya CE rises to 10× cash<br>
+    <strong>If NPV is actually 2–3× BOTEC assumption (per RCT/market data):</strong> all countries improve 2–3×, several Tier 3 countries cross threshold<br>
+    <strong>If FMNR programs develop FP-standard evaluation:</strong> could add millions of hectare-equivalents, potentially larger than all of OAF
+  </div>
+
+
+  <div class="refs">
+    <h2>Sources</h2>
+    <ol>
+      <li>OAF Tree Program Impact by Country — <a href="https://oneacrefund.org/what-we-do/areas-focus/trees/tree-program-impact-country">oneacrefund.org</a></li>
+      <li>Laterite 2020 Kenya Tree Seedling RCT / 2023–24 Rwanda RCT — <a href="https://oneacrefund.org/publications/2023-2024-rwanda-agroforestry-rct-final-report">oneacrefund.org</a></li>
+      <li>GiveWell OAF Tree Program review — <a href="https://www.givewell.org/international/technical/programs/one-acre-fund-tree-program">givewell.org</a></li>
+      <li>Focusing Philanthropy 2023 Update — <a href="https://www.focusingphilanthropy.org/wp-content/uploads/2024/03/One-Acre-Fund-Tree-Campaign-Preliminary-2023-Update-Final.pdf">focusingphilanthropy.org</a></li>
+      <li>Focusing Philanthropy 2024 Update — <a href="https://www.focusingphilanthropy.org/wp-content/uploads/2025/06/2024-Planting-Trees-for-Resilience-Campaign-Annual-Update-vFinal.pdf">focusingphilanthropy.org</a></li>
+      <li>EA Forum — FP Climate Fund DALY/tCO2 analysis — <a href="https://forum.effectivealtruism.org/posts/FzSqMzZpmHdMAft7z/founders-pledge-s-climate-change-fund-might-be-more-cost">forum.effectivealtruism.org</a></li>
+      <li>Bressler 2021 — Mortality cost of carbon — <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8322393/">pubmed</a></li>
+      <li>Kuyah et al. 2012 — Allometric equations, grevillea biomass — <a href="https://doi.org/10.1007/s10457-012-9512-4">doi</a></li>
+      <li>IPCC 2019 Refinement, Chapter 12: Harvested Wood Products — <a href="https://www.ipcc-nggip.iges.or.jp/public/2019rf/pdf/4_Volume4/19R_V4_Ch12_HarvestedWoodProducts.pdf">ipcc-nggip.iges.or.jp</a></li>
+      <li>OAF Nigeria 2025 distribution — <a href="https://tribuneonlineng.com/one-acre-fund-nigeria-flags-off-2025-tree-distribution-campaign-in-niger/">Tribune</a></li>
+      <li>ACORN Rabobank OAF Zambia — <a href="https://acorn.rabobank.com/en/projects/one-acre-fund-zambia/">rabobank.com</a></li>
+      <li>Ajayi et al. 2007 — Pest perceptions Malawi — <a href="https://link.springer.com/article/10.1007/s10457-007-9082-5">Springer</a></li>
+      <li>OAF Trees That Feed, Trees That Earn — <a href="https://oneacrefund.org/articles/trees-feed-trees-earn">oneacrefund.org</a></li>
+    </ol>
+  </div>
+
+</main>
+</div>
+</body>
+</html>
