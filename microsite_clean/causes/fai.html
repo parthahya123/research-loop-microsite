@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAI / FAI Action — AI Policy Proposal</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --accent: #1e3a5f;
+    --accent-light: #eff6ff;
+    --accent-border: #bfdbfe;
+    --text: #1a1a1a;
+    --muted: #555;
+    --border: #e0e4ea;
+    --bg: #f8f9fb;
+    --surface: #fff;
+    --surface-alt: #f3f5f8;
+  }
+
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.88; color: var(--text); background: var(--bg); }
+  .layout { display: flex; min-height: 100vh; }
+  nav { width: 232px; flex-shrink: 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 2.25rem 1.5rem; background: var(--surface-alt); border-right: 1px solid var(--border); }
+  nav .home { display: block; font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; color: #999; text-decoration: none; margin-bottom: 1.5rem; }
+  nav .home:hover { color: #333; }
+  nav h5 { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #bbb; margin-bottom: .6rem; margin-top: 1.5rem; }
+  nav ul { list-style: none; }
+  nav ul li a { font-family: system-ui, sans-serif; font-size: 12.5px; color: #666; text-decoration: none; display: block; padding: .22rem .6rem; border-left: 2px solid transparent; }
+  nav ul li a:hover { color: var(--text); }
+  nav ul li a.active { color: var(--text); border-left-color: var(--accent); font-weight: 600; }
+  nav .current { color: var(--accent) !important; font-weight: 600; }
+  nav .sep { height: 1px; background: var(--border); margin: 1.5rem 0; }
+
+  main { flex: 1; max-width: 800px; padding: 4rem 3.5rem 7rem; }
+  .eyebrow { font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin-bottom: .6rem; }
+  h1 { font-size: 2.5rem; line-height: 1.15; font-weight: 700; letter-spacing: -.025em; margin-bottom: .45rem; color: #0f0f0f; }
+  .dek { font-family: system-ui, sans-serif; font-size: 15.5px; color: #666; margin-bottom: 2.75rem; line-height: 1.5; }
+
+  .verdict { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 1.3rem 1.6rem; margin-bottom: 3.25rem; }
+  .verdict .vl { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #aaa; margin-bottom: .5rem; }
+  .verdict p { font-family: system-ui, sans-serif; font-size: 13.5px; color: #333; line-height: 1.65; margin-bottom: .55rem; }
+  .verdict p:last-child { margin-bottom: 0; }
+
+  .metrics { display: flex; gap: 1.25rem; margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .metric { background: var(--surface); border: 1px solid var(--border); padding: 1rem 1.25rem; flex: 1; min-width: 120px; }
+  .metric .mv { font-size: 1.45rem; font-weight: 700; color: #0f0f0f; font-family: system-ui, sans-serif; letter-spacing: -.02em; line-height: 1.1; }
+  .metric .ml { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: #aaa; margin-top: .3rem; }
+
+  h2 { font-size: 1.6rem; font-weight: 700; margin-top: 4rem; margin-bottom: 1.25rem; letter-spacing: -.015em; padding-bottom: .5rem; border-bottom: 1px solid var(--border); scroll-margin-top: 1.5rem; }
+  h3 { font-size: 1.1rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: .7rem; color: #222; }
+
+  p { margin-bottom: 1.2rem; }
+  a { color: #1d4ed8; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:hover { color: #1e3a8a; }
+  sup a { font-size: 0.75em; }
+
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 2.25rem; font-family: system-ui, sans-serif; font-size: 13px; }
+  th { text-align: left; padding: .6rem .85rem; background: var(--surface-alt); border: 1px solid var(--border); font-weight: 600; color: #333; }
+  td { padding: .55rem .85rem; border: 1px solid var(--border); color: #444; vertical-align: top; line-height: 1.5; }
+  tr:nth-child(even) td { background: #f8f9fb; }
+
+  .callout { background: var(--accent-light); border: 1px solid var(--accent-border); padding: 1.1rem 1.5rem; margin: 2rem 0; font-size: .94rem; line-height: 1.72; }
+  .callout strong { color: var(--accent); }
+
+  .note { background: #f8f9fa; border: 1px solid #d0d5dd; padding: 1.1rem 1.5rem; margin: 1.75rem 0; font-size: .93rem; font-family: system-ui, sans-serif; line-height: 1.7; }
+  .note .nt { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: #888; margin-bottom: .5rem; }
+
+  details { border: 1px solid var(--border); margin: 1.5rem 0; }
+  details summary { padding: .9rem 1.15rem; font-family: system-ui, sans-serif; font-size: 13.5px; font-weight: 600; color: #333; cursor: pointer; background: var(--surface-alt); list-style: none; display: flex; align-items: center; gap: .6rem; user-select: none; }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::before { content: '▶'; font-size: 10px; color: #aaa; transition: transform .15s; flex-shrink: 0; }
+  details[open] summary::before { transform: rotate(90deg); }
+  details summary:hover { background: #eaecf0; }
+  .details-body { padding: 1.25rem 1.5rem; font-family: system-ui, sans-serif; font-size: 13.5px; line-height: 1.72; color: #333; border-top: 1px solid var(--border); }
+  .details-body p { font-family: system-ui, sans-serif; font-size: 13.5px; margin-bottom: .9rem; }
+  .details-body table { font-size: 12.5px; }
+  .details-body h4 { font-weight: 700; margin: 1rem 0 .4rem; color: #222; font-size: 13.5px; }
+  .details-body ul, .details-body ol { margin: .4rem 0 .9rem 1.4rem; }
+  .details-body ul li, .details-body ol li { margin-bottom: .3rem; }
+
+  ul.bl, ol.bl { margin: .5rem 0 1.2rem 1.7rem; }
+  ul.bl li, ol.bl li { margin-bottom: .5rem; }
+
+  .focus-card { border: 1px solid var(--border); margin: 1.75rem 0 2rem; }
+  .focus-card .fh { padding: .85rem 1.15rem; border-bottom: 1px solid var(--border); font-family: system-ui, sans-serif; font-weight: 700; font-size: 14px; color: #111; display: flex; align-items: baseline; gap: .75rem; flex-wrap: wrap; background: var(--surface-alt); }
+  .focus-card .fh .badge { font-size: 11px; font-weight: 600; padding: .15rem .55rem; border-radius: 3px; }
+  .focus-card .fh .badge.green { background: #d1fae5; color: #065f46; }
+  .focus-card .fh .badge.yellow { background: #fef3c7; color: #92400e; }
+  .focus-card .fh .badge.red { background: #fee2e2; color: #991b1b; }
+  .focus-card .fb { padding: 1.15rem 1.25rem 1rem; font-family: system-ui, sans-serif; font-size: 13.5px; line-height: 1.7; color: #333; }
+  .focus-card .fb p { font-family: system-ui, sans-serif; font-size: 13.5px; margin-bottom: .8rem; }
+  .focus-card .fb p:last-child { margin-bottom: 0; }
+  .focus-card .fb ul { margin: .3rem 0 .8rem 1.3rem; }
+  .focus-card .fb ul li { margin-bottom: .3rem; }
+
+  .risk-box { background: #fef2f2; border: 1px solid #fca5a5; padding: 1.1rem 1.5rem; margin: 2rem 0; font-family: system-ui, sans-serif; font-size: 13.5px; line-height: 1.7; }
+  .risk-box .rl { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: #991b1b; margin-bottom: .5rem; font-weight: 700; }
+
+  .scenario-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin: 1.5rem 0 2rem; }
+  .scenario-card { border: 1px solid var(--border); padding: 1rem 1.1rem; background: var(--surface); }
+  .scenario-card .sl { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #888; margin-bottom: .4rem; }
+  .scenario-card .sv { font-family: system-ui, sans-serif; font-size: 13.5px; color: #333; line-height: 1.6; }
+  @media (max-width: 700px) { .scenario-grid { grid-template-columns: 1fr; } }
+
+  .primer { background: #f0f4ff; border: 1px solid #c7d2fe; padding: 1.25rem 1.5rem; margin: 2rem 0; font-family: system-ui, sans-serif; font-size: 13.5px; line-height: 1.72; color: #333; }
+  .primer .pt { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: #4f46e5; margin-bottom: .5rem; font-weight: 700; }
+
+  .timeline { margin: 1.5rem 0 2rem; }
+  .tl-row { display: flex; gap: 1rem; margin-bottom: .75rem; align-items: flex-start; }
+  .tl-date { font-family: system-ui, sans-serif; font-size: 11.5px; font-weight: 700; color: var(--accent); min-width: 100px; padding-top: .1rem; }
+  .tl-body { font-family: system-ui, sans-serif; font-size: 13px; color: #444; line-height: 1.6; flex: 1; border-left: 2px solid #c7d2fe; padding-left: .85rem; padding-bottom: .5rem; }
+
+  #expand-all-btn { font-family: system-ui, sans-serif; font-size: 12px; color: #888; background: none; border: 1px solid #ddd; padding: .3rem .7rem; cursor: pointer; float: right; margin-top: 3.8rem; }
+  #expand-all-btn:hover { background: var(--surface-alt); }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav>
+  <a class="home" href="../index.html">← All causes</a>
+  <h5>This report</h5>
+  <ul>
+    <li><a href="#what-is-fai">What FAI / FAI Action is</a></li>
+    <li><a href="#proposal">The proposal</a></li>
+    <li><a href="#focus-i">Focus I: Rules package</a></li>
+    <li><a href="#focus-ii">Focus II: Congressional capacity</a></li>
+    <li><a href="#focus-iii">Focus III: OTA restart</a></li>
+    <li><a href="#focus-iv">Focus IV: Executive branch</a></li>
+    <li><a href="#political">Political scenarios</a></li>
+    <li><a href="#budget">Budget</a></li>
+    <li><a href="#diligence">Diligence findings</a></li>
+    <li><a href="#open-questions">Open questions</a></li>
+  </ul>
+</nav>
+
+<main>
+<button id="expand-all-btn" onclick="toggleAll()">Expand all details</button>
+
+<div class="eyebrow">Proposal Analysis · October 2026</div>
+<h1>FAI / FAI Action</h1>
+<div class="dek">Foundation for American Innovation wants $1M (Q4 2026–Q4 2027) to push AI governance reforms through the 120th Congress: a rules package with AI-specific provisions, OTA restart, and executive branch tech hiring. The 501(c)(4) structure and fast timeline create real diligence hurdles.</div>
+
+<div class="verdict">
+  <div class="vl">Bottom line</div>
+  <p><strong>This is a bet on a specific political window.</strong> January 2027 is the only realistic moment for a rules package insertion — if it doesn't happen then, the next opening is 2029. FAI has the relationships and the track record on congressional capacity issues; the question is whether they can turn proximity into durable policy, especially on OTA where the appropriations pathway is still unclear.</p>
+  <p><strong>The 501(c)(4) structure ($724K of the $1M) is the main diligence friction.</strong> FAI Action doesn't disclose donors, operates with significant independence from the think tank, and the proposal gives limited detail on how the lobbying allocation was sized. This isn't disqualifying, but it requires the funder to be comfortable with opacity on how advocacy money moves.</p>
+  <p><strong>The most concrete near-term opportunity is the rules package</strong> — specific, scheduled, and several priorities (AI separate order continuation, machine-readable data) are already in advanced draft. OTA is the highest upside but also highest uncertainty. Executive branch diffusion is valuable but slowest.</p>
+</div>
+
+<div class="metrics">
+  <div class="metric"><div class="mv">$1M</div><div class="ml">Total ask (Q4 2026–Q4 2027)</div></div>
+  <div class="metric"><div class="mv">$276K</div><div class="ml">FAI 501(c)(3) — research + think tank</div></div>
+  <div class="metric"><div class="mv">$724K</div><div class="ml">FAI Action 501(c)(4) — lobbying + advocacy</div></div>
+  <div class="metric"><div class="mv">Jan 2027</div><div class="ml">Rules package window — first day of 120th Congress</div></div>
+</div>
+
+<h2 id="what-is-fai">What FAI and FAI Action are</h2>
+
+<p><strong>Foundation for American Innovation (FAI)</strong> is a 501(c)(3) technology-policy think tank based in Washington, D.C. It has a roughly $15M annual budget and focuses on three intersecting themes: technology policy (AI, open source, data standards), government modernization (congressional capacity, institutional reform), and national security tech. <strong>Zach Graves</strong> serves as President of FAI; his background is tech policy, previously at Lincoln Network and R Street Institute.</p>
+
+<p><strong>FAI Action</strong> is the 501(c)(4) lobbying arm. <strong>Ian Mair</strong> (former Senate staffer) serves as CEO of FAI Action. The (c)(4) structure allows direct lobbying — contact with members and their staff on specific legislation — which is prohibited for the (c)(3). The proposal allocates 72% of the grant to FAI Action, reflecting that the core work is lobbying, not research.</p>
+
+<div class="primer">
+  <div class="pt">Why (c)(3) vs (c)(4) matters for funders</div>
+  A 501(c)(3) grant is tax-deductible and must go to non-lobbying work (research, education, coalition-building). A 501(c)(4) grant is not tax-deductible but can fund direct lobbying — contact with legislators on specific votes or legislation. Donors to (c)(4)s are not publicly disclosed. Many foundations can make (c)(4) grants if they are for social welfare purposes, but must track and limit lobbying allocation. This is standard in policy philanthropy but requires donor comfort with reduced transparency.
+</div>
+
+<h3>Key people</h3>
+<table>
+  <tr><th>Name</th><th>Role</th><th>Background</th></tr>
+  <tr><td>Zach Graves</td><td>President, FAI (c)(3)</td><td>Tech policy; ex-Lincoln Network, R Street Institute; substantial congressional relationships</td></tr>
+  <tr><td>Ian Mair</td><td>CEO, FAI Action (c)(4)</td><td>Former Senate staffer; runs the direct lobbying operation</td></tr>
+  <tr><td>Luke Hogg</td><td>EVP, FAI Action</td><td>Policy lead for the congressional modernization work</td></tr>
+  <tr><td>James Wallner</td><td>VP Policy, FAI</td><td>Former Senate Republican leadership staff; expert on Senate rules and procedure</td></tr>
+  <tr><td>Soren Dayton</td><td>FAI</td><td>Coalition and political strategy</td></tr>
+  <tr><td>Dan Lips</td><td>FAI</td><td>Education and tech policy</td></tr>
+</table>
+
+<h2 id="proposal">The proposal</h2>
+
+<p>The "DoublePlus" grant request covers Q4 2026 through Q4 2027 — a 12–15 month window timed around the opening of the 120th Congress in January 2027. The logic is that the rules package moment is a hard deadline: if reforms aren't written into the organizing resolution in the first week of the new Congress, the next natural window is 2029.</p>
+
+<p>The proposal has four focus areas, each at a different stage of readiness:</p>
+<ul class="bl">
+  <li><strong>Focus I</strong>: Insert AI-friendly provisions into the 120th Congress rules package (January 2027 deadline)</li>
+  <li><strong>Focus II</strong>: Build a bipartisan coalition for congressional capacity reforms (staffing pay, CRS/GAO modernization)</li>
+  <li><strong>Focus III</strong>: Restart the Office of Technology Assessment (OTA) as a $10M pilot within the next appropriations cycle</li>
+  <li><strong>Focus IV</strong>: Push executive branch AI adoption through OMB, OPM, and GSA (Tech Modernization Fund, technical hiring standards)</li>
+</ul>
+
+<h2 id="focus-i">Focus I — 120th Congress Rules Package</h2>
+
+<div class="focus-card">
+  <div class="fh">120th Congress Rules Package <span class="badge green">Jan 2027 deadline — partly in advanced draft</span></div>
+  <div class="fb">
+    <p>The first week of each new Congress, the House adopts a rules package — an omnibus resolution governing how the chamber will operate for two years. It is one of the rare moments when procedural reforms can be inserted as part of a larger negotiated deal. FAI has participated in previous rules package negotiations and has existing relationships with Rules Committee staff.</p>
+    <p><strong>Specific priorities FAI is pushing:</strong></p>
+    <ul>
+      <li><strong>AI separate order continuation</strong>: Codify the 118th Congress "AI Task Force" structure as a standing arrangement. FAI has draft language; assessed as advanced.</li>
+      <li><strong>OTA restart authorization</strong>: Insert language authorizing OTA to receive appropriations — a prerequisite for Focus III. FAI has worked versions of this language.</li>
+      <li><strong>Open source software policy</strong>: House policy encouraging open source for federally funded software. Draft amendment exists but not finalized.</li>
+      <li><strong>Machine-readable legislative data</strong>: Codify existing GPO/Clerk practices (bulk data, APIs for bill text). This is already partially in practice; codification locks it in. Language is largely settled.</li>
+      <li><strong>CAO/HDS technology office codification</strong>: Establish the Chief Administrative Officer's House Digital Service as permanent, not subject to each new CAO's discretion.</li>
+    </ul>
+    <p>The rules negotiation is controlled by majority leadership. FAI's leverage is relationships with Republican members and staff who care about these issues. The AI task force and machine-readable data items are the most likely to survive a negotiated package; open source policy is more uncertain.</p>
+  </div>
+</div>
+
+<h2 id="focus-ii">Focus II — Congressional Capacity Coalition</h2>
+
+<div class="focus-card">
+  <div class="fh">Congressional Capacity Coalition <span class="badge yellow">Ongoing coalition work — longer timeline</span></div>
+  <div class="fb">
+    <p>Congressional staffers are paid well below market for comparable Washington policy work, and the gap has widened since staff pay has been largely flat for decades in real terms. The practical effect: experienced staff leave for K Street after 2–3 years. Congress increasingly lacks institutional memory and technical expertise, especially in science and technology.</p>
+    <p>FAI has been one of the leading voices for staff pay reform and has worked with the bipartisan <strong>Congressional Modernization Committee</strong> (now defunct as a select committee but its work continues through Rules). The coalition work in this grant funds:</p>
+    <ul>
+      <li>Bringing together external organizations (R Street, Bipartisan Policy Center, etc.) around a shared agenda</li>
+      <li>Hill education on the staff retention and technical capacity problem</li>
+      <li>$75K in grants to coalition partner organizations</li>
+    </ul>
+    <p>This is slower-moving than the rules package. Staff pay reform requires an appropriations vehicle. CRS/GAO modernization requires committee-level champions. FAI's role here is more about keeping the coalition intact and the issue visible than driving a specific legislative moment.</p>
+  </div>
+</div>
+
+<h2 id="focus-iii">Focus III — OTA Restart</h2>
+
+<div class="focus-card">
+  <div class="fh">Office of Technology Assessment Restart <span class="badge yellow">Authorization path clear; appropriations uncertain</span></div>
+  <div class="fb">
+    <p>The Office of Technology Assessment was the scientific advisory body for Congress from 1972–1995, abolished in the Gingrich-era budget cuts. It produced rigorous, nonpartisan assessments of technology policy questions for members and committees. For three decades, advocates have tried to restart it. This Congress has the best chance in memory.</p>
+    <p><strong>Why now:</strong></p>
+    <ul>
+      <li>Rep. Mark Takano (D-CA) has been the primary champion on the House side, with bipartisan Republican co-lead being cultivated</li>
+      <li>Rep. Mike Quigley (D-IL) has been targeted for the appropriations vehicle (CJS subcommittee)</li>
+      <li>The historic objection — GAO leadership arguing OTA would duplicate CRS/GAO work — appears resolved. The GAO officials who previously opposed it have left; current leadership is neutral to supportive</li>
+      <li>The AI moment has created new urgency: members increasingly cite lack of in-house technical capacity as a problem</li>
+    </ul>
+    <p><strong>The ask</strong>: A $10M pilot appropriation — enough to hire a small permanent staff and conduct 3–5 assessments in year one. This is designed to be a de-risked ask: too small to scare fiscal hawks, big enough to be real.</p>
+    <p><strong>The remaining uncertainty</strong>: The appropriations pathway requires a sympathetic subcommittee chair and a specific vehicle. In a continuing-resolution environment or a CR-dominated Congress, standalone OTA appropriations are difficult. FAI's answer is that the $10M pilot is small enough to ride an omnibus or a Labor-HHS-Education bill. That argument is plausible but unproven.</p>
+  </div>
+</div>
+
+<h2 id="focus-iv">Focus IV — Executive Branch AI Diffusion</h2>
+
+<div class="focus-card">
+  <div class="fh">Executive Branch AI Adoption <span class="badge yellow">Longest lead time — OMB/OPM/GSA engagement</span></div>
+  <div class="fb">
+    <p>Federal agencies are using AI in highly variable ways. The bottlenecks are: procurement rules that make it difficult to acquire AI products (especially from startups), technical hiring standards that screen out modern software engineers, and OMB guidance that is often risk-averse to the point of paralysis.</p>
+    <p>FAI's work in this focus area:</p>
+    <ul>
+      <li><strong>Tech Modernization Fund reform</strong>: TMF was created in 2017 to fund shared IT modernization across agencies but has suffered from bureaucratic loan mechanics. FAI is working on legislative or regulatory changes to make TMF more usable.</li>
+      <li><strong>OPM technical hiring standards</strong>: Classification reform to allow agencies to hire software engineers and data scientists under standards that reflect current skills rather than 1970s-era civil service job codes.</li>
+      <li><strong>OMB AI guidance</strong>: Comments and direct engagement on OMB M-memos governing AI procurement and use in federal agencies.</li>
+    </ul>
+    <p>This track is the most diffuse and hardest to attribute. It is relationship-based engagement across multiple agencies. FAI's lobbyist for executive branch work is funded at $120K in this grant — this is the most junior of the lobbying lines and likely reflects a part-time arrangement or a boutique firm.</p>
+  </div>
+</div>
+
+<h2 id="political">Political scenarios</h2>
+
+<p>The grant covers the first year of the 120th Congress (2027–28). The political environment shapes which focus areas are tractable:</p>
+
+<div class="scenario-grid">
+  <div class="scenario-card">
+    <div class="sl">Scenario A — Split chambers</div>
+    <div class="sv">Divided government continues. Rules package still happens (House only). OTA appropriations very hard — need Senate buy-in. Executive branch work through executive orders and OMB memos more important. Moderate overall probability.</div>
+  </div>
+  <div class="scenario-card">
+    <div class="sl">Scenario B — Unified GOP</div>
+    <div class="sv">Republicans control House, Senate, and White House. Rules package more tractable. OTA depends on whether conservative members see it as wasteful or useful. Executive branch work aligns well with deregulation narrative. FAI has stronger GOP relationships. Probably the scenario FAI is implicitly planning for.</div>
+  </div>
+  <div class="scenario-card">
+    <div class="sl">Scenario C — Unified Dem</div>
+    <div class="sv">Assessed as least likely. OTA would move easily. Rules package possible but different priorities. FAI's relationships are more bipartisan-tilted-right.</div>
+  </div>
+</div>
+
+<p>The proposal doesn't specify which scenario it's calibrated for. This is a real gap — the answer changes which focus areas are the priority investment and which lobbyists are most useful.</p>
+
+<h2 id="budget">Budget breakdown</h2>
+
+<table>
+  <tr><th>Line item</th><th>Amount</th><th>Notes</th></tr>
+  <tr><td>Appropriations lobbyist</td><td>$280K</td><td>Primary Hill contact; presumably Acorn + Mission + August Strategies coalition at ~$45K/mo</td></tr>
+  <tr><td>Executive branch lobbyist</td><td>$120K</td><td>OMB/OPM/GSA engagement; new hire or boutique firm at ~$10K/mo</td></tr>
+  <tr><td>Core staff (FAI Action)</td><td>$155K</td><td>Ian Mair + Luke Hogg time allocation to this grant</td></tr>
+  <tr><td>Coalition grants</td><td>$75K</td><td>Grants to partner organizations in the capacity coalition</td></tr>
+  <tr><td>Research Fellow (FAI)</td><td>$120K</td><td>Full-time policy researcher for the (c)(3) work</td></tr>
+  <tr><td>Staff research (FAI)</td><td>$50K</td><td>Zach Graves + FAI staff time on think tank output</td></tr>
+  <tr><td>Partner grants (FAI)</td><td>$50K</td><td>Grants to external researchers</td></tr>
+  <tr><td>Events</td><td>$20K</td><td>Hill briefings, roundtables</td></tr>
+  <tr><td>Overhead (15%)</td><td>~$130K</td><td>Standard indirect rate</td></tr>
+  <tr><td><strong>Total</strong></td><td><strong>~$1M</strong></td><td>$276K c(3) / $724K c(4)</td></tr>
+</table>
+
+<div class="note">
+  <div class="nt">Note on the lobbying allocation</div>
+  The $280K appropriations lobbying line is the single largest item. The cited lobbyists (Acorn, Mission Government Affairs, August Strategies) are real firms with congressional relationships, but the proposal doesn't specify the contract terms or how that rate was set. Given that Acorn rates on Hill advocacy are typically $15–25K/mo for a retainer, $280K implies either a partial engagement across several months or a boutique arrangement. Worth confirming.
+</div>
+
+<h2 id="diligence">Diligence findings</h2>
+
+<p>The email diligence thread surfaced several concrete observations:</p>
+
+<div class="focus-card">
+  <div class="fh">What's solid</div>
+  <div class="fb">
+    <ul>
+      <li><strong>AI separate order continuation</strong>: FAI has been deeply involved in the AI Task Force structure from the 118th Congress. The language is close to final and the relationships are in place. This is the highest-readiness item.</li>
+      <li><strong>Machine-readable legislative data</strong>: Already largely in practice (bulk data.congress.gov, bill XML). Codification is a relatively low-lift but meaningful lock-in. Language is largely agreed.</li>
+      <li><strong>OTA authorization hook in rules</strong>: Language to authorize OTA to receive appropriations can be inserted into the rules package without requiring a standalone bill. This is legally clean.</li>
+      <li><strong>GAO opposition to OTA is cleared</strong>: The officials who previously argued OTA would duplicate GAO work have left. This was the most significant internal government obstacle.</li>
+      <li><strong>FAI's congressional capacity track record</strong>: Genuine. They were involved in the Congressional Modernization Committee and have produced substantive work on staff pay and institutional capacity.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="risk-box">
+  <div class="rl">Concerns flagged in diligence</div>
+  <ul class="bl">
+    <li><strong>No full draft rules text for several priorities</strong>: The open source software policy and CAO/HDS codification priorities don't have finalized legislative language. For a January 2027 deadline, this is tight.</li>
+    <li><strong>OTA appropriations pathway is assumed, not proven</strong>: Quigley's support for an appropriations vehicle is a target, not a commitment. The proposal treats this as more advanced than it is.</li>
+    <li><strong>FAI Action opacity</strong>: 72% of the grant goes to an entity that doesn't disclose donors or detailed activity reports. The funder is asked to trust the team without a strong verification mechanism. Standard for (c)(4) work, but worth naming.</li>
+    <li><strong>Scenario-agnostic budgeting</strong>: The proposal doesn't adjust priorities by political scenario. In a split-chamber scenario, the $280K appropriations lobbyist is significantly harder to deploy on OTA.</li>
+    <li><strong>Republican co-lead for OTA not named</strong>: For a GOP-controlled House, you need a Republican champion. The proposal mentions "a Republican co-lead being cultivated" but doesn't name them.</li>
+  </ul>
+</div>
+
+<h2 id="open-questions">Open questions</h2>
+
+<h3>Before committing</h3>
+<ul class="bl">
+  <li>Who is the Republican co-lead on OTA? Without a named House Republican champion, this stalls immediately in a GOP-controlled chamber.</li>
+  <li>What is the actual Acorn/Mission/August Strategies contract — retainer vs. project-based, and for how many months?</li>
+  <li>What does "being cultivated" mean for Quigley on OTA appropriations — has he said yes in principle, or is this outreach that hasn't landed yet?</li>
+  <li>Can the funder get quarterly reporting from FAI Action specifically — lobbying contacts made, bills tracked, wins/misses?</li>
+  <li>What happens to this grant if the political scenario shifts significantly (e.g., Democrats take the House)? Is there a version of the work that still makes sense?</li>
+</ul>
+
+<h3>The underlying theory of change</h3>
+<p>The proposal implicitly assumes that the bottleneck to better AI governance in Congress is <em>advocacy</em> — that the ideas are ready and what's missing is someone to push them through the legislative process. That is probably right for the rules package items where draft language exists. It's less clearly right for OTA, where the constraint may be political will and appropriations competition rather than advocacy quality. The proposal would benefit from a clearer articulation of where it's theory of change is vs. isn't applicable.</p>
+
+<div class="callout">
+  <strong>The case for funding:</strong> The January 2027 window is real and time-bounded. FAI has genuine relationships and has done serious policy work. At $1M for 12 months of dedicated Washington advocacy on specific achievable targets, the counterfactual is that these reforms don't happen at all — no one else is running a similar dedicated operation on this exact portfolio. If even the rules package items succeed, there's a durable multi-year benefit from improved congressional AI capacity.
+</div>
+
+<div class="note">
+  <div class="nt">Comparable deals</div>
+  Congressional capacity and tech policy advocacy at this budget level is not unusual for serious policy shops. $1M for 12 months of dedicated Hill lobbying is roughly what a single K Street firm charges for a retainer on a major appropriations push. The question is whether FAI's relationships and work quality justify the ask relative to alternatives.
+</div>
+
+</main>
+</div>
+
+<script>
+function toggleAll() {
+  const details = document.querySelectorAll('details');
+  const btn = document.getElementById('expand-all-btn');
+  const anyOpen = Array.from(details).some(d => d.open);
+  details.forEach(d => d.open = !anyOpen);
+  btn.textContent = anyOpen ? 'Expand all details' : 'Collapse all details';
+}
+
+// Simple scroll-spy
+const sections = document.querySelectorAll('h2[id], h3[id]');
+const navLinks = document.querySelectorAll('nav ul li a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) current = s.id; });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}, { passive: true });
+</script>
+</body>
+</html>
