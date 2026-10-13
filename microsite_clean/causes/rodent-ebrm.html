@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safer Landscapes / Rodent Fund — EBRM in India</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --accent: #2d6a2d;
+    --accent-light: #f0fdf0;
+    --accent-border: #bbf0bb;
+    --warn: #b45309;
+    --warn-bg: #fffbeb;
+    --warn-border: #fde68a;
+    --red: #dc2626;
+    --red-bg: #fef2f2;
+    --red-border: #fecaca;
+    --text: #1a1a1a;
+    --muted: #555;
+    --border: #e0e4ea;
+    --bg: #f8f9fb;
+    --surface: #fff;
+    --surface-alt: #f3f5f8;
+  }
+
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.88; color: var(--text); background: var(--bg); }
+  .layout { display: flex; min-height: 100vh; }
+  nav { width: 232px; flex-shrink: 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 2.25rem 1.5rem; background: var(--surface-alt); border-right: 1px solid var(--border); }
+  nav .home { display: block; font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; color: #999; text-decoration: none; margin-bottom: 1.5rem; }
+  nav .home:hover { color: #333; }
+  nav h5 { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #bbb; margin-bottom: .6rem; margin-top: 1.5rem; }
+  nav ul { list-style: none; }
+  nav ul li a { font-family: system-ui, sans-serif; font-size: 12.5px; color: #666; text-decoration: none; display: block; padding: .22rem .6rem; border-left: 2px solid transparent; }
+  nav ul li a:hover { color: var(--text); }
+  nav ul li a.active { color: var(--text); border-left-color: var(--accent); font-weight: 600; }
+  nav .sep { height: 1px; background: var(--border); margin: 1.5rem 0; }
+
+  main { flex: 1; max-width: 800px; padding: 4rem 3.5rem 7rem; }
+  .eyebrow { font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin-bottom: .6rem; }
+  h1 { font-size: 2.5rem; line-height: 1.15; font-weight: 700; letter-spacing: -.025em; margin-bottom: .45rem; color: #0f0f0f; }
+  .dek { font-family: system-ui, sans-serif; font-size: 15.5px; color: #666; margin-bottom: 2.75rem; line-height: 1.5; }
+
+  .verdict { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 1.3rem 1.6rem; margin-bottom: 3.25rem; }
+  .verdict .vl { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #aaa; margin-bottom: .5rem; }
+  .verdict p { font-family: system-ui, sans-serif; font-size: 13.5px; color: #333; line-height: 1.65; margin-bottom: .55rem; }
+  .verdict p:last-child { margin-bottom: 0; }
+
+  .metrics { display: flex; gap: 1.25rem; margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .metric { background: var(--surface); border: 1px solid var(--border); padding: 1rem 1.25rem; flex: 1; min-width: 130px; }
+  .metric .mv { font-size: 1.45rem; font-weight: 700; color: #0f0f0f; font-family: system-ui, sans-serif; letter-spacing: -.02em; line-height: 1.1; }
+  .metric .ml { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: #aaa; margin-top: .3rem; }
+
+  h2 { font-size: 1.6rem; font-weight: 700; margin-top: 4rem; margin-bottom: 1.25rem; letter-spacing: -.015em; padding-bottom: .5rem; border-bottom: 1px solid var(--border); scroll-margin-top: 1.5rem; }
+  h3 { font-size: 1.1rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: .7rem; color: #222; }
+  h4 { font-size: .95rem; font-weight: 700; margin-top: 1.75rem; margin-bottom: .4rem; color: #333; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: .04em; }
+
+  p { margin-bottom: 1.2rem; }
+  a { color: #1d4ed8; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:hover { color: #1e3a8a; }
+  sup a { font-size: 0.75em; }
+
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 2.25rem; font-family: system-ui, sans-serif; font-size: 13px; }
+  th { text-align: left; padding: .6rem .85rem; background: var(--surface-alt); border: 1px solid var(--border); font-weight: 600; color: #333; }
+  td { padding: .55rem .85rem; border: 1px solid var(--border); color: #444; vertical-align: top; line-height: 1.5; }
+  tr:nth-child(even) td { background: #f8f9fb; }
+  td.good { color: var(--accent); font-weight: 600; }
+  td.warn { color: var(--warn); font-weight: 600; }
+  td.bad { color: var(--red); font-weight: 600; }
+
+  .callout { background: var(--accent-light); border: 1px solid var(--accent-border); padding: 1.1rem 1.5rem; margin: 2rem 0; font-size: .94rem; line-height: 1.72; }
+  .callout strong { color: var(--accent); }
+
+  .warn-box { background: var(--warn-bg); border: 1px solid var(--warn-border); padding: 1.1rem 1.5rem; margin: 1.75rem 0; font-size: .93rem; font-family: system-ui, sans-serif; line-height: 1.7; }
+  .warn-box .wt { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: #b45309; margin-bottom: .4rem; font-weight: 600; }
+
+  .error-box { background: var(--red-bg); border: 1px solid var(--red-border); padding: 1.1rem 1.5rem; margin: 1.75rem 0; font-size: .93rem; font-family: system-ui, sans-serif; line-height: 1.7; }
+  .error-box .et { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: var(--red); margin-bottom: .4rem; font-weight: 600; }
+
+  .note { background: #f8f9fa; border: 1px solid #d0d5dd; padding: 1.1rem 1.5rem; margin: 1.75rem 0; font-size: .93rem; font-family: system-ui, sans-serif; line-height: 1.7; }
+  .note .nt { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: #888; margin-bottom: .5rem; }
+
+  details { border: 1px solid var(--border); margin: 1.5rem 0; }
+  details summary { padding: .9rem 1.15rem; font-family: system-ui, sans-serif; font-size: 13.5px; font-weight: 600; color: #333; cursor: pointer; background: var(--surface-alt); list-style: none; display: flex; align-items: center; gap: .6rem; user-select: none; }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::before { content: '▶'; font-size: 10px; color: #aaa; transition: transform .15s; flex-shrink: 0; }
+  details[open] summary::before { transform: rotate(90deg); }
+  details summary:hover { background: #eaecf0; }
+  .details-body { padding: 1.25rem 1.5rem; font-family: system-ui, sans-serif; font-size: 13.5px; line-height: 1.72; color: #333; border-top: 1px solid var(--border); }
+  .details-body p { font-family: system-ui, sans-serif; font-size: 13.5px; margin-bottom: .9rem; }
+  .details-body h4 { font-weight: 700; margin: 1rem 0 .4rem; color: #222; font-size: 13.5px; text-transform: none; letter-spacing: 0; }
+  .details-body ul { margin: .4rem 0 .9rem 1.4rem; }
+  .details-body ul li { margin-bottom: .3rem; }
+
+  .chain { margin: 2rem 0; }
+  .chain-step { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: .75rem; }
+  .chain-num { font-family: system-ui, sans-serif; font-size: 11px; font-weight: 700; color: #fff; background: var(--accent); width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 3px; }
+  .chain-body { font-family: system-ui, sans-serif; font-size: 13.5px; color: #333; line-height: 1.6; }
+  .chain-body strong { color: #111; }
+  .chain-body .math { font-family: 'Courier New', monospace; font-size: 12px; background: #f5f5f3; padding: 2px 6px; border-radius: 2px; }
+  .chain-arrow { text-align: center; color: #bbb; font-size: 1.2rem; margin: .1rem 0 .1rem 11px; line-height: 1; }
+
+  .scenario-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0 2.5rem; }
+  .scenario { border: 1px solid var(--border); padding: 1.15rem 1.25rem; }
+  .scenario .sh { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #aaa; margin-bottom: .5rem; }
+  .scenario .sv { font-size: 1.35rem; font-weight: 700; font-family: system-ui, sans-serif; letter-spacing: -.02em; color: #111; line-height: 1.1; }
+  .scenario .sd { font-family: system-ui, sans-serif; font-size: 11.5px; color: #777; margin-top: .3rem; line-height: 1.5; }
+  .scenario.green { border-color: var(--accent); }
+  .scenario.amber { border-color: var(--warn); }
+  .scenario.red { border-color: var(--red); }
+
+  .tornado { margin: 1.5rem 0 2rem; }
+  .tornado-row { display: flex; align-items: center; gap: .75rem; margin-bottom: .55rem; font-family: system-ui, sans-serif; font-size: 12.5px; }
+  .tornado-label { width: 170px; color: #444; flex-shrink: 0; }
+  .tornado-track { flex: 1; background: #eceae6; height: 20px; position: relative; }
+  .tornado-fill { height: 100%; background: var(--accent); opacity: .75; }
+  .tornado-value { width: 45px; color: #666; text-align: right; flex-shrink: 0; font-size: 11.5px; }
+
+  ul.bullets { margin: .5rem 0 1.5rem 1.5rem; }
+  ul.bullets li { margin-bottom: .4rem; }
+
+  .kill-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; margin: 1.25rem 0 2rem; }
+  .kill { background: var(--red-bg); border: 1px solid var(--red-border); padding: .9rem 1rem; font-family: system-ui, sans-serif; font-size: 12.5px; line-height: 1.55; }
+  .kill .kt { font-size: 10.5px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: .06em; margin-bottom: .35rem; }
+
+  tr.total td { background: var(--surface-alt); font-weight: 700; color: #111; }
+</style>
+</head>
+<body>
+<div class="layout">
+
+<nav>
+  <a class="home" href="../index.html">← Portfolio</a>
+  <h5>On this page</h5>
+  <ul>
+    <li><a href="#verdict">Verdict</a></li>
+    <li><a href="#problem">The problem</a></li>
+    <li><a href="#ebrm">What EBRM is</a></li>
+    <li><a href="#botec">BOTEC chain</a></li>
+    <li><a href="#scenarios">Scenarios</a></li>
+    <li><a href="#tornado">Sensitivity</a></li>
+    <li><a href="#rfc">RFC: why not</a></li>
+    <li><a href="#benchmarks">Benchmarks</a></li>
+    <li><a href="#grantees">Grantees</a></li>
+    <li><a href="#budget">Budget</a></li>
+    <li><a href="#kill-switches">Kill-switches</a></li>
+    <li><a href="#unknowns">Key uncertainties</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="eyebrow">Safer Landscapes — Rodent Fund</div>
+  <h1>EBRM in India</h1>
+  <p class="dek">Ecologically-Based Rodent Management as an agricultural income intervention for India's smallholder farmers. $5M pilot + $1.5M RFC R&D, milestone-gated.</p>
+
+  <div class="verdict" id="verdict">
+    <div class="vl">Verdict</div>
+    <p><strong>Fund $5M EBRM pilot as an evidence and capacity bet, not a DALY buy.</strong> At operational scale in high-damage rice areas, EBRM could reach $150–240/DALY-eq — approaching GiveWell bar. But zero India-specific field trials exist. The $5M buys India-specific evidence in a $5B/yr neglected problem. If the pilot succeeds, the catalytic value (enabling government scale-up) yields ~$300–500/DALY-eq. If it fails, you've spent $5M to learn that — a defensible VoI investment.</p>
+    <p><strong>Fund $1.5M RFC R&D as a small option-value bet, strictly milestone-gated.</strong> The science does not support fertility control for open-field Indian agriculture — the immigration problem is fatal. Do not commit $50–100M to RFC under any scenario.</p>
+  </div>
+
+  <div class="metrics">
+    <div class="metric">
+      <div class="mv">$6.5M</div>
+      <div class="ml">Ask (EBRM $5M + RFC $1.5M)</div>
+    </div>
+    <div class="metric">
+      <div class="mv">$39K</div>
+      <div class="ml">$/DALY-eq (pilot, program-level)</div>
+    </div>
+    <div class="metric">
+      <div class="mv">$150–240</div>
+      <div class="ml">$/DALY-eq (targeted, at scale)</div>
+    </div>
+    <div class="metric">
+      <div class="mv">$300–500</div>
+      <div class="ml">$/DALY-eq (catalytic / VoI)</div>
+    </div>
+  </div>
+
+  <h2 id="problem">The problem</h2>
+
+  <p>India loses an estimated 5–10% of cereal crops annually to rodent damage — approximately $5 billion per year. In NE India during bamboo-flowering mast events, losses reach 14–48% of harvest. The burden falls almost entirely on smallholder farmers (average holding &lt;1 ha) with near-zero income resilience.</p>
+
+  <p>Current management is chemically-dependent, ecologically damaging, and mostly ineffective at landscape scale. Outside Andhra Pradesh's state model, coordinated non-chemical rodent management is essentially absent.</p>
+
+  <table>
+    <thead><tr><th>Crop</th><th>Area share</th><th>Avg loss rate</th><th>Loss value/ha/yr</th></tr></thead>
+    <tbody>
+      <tr><td>Rice</td><td>40%</td><td>7.5%</td><td>$48.75</td></tr>
+      <tr><td>Wheat</td><td>25%</td><td>7.0%</td><td>$63.00</td></tr>
+      <tr><td>Maize</td><td>15%</td><td>12.0%</td><td>$55.44</td></tr>
+      <tr><td>Millet</td><td>10%</td><td>10.0%</td><td>$43.20</td></tr>
+      <tr><td>Sugarcane</td><td>10%</td><td>16.0%</td><td>$436.80</td></tr>
+      <tr class="total"><td colspan="3">Weighted avg (ex-sugarcane, EBRM-applicable)</td><td>$53/ha/yr</td></tr>
+    </tbody>
+  </table>
+
+  <p>Sources: <a href="https://www.ainpvpm.in/achievements.html">ICAR AINP VPM</a>; <a href="https://www.tandfonline.com/doi/abs/10.1080/03235408.2012.674711">Tandfonline 2012</a>; <a href="https://link.springer.com/article/10.1023/A:1009622109901">Springer 2001</a>.</p>
+
+  <h2 id="ebrm">What EBRM is</h2>
+
+  <p>Ecologically-Based Rodent Management is a suite of non-chemical techniques that disrupt rodent food availability and reproduction cycles rather than targeting individuals with poison.</p>
+
+  <h3>Core components</h3>
+  <ul class="bullets">
+    <li><strong>Trap Barrier Systems (TBS):</strong> A strip of crop planted 2–3 weeks early attracts rodents into a fenced trap zone. One TBS unit protects ~10 ha. (<a href="http://www.knowledgebank.irri.org/training/fact-sheets/pest-management/rats/rodent-control-non-chemical-in-lowland-irrigated-rice">IRRI Knowledge Bank</a>)</li>
+    <li><strong>Community-synchronized planting:</strong> Narrow planting windows mismatch rodent reproduction with food availability, suppressing between-season population growth.</li>
+    <li><strong>Habitat management:</strong> Bund maintenance, vegetation clearing, irrigation timing to expose burrows, promoting natural predators (barn owls, snakes).</li>
+    <li><strong>Village coordination committees:</strong> Community-level synchronization — the critical coordination layer that ties all components together.</li>
+  </ul>
+
+  <h3>Evidence base</h3>
+
+  <p>Strong international evidence shows EBRM producing 6–32% yield increases in lowland irrigated rice, with benefit-cost ratios of 3:1 to 11:1. (<a href="https://www.sciencedirect.com/science/article/abs/pii/S0261219419300249">Stuart 2019, Cambodia</a>; <a href="https://library.wur.nl/ojs/index.php/njas/article/download/351/70">Singleton 2004, Indonesia</a>)</p>
+
+  <div class="warn-box">
+    <div class="wt">Critical caveat</div>
+    All strong evidence comes from SE Asian lowland irrigated rice. There are <strong>zero published EBRM field trials on Indian crops.</strong> Effectiveness on wheat, maize, millet, and sugarcane is entirely unvalidated. MetaMeta and PRADAN have tested EBRM in 4 villages in Madhya Pradesh (<a href="https://www.downtoearth.org.in/agriculture/ecologically-based-rodent-management-can-help-control-pests-in-rural-india-89197">Down to Earth 2023</a>) — that is the totality of India evidence.
+  </div>
+
+  <h2 id="botec">BOTEC chain (central case)</h2>
+
+  <p>Income gains from reduced crop losses are converted to welfare using GiveWell's framework: income gain → Doubled Consumption Years (DCY) → DALY-equivalent (2.5 DCY = 1 DALY-eq). Health co-benefits from rodent-borne disease reduction are not included — no evidence links EBRM to disease reduction.</p>
+
+  <div class="chain">
+    <div class="chain-step">
+      <div class="chain-num">1</div>
+      <div class="chain-body"><strong>Baseline rodent loss:</strong> $53/ha/yr (weighted avg across crops, ex-sugarcane)</div>
+    </div>
+    <div class="chain-arrow">↓</div>
+    <div class="chain-step">
+      <div class="chain-num">2</div>
+      <div class="chain-body"><strong>Crop saved by EBRM:</strong> 50% of loss prevented (range 30–70%; SE Asian yield uplift evidence) → <span class="math">$53 × 0.50 = $26.43/HH/yr</span> on 1 ha avg holding</div>
+    </div>
+    <div class="chain-arrow">↓</div>
+    <div class="chain-step">
+      <div class="chain-num">3</div>
+      <div class="chain-body"><strong>DCY per adopting household:</strong> <span class="math">$26.43 / $650 = 0.0996 DCY/HH/yr</span> (India rural smallholder per-capita consumption ~$650/yr, NSS 78th round)</div>
+    </div>
+    <div class="chain-arrow">↓</div>
+    <div class="chain-step">
+      <div class="chain-num">4</div>
+      <div class="chain-body"><strong>Certainty × additionality:</strong> 40% certainty (no India evidence) × 70% additionality → <span class="math">0.0996 × 0.40 × 0.70 = 0.0279 DCY/HH/yr</span></div>
+    </div>
+    <div class="chain-arrow">↓</div>
+    <div class="chain-step">
+      <div class="chain-num">5</div>
+      <div class="chain-body"><strong>Scale:</strong> 200 villages × 200 HH × 8% adoption = 3,200 adopting HH → <span class="math">3,200 × 0.0279 = 89.2 DCY/yr</span></div>
+    </div>
+    <div class="chain-arrow">↓</div>
+    <div class="chain-step">
+      <div class="chain-num">6</div>
+      <div class="chain-body"><strong>Persistence and discounting:</strong> 5yr persistence, 5% discount rate → discounted factor 3.55 → <span class="math">89.2 × 3.55 = 317 total DCY</span></div>
+    </div>
+    <div class="chain-arrow">↓</div>
+    <div class="chain-step">
+      <div class="chain-num">7</div>
+      <div class="chain-body"><strong>DALY-equivalent:</strong> <span class="math">317 / 2.5 = 127 DALY-eq</span></div>
+    </div>
+    <div class="chain-arrow">↓</div>
+    <div class="chain-step">
+      <div class="chain-num">8</div>
+      <div class="chain-body"><strong>$/DALY-eq (pilot, program-level):</strong> <span class="math">$5,000,000 / 127 = $39,370</span></div>
+    </div>
+  </div>
+
+  <div class="note">
+    <div class="nt">At-scale calculation</div>
+    Once India evidence exists: cost/adopting HH $25/yr, 60% village adoption, 50% certainty, 70% additionality, 5yr persistence → <strong>$883/DALY-eq central.</strong> Targeted to high-damage rice areas (Bihar NE, Odisha, NE India) with proven effectiveness: <strong>$150–240/DALY-eq.</strong>
+  </div>
+
+  <h2 id="scenarios">Scenarios</h2>
+
+  <div class="scenario-grid">
+    <div class="scenario red">
+      <div class="sh">Conservative (pilot)</div>
+      <div class="sv">$1.4M/DALY-eq</div>
+      <div class="sd">Loss 5%, effect 30%, adoption 3%, certainty 25%, 2yr persistence.</div>
+    </div>
+    <div class="scenario amber">
+      <div class="sh">Central (pilot)</div>
+      <div class="sv">$39K/DALY-eq</div>
+      <div class="sd">Loss 8.3%, effect 50%, adoption 8%, certainty 40%, 5yr persistence.</div>
+    </div>
+    <div class="scenario amber">
+      <div class="sh">Optimistic (pilot)</div>
+      <div class="sv">$4,200/DALY-eq</div>
+      <div class="sd">Loss 12%, effect 70%, adoption 15%, certainty 55%, 10yr persistence.</div>
+    </div>
+    <div class="scenario red">
+      <div class="sh">At scale (central)</div>
+      <div class="sv">$883/DALY-eq</div>
+      <div class="sd">Post-evidence scale-up. All-crop, 60% village adoption.</div>
+    </div>
+    <div class="scenario amber">
+      <div class="sh">At scale (targeted rice)</div>
+      <div class="sv">$150–240/DALY-eq</div>
+      <div class="sd">High-damage rice areas only. Proven effectiveness, 7yr persistence.</div>
+    </div>
+    <div class="scenario green">
+      <div class="sh">Catalytic / VoI</div>
+      <div class="sv">$300–500/DALY-eq</div>
+      <div class="sd">$5M pilot unlocks government scale-up. P(govt adoption) ~15–25%.</div>
+    </div>
+  </div>
+
+  <h2 id="tornado">Sensitivity analysis</h2>
+
+  <p>Ranked by swing factor on $/DALY-eq (conservative→optimistic on each parameter, all else equal).</p>
+
+  <div class="tornado">
+    <div class="tornado-row">
+      <div class="tornado-label">Persistence (2→10yr)</div>
+      <div class="tornado-track"><div class="tornado-fill" style="width:100%"></div></div>
+      <div class="tornado-value">5.2×</div>
+    </div>
+    <div class="tornado-row">
+      <div class="tornado-label">Adoption rate (3→15%)</div>
+      <div class="tornado-track"><div class="tornado-fill" style="width:96%"></div></div>
+      <div class="tornado-value">5.0×</div>
+    </div>
+    <div class="tornado-row">
+      <div class="tornado-label">Baseline loss rate</div>
+      <div class="tornado-track"><div class="tornado-fill" style="width:46%"></div></div>
+      <div class="tornado-value">2.4×</div>
+    </div>
+    <div class="tornado-row">
+      <div class="tornado-label">EBRM effect size</div>
+      <div class="tornado-track"><div class="tornado-fill" style="width:44%"></div></div>
+      <div class="tornado-value">2.3×</div>
+    </div>
+    <div class="tornado-row">
+      <div class="tornado-label">Certainty (25→55%)</div>
+      <div class="tornado-track"><div class="tornado-fill" style="width:42%"></div></div>
+      <div class="tornado-value">2.2×</div>
+    </div>
+    <div class="tornado-row">
+      <div class="tornado-label">Additionality (50→85%)</div>
+      <div class="tornado-track"><div class="tornado-fill" style="width:33%"></div></div>
+      <div class="tornado-value">1.7×</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>For EBRM to reach $200/DALY-eq</strong>, it must be targeted at high-damage rice areas (15–25% losses), demonstrate proven effectiveness in India (≥60% certainty), maintain ≥80% additionality, and sustain benefits 7+ years. This matches Cambodia/Indonesia results but has not been demonstrated in India.
+  </div>
+
+  <h2 id="rfc">RFC: why not</h2>
+
+  <p>Rodent Fertility Control aims to render female rodents infertile via oral bait, reducing populations over time. Only two products are registered anywhere globally: ContraPest (US) and EP-1 (China/Tanzania). The <a href="https://doi.org/10.1002/ps.7030">definitive review (Jacoblinnert et al. 2022)</a> concludes: <em>"Effective fertility control of rodents has not been demonstrated at landscape scales."</em></p>
+
+  <table>
+    <thead><tr><th>Gate</th><th>P(pass)</th><th>Reason</th></tr></thead>
+    <tbody>
+      <tr><td>Product achieves 80%+ pop reduction (enclosed)</td><td class="bad">3%</td><td>No agent has achieved this in open conditions</td></tr>
+      <tr><td>Works in open-field Indian agriculture</td><td class="bad">10%</td><td><a href="https://doi.org/10.1071/WR02131">Jacob et al. 2004</a>: surgical sterilization of 67% of females → NO population reduction; immigration fills the vacuum</td></tr>
+      <tr><td>Indian regulatory approval (&lt;15yr)</td><td class="warn">40%</td><td>CIB&RC has no precedent pathway for contraceptive rodenticides</td></tr>
+      <tr><td>Farmer adoption</td><td class="warn">20%</td><td>Novel delivery system, behavior change, cost barriers</td></tr>
+      <tr class="total"><td>Joint probability</td><td class="bad">0.024%</td><td>Product of gates</td></tr>
+    </tbody>
+  </table>
+
+  <p>At $5M R&D reaching 100K households conditionally: expected $/DALY-eq = <strong>$860,000</strong> — ~10,000× the GiveWell bar. Additionally, <a href="https://senestech.com/investors/">SenesTech</a> (sole manufacturer of ContraPest) has a $3.9M market cap and $6.4M net loss in FY2025. India's key pest species (<em>Bandicota bengalensis</em>, <em>Rattus rattus</em>) have never been tested with any fertility control agent.</p>
+
+  <div class="error-box">
+    <div class="et">Do not fund at scale</div>
+    RFC should receive at most $1.5M in milestone-gated R&D to test lab efficacy on Indian species. <strong>Any commitment beyond this is not defensible on current evidence.</strong> Kill T1 if &lt;80% lab litter reduction is achieved.
+  </div>
+
+  <h2 id="benchmarks">Benchmark comparison</h2>
+
+  <table>
+    <thead><tr><th>Intervention</th><th>$/DALY-eq</th><th>Evidence quality</th></tr></thead>
+    <tbody>
+      <tr><td>AMF insecticide-treated nets</td><td class="good">$50–100</td><td>Multiple RCTs, millions reached</td></tr>
+      <tr><td>New Incentives immunization</td><td class="good">~$140</td><td>RCT, millions reached</td></tr>
+      <tr><td>GiveDirectly cash transfers</td><td>$200–300</td><td>RCT, millions reached</td></tr>
+      <tr><td>OAF agroforestry (ag income analog)</td><td>$300–700</td><td>Quasi-experimental, 100K+ HH</td></tr>
+      <tr><td><strong>EBRM — targeted rice, at scale</strong></td><td class="warn">$150–240</td><td>Quasi-exp. (SE Asia) — not proven India</td></tr>
+      <tr><td><strong>EBRM — all-crop, at scale</strong></td><td class="warn">$469–883</td><td>Quasi-exp. (SE Asia) — not proven India</td></tr>
+      <tr><td><strong>EBRM — $5M pilot, program-level</strong></td><td class="bad">$4,200–39,370</td><td>No India evidence yet</td></tr>
+      <tr><td><strong>EBRM — catalytic / VoI framing</strong></td><td class="warn">$300–500</td><td>Speculative; depends on govt adoption</td></tr>
+      <tr><td><strong>RFC — $2–5M R&D</strong></td><td class="bad">$350K–860K</td><td>Pre-commercial; immigration problem fatal</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="grantees">Expected grantees</h2>
+
+  <table>
+    <thead><tr><th>Organization</th><th>Role</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><a href="https://www.pradan.net/overview/">PRADAN</a></td>
+        <td>Primary implementing partner</td>
+        <td>7,434 villages, 50K+ SHGs, 7 states. Massive mobilization infrastructure. Medium EBRM technical capacity.</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.metameta.nl/">MetaMeta Research</a></td>
+        <td>Technical partner</td>
+        <td>EBRM methodology, training-of-trainers. Ran the only India field pilots to date (4 villages, MP).</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.ainpvpm.in/achievements.html">AINPVPM Maruteru</a> (ICAR)</td>
+        <td>Research / technical</td>
+        <td>TBS technology, AP model guidance. Only India institution with published rodent management expertise.</td>
+      </tr>
+      <tr>
+        <td>State government (Bihar or Jharkhand)</td>
+        <td>Co-financing, extension</td>
+        <td>Government buy-in required for scale-up. The AP model works because the state co-finances.</td>
+      </tr>
+      <tr>
+        <td>NRI Greenwich (Belmain lab)</td>
+        <td>RFC R&D only</td>
+        <td>Steven Belmain lab — leading global RFC expertise. Partner with ICAR-CAZRI or ICAR-NCIPM.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="warn-box">
+    <div class="wt">Absorptive capacity constraint</div>
+    ~$3–5M/yr in Year 1. The binding constraint is trained EBRM personnel — only 2–3 exist in India. More money does not accelerate this faster.
+  </div>
+
+  <h2 id="budget">Budget ($6.5M / 2–3 years)</h2>
+
+  <h3>Track 1: EBRM Pilot — $5M / 2 years</h3>
+
+  <table>
+    <thead><tr><th>Component</th><th>Y1</th><th>Y2</th><th>Total</th></tr></thead>
+    <tbody>
+      <tr><td>PRADAN implementation (100–200 villages, MP/Jharkhand)</td><td>$800K</td><td>$700K</td><td>$1.5M</td></tr>
+      <tr><td>State govt program — AP model replication in Bihar/Jharkhand</td><td>$600K</td><td>$400K</td><td>$1.0M</td></tr>
+      <tr><td>AINPVPM Maruteru TA + TBS materials</td><td>$300K</td><td>$200K</td><td>$500K</td></tr>
+      <tr><td>MetaMeta TA + training-of-trainers</td><td>$300K</td><td>$200K</td><td>$500K</td></tr>
+      <tr><td>Independent M&E + baseline crop-loss surveys</td><td>$300K</td><td>$200K</td><td>$500K</td></tr>
+      <tr><td>Policy engagement + govt MoU facilitation</td><td>$100K</td><td>$100K</td><td>$200K</td></tr>
+      <tr><td>Management overhead (15%)</td><td>$200K</td><td>$100K</td><td>$300K</td></tr>
+      <tr class="total"><td><strong>EBRM Total</strong></td><td><strong>$2.6M</strong></td><td><strong>$1.9M</strong></td><td><strong>$4.5M</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Track 2: RFC R&D — $1.5M / 3 years (milestone-gated)</h3>
+
+  <table>
+    <thead><tr><th>Tranche</th><th>Amount</th><th>Kill condition</th></tr></thead>
+    <tbody>
+      <tr><td>T1: Lab efficacy on Indian species (<em>B. bengalensis</em>, <em>R. rattus</em>)</td><td>$500K</td><td>Kill if &lt;80% lab litter reduction</td></tr>
+      <tr><td>T2: Enclosed-population field trial (island/warehouse, no rodenticide)</td><td>$500K</td><td>Kill if &lt;50% pop reduction in enclosed setting</td></tr>
+      <tr><td>T3: Regulatory pathway mapping + landscape pilot design</td><td>$500K</td><td>Only if T1 + T2 both succeed</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="kill-switches">Kill-switches</h2>
+
+  <div class="kill-grid">
+    <div class="kill">
+      <div class="kt">Month 6</div>
+      State govt MoU not signed → redirect Track 1 funds to PRADAN community track only.
+    </div>
+    <div class="kill">
+      <div class="kt">Month 12</div>
+      Crop damage reduction &lt;25% vs control villages → do not scale.
+    </div>
+    <div class="kill">
+      <div class="kt">Month 18</div>
+      No measurable crop loss reduction with statistical significance → wind down.
+    </div>
+  </div>
+
+  <h2 id="unknowns">Key uncertainties</h2>
+
+  <details>
+    <summary>Does EBRM work in India at all?</summary>
+    <div class="details-body">
+      <p>The $5M pilot IS the experiment. Every EBRM field trial with yield data comes from SE Asian lowland irrigated rice. India's species mix, cropping systems, and smallholder landscape differ. The MetaMeta/PRADAN 4-village test in MP is promising but unpublished and small.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Does EBRM work on non-rice crops?</summary>
+    <div class="details-body">
+      <p>All strong evidence is rice-only. TBS has theoretical generalizability to wheat, maize, and millet — untested. The pilot should deliberately include wheat/maize areas in MP alongside rice areas in Jharkhand to test crop generalizability. This is a major design requirement.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Will community coordination hold?</summary>
+    <div class="details-body">
+      <p>EBRM requires synchronized action across a village — if farmers defect on synchronized planting, the coordination logic collapses. India's fragmented smallholder landscape (avg &lt;1 ha) may make coordination harder than in SE Asia, where community agriculture institutions are stronger. PRADAN's SHG network is the key hypothesis: if SHGs can sustain EBRM coordination, this becomes tractable.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Will benefits persist without support?</summary>
+    <div class="details-body">
+      <p>Persistence is the single most important parameter in the BOTEC (5.2× swing factor). No data exists on post-program EBRM persistence in any setting. M&E design should explicitly track post-support behavior at 12 and 24 months after handoff.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Will state governments adopt and co-finance?</summary>
+    <div class="details-body">
+      <p>The Andhra Pradesh model works <em>because</em> the state co-finances and extends through the agriculture department. Without this, philanthropic funding alone cannot reach meaningful scale — PRADAN covers 7,434 villages, but there are ~600,000 villages in rural India. The MoU attempt with Bihar or Jharkhand is a critical early gate (M6 kill-switch).</p>
+    </div>
+  </details>
+
+  <div class="note">
+    <div class="nt">What a first grant teaches</div>
+    The $5M pilot directly answers: (1) Does EBRM work in India? (2) Does it work on non-rice crops? (3) Can PRADAN's SHG network coordinate it? (4) What does $/HH actually cost at India wages? (5) Is there a government scale-up pathway? A negative answer on any of these is a legitimate and valuable research outcome — it prevents much larger misdirected capital.
+  </div>
+
+</main>
+</div>
+
+<script>
+const sections = document.querySelectorAll('h2[id], div#verdict');
+const navLinks = document.querySelectorAll('nav ul li a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const active = document.querySelector(`nav a[href="#${e.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
