@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>US Government Capacity — A Philanthropic Strategy for Democratic Resilience</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --accent: #1e3a5f;
+    --accent-light: #eff6ff;
+    --accent-border: #bfdbfe;
+    --warn: #b45309;
+    --warn-bg: #fffbeb;
+    --warn-border: #fde68a;
+    --red: #dc2626;
+    --red-bg: #fef2f2;
+    --red-border: #fecaca;
+    --green: #15803d;
+    --green-bg: #f0fdf4;
+    --green-border: #bbf7d0;
+    --text: #1a1a1a;
+    --muted: #555;
+    --border: #e0e4ea;
+    --bg: #f8f9fb;
+    --surface: #fff;
+    --surface-alt: #f3f5f8;
+  }
+
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.88; color: var(--text); background: var(--bg); }
+  .layout { display: flex; min-height: 100vh; }
+
+  nav { width: 232px; flex-shrink: 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 2.25rem 1.5rem; background: var(--surface-alt); border-right: 1px solid var(--border); }
+  nav .home { display: block; font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; color: #999; text-decoration: none; margin-bottom: 1.5rem; }
+  nav .home:hover { color: #333; }
+  nav h5 { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #bbb; margin-bottom: .6rem; margin-top: 1.5rem; }
+  nav ul { list-style: none; }
+  nav ul li a { font-family: system-ui, sans-serif; font-size: 12.5px; color: #666; text-decoration: none; display: block; padding: .22rem .6rem; border-left: 2px solid transparent; }
+  nav ul li a:hover { color: var(--text); }
+  nav ul li a.active { color: var(--text); border-left-color: var(--accent); font-weight: 600; }
+  nav .sep { height: 1px; background: var(--border); margin: 1.5rem 0; }
+
+  main { flex: 1; max-width: 820px; padding: 4rem 3.5rem 7rem; }
+  .eyebrow { font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin-bottom: .6rem; }
+  h1 { font-size: 2.4rem; line-height: 1.15; font-weight: 700; letter-spacing: -.025em; margin-bottom: .45rem; color: #0f0f0f; }
+  .dek { font-family: system-ui, sans-serif; font-size: 15.5px; color: #666; margin-bottom: 2.75rem; line-height: 1.5; }
+
+  .verdict { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 1.3rem 1.6rem; margin-bottom: 3.25rem; }
+  .verdict .vl { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #aaa; margin-bottom: .5rem; }
+  .verdict p { font-family: system-ui, sans-serif; font-size: 13.5px; color: #333; line-height: 1.65; margin-bottom: .55rem; }
+  .verdict p:last-child { margin-bottom: 0; }
+
+  .metrics { display: flex; gap: 1.25rem; margin-bottom: 3.5rem; flex-wrap: wrap; }
+  .metric { background: var(--surface); border: 1px solid var(--border); padding: 1rem 1.25rem; flex: 1; min-width: 130px; }
+  .metric .mv { font-size: 1.4rem; font-weight: 700; color: #0f0f0f; font-family: system-ui, sans-serif; letter-spacing: -.02em; line-height: 1.1; }
+  .metric .ml { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: #aaa; margin-top: .3rem; }
+
+  h2 { font-size: 1.6rem; font-weight: 700; margin-top: 4rem; margin-bottom: 1.25rem; letter-spacing: -.015em; padding-bottom: .5rem; border-bottom: 1px solid var(--border); scroll-margin-top: 1.5rem; }
+  h3 { font-size: 1.1rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: .7rem; color: #222; }
+
+  p { margin-bottom: 1.2rem; }
+  a { color: #1d4ed8; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:hover { color: #1e3a8a; }
+
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 2.25rem; font-family: system-ui, sans-serif; font-size: 13px; }
+  th { text-align: left; padding: .6rem .85rem; background: var(--surface-alt); border: 1px solid var(--border); font-weight: 600; color: #333; }
+  td { padding: .55rem .85rem; border: 1px solid var(--border); color: #444; vertical-align: top; line-height: 1.5; }
+  tr:nth-child(even) td { background: #f8f9fb; }
+  td.good { color: var(--green); font-weight: 600; }
+  td.warn { color: var(--warn); font-weight: 600; }
+  td.bad { color: var(--red); font-weight: 600; }
+  tr.total td { background: var(--surface-alt); font-weight: 700; color: #111; }
+
+  .callout { background: var(--accent-light); border: 1px solid var(--accent-border); padding: 1.1rem 1.5rem; margin: 2rem 0; font-size: .94rem; line-height: 1.72; }
+  .callout strong { color: var(--accent); }
+
+  .warn-box { background: var(--warn-bg); border: 1px solid var(--warn-border); padding: 1.1rem 1.5rem; margin: 1.75rem 0; font-size: .93rem; font-family: system-ui, sans-serif; line-height: 1.7; }
+  .warn-box .wt { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: #b45309; margin-bottom: .4rem; font-weight: 600; }
+
+  .error-box { background: var(--red-bg); border: 1px solid var(--red-border); padding: 1.1rem 1.5rem; margin: 1.75rem 0; font-size: .93rem; font-family: system-ui, sans-serif; line-height: 1.7; }
+  .error-box .et { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: var(--red); margin-bottom: .4rem; font-weight: 600; }
+
+  .green-box { background: var(--green-bg); border: 1px solid var(--green-border); padding: 1.1rem 1.5rem; margin: 1.75rem 0; font-size: .93rem; font-family: system-ui, sans-serif; line-height: 1.7; }
+  .green-box .gt { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: var(--green); margin-bottom: .4rem; font-weight: 600; }
+
+  .note { background: #f8f9fa; border: 1px solid #d0d5dd; padding: 1.1rem 1.5rem; margin: 1.75rem 0; font-size: .93rem; font-family: system-ui, sans-serif; line-height: 1.7; }
+  .note .nt { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: #888; margin-bottom: .5rem; }
+
+  details { border: 1px solid var(--border); margin: 1.5rem 0; }
+  details summary { padding: .9rem 1.15rem; font-family: system-ui, sans-serif; font-size: 13.5px; font-weight: 600; color: #333; cursor: pointer; background: var(--surface-alt); list-style: none; display: flex; align-items: center; gap: .6rem; user-select: none; }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::before { content: '▶'; font-size: 10px; color: #aaa; transition: transform .15s; flex-shrink: 0; }
+  details[open] summary::before { transform: rotate(90deg); }
+  details summary:hover { background: #eaecf0; }
+  .details-body { padding: 1.25rem 1.5rem; font-family: system-ui, sans-serif; font-size: 13.5px; line-height: 1.72; color: #333; border-top: 1px solid var(--border); }
+  .details-body p { font-family: system-ui, sans-serif; font-size: 13.5px; margin-bottom: .9rem; }
+  .details-body table { font-size: 12.5px; }
+  .details-body ul { margin: .4rem 0 .9rem 1.4rem; }
+  .details-body ul li { margin-bottom: .3rem; }
+
+  ul.bullets { margin: .5rem 0 1.5rem 1.5rem; }
+  ul.bullets li { margin-bottom: .4rem; }
+
+  /* Asymmetry chart */
+  .asym { margin: 2rem 0 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .asym-col { border: 1px solid var(--border); padding: 1.1rem 1.25rem; }
+  .asym-col.bad { border-color: var(--red); }
+  .asym-col.good { border-color: var(--green); }
+  .asym-col .ah { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .75rem; font-weight: 600; }
+  .asym-col.bad .ah { color: var(--red); }
+  .asym-col.good .ah { color: var(--green); }
+  .asym-row { display: flex; justify-content: space-between; align-items: baseline; font-family: system-ui, sans-serif; font-size: 12.5px; margin-bottom: .35rem; gap: .5rem; }
+  .asym-label { color: #444; flex: 1; }
+  .asym-val { font-weight: 700; white-space: nowrap; }
+  .asym-col.bad .asym-val { color: var(--red); }
+  .asym-col.good .asym-val { color: #555; }
+
+  /* Gate grid */
+  .gate-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .75rem; margin: 1.5rem 0 2.5rem; }
+  .gate { border: 1px solid var(--border); padding: 1rem 1.1rem; }
+  .gate .gn { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: #aaa; margin-bottom: .3rem; }
+  .gate .gq { font-family: system-ui, sans-serif; font-size: 12px; color: #444; margin-bottom: .5rem; line-height: 1.5; }
+  .gate .ga { font-family: system-ui, sans-serif; font-size: 12.5px; font-weight: 700; line-height: 1.4; }
+  .gate.open .ga { color: var(--green); }
+  .gate.partial .ga { color: var(--warn); }
+  .gate.closed .ga { color: var(--red); }
+  .gate.open { border-left: 3px solid var(--green); }
+  .gate.partial { border-left: 3px solid var(--warn); }
+  .gate.closed { border-left: 3px solid var(--red); }
+
+  /* Portfolio tiers */
+  .portfolio-tier { margin: 1.5rem 0; border: 1px solid var(--border); }
+  .portfolio-tier-head { background: var(--accent); color: #fff; padding: .75rem 1.15rem; font-family: system-ui, sans-serif; font-size: 12.5px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
+  .portfolio-tier-head .pth-label { text-transform: uppercase; letter-spacing: .06em; font-size: 10.5px; opacity: .8; }
+  .portfolio-tier-head .pth-amt { font-size: 1.1rem; }
+  .portfolio-item { padding: .9rem 1.15rem; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 13px; color: #333; }
+  .portfolio-item:first-of-type { border-top: none; }
+  .portfolio-item .pi-head { display: flex; justify-content: space-between; margin-bottom: .25rem; }
+  .portfolio-item .pi-name { font-weight: 700; color: #111; }
+  .portfolio-item .pi-amt { color: var(--accent); font-weight: 700; }
+  .portfolio-item .pi-body { line-height: 1.55; color: #555; font-size: 12.5px; }
+
+  .portfolio-tier.t2 .portfolio-tier-head { background: #374151; }
+  .portfolio-tier.t3 .portfolio-tier-head { background: #6b7280; }
+
+  /* Case table cells */
+  td.defused { color: var(--green); font-weight: 600; }
+  td.partial-d { color: var(--warn); font-weight: 600; }
+  td.failed { color: var(--red); font-weight: 600; }
+
+  /* Trust bar */
+  .trust-bar { margin: 1.5rem 0 2rem; }
+  .trust-bar-row { display: flex; align-items: center; gap: .75rem; margin-bottom: .55rem; font-family: system-ui, sans-serif; font-size: 12.5px; }
+  .trust-bar-label { width: 200px; color: #444; flex-shrink: 0; line-height: 1.3; }
+  .trust-bar-track { flex: 1; background: #e8e6e2; height: 20px; position: relative; }
+  .trust-bar-fill { height: 100%; }
+  .trust-bar-fill.pos { background: var(--green); }
+  .trust-bar-fill.neg { background: var(--red); margin-left: auto; }
+  .trust-bar-val { width: 55px; font-weight: 700; flex-shrink: 0; text-align: right; font-size: 11.5px; }
+  .trust-bar-val.pos { color: var(--green); }
+  .trust-bar-val.neg { color: var(--red); }
+</style>
+</head>
+<body>
+<div class="layout">
+
+<nav>
+  <a class="home" href="../index.html">← Portfolio</a>
+  <h5>On this page</h5>
+  <ul>
+    <li><a href="#thesis">The thesis</a></li>
+    <li><a href="#asymmetry">The trust asymmetry</a></li>
+    <li><a href="#gates">Seven gate questions</a></li>
+    <li><a href="#salience">Does fixing it lower salience?</a></li>
+    <li><a href="#crisis">Crisis response</a></li>
+    <li><a href="#reverse">The reverse arrow</a></li>
+    <li><a href="#portfolio">Investment portfolio</a></li>
+    <li><a href="#doesnt-work">What doesn't work</a></li>
+    <li><a href="#cruxes">Key cruxes</a></li>
+    <li><a href="#docs">Source documents</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="eyebrow">US Government Capacity</div>
+  <h1>A Philanthropic Strategy for Democratic Resilience</h1>
+  <p class="dek">Seven deep research runs on trust, salience, crisis response, institutional degradation, and economic shocks — synthesized into a $50M/yr investment thesis.</p>
+
+  <div class="verdict" id="thesis">
+    <div class="vl">Central Thesis</div>
+    <p><strong>Defend capacity; don't try to build trust.</strong> The best philanthropic dollar prevents a trust point from being destroyed. The second-best dollar preserves the institutional capacity to earn trust in the future. The ordinary dollar — improving services to build trust — barely registers.</p>
+    <p>This is counterintuitive. Donors want to build things. But the data is unambiguous: trust destruction is fast and large; trust building is slow and tiny. The strategy flows from that asymmetry, not from intuition about what "better government" should look like.</p>
+  </div>
+
+  <div class="metrics">
+    <div class="metric">
+      <div class="mv">60pp</div>
+      <div class="ml">Trust decline since 1964 (77% → 17%)</div>
+    </div>
+    <div class="metric">
+      <div class="mv">~0–2pp</div>
+      <div class="ml">Trust gain from $50M/yr service improvement</div>
+    </div>
+    <div class="metric">
+      <div class="mv">−14pp</div>
+      <div class="ml">Trust drop from Katrina-style mismanagement</div>
+    </div>
+    <div class="metric">
+      <div class="mv">500:1</div>
+      <div class="ml">Leverage: crisis preparedness advocacy → govt spending</div>
+    </div>
+  </div>
+
+  <!-- TRUST ASYMMETRY -->
+  <h2 id="asymmetry">The trust asymmetry</h2>
+
+  <p>American trust in the federal government has fallen from 77% (1964) to 17% (2025) — a 60-point secular collapse. Seven research runs investigated every plausible mechanism for reversing it. They converge on a single structural finding: <strong>the speed and scale of trust destruction vastly exceeds the speed and scale of trust building.</strong> This reframes everything.</p>
+
+  <div class="asym">
+    <div class="asym-col bad">
+      <div class="ah">Trust Destruction — Fast &amp; Large</div>
+      <div class="asym-row"><span class="asym-label">Vietnam War (1964–72)</span><span class="asym-val">−15 to −20pp, permanent</span></div>
+      <div class="asym-row"><span class="asym-label">Watergate (1973–74)</span><span class="asym-val">−12 to −15pp, partially permanent</span></div>
+      <div class="asym-row"><span class="asym-label">Hurricane Katrina (2005)</span><span class="asym-val">−14pp, months</span></div>
+      <div class="asym-row"><span class="asym-label">2008 financial crisis</span><span class="asym-val">−8 to −12pp, structural</span></div>
+      <div class="asym-row"><span class="asym-label">Afghanistan withdrawal (2021)</span><span class="asym-val">−6 to −8pp</span></div>
+    </div>
+    <div class="asym-col good">
+      <div class="ah">Trust Building — Slow &amp; Small</div>
+      <div class="asym-row"><span class="asym-label">9/11 rally (2001)</span><span class="asym-val">+20–25pp, gone in 9 months</span></div>
+      <div class="asym-row"><span class="asym-label">1990s economic boom (6yr)</span><span class="asym-val">+12–15pp, reversed at bust</span></div>
+      <div class="asym-row"><span class="asym-label">Gulf War I (1991)</span><span class="asym-val">+8–10pp, 18mo half-life</span></div>
+      <div class="asym-row"><span class="asym-label">$50M/yr service improvement</span><span class="asym-val">~0–2pp (noise)</span></div>
+      <div class="asym-row"><span class="asym-label">IRS Direct File pilot (2024)</span><span class="asym-val">+0pp national trust</span></div>
+    </div>
+  </div>
+
+  <p>The implication is structural: you cannot build your way out of a trust deficit at philanthropic scale. The largest trust-building events in the 68-year record are either macro-economic prosperity (not a philanthropic deliverable) or crisis rallies that dissipate in months. What philanthropy CAN do is reduce the frequency and depth of trust-destroying events — by maintaining crisis response capacity, hardening institutions against degradation, and improving the handful of government touchpoints where bad service concentrates among the most distrustful Americans.</p>
+
+  <div class="callout">
+    <strong>The key number:</strong> A $50M/year investment in government service quality improvement produces approximately 0–2 percentage points of aggregate trust gain — within the measurement error of the surveys used to track trust. For comparison, a botched hurricane response destroys 14 points in months. This is why the portfolio is defensive.
+  </div>
+
+  <!-- SEVEN GATES -->
+  <h2 id="gates">Seven gate questions</h2>
+
+  <p>Each research run answered a distinct causal gate. An investment approach that fails any gate is eliminated or downgraded. The gates are cumulative — the portfolio is what survives all seven.</p>
+
+  <div class="gate-grid">
+    <div class="gate partial">
+      <div class="gn">Gate 1 — Trust Residual</div>
+      <div class="gq">Does performance move the non-partisan component of trust at meaningful scale?</div>
+      <div class="ga">Barely. ~0–2pp from $50M/yr. Honesty moves trust 2–4× more than competence.</div>
+    </div>
+    <div class="gate partial">
+      <div class="gn">Gate 2 — Salience Fix</div>
+      <div class="gq">Does fixing a governance failure lower populist salience and vote share?</div>
+      <div class="ga">Lowers salience (3–6yr lag) but not populist vote share. Cultural grievances are immune. The immigration bet is dead in its strong form.</div>
+    </div>
+    <div class="gate closed">
+      <div class="gn">Gate 3 — Submerged State</div>
+      <div class="gq">Does making government legible and visible change trust?</div>
+      <div class="ga">No. Meta-analytic r = +0.13. HMRC federal-scale test: zero trust gain, possible backfire. Burden reduction works; information campaigns don't.</div>
+    </div>
+    <div class="gate open">
+      <div class="gn">Gate 4 — Crisis Response</div>
+      <div class="gq">Does crisis response quality matter for trust and subsequent populist vote?</div>
+      <div class="ga">YES — strongest finding. COVID natural experiment validates the full causal chain. +1pp trust ≈ −0.4pp populist vote. 500:1 leverage on preparedness advocacy.</div>
+    </div>
+    <div class="gate partial">
+      <div class="gn">Gate 5 — Financial Crisis</div>
+      <div class="gq">Does macro (inflation, financial crises) dominate so much that micro interventions are noise?</div>
+      <div class="ga">Macro dominates the level, but philanthropy acts at the delivery layer. UI modernization is the fundable lever. Can't prevent the shock; can blunt the trust-destroying failure of delivery.</div>
+    </div>
+    <div class="gate partial">
+      <div class="gn">Gate 6 — Touchpoints</div>
+      <div class="gq">Which government interactions reach the most distrust-heavy populations?</div>
+      <div class="ga">IRS/EITC (145M filers, ACSI dead last, 25M working-class families) and SSA disability (7M+ applicants, 7mo average wait). Medicaid excluded: attribution problem kills the trust channel.</div>
+    </div>
+    <div class="gate open">
+      <div class="gn">Gate 7 — Reverse Arrow</div>
+      <div class="gq">How fast does populist government degrade capacity? Is pre-hardening fundable?</div>
+      <div class="ga">Fastest Year 1 degradation ever documented in the US. Norms fail; statutes hold. Only philanthropy can fund government's defense against its own leadership.</div>
+    </div>
+  </div>
+
+  <!-- SALIENCE DEEP DIVE -->
+  <h2 id="salience">Does fixing the governance failure actually work?</h2>
+
+  <p>The intuitive theory of change — fix the broken thing populists campaign on, and they lose their fuel — fails in its strong form across every immigration-adjacent case. Ten cases across seven democracies since 1990 show a consistent pattern: governance competence reduces issue <em>salience</em> with a 3–6 year lag, but does not reduce populist <em>vote share</em>. The constituency redistributes to adjacent issues, then rebounds the moment accommodation weakens.</p>
+
+  <table>
+    <thead><tr><th>Case</th><th>Governance change</th><th>Salience</th><th>Populist vote</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Denmark 2019–26</td>
+        <td>Asylum apps −93% (21k → 1.5k)</td>
+        <td>Fell #2→#8</td>
+        <td>DF 21%→2.6%, but total far-right stable at ~15%</td>
+        <td class="partial-d">Partial — redistributed</td>
+      </tr>
+      <tr>
+        <td>Australia post-2013</td>
+        <td>Boat arrivals −99.9% (20k → ~0)</td>
+        <td>Fell sharply</td>
+        <td>One Nation GREW 0.2%→5.4% on adjacent issues</td>
+        <td class="failed">Failed</td>
+      </tr>
+      <tr>
+        <td>US 2024</td>
+        <td>Border encounters −81% (302k → 54k/mo)</td>
+        <td>Still peaked at 28% in Feb 2024</td>
+        <td>Trump won — fix did not arrive in electoral window</td>
+        <td class="failed">Failed (quiet competence)</td>
+      </tr>
+      <tr>
+        <td>UK 2020–26</td>
+        <td>Crossings ROSE 8k → 41k</td>
+        <td>51% naming it top issue</td>
+        <td>Reform UK surged to 28–31%</td>
+        <td class="failed">Control: no fix → surge</td>
+      </tr>
+      <tr>
+        <td>NYC crime 1990s</td>
+        <td>Violent crime −57% over decade</td>
+        <td>52%→&lt;10% (defused)</td>
+        <td>No persistent populist movement</td>
+        <td class="defused">Defused — only case</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>NYC crime is the only case of complete defusion. The difference: crime is a <em>material</em> grievance — when you stop being mugged, you feel safer. Immigration is substantially a <em>cultural/identity</em> grievance. Even if crossings go to zero, the existing immigrant population, demographic change, and cultural anxiety persist. The governance metric is a symbol of the underlying anxiety, not the anxiety itself. Fixing the symbol cannot cure the condition.</p>
+
+  <div class="warn-box">
+    <div class="wt">The Krause/Cohen/Abou-Chadi Finding</div>
+    Mainstream parties adopting tough immigration <em>rhetoric</em> legitimizes rather than deflates far-right support. Their study answers "does saying tough things work?" (no), not "does doing tough things work?" — but both answers are now negative. The US 2024 case — the strongest test of quiet competence — confirms: a massive, measurable improvement delivered without rhetorical ownership failed to move the needle within an electoral cycle. The minimum lag for any effect is 3–6 years. The political window is typically 9–18 months. These are structurally incompatible.
+  </div>
+
+  <!-- CRISIS RESPONSE -->
+  <h2 id="crisis">Crisis response as trust insurance</h2>
+
+  <p>COVID is the cleanest natural experiment available in the trust literature: the same pathogen hit every country, governments differed dramatically in response quality, and we can observe both trust and populist vote outcomes. The causal chain holds across the full dataset.</p>
+
+  <table>
+    <thead><tr><th>Country / Response tier</th><th>Trust change 2019→2020</th><th>Populist vote change (next election)</th></tr></thead>
+    <tbody>
+      <tr><td>Top-quartile (Taiwan, S. Korea, Norway, NZ)</td><td class="good">+8 to +15pp</td><td class="good">Far-right −2 to −4pp</td></tr>
+      <tr><td>Mid-quartile (Germany, Australia, Canada)</td><td>Stable to +5pp</td><td>Far-right stable to −2pp</td></tr>
+      <tr><td>Bottom-quartile (US, UK, Brazil)</td><td class="bad">−6 to −14pp</td><td class="bad">Far-right +4 to +12pp</td></tr>
+    </tbody>
+  </table>
+
+  <p>The Cambridge Centre for the Future of Democracy documented a global "flight to competence" during COVID — populist support collapsed initially in most countries. Where governments delivered, that flight <em>persisted</em>. Where they bungled it, populism rebounded and exceeded pre-COVID levels. The trust→populist vote elasticity across the dataset: <strong>+1 trust point ≈ −0.4pp populist vote share</strong> (range −0.2 to −0.6pp). Ten preserved trust points could be worth 4pp of populist vote — potentially the difference between a functional democracy and an authoritarian turn in marginal cases.</p>
+
+  <div class="green-box">
+    <div class="gt">The philanthropic role in crisis preparedness</div>
+    Government will fund crisis response <em>during</em> crises. It reliably cuts those budgets 3–5 years later — the between-crisis budget-cut cycle is the single biggest structural threat to response capacity. Every pandemic preparedness budget is slashed within a half-decade of the last pandemic. Philanthropy's comparative advantage is sustaining investment through dry periods. An estimated $5–20M/yr in preparedness advocacy protects $5–10B/yr in government capacity spending at <strong>~500:1 leverage</strong> — the cheapest trust points in the entire portfolio.
+  </div>
+
+  <!-- REVERSE ARROW -->
+  <h2 id="reverse">The reverse causal arrow</h2>
+
+  <p>A five-country comparison (Hungary, Poland 2015–23, Turkey, India, US 2025) reveals a convergent playbook: capture courts first, purge personnel second, hollow statistics third, squeeze independent media throughout. Speed varies, but the sequence is remarkably stable — and the US 2025 trajectory shows the <em>fastest Year 1 degradation velocity ever documented</em> in the comparative literature.</p>
+
+  <table>
+    <thead><tr><th>Case</th><th>First target</th><th>Speed to major threshold</th><th>What proved resilient</th><th>Reversible?</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Hungary (2010–)</td>
+        <td>Constitutional Court</td>
+        <td>~18 months to Partly Free</td>
+        <td>Nothing — complete capture</td>
+        <td class="bad">No</td>
+      </tr>
+      <tr>
+        <td>Poland PiS (2015–23)</td>
+        <td>Constitutional Tribunal</td>
+        <td>~24 months</td>
+        <td>Cities, private media, civil society</td>
+        <td class="good">Partial (Tusk 2023)</td>
+      </tr>
+      <tr>
+        <td>Turkey (2014–)</td>
+        <td>Judiciary</td>
+        <td>~6 months post-2016</td>
+        <td>Bond market constraints</td>
+        <td class="bad">No</td>
+      </tr>
+      <tr>
+        <td>India (2014–)</td>
+        <td>Statistical agencies</td>
+        <td>Slow degradation; ongoing</td>
+        <td>Federalism, Supreme Court</td>
+        <td class="warn">Partial</td>
+      </tr>
+      <tr>
+        <td>US (2025–)</td>
+        <td>Agency leadership + Schedule F</td>
+        <td>Fastest Year 1 ever on V-Dem</td>
+        <td>Federal courts (so far); federalism</td>
+        <td class="warn">Uncertain — depends on 2028+</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The decisive finding: <strong>norms-based protections failed in every single case without exception.</strong> Independent media culture, professional civil service conventions, unwritten restraint — all were overridden once a determined government chose to do so. Only structural protections held: constitutional provisions, statutory requirements, decentralized authority no single actor can override. Poland's constitutional tribunal survived to be restored because it had statutory backing. Hungary's independent institutions did not.</p>
+
+  <p>This means the philanthropic strategy must convert norms into statutes. Government cannot fund its own defense against its own leadership. The private sector has no ROI. No other actor is positioned to fill this gap.</p>
+
+  <!-- PORTFOLIO -->
+  <h2 id="portfolio">Investment portfolio — $50M/yr</h2>
+
+  <p>Scored across five dimensions: trust ROI, populism reduction, measurability, philanthropic fit (additionality), and robustness across political scenarios. Tier 1 approaches share the defensive logic: prevent trust destruction rather than build trust.</p>
+
+  <table>
+    <thead><tr><th>Approach</th><th>Trust</th><th>Populism</th><th>Measure</th><th>Phil. fit</th><th>Robust</th><th>Total</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Crisis response capacity</strong></td><td class="good">5</td><td class="good">4</td><td>4</td><td>4</td><td>3</td><td class="good"><strong>20 — Tier 1</strong></td></tr>
+      <tr><td><strong>Institutional hardening</strong></td><td>2</td><td class="good">4</td><td>3</td><td class="good">5</td><td>4</td><td class="good"><strong>18 — Tier 1</strong></td></tr>
+      <tr><td><strong>Macro-crisis delivery</strong></td><td>3</td><td>4</td><td>3</td><td>4</td><td>3</td><td class="warn"><strong>17 — Tier 2</strong></td></tr>
+      <tr><td><strong>IRS/EITC + SSA touchpoints</strong></td><td>2</td><td>2</td><td class="good">5</td><td>3</td><td>3</td><td class="warn"><strong>15 — Tier 2</strong></td></tr>
+      <tr><td><strong>Visible government / legibility</strong></td><td class="bad">1</td><td class="bad">1</td><td>2</td><td>2</td><td class="bad">1</td><td class="bad"><strong>7 — Do not fund</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="portfolio-tier">
+    <div class="portfolio-tier-head">
+      <span><span class="pth-label">Tier 1 — Defensive Core</span></span>
+      <span class="pth-amt">$30M/yr (60%)</span>
+    </div>
+    <div class="portfolio-item">
+      <div class="pi-head">
+        <span class="pi-name">A. Institutional Hardening &amp; Democracy Defense</span>
+        <span class="pi-amt">$15M/yr</span>
+      </div>
+      <div class="pi-body">State AG litigation support &amp; coordination ($4M). Civil service legal defense for wrongfully fired career staff ($4M). Statistical independence &amp; data preservation — shadow BLS/BEA monitoring, CNSTAT support ($3M). FOIA enforcement &amp; transparency litigation ($2M). Inspector General independence &amp; oversight advocacy — POGO, CREW, PIIE ($2M).</div>
+    </div>
+    <div class="portfolio-item">
+      <div class="pi-head">
+        <span class="pi-name">B. Crisis Response Capacity &amp; Preparedness</span>
+        <span class="pi-amt">$10M/yr</span>
+      </div>
+      <div class="pi-body">Crisis communication &amp; counter-disinformation R&D ($3M). Preparedness advocacy — protect government budgets through dry periods at 500:1 leverage ($3M). Emergency management training &amp; community resilience ($2M). After-action research &amp; evaluation infrastructure ($2M).</div>
+    </div>
+    <div class="portfolio-item">
+      <div class="pi-head">
+        <span class="pi-name">C. Macro-Crisis Delivery Insurance</span>
+        <span class="pi-amt">$5M/yr</span>
+      </div>
+      <div class="pi-body">UI modernization technical assistance at the state level — 53 systems, many running 1960s COBOL ($2M). Safety net adequacy advocacy ($2M). IRS rapid payment capacity &amp; Direct File support ($1M). Rationale: philanthropy cannot prevent recessions or inflation; it can ensure the delivery infrastructure doesn't fail when tens of millions of workers need it simultaneously.</div>
+    </div>
+  </div>
+
+  <div class="portfolio-tier t2">
+    <div class="portfolio-tier-head">
+      <span><span class="pth-label">Tier 2 — Welfare-Building Complement</span></span>
+      <span class="pth-amt">$8M/yr (16%)</span>
+    </div>
+    <div class="portfolio-item">
+      <div class="pi-head">
+        <span class="pi-name">D. High-Impact Touchpoint Improvement</span>
+        <span class="pi-amt">$8M/yr</span>
+      </div>
+      <div class="pi-body">
+        <strong>IRS/EITC ($3M):</strong> 145M filers, ACSI dead last among federal agencies, 25M EITC families disproportionately non-college/rural — the exact demographic with lowest trust and highest populist susceptibility. Fund VITA expansion, simplified filing, Direct File support. Wait times fell from 28 to 3 minutes with IRA staffing; Direct File NPS = +80. Improvability is demonstrated.<br><br>
+        <strong>SSA disability navigators ($2M):</strong> 7M+ applicants, 7-month average wait (some &gt;2 years), 40% initial denial rate, population is disproportionately non-college and rural. Administrative burden is the binding constraint.<br><br>
+        <strong>Admin burden reduction research &amp; advocacy ($2M).</strong> Digital service innovation support ($1M).<br><br>
+        <em>Note: This tier is justified primarily on direct welfare grounds for affected populations. The trust→populism case is secondary.</em>
+      </div>
+    </div>
+  </div>
+
+  <div class="portfolio-tier t3">
+    <div class="portfolio-tier-head">
+      <span><span class="pth-label">Reserve — Research, Evaluation &amp; Strategic</span></span>
+      <span class="pth-amt">$7M/yr (14%)</span>
+    </div>
+    <div class="portfolio-item">
+      <div class="pi-head">
+        <span class="pi-name">E. Measurement, Evaluation &amp; Opportunistic Response</span>
+        <span class="pi-amt">$7M/yr</span>
+      </div>
+      <div class="pi-body">Trust measurement infrastructure — partisan-decomposed series, event-study tracking ($1.5M). Portfolio evaluation &amp; attribution ($1.5M). Strategic reserve for emerging opportunities and crisis-moment redeployment ($4M). Scenario-dependent reweighting: under hostile government, shift from Tier 2 toward Tier 1A. Under crisis, activate reserve and accelerate Tier 1B/C.</div>
+    </div>
+  </div>
+
+  <!-- WHAT DOESN'T WORK -->
+  <h2 id="doesnt-work">What doesn't work</h2>
+
+  <details>
+    <summary>"Fix the governance failure to defuse populist grievances"</summary>
+    <div class="details-body">
+      <p>The salience evidence shows governance fixes reduce issue salience with a 3–6 year lag but do NOT reduce populist vote share. The cultural-identity layer of most populist grievances is immune to administrative improvement. The only clean defusion case (NYC crime, 1990s) required conditions that are essentially unreplicable for immigration: a material rather than cultural grievance, a dramatic 50%+ improvement, bipartisan rhetorical ownership, sustained decade+, and no adjacent pivots for the populist to exploit.</p>
+      <p>The immigration bet specifically: quiet competence has never defused immigration salience in any democracy. The US 2024 case — the most direct test — confirms that an 81% reduction in border encounters, delivered without rhetorical ownership, failed to move salience within the electoral window. The minimum effective lag (3–6 years) is structurally incompatible with the political cycle.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>"Tell people about government programs to build trust"</summary>
+    <div class="details-body">
+      <p>Mettler's submerged state finding is real: 40–60% of benefit recipients don't recognize their benefits as governmental. The SNAP card looks like a debit card; the mortgage interest deduction is invisible; ACA plans come from private insurers. But making government visible doesn't build trust. The meta-analytic correlation between transparency and trust is r = +0.13 — real but tiny. The largest federal-scale legibility test (HMRC tax breakdown letters, 2012–14) found no trust gain and a possible backfire effect.</p>
+      <p>Five documented backfire mechanisms: (1) learning about spending activates anti-spending attitudes; (2) learning about program costs triggers "waste" narratives; (3) visibility without quality improvement highlights failures; (4) partisan framing of visible programs polarizes rather than unifies; (5) "government helps you" messaging activates identity-protective cognition among self-reliance voters. The one lever that works within this domain is administrative burden reduction — which is captured in the touchpoints approach.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>"Improve government services broadly to build aggregate trust"</summary>
+    <div class="details-body">
+      <p>Gate 1 shows service improvement generates ~0–2pp aggregate trust from $50M/yr — within measurement error. The specific-vs-diffuse support gap is the binding constraint: improvements move satisfaction with the specific agency (VA trust rose from 47% to 80% over a decade) but weakly translate to trust in "the government." IRS Direct File achieved an NPS of +80 among users; aggregate trust in the IRS did not measurably move. Gate 6 shows depth at a few high-impact touchpoints outperforms breadth across many agencies.</p>
+      <p>More fundamentally: honesty and probity move trust 2–4× more than competence and efficiency. The public responds to perceived integrity, not perceived capability. Citizens care more about "are they lying to me?" than "are they running things efficiently?" This means competence investments should be justified on welfare grounds for affected populations, not on aggregate trust grounds.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>"Digital government / e-government will transform the trust picture"</summary>
+    <div class="details-body">
+      <p>Estonia's e-government model is the canonical success story, but it required: building from scratch, a small (&lt;1.5M people) homogeneous high-trust society, a post-Soviet context where the baseline was zero rather than legacy COBOL systems, and two decades of sustained investment. The implied cost to replicate this at federal agency scale in the US is $500M–2B per trust point with 3–7 year time-to-impact.</p>
+      <p>US digital service reform (USDS, 18F) has demonstrated genuine quality improvements at specific touchpoints — Healthcare.gov recovery, HealthCare.gov improvements, VA online services. These improvements are worthwhile on welfare grounds. But the binding constraint on US government service quality is institutional capacity and political will, not technology — and technology investments face the specific-vs-diffuse problem just as severely as other service improvements.</p>
+    </div>
+  </details>
+
+  <!-- CRUXES -->
+  <h2 id="cruxes">Key cruxes — what would change the verdict</h2>
+
+  <table>
+    <thead><tr><th>Crux</th><th>If true</th><th>If false</th><th>Assessment</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Trust→populism causal chain holds post-2020</td>
+        <td>Full portfolio justified</td>
+        <td>Only institutional hardening survives</td>
+        <td class="good">Likely true — COVID experiment, FST 800+ elections, Algan IV estimates</td>
+      </tr>
+      <tr>
+        <td>Partisan filtering now &gt;50% of crisis evaluation</td>
+        <td>Crisis trust payoff capped at ~5pp</td>
+        <td>Full 5–15pp trust preservation available</td>
+        <td class="warn">Uncertain — Helene 2024 showed 22pp partisan gap; may limit to cross-partisan crises only</td>
+      </tr>
+      <tr>
+        <td>US institutional degradation reversible within 5yr</td>
+        <td>Hardening = bridge to restoration</td>
+        <td>Hardening = permanent substitute; needs 3–5× more capital</td>
+        <td class="warn">Uncertain — Poland reversed; Hungary did not; US depends on 2028+ election</td>
+      </tr>
+      <tr>
+        <td>Major crisis within 5yr</td>
+        <td>Crisis + macro investments pay off immediately</td>
+        <td>Investments remain latent insurance</td>
+        <td class="good">Likely — ~1 major crisis/decade baseline; current risk level elevated</td>
+      </tr>
+      <tr>
+        <td>Admin burden reduction moves specific trust</td>
+        <td>Touchpoint investment justified on welfare + trust</td>
+        <td>Justified on welfare only; smaller philanthropic case</td>
+        <td class="warn">Modestly true — ACSI correlates, Direct File NPS +80, but specific→diffuse chain unproven</td>
+      </tr>
+      <tr>
+        <td>AI disinformation overwhelms crisis communication</td>
+        <td>Crisis comm efficacy degraded; pivot to platform regulation</td>
+        <td>Crisis comm remains highest-ROI lever</td>
+        <td class="warn">Uncertain — 2024 showed less AI dominance than feared; capability growing rapidly</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The most decision-relevant crux is the second: if partisan filtering now dominates crisis evaluation (&gt;50% of the public judges government response quality on partisan lines regardless of actual performance), then the crisis response trust payoff is capped at ~5pp rather than the 15pp historical maximum. Hurricane Helene's 22-point partisan gap in response evaluation is the most concerning signal. If this crux resolves badly, shift weight from Tier 1B (crisis preparedness, which works less) toward Tier 1A (institutional hardening, which works regardless of the trust channel).</p>
+
+  <!-- SOURCE DOCS -->
+  <h2 id="docs">Source documents</h2>
+
+  <table>
+    <thead><tr><th>Research run</th><th>Gate question answered</th><th>Google Doc</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Salience Fix</td>
+        <td>Does fixing a governance failure lower populist salience and vote share?</td>
+        <td><a href="https://docs.google.com/document/d/13jnKwXdBFRCVc4vOR3VX3R69X33snQrs1DHVhHt0by8/edit">View</a></td>
+      </tr>
+      <tr>
+        <td>Trust Residual</td>
+        <td>What is the non-partisan component of US trust, and what moves it?</td>
+        <td><a href="https://docs.google.com/document/d/1ldmDt_O25Xt8vDucIeFb9jfKT-nzO1xh2s0bxiLBe_0/edit">View</a></td>
+      </tr>
+      <tr>
+        <td>Submerged State</td>
+        <td>Does legibility and attribution change trust or voting?</td>
+        <td><a href="https://docs.google.com/document/d/1Bd9SCGNPGZrDkKwl9qDqPw29AGHu1_WruXyX_ZE3i-g/edit">View</a></td>
+      </tr>
+      <tr>
+        <td>Crisis Response</td>
+        <td>Is FEMA/CDC/BARDA capacity the best second-order bet?</td>
+        <td><a href="https://docs.google.com/document/d/1q_rGMfE-yFhPu4ydeZDIbJpTTnBYAhe15FyVploMi6Y/edit">View</a></td>
+      </tr>
+      <tr>
+        <td>Financial Crisis</td>
+        <td>Does FST/Algan generalize to 2020–24 inflation? What's philanthropically fundable?</td>
+        <td><a href="https://docs.google.com/document/d/1feoPl7aX_-NE4BIjX81aHFrtd2HMxQ3Hv-iN0aMVILs/edit">View</a></td>
+      </tr>
+      <tr>
+        <td>Touchpoints</td>
+        <td>Which 3 agencies should be named? IRS, SSDI, or other?</td>
+        <td><a href="https://docs.google.com/document/d/198hq8w_D4vnlPp1huf6yr7vPnGXyeZeegqkZGwO9LOc/edit">View</a></td>
+      </tr>
+      <tr>
+        <td>Reverse Arrow</td>
+        <td>How fast does populism degrade capacity? Can we harden the US before 2029?</td>
+        <td><a href="https://docs.google.com/document/d/16nNfqA6b_kWb7W0Jpcy7YXzHuAVIUzPbMRD85S6PruY/edit">View</a></td>
+      </tr>
+      <tr class="total">
+        <td><strong>Synthesis</strong></td>
+        <td>Investment portfolio and integrated thesis</td>
+        <td><a href="https://docs.google.com/document/d/1EdmFzFDpuNLiBbDiqGb8HOs6hD7ITMnGwuH4TYQWXM0/edit">View</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+</main>
+</div>
+
+<script>
+const sections = document.querySelectorAll('h2[id], div#thesis');
+const navLinks = document.querySelectorAll('nav ul li a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const active = document.querySelector(`nav a[href="#${e.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
