@@ -1,0 +1,22 @@
+
+=== Launching: NeoTest_BOTEC_sensitivity_competing_diagnostic_lan_20260921_114132 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+<promise>DONE</promise>
+Done (DONE signal). Stopping.
+=== Completed: NeoTest_BOTEC_sensitivity_competing_diagnostic_lan_20260921_114132 (iterations used: 1) ===
+Uploading to Google Docs...
+  Saved local copy: /Users/parthahya/tools/research_loop_tool/research_runs/NeoTest_BOTEC_sensitivity_competing_diagnostic_lan_20260921_114132/full_document.md
+  Uploading full doc...
+  Found 6 tables to render
+  Inserted 6 empty tables
+  Filled 43 table rows
+  Applied table formatting (font 10pt, fit to page)
+Full doc created: https://docs.google.com/document/d/1iN9uPZCcvZBtWX_mNccOM8-a0iTZUhxISjoGhsSVS6E/edit
+  Uploading summary doc...
+  Found 6 tables to render
+  Inserted 6 empty tables
+  Filled 43 table rows
+  Applied table formatting (font 10pt, fit to page)
+Summary doc created: https://docs.google.com/document/d/15OVotsCyuh3S7MEbQivn5_GCY4vzroHpu9bBC6RwrFA/edit

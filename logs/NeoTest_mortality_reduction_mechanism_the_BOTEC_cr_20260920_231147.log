@@ -1,0 +1,28 @@
+
+=== Launching: NeoTest_mortality_reduction_mechanism_the_BOTEC_cr_20260920_231147 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+All QA checks pass:
+- **601 lines** (in 600-1000 range)
+- **All bare URLs** confined to References section (line 569+)
+- **All 11 sections** present with exec summary, per-arm decomposition table, verdict-at-a-glance table
+- **progress.json** updated: `done: true`, `7_synthesis: complete`, iteration note prepended
+
+<promise>DONE</promise>
+Done (DONE signal). Stopping.
+=== Completed: NeoTest_mortality_reduction_mechanism_the_BOTEC_cr_20260920_231147 (iterations used: 1) ===
+Uploading to Google Docs...
+  Saved local copy: /Users/parthahya/tools/research_loop_tool/research_runs/NeoTest_mortality_reduction_mechanism_the_BOTEC_cr_20260920_231147/full_document.md
+  Uploading full doc...
+  Found 9 tables to render
+  Inserted 9 empty tables
+  Filled 60 table rows
+  Applied table formatting (font 10pt, fit to page)
+Full doc created: https://docs.google.com/document/d/1EMC2grT-oxtTPrkjF6PFrzrhgIuk8sGN9Oni-7-5vsg/edit
+  Uploading summary doc...
+  Found 9 tables to render
+  Inserted 9 empty tables
+  Filled 60 table rows
+  Applied table formatting (font 10pt, fit to page)
+Summary doc created: https://docs.google.com/document/d/1n-LyfgEDoq2Q8X9_moyOKODP-yGSpx6vRSS_CH8t4Y0/edit

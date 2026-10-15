@@ -1,0 +1,18 @@
+
+=== Launching: NeoTest_physician_interviews_synthesis_20260923_130000 ===
+=== Model: Opus 4.6 | Max iterations: 6 ===
+
+--- Iteration 1 / 6 ---
+Phase 3 (synthesis) complete. `done: true`. Key findings:
+
+1. **f_cf ~ 0.80 VALIDATED** for danger-sign SNCU neonates. Agarwal's 10-30% is a different denominator (all SNCU admissions) that reconciles cleanly once you account for the ~33% danger-sign subset.
+
+2. **Grey-zone (~40-50% of facility births) is a large unmodeled population** with fundamentally different economics: f_cf ~ 0.30-0.60, Mode-A-like practice (variable initiation, not uniform empiric-start), and physicians say THIS is where the test saves lives. Our prior runs modeled the right population with the right parameters — but it's the wrong population for the value question.
+
+3. **Sensitivity >= 85-90% is the single most important parameter** — a triple convergence of technical spec (WHO TPP), arithmetic threshold (initiation benefit dominates withholding harm only when Se high), and behavioral gate (clinicians independently name this threshold for following results). This is the load-bearing parameter for the entire investment case.
+
+4. **Physician data does NOT rescue the 0.14 DALYs/test headline.** It redirects value to the grey-zone with an equally tight sensitivity gate. The correct model is two-population (danger-sign Mode B stewardship + grey-zone Mode A-like initiation), not single-population.
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: NeoTest_physician_interviews_synthesis_20260923_130000 (iterations used: 1) ===
+Uploading to Google Docs...
+(Upload failed or not configured)

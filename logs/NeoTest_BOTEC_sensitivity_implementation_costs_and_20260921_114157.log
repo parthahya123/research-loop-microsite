@@ -1,0 +1,28 @@
+
+=== Launching: NeoTest_BOTEC_sensitivity_implementation_costs_and_20260921_114157 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+QA checklist passed:
+- 601 lines (≥600)
+- All 13 section headers present
+- Bare URLs all at line 574+ (References header at 572) — clean
+- progress.json updated: `6_synthesis: "complete"`, `done: true`, synthesis.md added to files map, Iter7 note prepended
+
+<promise>DONE</promise>
+Done (DONE signal). Stopping.
+=== Completed: NeoTest_BOTEC_sensitivity_implementation_costs_and_20260921_114157 (iterations used: 1) ===
+Uploading to Google Docs...
+  Saved local copy: /Users/parthahya/tools/research_loop_tool/research_runs/NeoTest_BOTEC_sensitivity_implementation_costs_and_20260921_114157/full_document.md
+  Uploading full doc...
+  Found 10 tables to render
+  Inserted 10 empty tables
+  Filled 59 table rows
+  Applied table formatting (font 10pt, fit to page)
+Full doc created: https://docs.google.com/document/d/1iKFZ3EZEVlr_BAimSiMxs5bpqc_PPjqAMsTrhSecrss/edit
+  Uploading summary doc...
+  Found 10 tables to render
+  Inserted 10 empty tables
+  Filled 59 table rows
+  Applied table formatting (font 10pt, fit to page)
+Summary doc created: https://docs.google.com/document/d/1b6mmnGaMOh62MqN0uf7wCW6bfTIBAC12uME2VuqiiEA/edit

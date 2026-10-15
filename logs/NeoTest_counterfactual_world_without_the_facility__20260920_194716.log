@@ -1,0 +1,28 @@
+
+=== Launching: NeoTest_counterfactual_world_without_the_facility__20260920_194716 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+QA complete. All checks pass:
+- **Line count**: 601 (≥600)
+- **Bare URLs**: all 37 bare URLs confined to §11 References (lines 565–601), none in body text
+- **All 11 sections present**: §1 Executive Summary through §11 References
+- **progress.json**: all phases "complete", `done: true`, key_numbers fully populated, notes updated
+
+<promise>DONE</promise>
+Done (DONE signal). Stopping.
+=== Completed: NeoTest_counterfactual_world_without_the_facility__20260920_194716 (iterations used: 1) ===
+Uploading to Google Docs...
+  Saved local copy: /Users/parthahya/tools/research_loop_tool/research_runs/NeoTest_counterfactual_world_without_the_facility__20260920_194716/full_document.md
+  Uploading full doc...
+  Found 11 tables to render
+  Inserted 11 empty tables
+  Filled 84 table rows
+  Applied table formatting (font 10pt, fit to page)
+Full doc created: https://docs.google.com/document/d/1TC91hvdT-GceYUWrfmATX5OaR7mzUMiziY4ACgtcW7w/edit
+  Uploading summary doc...
+  Found 11 tables to render
+  Inserted 11 empty tables
+  Filled 84 table rows
+  Applied table formatting (font 10pt, fit to page)
+Summary doc created: https://docs.google.com/document/d/1vi30qyzDOXM4aOwYwnWVni33uWVj0khqJeIRuWTBFag/edit

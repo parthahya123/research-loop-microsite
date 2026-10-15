@@ -1,0 +1,123 @@
+
+=== Launching: NeoTest_Se90_neonatal_capillary_achievability_20260922_120000 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+
+=== Launching: NeoTest_Se90_neonatal_capillary_achievability_20260922_120000 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+**Phase 0 complete.** Key findings:
+
+1. **NeoSep-SAA LFT achieves 92% Se on capillary heel-prick blood** — the only neonatal sepsis POCT validated on capillary blood specifically. Pre-antibiotic, 5 µL, 10 min, 714 neonates across 5 Ugandan hospitals.
+
+2. **BUT the 92% is against a CLINICAL reference standard** (signs-based), not culture-anchored CRS. Against culture-confirmed sepsis, SAA Se drops to ~83% (Sharma 2023). The pooled meta-analytic Se across 16 studies (971 neonates) = **85% (CI 79-89%)** — 90% is NOT within the confidence interval.
+
+3. **Specificity 73%** — below WHO TPP hospital minimum of 80%.
+
+4. **The reference standard trap is the central finding**: SAA detects the same inflammatory signal clinicians use for clinical diagnosis, so it looks great against a clinical reference. Against the culture-anchored CRS the WHO TPP specifies, the AMC-relevant Se is likely **~80-85%**, not 92%.
+
+5. **No other neonatal sepsis POCT has demonstrated ≥90% Se on capillary blood** against any reference standard.
+
+Phase 0 file written to `research/00_neosepsaa_performance.md`, progress.json updated. STOP — ready for Phase 1 on next iteration.
+
+--- Iteration 2 / 8 ---
+**Phase 1 complete.** Key findings:
+
+**The adult→neonatal transfer degradation is ANALYTE-SPECIFIC, not universal:**
+- **MeMed BV (TRAIL-based)**: Catastrophic — 89.9% adult → 37.5% neonatal (52pp drop). But this is a TRAIL-kinetics problem: neonatal TRAIL baseline is low, so bacterial infection can't decrease it further to generate the signal
+- **SAA**: Preserved — 85% meta-analytic (92% clinical ref on capillary LFT). SAA rises in neonatal inflammation just like adult
+- **PCT**: Mostly preserved (79% pooled, 91% ≤12h) but confounded by physiological postnatal surge
+- **Presepsin**: Appears preserved (84-94%) but evidence is thin
+- **Combined IL-6+PCT+SAA**: Reaches 93.3% Se — but lab-based only, no POC panel exists
+
+**Critical finding**: NO device has demonstrated BOTH ≥90% Se AND ≥80% Sp on neonatal capillary blood against a culture-anchored CRS. The MeMed venous-capillary comparison (r=0.98-0.99 in adults) confirms capillary blood is analytically comparable for host-response proteins.
+
+**STOP — Phase 1 complete. Next iteration: Phase 2 (technical barriers).**
+
+--- Iteration 2 / 8 ---
+**Phase 1 complete.** Key findings:
+
+1. **MeMed BV adult→neonatal transfer: 89.3%→37.5% = catastrophic**, but this is **TRAIL-specific** (neonatal TRAIL baseline too low for the "decrease = bacterial" signal). NOT a generic biomarker failure.
+
+2. **SAA is preserved** in neonates (different pathway — hepatic acute phase via IL-1/IL-6). NeoSep-SAA 92% Se on capillary is real but against clinical reference; culture-anchored estimate ~83-85%.
+
+3. **Best neonatal Se across all biomarkers**: Presepsin 90%/Sp 92%/AUC 0.96 in neonatal meta-analysis subgroup (PMC12505528, 47 studies) — but ALL venous lab-based, no POC on capillary. Combined IL-6+PCT+SAA reaches 93.3% Se but lab-based.
+
+4. **No device has demonstrated ≥90% Se AND ≥80% Sp on neonatal capillary blood against culture-anchored CRS.** The 90% target is at the frontier of what neonatal biomarker biology can deliver.
+
+STOP. Phase 1 done. Next iteration: Phase 2.
+
+--- Iteration 3 / 8 ---
+**Phase 2 complete.** Written to `research/02_technical_barriers.md`, progress.json updated.
+
+**Key findings — barriers ranked:**
+
+1. **Reference standard = DECISIVE barrier.** Blood culture Se ~30-50% in LMIC neonates. This creates a Catch-22: the test is evaluated against a reference that misses the majority of cases. NeoSep-SAA swings from 92% (clinical ref) to 83% (culture-confirmed) — a ~9pp gap driven entirely by reference standard choice. Against a WHO-quality CRS, likely settles ~80-87%.
+
+2. **Single-biomarker AUC ceiling = HIGH.** SAA meta AUC 0.91 makes joint 90/80 theoretically achievable but only at the exact optimal operating point. Multi-analyte panels reach AUC ~0.96 (comfortable) but haven't been validated as POCT on capillary.
+
+3. **NO POCT has achieved BOTH ≥90% Se AND ≥80% Sp on neonatal capillary blood** against any reference standard. NeoSep-SAA comes closest (92% Se but 73% Sp fails). Presepsin hits 90/92 in meta but venous/lab-based only.
+
+4. **Capillary-venous concordance and sample volume are NOT barriers** — resolved (r ≥ 0.98) and trivial (5 µL LFT within 75 µL budget).
+
+STOP — one phase per iteration.
+
+--- Iteration 3 / 8 ---
+**Phase 2 complete.** Key findings:
+
+**Ranked barriers to achieving >=90% Se on neonatal capillary blood vs culture-anchored CRS:**
+
+1. **Reference standard trap (DECISIVE)**: NeoSep-SAA drops 92% → ~83% when switching from clinical to culture-confirmed reference. This ~7-12pp structural gap is the single largest barrier — it's an accounting/measurement problem, not a device problem.
+
+2. **Single-biomarker AUC ceiling (HIGH)**: SAA AUC ~0.91 → joint Se 90%/Sp 80% is at the edge; would need AUC ~0.93-0.96 (achievable with multi-analyte) for comfortable margin.
+
+3. **Neonatal immune biology (HIGH, marker-dependent)**: TRAIL eliminated (baseline too low → MeMed BV 37.5% neonatal Se). SAA/presepsin preserved. PCT confounded by postnatal surge. IL-6 window too narrow.
+
+4. **Capillary pre-analytics (LOW for SAA)**: ~0-3pp penalty for high-abundance markers; validated on capillary already.
+
+5. **Sample volume (NOT binding)**: NeoSep-SAA uses 5 µL vs 75 µL budget.
+
+**Bottom line**: NO POCT has achieved >=90% Se AND >=80% Sp on neonatal capillary blood vs any culture-anchored reference. The honest achievable range is **~80-88% Se** for current technology. The path to 90% requires multi-analyte + optimized CRS. Ready for Phase 3 (probability estimation) next iteration.
+
+--- Iteration 4 / 8 ---
+Phase 3 complete. Key findings:
+
+**P(Se ≥ 90% AND Sp ≥ 80% on neonatal capillary vs CRS) = ~10% (range 5-18%)**
+
+This **confirms and refines** the prior runs' 5-20% estimate. The central moves slightly UP because the MeMed BV cautionary case (37.5% neonatal Se) is TRAIL-specific, not generalizable to SAA-based devices. But the Se-Sp tradeoff and reference standard problem are MORE constraining than previously recognized.
+
+**Critical structural finding**: Hospital TPP (≥85%/≥80%) is **3× more achievable** (~30%) than non-hospital TPP (≥90%/≥80%) (~10%). The data consistently show Se ~83-88% vs CRS as the achievable band for the best single-analyte device.
+
+**Two decisive uncertainties**: (1) CRS definition (~60% of total uncertainty — a PROTOCOL DESIGN choice, not a device property), (2) multi-analyte POC translation (~30% — lab-based combos reach 93% Se but no POC device exists).
+
+**AMC design implication**: Gating disbursement on ≥90% Se non-hospital creates >80% probability of zero disbursement. Gate on hospital TPP (≥85%) as primary threshold.
+
+Next phase = Phase 4 (Synthesis). STOP.
+
+--- Iteration 4 / 8 ---
+Phase 4 synthesis COMPLETE. Run is done.
+
+**Summary**: synthesis.md written (195 lines, 34 hyperlinks, 10 sections including verdict-at-a-glance table).
+
+**Headline**: P(Se >= 90% AND Sp >= 80% on neonatal capillary blood vs culture-anchored CRS) = **~10% (range 5-18%)** — prior runs' 5-20% confirmed and refined. Hospital TPP (>=85%/>=80%) is **~30%**, roughly 3x more achievable. The MeMed BV cautionary case (37.5% neonatal Se) is TRAIL-specific, not generalizable to SAA-based devices. Two decisive uncertainties: (1) CRS definition (~60% of total, a protocol design choice not a device property), (2) multi-analyte POC translation (~30%, the pull mechanism's actual target). Capillary concordance and sample volume are resolved barriers.
+
+**Key AMC design implication**: Gate disbursement on hospital TPP as primary milestone; non-hospital >=90% as aspirational bonus tranche. Gating on >=90% creates >80% P(zero disbursement).
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: NeoTest_Se90_neonatal_capillary_achievability_20260922_120000 (iterations used: 4) ===
+Uploading to Google Docs...
+(Upload failed or not configured)
+**Run COMPLETE.** All 5 phases done, synthesis.md at 195 lines, progress.json `done: true`.
+
+**Headline verdict: P(Se >= 90% AND Sp >= 80%) on neonatal capillary blood vs culture-anchored CRS = ~10% (range 5-18%).** Prior runs' 5-20% confirmed and narrowed. Key findings:
+
+- **NeoSep-SAA** is the only capillary POCT: 92% Se on clinical ref, but ~83% vs culture-confirmed. Meta CI (79-89%) excludes 90%.
+- **MeMed BV cautionary** (37.5% neonatal Se) is TRAIL-specific, not generalizable to SAA/presepsin
+- **Hospital TPP (>=85%/>=80%)** is ~3x more achievable (~30%) — the realistic target
+- **Two decisive uncertainties**: CRS definition (~60%) and multi-analyte POC translation (~30%). Capillary concordance and volume are resolved.
+- **AMC should gate on hospital TPP as primary**, non-hospital >=90% as aspirational bonus. Gating solely on >=90% creates >80% P(zero disbursement).
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: NeoTest_Se90_neonatal_capillary_achievability_20260922_120000 (iterations used: 4) ===
+Uploading to Google Docs...
+(Upload failed or not configured)

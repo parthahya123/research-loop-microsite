@@ -1,0 +1,41 @@
+
+=== Launching: NeoTest_amc_comparables_design_20260923_140000 ===
+=== Model: Opus 4.6 | Max iterations: 4 ===
+
+--- Iteration 1 / 4 ---
+Run is **COMPLETE**. Both synthesis.md (282 lines) and progress.json (`done: true`) are finalized.
+
+**Summary of findings:**
+
+1. **No diagnostic pull has accelerated de novo development from a thin pipeline.** The PCV AMC accelerated ACCESS (products existed 7yr before); Longitude Prize took 10yr with unclear acceleration; GeneXpert used $252M in PUSH grants before any pull existed.
+
+2. **Every diagnostic success follows: push -> quality gate -> pull -> competition.** NeoTest tries to collapse this into one instrument. The evidence says the steps are sequential.
+
+3. **Three design changes (all within existing $60M):**
+   - Convert $8-10M milestone to **push grants** (pivotal neonatal clinical validation + WHO-PQ pathway + 2nd-source prep)
+   - Add **binding $5->$3.50 tail-price ceiling** (zero cost — contractual term)
+   - **Engineer second source** via MPP-style license as milestone condition
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: NeoTest_amc_comparables_design_20260923_140000 (iterations used: 1) ===
+Uploading to Google Docs...
+(Upload failed or not configured)
+n.
+
+The single sentence: **every diagnostic that was developed used push first; every diagnostic that achieved competitive pricing had engineered competition; NeoTest currently has neither, and both can be added within the existing $60M.**
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: NeoTest_amc_comparables_design_20260923_140000 (iterations used: 1) ===
+Uploading to Google Docs...
+(Upload failed or not configured)
+This run is **COMPLETE**. All 4 phases done, synthesis.md written (282 lines, 55 hyperlinks, all bare URLs confined to References at line 257+), progress.json `done: true`.
+
+**Headline verdict:** Fund the $60M restructured, not as-designed. Three changes supported by every comparable:
+
+1. **Add push ($8-10M)** — every diagnostic development success used push grants; NeoTest's 0% push is unprecedented
+2. **Add binding tail-price ceiling ($5->$3.50 stepped)** — GeneXpert stuck at 2-3x COGS for 12 years without one; zero cost (contractual term)
+3. **Engineer second source from day one** — PCV AMC waited 10yr; malaria RDTs succeeded with competition from the start; MPP-style license as milestone condition
+
+The single sentence: *every diagnostic that was developed used push first; every diagnostic that achieved competitive pricing had engineered competition; NeoTest currently has neither, and both can be added within the existing $60M.*
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: NeoTest_amc_comparables_design_20260923_140000 (iterations used: 1) ===
+Uploading to Google Docs...
+(Upload failed or not configured)

@@ -1,0 +1,22 @@
+
+=== Launching: NeoTest_MedAccess_postAMC_pricing_what_structures__20260921_143411 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+<promise>DONE</promise>
+Done (DONE signal). Stopping.
+=== Completed: NeoTest_MedAccess_postAMC_pricing_what_structures__20260921_143411 (iterations used: 1) ===
+Uploading to Google Docs...
+  Saved local copy: /Users/parthahya/tools/research_loop_tool/research_runs/NeoTest_MedAccess_postAMC_pricing_what_structures__20260921_143411/full_document.md
+  Uploading full doc...
+  Found 9 tables to render
+  Inserted 9 empty tables
+  Filled 62 table rows
+  Applied table formatting (font 10pt, fit to page)
+Full doc created: https://docs.google.com/document/d/1N0AeVnpLhdtwyr1b2tlw-QyP2V8jEWBHoNFjlN07J9c/edit
+  Uploading summary doc...
+  Found 9 tables to render
+  Inserted 9 empty tables
+  Filled 62 table rows
+  Applied table formatting (font 10pt, fit to page)
+Summary doc created: https://docs.google.com/document/d/1pgHk5dk_PgYNibEg5eG33B4pVsDy8r6jh5CAkVVLT4s/edit

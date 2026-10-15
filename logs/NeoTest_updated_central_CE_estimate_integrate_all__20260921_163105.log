@@ -1,0 +1,22 @@
+
+=== Launching: NeoTest_updated_central_CE_estimate_integrate_all__20260921_163105 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: NeoTest_updated_central_CE_estimate_integrate_all__20260921_163105 (iterations used: 1) ===
+Uploading to Google Docs...
+  Saved local copy: /Users/parthahya/tools/research_loop_tool/research_runs/NeoTest_updated_central_CE_estimate_integrate_all__20260921_163105/full_document.md
+  Uploading full doc...
+  Found 10 tables to render
+  Inserted 10 empty tables
+  Filled 65 table rows
+  Applied table formatting (font 10pt, fit to page)
+Full doc created: https://docs.google.com/document/d/1fUrLm8AfkO76RrMctsyxqMcNPPrGwSn9Y3cFobTjcWU/edit
+  Uploading summary doc...
+  Found 10 tables to render
+  Inserted 10 empty tables
+  Filled 65 table rows
+  Applied table formatting (font 10pt, fit to page)
+Summary doc created: https://docs.google.com/document/d/1R9_dxfutXCsQHDOxnVvC_PoWL1neCKzhS2X4BwiJY0Y/edit

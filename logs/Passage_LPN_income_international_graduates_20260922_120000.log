@@ -1,0 +1,93 @@
+
+=== Launching: Passage_LPN_income_international_graduates_20260922_120000 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+
+=== Launching: Passage_LPN_income_international_graduates_20260922_120000 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+**Phase 0 complete.** Key findings:
+
+- **CAD $60K is a defensible centrist estimate** for Year 1-2 new-grad LPN income working full-time. National median is $65.1K ($31.32/hr × 2,080), but new grads start at $27-30/hr = $56-62K.
+- **COPS projects "strong risk of shortage"** for LPNs 2024-2033 — 27,900 openings, 2.1% annual growth. Labour market is tight.
+- **IE-LPN share is small (6.6%) and declining** — less IEN competition in LPN vs RN stream.
+- **The biggest risk is NOT wage rate but employment status**: if graduates work 0.7 FTE instead of 1.0 FTE, Year 1 income drops to ~$44K. Full-time employment rate for LPNs estimated 60-70%.
+- **Passage students take REx-PN as Canadian-educated** (not IEN pathway), with Ontario first-attempt pass rate ~80.8%.
+
+STOP. Ready for Phase 1 on next iteration.
+
+--- Iteration 2 / 8 ---
+**Phase 0 complete.** Key findings:
+
+- **CAD $60K base case is DEFENSIBLE** as a central estimate for Year 1-2 full-time LPN income. National median is $65.1K (all-experience); new-grad entry is ~$56-62K depending on province.
+- **COPS projects "strong risk of labour shortage"** for LPNs through 2033 — 27,900 openings vs 27,800 seekers, 51% from expansion (real new demand).
+- **The key risk is NOT the hourly wage but full-time employment**: if new grads start part-time/casual (common), Year 1 income could be $40-50K. The $60K assumption REQUIRES full-time hours.
+- **IEN saturation** (Ontario IEN unemployment hit 22% in 2025) affects foreign-trained RNs seeking credential recognition, NOT Canadian-educated LPN graduates like Passage's students.
+- **StatCan gap**: International student graduates earn ~15% less than Canadian graduates at college level — but this is occupational-mix driven, not within-occupation discrimination. In unionized LPN positions, wages are grid-set.
+
+STOP. One phase per iteration.
+
+--- Iteration 2 / 8 ---
+**Phase 1 complete.** Key findings:
+
+1. **Critical framing**: Passage graduates are Canadian-educated, NOT traditional IENs — they get 86-93% health job placement (vs 50-83% for foreign-educated). This is the single most important distinction.
+
+2. **African-origin nurses outperform average**: 70.2% employed in nursing vs 63% overall (StatCan 2025). African-educated IEHPs show the strongest health sector integration at 67.4%.
+
+3. **$60K base case is defensible for FT Year 2-3** but the IEHP nursing mean is only $56,500 (includes underemployed/part-time). A 11-13% racial wage penalty exists but is partially mitigated by unionized pay scales.
+
+4. **Probability-weighted Year 1 income likely $40-50K** (not $60K) due to exam lag + part-time start risk. Year 2-3 FT: $55-62K. Year 5: $62-68K.
+
+5. **PR pathway is strong**: Healthcare Express Entry CRS 462-476, 55-65% 5-year PR conversion for healthcare college grads.
+
+STOP. Ready for Phase 2 on next iteration.
+
+--- Iteration 3 / 8 ---
+**Phase 2 complete.** Key findings:
+
+1. **The cash crunch is real**: ~$56/mo before food during the 8-14 week consolidation placement, with a structural shortfall of ~$200-350/mo for food costs alone.
+
+2. **Students CAN legally work alongside clinical** (24 hrs/week off-campus, clinical hours don't count against cap), but practically only ~8-16 hrs/week is feasible given unpredictable clinical schedules. This earns ~$544-1,088/mo — enough to close the gap if flexible work is found.
+
+3. **Payment deferral = high-leverage fix**: Deferring the $1,058/mo loan payment for 3-4 months during consolidation costs only ~$400-550 in additional interest but frees ~$3-4K during the tightest period. Moves the monthly budget from ~$56 before food to ~$1,114 before food.
+
+4. **International students are excluded from ALL Canadian government student aid** (OSAP, Learn and Stay Grant) — Passage's loan is their only structured support.
+
+5. **96.2% graduation rate is remarkable** given that >25% of Canadian nursing students nationally contemplate dropping out due to financial difficulties (CFNU 2024, N=3,751). Likely reflects strong selection + sunk-cost psychology.
+
+6. **Impact on $60K assumption is indirect**: The cash crunch doesn't change the wage rate but affects graduation probability and exam readiness, which are upstream of all employment outcomes.
+
+STOP. Next iteration: Phase 3 (Synthesis).
+
+--- Iteration 4 / 8 ---
+All phases complete. Synthesis written and `progress.json` set to `done: true`.
+
+**Summary of findings:**
+
+- **$60K is defensible** as a Year 2-3 full-time LPN income for Passage graduates. It's centrist — below the national median ($65.1K) but consistent with new-grad entry grids ($56-62K).
+- **Probability-weighted Year 1 income is ~$47-54K** (not $60K) due to 2-4 month employment gap, ~20% REx-PN failure rate, and ~30-40% chance of starting part-time.
+- **Binding risk is employment rate and hours, not the hourly wage** — unionized grids set the rate; the question is whether graduates get full-time positions quickly.
+- **African-origin graduates are NOT disadvantaged on nursing employment** — 70.2% employment rate vs 63% overall for immigrant nurses. Canadian education (Passage's model) dramatically reduces the credential-recognition penalty (86-93% health job placement vs 50-83% for foreign-educated).
+- **Year 2 clinical cash crunch is severe** ($56/month before food) but affects the CE model indirectly via graduation probability and exam readiness, not via the $60K wage figure.
+- **Recommended CE model**: $50K Y1 → $60K Y3 → $63K Y5. Sensitivity range $45-65K.
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: Passage_LPN_income_international_graduates_20260922_120000 (iterations used: 2) ===
+Uploading to Google Docs...
+(Upload failed or not configured)
+**Phase 3 synthesis complete.** The progress.json was already marked `done: true` by a concurrent instance. My synthesis.md (205 lines) is written with all 8 sections.
+
+**VERDICT**: CAD $60K is **defensible as a Year 2+ FT conditional income** — centrist, not conservative. Key findings:
+
+- **Probability-weighted Year 1 income: ~$42-50K** (not $60K) due to 2-4 month licensing gap + ~20% REx-PN failure + 30-40% part-time start
+- **Binding risk is employment RATE not wage RATE** — the hourly wage is set by union grids, but FT access is uncertain
+- **Load-bearing distinction**: Passage grads are Canadian-educated (86-93% health job placement) not foreign-educated IENs (50-83%)
+- **African-origin nurses: above-average** nursing employment (70.2% vs 63% overall)
+- **P(FT nursing within 6mo)**: ~65-75%
+- **Recommended CE model**: $50K Year 1, $60K Year 2+, $63K Year 5; use $60K conditional-on-FT with employment rate as separate probability gate
+- **Highest-leverage fix**: loan payment deferral during clinical (~$400-550 cost per student)
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: Passage_LPN_income_international_graduates_20260922_120000 (iterations used: 4) ===
+Uploading to Google Docs...
+(Upload failed or not configured)

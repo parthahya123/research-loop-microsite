@@ -1,0 +1,55 @@
+=== Starting: PE burden — Mon Sep 28 21:22:12 EDT 2026 ===
+[PE burden] iter 1 — Mon Sep 28 21:22:12 EDT 2026
+[PE burden] DONE at iter 1
+=== Done: PE burden — Mon Sep 28 21:30:46 EDT 2026 ===
+=== Starting: PE interventions delivery — Mon Sep 28 21:31:00 EDT 2026 ===
+[PE interventions delivery] iter 1 — Mon Sep 28 21:31:00 EDT 2026
+[PE interventions delivery] DONE at iter 1
+=== Done: PE interventions delivery — Mon Sep 28 21:49:55 EDT 2026 ===
+=== Starting: PE diagnostics — Mon Sep 28 21:50:05 EDT 2026 ===
+[PE diagnostics] iter 1 — Mon Sep 28 21:50:05 EDT 2026
+[PE diagnostics] DONE at iter 1
+=== Done: PE diagnostics — Mon Sep 28 22:05:01 EDT 2026 ===
+=== Starting: PE therapeutics — Mon Sep 28 22:05:15 EDT 2026 ===
+[PE therapeutics] iter 1 — Mon Sep 28 22:05:15 EDT 2026
+[PE therapeutics] iter 2 — Mon Sep 28 22:10:54 EDT 2026
+[PE therapeutics] DONE at iter 2
+=== Done: PE therapeutics — Mon Sep 28 22:20:39 EDT 2026 ===
+=== Starting: PE funders — Mon Sep 28 22:20:50 EDT 2026 ===
+[PE funders] iter 1 — Mon Sep 28 22:20:50 EDT 2026
+[PE funders] DONE at iter 1
+=== Done: PE funders — Mon Sep 28 22:31:49 EDT 2026 ===
+=== Starting: PE early ANC — Mon Sep 28 22:32:02 EDT 2026 ===
+[PE early ANC] iter 1 — Mon Sep 28 22:32:02 EDT 2026
+[PE early ANC] DONE at iter 1
+=== Done: PE early ANC — Mon Sep 28 23:09:15 EDT 2026 ===
+=== Starting: PE CE portfolio — Mon Sep 28 23:09:31 EDT 2026 ===
+[PE CE portfolio] iter 1 — Mon Sep 28 23:09:31 EDT 2026
+=== Starting: Janitri deep dive — Tue Sep 29 06:54:00 EDT 2026 ===
+[Janitri deep dive] iter 1 — Tue Sep 29 06:54:00 EDT 2026
+[Janitri deep dive] DONE at iter 1
+=== Done: Janitri deep dive — Tue Sep 29 07:17:36 EDT 2026 ===
+=== Starting: SBBC decomposition — Tue Sep 29 07:17:46 EDT 2026 ===
+[SBBC decomposition] iter 1 — Tue Sep 29 07:17:46 EDT 2026
+[SBBC decomposition] DONE at iter 1
+=== Done: SBBC decomposition — Tue Sep 29 07:33:37 EDT 2026 ===
+=== Starting: EmOC response — Tue Sep 29 07:33:47 EDT 2026 ===
+[EmOC response] iter 1 — Tue Sep 29 07:33:47 EDT 2026
+[EmOC response] iter 2 — Tue Sep 29 07:44:51 EDT 2026
+[EmOC response] DONE at iter 2
+=== Done: EmOC response — Tue Sep 29 07:49:50 EDT 2026 ===
+=== Starting: AI CTG — Tue Sep 29 07:50:00 EDT 2026 ===
+[AI CTG] iter 1 — Tue Sep 29 07:50:00 EDT 2026
+[AI CTG] DONE at iter 1
+=== Done: AI CTG — Tue Sep 29 08:03:47 EDT 2026 ===
+=== Starting: HBB + TH — Tue Sep 29 08:03:57 EDT 2026 ===
+[HBB + TH] iter 1 — Tue Sep 29 08:03:57 EDT 2026
+[HBB + TH] DONE at iter 1
+=== Done: HBB + TH — Tue Sep 29 08:22:53 EDT 2026 ===
+=== Starting: India LaQshya — Tue Sep 29 08:23:03 EDT 2026 ===
+[India LaQshya] iter 1 — Tue Sep 29 08:23:03 EDT 2026
+[India LaQshya] DONE at iter 1
+=== Done: India LaQshya — Tue Sep 29 08:44:42 EDT 2026 ===
+=== Starting: First Look null — Tue Sep 29 08:44:52 EDT 2026 ===
+[First Look null] iter 1 — Tue Sep 29 08:44:52 EDT 2026
+[First Look null] iter 2 — Tue Sep 29 08:56:13 EDT 2026

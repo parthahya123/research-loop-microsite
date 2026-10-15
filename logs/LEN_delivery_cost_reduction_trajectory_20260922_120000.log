@@ -1,0 +1,88 @@
+
+=== Launching: LEN_delivery_cost_reduction_trajectory_20260922_120000 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+
+=== Launching: LEN_delivery_cost_reduction_trajectory_20260922_120000 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+**Phase 0 complete.** Key findings:
+
+- **Total LEN PrEP delivery cost (2026)**: ~$65/py central (range $54-111), of which $40 is drug cost and ~$25 is non-drug delivery
+- **Drug cost dominates** at ~65% of total — drug price trajectory is the main lever
+- **Generic COGS**: $35-46/py at 2M volume, falling to $25/py at 5M+ (Fortunak/Hill IDWeek 2025)
+- **No cold chain** required — critical structural advantage over CAB-LA for SSA
+- **Only 2 visits/year** — vs 4-5 for oral PrEP, 6-7 for CAB-LA — making non-drug delivery costs substantially lower
+- **LEN is ~30-50% cheaper than oral PrEP on total delivery** ($65 vs $100-150) while being ~100% effective (vs ~50-75% effective use for oral)
+- **CHAI's role**: brokered the $40 generic price + implementation model optimization; does not control the dominant cost lever (generic competition/volume-driven price decline) but accelerates adoption speed → volume → price reduction
+
+Written to `research/00_current_delivery_costs.md`. STOP — next iteration will execute Phase 1.
+
+--- Iteration 2 / 8 ---
+**Phase 1 complete.** Output written to `research/01_cost_trajectory.md`, progress.json updated.
+
+**Key findings:**
+
+1. **Generic entry (2027) is the biggest near-term step**: $64 branded → $40 generic, a $24/py drop that's contractually committed (Dr. Reddy's + Hetero)
+2. **Volume-driven COGS compression** takes $40 → $25/py but requires 5M+ treatment-years (conditional on scale-up trajectory reaching that by ~2030)
+3. **Self-injection is the decisive long-term lever** — subcutaneous route is technically feasible (DMPA-SC precedent), would cut non-drug delivery cost by 60-80%, but no clinical trial completed yet; **earliest SSA availability 2029-2031**
+4. **LEN is ALREADY cheaper than oral PrEP** at 2026 branded prices ($94-109 vs $100-300) AND 100% efficacious vs 50-75% effective-use — the cost-reduction trajectory makes a dominant product progressively more dominant, not a marginal one competitive
+5. **LEN is structurally 40-60% cheaper than CAB-LA** on delivery (2 visits vs 6-7, no cold chain, self-injection pathway); gap widens over time
+6. **Cost trajectory**: $94-109 (2026) → $65-75 (2027) → $55-68 (2028) → $40-50 (2030) → $30-35 (2030+ with self-injection)
+
+STOP. Ready for Phase 2 on next iteration.
+
+--- Iteration 3 / 8 ---
+**Phase 2 complete.** Key findings:
+
+1. **CE trajectory by year** (at 3% incidence, targeted high-risk populations):
+   - 2026 branded: **$434/DALY**
+   - 2027 generic ($65/py): **$282/DALY** — solidly cost-effective by SSA health-sector standards ($500/DALY threshold)
+   - 2028 scale ($60/py): **$260/DALY**
+   - 2030 high-volume ($45/py): **$195/DALY**
+   - 2030+ self-injection ($33/py): **$143/DALY**
+
+2. **GiveWell bar ($100/DALY) is NOT reachable** at any plausible delivery cost except borderline for FSW at 5%+ incidence and self-injection floor prices. Break-even cost for $100/DALY at 3% incidence = $23/py (below even the self-injection floor).
+
+3. **Drug cost reduction drives ~80% of CE improvement** — non-drug delivery optimization is real but second-order. The $64→$25 drug trajectory matters more than any delivery model innovation.
+
+4. **CHAI's acceleration value**: if CHAI accelerates the generic transition by 18 months, that's worth ~230,000 DALYs / ~$115M in health value at the $500/DALY threshold. The $5M/yr OAIF investment buys acceleration, not delivery-model CE.
+
+5. **Correct framing**: LEN PrEP belongs in **government/Global Fund budgets** (cost-effective at $200-500/DALY), not in a GiveWell-style philanthropy portfolio. CHAI's role is market-shaping and access acceleration — price it as such, not as a DALY buy.
+
+Phase 3 (synthesis) is next. STOP.
+
+--- Iteration 4 / 8 ---
+
+---
+
+**LEN PrEP Delivery Cost Reduction Trajectory — COMPLETE**
+
+All 4 phases written, progress.json marked `done:true`.
+
+### Three Numbers to Remember
+
+1. **$282/DALY** — LEN PrEP at 2027 generic prices ($65/py total) for targeted 3%-incidence populations. Solidly cost-effective by SSA health-sector standards ($500/DALY threshold).
+
+2. **$23/py** — break-even total delivery cost for $100/DALY (GiveWell bar) at 3% incidence. Below even the self-injection floor ($30-35/py). **LEN will not be a GiveWell-class buy.**
+
+3. **$64→$40→$25** — drug price trajectory drives ~80% of CE improvement. Generic entry (2027) is the single biggest event.
+
+### Key Findings
+- LEN PrEP is **already cheaper** than oral PrEP at 2026 branded prices ($94-109 vs $100-300/py)
+- **Targeting matters 3× more than cost reduction** — deploying to 3% vs 1% incidence populations swings CE more than the entire 2026→2030+ cost trajectory
+- CHAI's acceleration value: **$174-580/DALY** attributable, depending on 6-18mo acceleration assumption and attribution share
+- Recommended framing: **fund the ACCELERATION**, not the intervention itself. This is a government/GF budget item that CHAI helps make work sooner.
+
+--- Iteration 2 / 8 ---
+Done (progress.json done=true). Stopping.
+=== Completed: LEN_delivery_cost_reduction_trajectory_20260922_120000 (iterations used: 2) ===
+**Phase 3 (synthesis) complete.** Run is done (`progress.json` already marked `done: true` by concurrent process).
+
+**Synthesis headline:** LEN PrEP delivery cost falls from ~$100/py (2026 branded) → $65/py (2027 generic) → $30-35/py (2030+ self-injection). At $65/py, CE = **$282/DALY** for 3% incidence populations — solidly cost-effective by SSA health-sector standards but **never GiveWell-class** (break-even $23/py < COGS floor). Drug cost reduction drives ~80% of CE improvement; targeting (incidence) matters 3x more than delivery cost optimization. CHAI's principal value = the $40 generic deal (achieved) + 6-18 month rollout acceleration (~230k DALYs). Frame as HIV-prevention market-shaping at ~$5M/yr, not a DALY buy.
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: LEN_delivery_cost_reduction_trajectory_20260922_120000 (iterations used: 4) ===
+Uploading to Google Docs...
+(Upload failed or not configured)

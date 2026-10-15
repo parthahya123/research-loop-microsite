@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crisis Insurance — Preventing the Crises That Destroy Democratic Trust</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --accent: #1e3a5f; --text: #1a1a1a; --muted: #555; --border: #e0e4ea; --bg: #f8f9fb; --surface: #fff; --surface-alt: #f3f5f8; }
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.88; color: var(--text); background: var(--bg); }
+  .layout { display: flex; min-height: 100vh; }
+  nav { width: 220px; flex-shrink: 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 2.25rem 1.5rem; background: var(--surface-alt); border-right: 1px solid var(--border); }
+  nav .home { display: block; font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; color: #999; text-decoration: none; margin-bottom: 1.5rem; }
+  nav .home:hover { color: #333; }
+  nav h5 { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #bbb; margin-bottom: .6rem; margin-top: 1.5rem; }
+  nav ul { list-style: none; }
+  nav ul li a { font-family: system-ui, sans-serif; font-size: 12.5px; color: #666; text-decoration: none; display: block; padding: .22rem .6rem; border-left: 2px solid transparent; }
+  nav ul li a:hover { color: var(--text); }
+  nav ul li a.active { color: var(--text); border-left-color: var(--accent); font-weight: 600; }
+  main { flex: 1; max-width: 760px; padding: 4rem 3.5rem 7rem; }
+  .eyebrow { font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin-bottom: .6rem; }
+  h1 { font-size: 2.4rem; line-height: 1.15; font-weight: 700; letter-spacing: -.025em; margin-bottom: .45rem; color: #0f0f0f; }
+  .dek { font-family: system-ui, sans-serif; font-size: 15.5px; color: #666; margin-bottom: 3rem; line-height: 1.55; }
+  h2 { font-size: 1.45rem; font-weight: 700; margin-top: 3.75rem; margin-bottom: 1.1rem; letter-spacing: -.015em; padding-bottom: .45rem; border-bottom: 1px solid var(--border); scroll-margin-top: 1.5rem; color: #0f0f0f; }
+  h3 { font-size: 1.05rem; font-weight: 700; margin-top: 2.25rem; margin-bottom: .6rem; color: #222; }
+  p { margin-bottom: 1.25rem; }
+  a { color: #1d4ed8; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:hover { color: #1e3a8a; }
+  ul.bullets { margin: .6rem 0 1.4rem 1.6rem; }
+  ul.bullets li { margin-bottom: .5rem; }
+  .lede { font-size: 1.15rem; line-height: 1.7; color: #222; border-left: 3px solid var(--accent); padding-left: 1.4rem; margin: 2.5rem 0 2rem; font-style: italic; }
+  .lede strong { font-style: normal; }
+  .note { background: #f0f2f5; padding: .9rem 1.3rem; margin: 1.75rem 0; font-family: system-ui, sans-serif; font-size: 13.5px; line-height: 1.7; color: #444; border-left: 2px solid #ccd0d9; }
+  .number { font-family: system-ui, sans-serif; font-size: 13px; color: #555; background: #f0f4f9; border: 1px solid #dde3ec; padding: .7rem 1.1rem; margin: 1.5rem 0 1.5rem; display: flex; gap: 1.2rem; flex-wrap: wrap; }
+  .number span { white-space: nowrap; }
+  .number strong { color: #1e3a5f; }
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 2rem; font-family: system-ui, sans-serif; font-size: 12.5px; }
+  th { background: #eef2f7; text-align: left; padding: .55rem .85rem; font-weight: 600; color: #333; border-bottom: 1px solid #ccd; }
+  td { padding: .5rem .85rem; border-bottom: 1px solid #e5e9f0; vertical-align: top; color: #333; }
+  tr:last-child td { border-bottom: none; }
+  .pillar { background: #f7f9fc; border: 1px solid #dde3ec; border-left: 4px solid var(--accent); padding: 1.2rem 1.4rem; margin: 1.5rem 0; font-family: system-ui, sans-serif; font-size: 14px; }
+  .pillar h4 { font-size: 14px; font-weight: 700; color: var(--accent); margin-bottom: .5rem; }
+  .pillar p { font-size: 13.5px; color: #444; margin-bottom: .5rem; }
+  .pillar p:last-child { margin-bottom: 0; }
+  details { border-top: 1px solid var(--border); margin: .25rem 0; }
+  details summary { padding: .75rem 0; font-family: system-ui, sans-serif; font-size: 14px; font-weight: 600; color: #333; cursor: pointer; list-style: none; display: flex; align-items: center; gap: .55rem; user-select: none; }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::before { content: '▶'; font-size: 9px; color: #aaa; transition: transform .15s; flex-shrink: 0; }
+  details[open] summary::before { transform: rotate(90deg); }
+  details summary:hover { color: var(--accent); }
+  .details-body { padding: .5rem 0 1.25rem 1.1rem; font-family: system-ui, sans-serif; font-size: 13.5px; line-height: 1.75; color: #444; }
+  .details-body p { font-family: system-ui, sans-serif; font-size: 13.5px; margin-bottom: .85rem; }
+  .details-body ul { margin: .3rem 0 .85rem 1.4rem; }
+  .details-body ul li { margin-bottom: .35rem; }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav>
+  <a class="home" href="../index.html">← Portfolio</a>
+  <h5>On this page</h5>
+  <ul>
+    <li><a href="#question">The question</a></li>
+    <li><a href="#logic">The logic</a></li>
+    <li><a href="#typology">Crisis typology</a></li>
+    <li><a href="#cascade">Cascade risk</a></li>
+    <li><a href="#financial">Financial crises</a></li>
+    <li><a href="#pandemic">Pandemic crises</a></li>
+    <li><a href="#cyber">Cyber and infrastructure</a></li>
+    <li><a href="#communication">The neglected lever</a></li>
+    <li><a href="#portfolio">The $50M portfolio</a></li>
+    <li><a href="#comparison">Versus other frames</a></li>
+    <li><a href="#cruxes">Key cruxes</a></li>
+    <li><a href="#docs">Source documents</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="eyebrow">Crisis Insurance</div>
+  <h1>Preventing the Crises That Destroy Democratic Trust</h1>
+  <p class="dek">Four deep research runs — on crisis typology, bio and pandemic risk, financial and cyber threats, and an integrating synthesis — make the case that crisis prevention is the highest-leverage philanthropic frame for democratic resilience. The research proposes a concrete $50M/year portfolio organized as insurance against the crises most likely to produce lasting populist damage.</p>
+
+  <h2 id="question">The question</h2>
+
+  <p>If the dominant lever for democratic resilience is avoiding trust destruction — and the evidence that trust asymmetry makes prevention disproportionately valuable is strong — then the next question is: which specific events destroy trust most dramatically, and what can philanthropy do to prevent them or reduce their damage?</p>
+
+  <p>This research program asks the question differently from most democratic resilience work. It does not start from "how do we strengthen institutions?" or "how do we improve government services?" It starts from: <em>what are the acute events that cause the largest, fastest, most durable trust collapses, and how do we insure against them?</em> The frame is explicitly actuarial — build a portfolio that reduces the expected value of democratic damage from a distribution of crisis scenarios.</p>
+
+  <p>The case rests on a hard empirical foundation. The political science literature has found that financial crises produce far-right vote share increases of <a href="https://www.sciencedirect.com/science/article/pii/S001429211630045X">+30% across 800 elections spanning 144 years</a>. Pandemics produce trust effects that depend almost entirely on the quality of government response — the COVID natural experiment showed +40 points of trust in countries with excellent responses and −15 points where responses were poor. Natural disasters with visible mismanagement cost governments 10–14 points of trust rapidly. These are not abstract risks: the US is currently operating with degraded preparedness infrastructure across pandemic, cyber, and financial domains simultaneously.</p>
+
+  <h2 id="logic">The logic: why prevention dominates trust-building</h2>
+
+  <div class="lede"><strong>If one crisis costs 14 points of trust and takes a decade to partially recover, preventing one Katrina-equivalent is worth more than $500 million of service quality improvement.</strong></div>
+
+  <p>The foundational mechanism is <a href="https://www.researchgate.net/publication/226313918_Perceived_risk_trust_and_democracy">Slovic's trust asymmetry</a>: negative events destroy institutional trust approximately 50% more effectively than positive events build it. This ratio has been replicated across domains. The asymmetry has a compounding implication: the further trust has already fallen, the more valuable each prevented crisis becomes, because each point of trust loss increases the probability that the next crisis triggers a populist threshold effect rather than a temporary approval dip.</p>
+
+  <p>The math is explicit. Trust-building programs of demonstrated effectiveness — rigorous service quality improvement, government communications campaigns, transparency initiatives — generate roughly 0–2 percentage points of aggregate trust gain per year at cost structures of $20–50M/year. A single financial crisis on the scale of 2008 destroys 8–12 points structurally; a single botched pandemic response destroys 10–20 points in months. At any reasonable discount rate, preventing one major crisis has a higher expected trust value than a decade of trust-building programming.</p>
+
+  <p>Furthermore, the trust asymmetry means that crisis prevention has a nonlinear character. The largest crises destroy more trust <em>per severity unit</em> because each incremental trust loss increases the probability of crossing political thresholds. This argues for prioritizing the prevention of large, acute crises over the mitigation of chronic, gradual degradation — even if the chronic issues are more certain to occur.</p>
+
+  <h2 id="typology">Crisis typology: ranked by populism production</h2>
+
+  <p>The research identified five categories of crisis by their populism-production potential — the amount of far-right vote share or institutional trust loss produced per unit of economic or physical harm. These differ enormously, which shapes where prevention investment is most valuable.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Crisis type</th>
+        <th>Populism production</th>
+        <th>Attribution</th>
+        <th>Trust damage duration</th>
+        <th>Philanthropic leverage</th>
+        <th>Cascade risk</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Banking/financial crisis</td>
+        <td>+30% far-right (<a href="https://www.sciencedirect.com/science/article/pii/S001429211630045X">FST 2016</a>)</td>
+        <td>High — government is responsible for regulation</td>
+        <td>Semi-permanent (15+ yrs)</td>
+        <td>Medium — Fed independence, regulatory advocacy</td>
+        <td>Very high</td>
+      </tr>
+      <tr>
+        <td>Pandemic, poor response</td>
+        <td>+10–20pp trust loss</td>
+        <td>High — response quality is clearly attributable</td>
+        <td>Medium (3–8 years)</td>
+        <td>High — surveillance gaps, state capacity</td>
+        <td>High</td>
+      </tr>
+      <tr>
+        <td>Pandemic, excellent response</td>
+        <td>Slight positive or neutral</td>
+        <td>Low — credit accrues to government</td>
+        <td>Short</td>
+        <td>High — most of the philanthropic gap</td>
+        <td>Medium</td>
+      </tr>
+      <tr>
+        <td>Natural disaster, mismanaged</td>
+        <td>−10–14pp trust</td>
+        <td>High where preparation failed (Katrina)</td>
+        <td>Short–medium</td>
+        <td>Medium — FEMA well-funded, gaps in state capacity</td>
+        <td>Low</td>
+      </tr>
+      <tr>
+        <td>Multi-state infrastructure failure</td>
+        <td>Unknown — potentially very high</td>
+        <td>High if cyber or preventable</td>
+        <td>Unknown</td>
+        <td>Very high — almost no philanthropic investment</td>
+        <td>Very high</td>
+      </tr>
+      <tr>
+        <td>Cyber attack (financial system)</td>
+        <td>Unknown — potentially very high</td>
+        <td>Medium — foreign attribution complicates</td>
+        <td>Unknown</td>
+        <td>Very high — CISA has been gutted</td>
+        <td>Very high</td>
+      </tr>
+      <tr>
+        <td>Inflation/sovereign debt</td>
+        <td>High — similar to financial crisis</td>
+        <td>Medium — monetary policy is technical</td>
+        <td>Semi-permanent</td>
+        <td>Low — primarily a government function</td>
+        <td>High</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The ranking produces a counter-intuitive priority ordering. Financial crises are the highest-priority target by empirical populism-production, but philanthropic leverage is limited because financial crisis prevention is primarily a government function. The gap is in <em>advocacy</em> — defending Fed independence, supporting financial regulatory watchdogs — not in direct intervention. Pandemics are second by populism-production, but the critical insight is that the trust effect is almost entirely determined by response quality: an excellent pandemic response can actually build trust, while a poor one causes damage comparable to a financial crisis. This means the philanthropic opportunity is entirely on the response quality side.
+
+  <h2 id="cascade">The compound crisis insight</h2>
+
+  <p>The most dangerous scenarios are not single crisis events but compound crises — where one failure cascades into another and amplifies the total trust damage beyond what either would produce alone.</p>
+
+  <p>The research identified three high-probability compound scenarios. The cyber-to-financial cascade: a successful attack on the ACH network or major bank clearing systems could freeze payments for days, triggering panic and potential bank runs — converting a cyber incident into a financial crisis with the full +30% FST populism effect. The pandemic-to-economic cascade: the 2020–2022 sequence showed how a pandemic combined with supply chain disruption and subsequent inflation produced a populist surge that exceeded what the pandemic alone would have caused. The climate-to-infrastructure cascade: an extreme heat event exceeding the Texas 2021 grid failure would cascade into hospital failures, water treatment failures, and financial transaction disruptions — each layer adding attribution complexity and populism.</p>
+
+  <p>Compound crises have a special property: they tend to overwhelm the "partisan filtering" that otherwise contains crisis trust damage. When multiple systems fail simultaneously, it becomes politically impossible to attribute the failures purely to the opposing party. The 1970s "malaise" — inflation, oil shocks, Watergate, and Vietnam overlapping — produced trust damage that persisted for four decades. The portfolio should therefore prioritize investments that also reduce cascade risk, not just reduce individual crisis probability.</p>
+
+  <h2 id="financial">Financial crises: the highest populism-production category</h2>
+
+  <p>The <a href="https://www.sciencedirect.com/science/article/pii/S001429211630045X">Funke, Schularick and Trebesch (2016)</a> finding — +30% far-right vote share in the five years following financial crises across 800+ elections and 20 democracies since 1870 — is the strongest quantitative result in the crisis-to-populism literature. It is the anchor for the entire thesis. But the mechanism matters for where prevention leverage lies.</p>
+
+  <p>The research identified three candidate mechanisms for why financial crises produce such large populism effects. Duration: financial crises produce years of economic pain, not months, and the populism effect scales with duration of hardship rather than peak severity. The bailout narrative: financial crises uniquely involve visible transfers to the financial sector — the "elites get saved, people suffer" frame — and crises involving bailouts appear to produce larger populist effects than crises of similar economic magnitude without them. Attribution clarity: government is clearly responsible for financial regulation in a way it is not for natural disasters, meaning voters can credibly blame institutions for the failure.</p>
+
+  <p>The philanthropic leverage is indirect but meaningful. <strong>Fed independence is financial crisis prevention.</strong> An independent Federal Reserve, setting rates based on economic fundamentals rather than political pressure, dramatically reduces the tail risk of two financial crisis pathways: inflation spirals driven by politically motivated rate cuts, and sovereign debt crises driven by fiscal monetization. The attacks on Fed independence in 2025–2026 — the attempted firing of Jerome Powell, the firing of Fed Governor Lisa Cook, the appointment of Kevin Warsh as Powell's successor — represent direct increases in financial crisis tail risk. The philanthropic gap is a dedicated rapid-response institution, anchored at the <a href="https://www.piie.com/">Peterson Institute</a> and <a href="https://www.brookings.edu/center/the-hutchins-center-on-fiscal-and-monetary-policy/">Brookings Hutchins Center</a>, capable of legal strategy, public communication, and congressional education on Fed independence.</p>
+
+  <p><strong>Bank regulatory capacity</strong> is the second financial crisis prevention lever. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1449790/">Barth, Caprio and Levine</a> established empirically that bank supervision quality predicts financial crisis probability. The Basel III endgame rules were reversed in 2025–2026, with new proposals formally rescinding the 2023 framework. <a href="https://bettermarkets.org/">Better Markets</a>, the primary dedicated financial regulation watchdog, faces a deregulatory lobby that outspends it by a factor of 10–100. An additional $4M/year to double the non-industry voice in financial regulation is high-leverage given the disproportion.</p>
+
+  <p><strong>Financial crisis communication</strong> deserves separate attention. How a financial crisis is communicated determines whether it becomes trust-destroying (Paulson's TARP in 2008 created the "bailout" narrative that fed both the Tea Party and Occupy Wall Street) or trust-preserving (Draghi's "whatever it takes" resolved the eurozone crisis primarily through communication — the ECB didn't launch bond-buying until 2015). There is no philanthropic investment in pre-positioning crisis communication frames across any financial scenario. A $2M/year program of pre-tested messaging frames for different intervention types, plus financial journalist training, would be the first of its kind.</p>
+
+  <h2 id="pandemic">Pandemic crises: the response-quality category</h2>
+
+  <p>COVID-19 produced the most comprehensive natural experiment in the history of crisis research. Countries with excellent responses saw trust maintain or increase — Taiwan's satisfaction rate reached +91%, South Korea's government approval rose, New Zealand's Ardern achieved 80% approval. Countries with poor responses saw trust collapse — the UK's trust in government fell to 14%, its lowest in 40 years; the US saw permanent divergence along partisan lines. Same virus. The only meaningful difference was response quality.</p>
+
+  <p>The research found that within response quality, the specific factors that preserved trust were, in order of estimated magnitude: <strong>speed of visible action</strong> (early, decisive interventions signaled competence and created psychological safety); <strong>honest communication about uncertainty</strong> (countries that said "we don't know yet" maintained credibility for later updates, while countries that overclaimed lost it when the situation evolved); <strong>economic support delivery</strong> (automatic, rapid financial support buffered the economic devastation that would otherwise have fueled populist politics); and <strong>communication of authority</strong> (not the volume of communication but its credibility and consistency).</p>
+
+  <p>The philanthropic leverage is concentrated in three gaps: pandemic intelligence and early warning, which determines whether governments have lead time to act; state-level response capacity, which is the layer most citizens actually experience; and crisis communication infrastructure, which determines whether an excellent response translates into trust preservation. The federal early warning infrastructure has been substantially degraded since 2025: USAID global health security staff fell from 50 to 6, the US withdrew from WHO, and PREDICT-successor programs were terminated. The 4 runs estimated $7M/year in pandemic intelligence ($3M for a PREDICT-successor at UC Davis One Health, $2M for a global pathogen surveillance network, $2M for a laboratory characterization network) would restore early warning capabilities the government has abandoned.</p>
+
+  <p><strong>State-level preparedness</strong> is the highest-evidence investment in the pandemic portfolio. <a href="https://www.cdc.gov/phpr/documents/phep_bp_phase_v_rfp.pdf">CDC's PHEP program</a> was cut 52%, leaving states with dramatically reduced capacity. The COVID experience showed that federal preparedness without state delivery capacity fails — citizens experience the state, not the federal, government. A $5M/year direct investment in state health department capacity in 3–5 key swing states (epidemiological workforce, laboratory systems, data interoperability) combined with $2M/year in epidemiological workforce development would produce measurable improvements in surge capacity within the 5-year horizon that matters for the next crisis.</p>
+
+  <h2 id="cyber">Cyber and infrastructure: high risk, thin evidence</h2>
+
+  <p>Cyber attacks on critical infrastructure have the least political science evidence of any crisis category — but potentially the highest future risk. Unlike financial crises, where we have 144 years of data on populism effects, the scenario of a sustained attack on US critical infrastructure has no direct precedent. What we have are partial naturalistic experiments: the Colonial Pipeline attack in 2021 caused fuel shortages but limited measured trust effects, in part because attribution to a foreign criminal group prevented domestic blame. Estonia's 2007 cyberattacks caused significant disruption but limited political damage. Ukraine's power grid attacks in 2015–2016 caused blackouts but in a context where government was already managing a military conflict.</p>
+
+  <p>The research argued that cyber attacks gain their populism-production potential not from the cyber event itself but from the <em>government response quality</em>. A grid attack that is rapidly contained with minimal civilian impact, where attribution is clear and the government's response is competent, could produce a rally effect — the "flight to competence" that COVID initially produced in countries with good institutional trust. The same attack, mishandled, with weeks of outages and a government that appears helpless, has the potential to produce trust damage of unprecedented scale.</p>
+
+  <p><a href="https://www.cisa.gov/">CISA</a>'s analytical capacity has been gutted since 2025: workforce reduced approximately 33%, the MS-ISAC funding cut entirely ($27M/year eliminated), and election security grants fell from $425M to $45M. Chinese state-sponsored <a href="https://www.cisa.gov/topics/critical-infrastructure-security-and-resilience/china-cyber-threat-overview-and-advisories">Volt Typhoon</a> actors remain embedded in US critical infrastructure as of late 2026 according to public intelligence assessments. The research proposed a CNAS/CSIS/RAND consortium funded at $4M/year to maintain CISA-equivalent analytical capacity at arm's length from the government, plus $2M/year in CIS/MS-ISAC gap-fill funding — total $6M/year for a 25–30 person analytical team doing work the government has abandoned.</p>
+
+  <p>The water system deserves special mention as the most underappreciated vulnerability. The Flint water crisis established that water system failure is politically attributable and trust-destroying. There are approximately 150,000 public water systems in the US, many serving small communities with minimal cybersecurity. A successful attack on a major urban water system — the Oldsmar, Florida attack in 2021, which briefly raised lye to 111 times the safe level, is the closest precedent — would produce trust destruction with extremely clear attribution. Philanthropic investment in water system security advocacy and small-system technical assistance ($1–2M/year) has essentially no current competition.</p>
+
+  <h2 id="communication">The neglected lever: crisis communication infrastructure</h2>
+
+  <div class="lede">There is essentially no philanthropic investment in crisis communication preparedness across any domain. The most under-appreciated investment in the democratic resilience space costs $6–8M per year and nobody is doing it.</div>
+
+  <p>The research synthesis identified crisis communication infrastructure as the single highest-ratio philanthropic investment for democratic resilience — and the most neglected. The evidence is striking: across multiple crisis types, how a crisis is communicated determines approximately as much of the trust outcome as the underlying crisis severity or response quality.</p>
+
+  <p>Consider the natural experiments. Draghi's "whatever it takes" in July 2012 resolved the eurozone sovereign debt crisis almost entirely through a verbal commitment — the ECB didn't launch actual bond-buying until 2015. The communication was credible because it was precisely formulated, institutionally backed, and pre-positioned as an absolute commitment. It produced a permanent regime change in how markets priced European sovereign risk, and it preserved trust in European institutions during a crisis that could have destroyed the EU. Paulson's TARP communication, by contrast, transformed a financial rescue that ultimately returned money to taxpayers into the defining populist grievance of a generation — the "Wall Street got bailed out and Main Street got sold out" narrative that fed both the Tea Party and Occupy Wall Street and arguably contributed to Trump's 2016 victory. The policy was similar. The communication was different. The political consequences lasted fifteen years.</p>
+
+  <p>Hurricane Helene in 2024 demonstrated the current vulnerability in real time. Federal emergency operations were, by operational metrics, functioning effectively. But 160M+ social media views of fabricated claims about FEMA abandoning communities ran uncontested for days because no pre-positioned institution existed to provide rapid, credible, authoritative counter-information. The disinformation spread ten times faster than any correction capacity that existed.</p>
+
+  <p>The specific gap: no philanthropic or non-governmental institution currently does pre-crisis communication preparation across any crisis domain. Pre-testing communication frames for financial bailouts (so that "protecting your savings" beats "bailing out banks" before the crisis happens). Building independent science communication networks that can operate even when CDC communications staff have been reduced. Developing rapid-response protocols for crisis-period misinformation. Training financial journalists on how to communicate monetary policy interventions without using the vocabulary that creates populist narratives.</p>
+
+  <p>A $6–8M/year program covering financial crisis communication ($2M), pandemic communication ($2M), infrastructure/cyber communication ($1.5M), and coordination/research ($2.5M) would be the first dedicated institution of its kind. The research considered three organizational models: a standalone institution (highest eventual credibility but years to build), a consortium of existing institutions (faster but coordination costs), and an embedded program at a single trusted anchor. The recommended approach is a consortium anchored at Johns Hopkins Center for Health Security (bio), Peterson/Brookings (financial), and CNAS (cyber/infrastructure), with a small coordinating secretariat and pre-committed inter-institutional protocols.</p>
+
+  <h2 id="portfolio">The $50M/year portfolio</h2>
+
+  <p>The research synthesizes into a three-pillar portfolio organized by causal position in the crisis-to-populism chain: Prevention (reducing crisis probability), Response (ensuring crises don't become trust-destroying events), and Attribution (ensuring accurate accountability when crises occur).</p>
+
+  <div class="pillar">
+    <h4>Pillar 1: Prevention — $23M/year</h4>
+    <p><strong>Fed independence rapid-response ($3M)</strong> — New entity anchored at Peterson Institute and Brookings Hutchins Center for legal strategy, public communication, and congressional education. Fills a gap that has no current defender.</p>
+    <p><strong>Financial regulatory capacity ($4M)</strong> — Better Markets capacity expansion ($2M), Roosevelt Institute research ($1M), academic financial regulation researchers ($1M). Doubles the non-industry voice.</p>
+    <p><strong>Pandemic intelligence/early warning ($7M)</strong> — UC Davis One Health PREDICT-successor ($3M), academic pathogen surveillance network ($2M), global laboratory characterization network ($2M). Restores capabilities the government abandoned.</p>
+    <p><strong>CISA shadow capacity ($6M)</strong> — CNAS/CSIS/RAND consortium ($4M, 25–30 person analytical team), CIS/MS-ISAC gap-fill ($2M). Keeps analytical expertise alive.</p>
+    <p><strong>Election infrastructure ($3M)</strong> — Verified Voting ($1.5M), Brennan Center ($1M), state election security technical assistance ($0.5M). Most direct cyber target for democratic manipulation.</p>
+  </div>
+
+  <div class="pillar">
+    <h4>Pillar 2: Response — $21M/year</h4>
+    <p><strong>Crisis communication infrastructure ($6M)</strong> — Bio ($2M: independent academic consortium + science communication network), financial ($2M: Brookings/Peterson pre-positioned team + journalist training), infrastructure/cyber ($1.5M: multi-hazard rapid response), coordination ($0.5M). Highest ratio investment in the portfolio.</p>
+    <p><strong>State health department capacity ($7M)</strong> — Direct to 3–5 swing state health departments ($5M), epidemiological workforce development ($2M). Highest-evidence pandemic response investment.</p>
+    <p><strong>Automatic stabilizer advocacy ($5M)</strong> — CBPP ($2M), Hamilton Project ($1.5M), congressional education ($1.5M). Reframed as crisis preparedness, not social policy.</p>
+    <p><strong>Anti-infodemic infrastructure ($3M)</strong> — New entity modeled on First Draft/Full Fact ($2M), counter-messaging research ($1M). Hurricane Helene demonstrated the gap.</p>
+  </div>
+
+  <div class="pillar">
+    <h4>Pillar 3: Attribution — $6M/year</h4>
+    <p><strong>Independent crisis assessment body ($4M)</strong> — NTSB-equivalent for crisis response ($3M), transparency/accountability research ($1M). Prevents generalized institutional blame by focusing accountability on specific decisions.</p>
+    <p><strong>Cascade resilience research ($2M)</strong> — Santa Fe Institute/academic network ($1M), inter-agency coordination advocacy ($1M). Most under-studied but potentially highest-upside category.</p>
+  </div>
+
+  <div class="number">
+    <span><strong>$50M/yr</strong> total portfolio</span>
+    <span><strong>46%</strong> prevention</span>
+    <span><strong>42%</strong> response</span>
+    <span><strong>12%</strong> attribution</span>
+  </div>
+
+  <p>For a donor with $5M/year rather than $50M, the synthesis recommends concentrating on two investments: crisis communication infrastructure ($3M/year across all domains) and Fed independence rapid-response capacity ($2M/year). These two fill the most specific identified gaps with no current defender, operate on the highest-evidence causal pathways, and provide coverage against both the highest-probability (pandemic) and highest-populism-production (financial) crisis types simultaneously.</p>
+
+  <h2 id="comparison">Versus other philanthropic frames</h2>
+
+  <p>The research explicitly compared crisis insurance to the three most prominent alternative frames for democratic resilience philanthropy: institutional hardening (protecting courts, inspectors general, civil service), service quality improvement, and elite defection prevention.</p>
+
+  <p><strong>Versus institutional hardening.</strong> The two frames are complementary, not competing. Institutional hardening (courts, IGs, civil service) maintains the governance infrastructure through non-crisis periods. Crisis insurance activates when that infrastructure is most stressed — during acute events when governance failures are visible and politically attributable. The research found that crisis insurance should be the larger investment in the current threat environment because the risk of major crisis is elevated (pandemic intelligence degraded, cyber resilience reduced, financial regulatory capacity weakened) while institutional hardening tends to have longer time horizons. But a $50M/year funder should fund both, with crisis insurance as the dominant allocation.</p>
+
+  <p><strong>Versus service quality improvement.</strong> Service quality improvement operates on a slow timescale (trust builds at 0–2pp/year from service improvements) and is particularly susceptible to partisan filtering (opposition voters don't credit the incumbent's government for service improvements). Crisis insurance operates on a fast timescale and bypasses partisan filtering for the prevention pillar entirely: a crisis prevented produces no political processing at all. At the current moment of elevated crisis risk, the research found crisis insurance higher-leverage by approximately 5–14x, depending on assumptions about partisan filtering severity.</p>
+
+  <p><strong>Versus elite defection prevention.</strong> Elite defection — when judges, senior officials, and military officers withdraw support from democratic norms — is often caused by the populist pressure that crises produce. Crisis insurance is upstream: prevent the crisis, reduce the populist pressure, reduce the probability of elite defection. The research found crisis insurance more leveraged than elite defection prevention because it addresses the root cause rather than the intermediate mechanism.</p>
+
+  <h2 id="cruxes">Key cruxes</h2>
+
+  <table>
+    <thead>
+      <tr><th>Crux</th><th>If true</th><th>If false</th><th>Current assessment</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Trust asymmetry ratio ≥1.3x</strong></td>
+        <td>Prevention remains 5–14x more efficient than trust-building</td>
+        <td>Trust-building becomes competitive</td>
+        <td>True — Slovic ratio ~1.5x, confirmed across domains</td>
+      </tr>
+      <tr>
+        <td><strong>FST +30% replicates in modern polarized democracies</strong></td>
+        <td>Financial crisis prevention is #1 priority</td>
+        <td>Pandemic and cyber rise in relative priority</td>
+        <td>Likely — observed 1870–2014, no structural reason to expect change</td>
+      </tr>
+      <tr>
+        <td><strong>COVID response quality is causal, not confounded</strong></td>
+        <td>Response investments are high-leverage</td>
+        <td>Pre-existing polarization drives both poor response and trust loss</td>
+        <td>Mostly — within-country variation and Taiwan evidence support causality, with partisan filtering caveat</td>
+      </tr>
+      <tr>
+        <td><strong>Partisan filtering caps US response benefits</strong></td>
+        <td>Shift portfolio dramatically toward prevention; response investment worthless in US</td>
+        <td>Full 10–15pp trust preservation available from response quality</td>
+        <td>True in US (Rodriguez 2022); does not apply to less-polarized democracies</td>
+      </tr>
+      <tr>
+        <td><strong>A major crisis occurs in the next 5 years</strong></td>
+        <td>Portfolio pays off immediately</td>
+        <td>Investments remain latent insurance</td>
+        <td>Elevated risk: pandemic intelligence degraded, cyber threat elevated, financial regulatory capacity reduced</td>
+      </tr>
+      <tr>
+        <td><strong>Financial crisis communication can alter political narrative</strong></td>
+        <td>The $2M communication investment is very high-leverage</td>
+        <td>Communication is downstream of structural factors</td>
+        <td>Suggestive — Draghi vs. Paulson natural experiment — but N=2</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The most important unresolved crux is partisan filtering. If opposition voters in the United States now filter all crisis experience through partisan identity — blaming the incumbent regardless of response quality, crediting the incumbent's party regardless of response failures — then the Response pillar of the portfolio loses most of its value in the US context. The Prevention pillar retains full value regardless, because preventing a crisis produces no political processing. This argues for concentrating response investments in less-polarized democracies and redirecting US dollars overwhelmingly toward Prevention.</p>
+
+  <details>
+    <summary>The creative synthesis: what all three runs missed</summary>
+    <div class="details-body">
+      <p>Each crisis run identified gaps within its domain. Putting them together produced insights none of the individual runs found.</p>
+      <p><strong>Crisis communication as the universal lever.</strong> Each domain run identified communication failures specific to its crisis type. The synthesis found that a single piece of infrastructure — an independent, pre-positioned, non-governmental crisis communication institution — would improve outcomes across all crisis types simultaneously. This cross-domain insight justified treating communication infrastructure as a standalone pillar rather than an afterthought within each domain budget.</p>
+      <p><strong>Automatic stabilizers as crisis preparedness, not social policy.</strong> The financial crisis run identified that populism is driven by economic hardship, not just attributional dynamics. The synthesis reframed automatic stabilizers — UI, SNAP, housing support — as pre-committed crisis buffers that reduce the personal devastation that fuels populist politics, regardless of whether the crisis is financial, pandemic-related, or infrastructure-driven. This reframing opens a new political rationale: automatic stabilizer advocacy as emergency preparedness, which is politically defensible in ways that "help the poor" is not.</p>
+      <p><strong>The biosecurity-democracy nexus.</strong> Pandemics don't just erode trust — they are used to justify emergency power grabs. V-Dem data shows 51 countries implemented unlimited emergency powers during COVID, and many haven't fully rescinded them. This means pandemic preparedness has a second democratic resilience channel beyond trust preservation: reducing the probability and severity of events used as pretexts for power consolidation. Investment in emergency powers frameworks ($1–2M/year) sits at this intersection and is almost entirely unfunded.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>What doesn't work: the portfolio anti-recommendations</summary>
+    <div class="details-body">
+      <p><strong>Directly funding FEMA or federal preparedness.</strong> FEMA is already funded at over $20B/year. The philanthropic leverage is not in supplementing government capacity in well-resourced domains but in filling specific gaps — state-level delivery, communication infrastructure, analytical capacity that has been politically eliminated.</p>
+      <p><strong>Crisis simulation theater.</strong> Event 201 was a pandemic tabletop exercise that ran in October 2019. COVID arrived three months later and the simulation had essentially no impact on US response quality. The value of simulation exercises depends on whether the findings are implemented. Funding exercises without implementation pathways is low-leverage. The research recommends against pure simulation investment and in favor of simulation combined with mandatory implementation review and post-exercise accountability mechanisms.</p>
+      <p><strong>Trust-building communication campaigns aimed at improving government's image during non-crisis periods.</strong> The evidence that general government communications campaigns build durable trust is essentially non-existent. The money is better spent on preventing the crises that destroy trust, not on building trust that will be destroyed anyway.</p>
+    </div>
+  </details>
+
+  <h2 id="docs">Source documents</h2>
+
+  <ul class="bullets">
+    <li><a href="https://docs.google.com/document/d/1S2L758afLZTXgPcBnn4-3hBy3hQuA5g3Sitg1vElnUA/edit">Crisis Insurance Synthesis</a> — integrated portfolio and full argument (Google Doc)</li>
+    <li><a href="https://docs.google.com/document/d/1GDeyHhQ5f5IBLx4jnogLFEPe1GGoLEGApWW5Pp_tT5o/edit">Crisis Typology</a> — which crises produce the most populism, and why</li>
+    <li><a href="https://docs.google.com/document/d/1nNw2Mh3wMyE_-ZIEbLgODc2d-VScQxdUm5W0NiYsZ-U/edit">Bio and Pandemic Preparedness</a> — trust production function in health crises</li>
+    <li><a href="https://docs.google.com/document/d/1DWsh8-FLYXpwEgkQhsEGjuoQFwRiRn2in2e2Xd8K5MU/edit">Financial and Cyber Threats</a> — why financial crises produce so much populism, and the CISA gap</li>
+  </ul>
+
+</main>
+</div>
+
+<script>
+const navLinks = document.querySelectorAll('nav ul li a');
+const sections = document.querySelectorAll('main h2[id]');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`nav a[href="#${e.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>

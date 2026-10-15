@@ -1,0 +1,30 @@
+
+=== Launching: NeoTest_BOTEC_sensitivity_c2_community_adherence_a_20260921_114152 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+All checks pass:
+- `synthesis.md`: 601 lines (in 600–1000 range)
+- All 14 sections present (exec summary through conclusion + references)
+- Every in-text claim inline-hyperlink-cited
+- Bare URLs confined to References section (line 558+)
+- Recommended c2 central + range stated with clear verdict (mode-conditioned pair: passive 0.20–0.35 / protocolized 0.55–0.70)
+- `progress.json`: `done: true`, all phases `complete`, iteration 6
+
+<promise>DONE</promise>
+Done (DONE signal). Stopping.
+=== Completed: NeoTest_BOTEC_sensitivity_c2_community_adherence_a_20260921_114152 (iterations used: 1) ===
+Uploading to Google Docs...
+  Saved local copy: /Users/parthahya/tools/research_loop_tool/research_runs/NeoTest_BOTEC_sensitivity_c2_community_adherence_a_20260921_114152/full_document.md
+  Uploading full doc...
+  Found 3 tables to render
+  Inserted 3 empty tables
+  Filled 17 table rows
+  Applied table formatting (font 10pt, fit to page)
+Full doc created: https://docs.google.com/document/d/1SNykG1vvB0IzsccdaQI8zfoLv2USDMB_NZvEIZYxE7c/edit
+  Uploading summary doc...
+  Found 3 tables to render
+  Inserted 3 empty tables
+  Filled 17 table rows
+  Applied table formatting (font 10pt, fit to page)
+Summary doc created: https://docs.google.com/document/d/1u_psj-MXcJT6-xt4oUyEyuH7SfDFWDn0jvvniTi_PDE/edit

@@ -1,0 +1,107 @@
+
+=== Launching: Passage_Canada_PR_pathway_reliability_20260922_120000 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+
+=== Launching: Passage_Canada_PR_pathway_reliability_20260922_120000 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+**Phase 0 complete.** Key findings:
+
+1. **George Brown's 2-year Practical Nursing diploma qualifies for a 3-year PGWP** — good program design by Passage
+2. **LPN programs are PGWP-eligible** (confirmed June 2025 after being in limbo)
+3. **Standalone Express Entry is NOT viable** — typical Passage grad CRS ~330-380 vs healthcare draw cutoff ~462-476. **PNP nomination (+600 CRS) is the critical pathway**
+4. **Ontario's new Priority Healthcare Stream** (2026) is favorable — doesn't require a job offer
+5. **Tightest constraint**: 3-year PGWP gives only ~24 months after the 12-month work experience requirement for PNP + PR processing — very little slack for delays
+6. **Immigration retrenchment is real** (PR targets down from 485K→365K, study permits from 485K→150K) but healthcare is a relatively protected category
+
+--- Iteration 2 / 8 ---
+**Phase 0 already complete** (from prior session). Key findings confirmed via fresh web research:
+
+1. **PGWP eligibility PROTECTED**: CIP 51.3901 (LPN) confirmed on IRCC eligible list under "Healthcare and social services"
+2. **George Brown 2-year diploma → 3-year PGWP**: Well-designed program choice. A 20-month program would only yield 20 months — critically tight
+3. **Express Entry alone INSUFFICIENT**: Typical Passage grad CRS ~330-380 vs healthcare draw cutoff ~462-475. Gap of ~80-145 points
+4. **PNP is THE pathway**: +600 CRS bonus guarantees invitation. Ontario's new Priority Healthcare Stream (2026) doesn't require a job offer — favorable
+5. **Immigration retrenchment real but healthcare protected**: PR targets down to 380K/yr (from 500K), but PNP allocations UP to 91,500 (from 55K). Healthcare category draws continue
+6. **Timeline tight**: 3-year PGWP minus ~12mo work requirement = ~24 months for PNP + PR processing. Little slack for delays
+
+The binding constraint is the **PNP nomination timeline** against the PGWP clock, not PGWP eligibility itself.
+
+**STOP.** Phase 0 complete. Ready for Phase 1 on next iteration.
+
+--- Iteration 2 / 8 ---
+**Phase 1 complete.** Key findings:
+
+1. **Best anchor: 58% healthcare TFW-to-PR rate** (StatCan 2025, covering 2000-2022) — much better than the 30% all-student rate because Passage graduates are in healthcare, at a public college, in Ontario
+2. **Retrenchment haircut ~10-15pp** needed because the 58% was measured during immigration expansion; adjusted anchor **~43-48%** for 2026-2031 cohorts
+3. **Filipino healthcare workers hit 77%** — the ceiling for well-supported cohorts, suggesting Passage's structured support could push graduates toward the upper end
+4. **PNP is THE pathway** — standalone Express Entry CRS (~330-380) is well below the healthcare draw cutoff (~462-476), so PNP nomination (+600 CRS) is essential
+5. **Two correlated risks dominate**: F5 (PNP allocation exhaustion, 10-20%/yr) and F8 (policy regime change, fat tail) — these hit ALL students in a cohort simultaneously, not randomly
+6. **85% stay rate looks optimistic** against the 43-48% adjusted anchor, though Passage-specific uplift factors (structured support, Ontario healthcare stream, Canadian education) could narrow the gap. This will be quantified in Phase 2.
+
+--- Iteration 3 / 8 ---
+Phase 1 complete. Key findings:
+
+1. **58% healthcare TFW → PR rate** (StatCan 2025) is the right reference class anchor, measured during 2000-2022 expansion period. With a 10-15pp retrenchment haircut → **43-48% base** for 2026-2031 cohorts.
+
+2. **Africa study permit approval only 23% in 2024** (77% refusal) — the front-end gate is brutal for SSA applicants. This is a cost/intake problem, not directly a stay-rate problem.
+
+3. **PGWP expiry crisis**: 115k expired in 2025, only 12% transitioned. The 3-year PGWP window is tight with 12mo work req + PNP + PR processing.
+
+4. **Ontario terminated all OINP streams May 30, 2026** — replaced with a single Workforce Priority stream, healthcare-specific rules not yet published. Live regulatory uncertainty.
+
+5. **Post-PR retention strong** (80%+ at 1yr, 73-77% at 5yr in healthcare) — the income projection holds for those who DO get PR.
+
+6. **PNP is THE pathway** (standalone CRS too low) — PNP allocation exhaustion and policy regime change are the two correlated, non-diversifiable risks.
+
+The 85% stay-rate assumption looks **aggressively optimistic** against a 43-48% haircut-adjusted healthcare anchor. Phase 2 will quantify the impact on CE.
+
+--- Iteration 3 / 8 ---
+**Phase 2 complete.** Key findings:
+
+- **Central stay rate estimate: ~50% (band 35-65%)**, well below Passage's 85% assumption
+- Three methods converge: bottom-up 7-gate chain (44%), adjusted StatCan healthcare anchor (54%), scenario-weighted with fat tail (45%)
+- **85% is almost certainly too high** — it requires every gate at ~97.7%, which is impossible given the PNP gate alone at 60-80%
+- **CE overstatement at 50% vs 85%: ~38%** ($/DCY rises ~62%) because returners capture only ~8-9% of stayer income value
+- **Correlated tail risk**: ~10% probability of a cohort-wide severe event (stay rate ~15%), driven by policy regime change
+- **PNP nomination is THE load-bearing gate** — Express Entry CRS too low without it, and PNP allocations are volatile/politically determined
+- Pipeline thinning (fewer students = less PR competition) is a genuine +2-5pp tailwind
+
+Output written to `research/02_pr_risk_quantification.md`. Progress.json updated. Stopping — next iteration will execute Phase 3 (synthesis).
+
+--- Iteration 4 / 8 ---
+Phase 3 (synthesis) complete. `done: true` set in progress.json.
+
+**Summary of findings:**
+
+- **85% stay rate is not defensible.** No reference class supports it — not even Filipino healthcare workers (77%) during immigration expansion.
+- **Central estimate: ~50% (band 35-65%).** Three independent methods converge: bottom-up 7-gate chain (44%), adjusted StatCan healthcare anchor (54%), scenario-weighted with tail risk (45%).
+- **PNP nomination is THE pathway** — standalone Express Entry is closed at CRS ~330-380 vs cutoff ~462-476. Ontario's June 2026 stream overhaul adds live uncertainty.
+- **CE overstatement at 50% vs 85%: ~38% (1.62x $/DCY)** because returners capture only ~8-9% of stayer income value.
+- **Correlated tail risk: ~10% P(severe cohort-wide event)** where stay rate drops to ~15%.
+- **7 due-diligence recommendations**, led by: ask Passage for actual outcome data on prior cohorts, model at 50% central, and monitor Ontario's new Workforce Priority stream rules.
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: Passage_Canada_PR_pathway_reliability_20260922_120000 (iterations used: 4) ===
+Uploading to Google Docs...
+(Upload failed or not configured)
+All phases complete. Phase 2 research file updated with the Ontario Workforce Priority Stream job-offer requirement finding, synthesis amended, progress.json updated.
+
+**Key findings from this iteration:**
+
+1. **Ontario's new Workforce Priority Stream (June 2026) requires a permanent full-time job offer** — the old Priority Healthcare Stream's no-job-offer advantage is gone. A dedicated healthcare stream is planned but rules unpublished as of Sep 2026.
+
+2. **Ontario, BC, and Alberta ALL exhausted their 2025 PNP allocations** — PNP exhaustion is not a tail risk, it happened in the most recent year.
+
+3. **Saskatchewan's Health Talent Pathway** offers continuous year-round intake with ~2-week processing — strongest provincial diversification option.
+
+4. **International graduates earn 20.2% less than Canadian-born** ($52K vs $65K at bachelor level) — the $60K income assumption may also be slightly high.
+
+5. **Phase 2 file updated** with Ontario job-offer requirement section, PNP exhaustion confirmation, Saskatchewan fallback, and revised PNP gate probability (55-75%, down from 60-80%).
+
+**Run status: DONE.** Synthesis at 185 lines, 10 sections, 39+ URLs, verdict = 85% not defensible, central ~50%, CE overstated ~38%.
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: Passage_Canada_PR_pathway_reliability_20260922_120000 (iterations used: 3) ===
+Uploading to Google Docs...
+(Upload failed or not configured)

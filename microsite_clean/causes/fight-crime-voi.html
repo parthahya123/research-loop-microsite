@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fund to Fight Crime — Value of Information Analysis</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --accent: #1e3a5f; --text: #1a1a1a; --muted: #555; --border: #e0e4ea; --bg: #f8f9fb; --surface: #fff; --surface-alt: #f3f5f8; }
+  body { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.88; color: var(--text); background: var(--bg); }
+  .layout { display: flex; min-height: 100vh; }
+  nav { width: 220px; flex-shrink: 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 2.25rem 1.5rem; background: var(--surface-alt); border-right: 1px solid var(--border); }
+  nav .home { display: block; font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; color: #999; text-decoration: none; margin-bottom: 1.5rem; }
+  nav .home:hover { color: #333; }
+  nav h5 { font-family: system-ui, sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: #bbb; margin-bottom: .6rem; margin-top: 1.5rem; }
+  nav ul { list-style: none; }
+  nav ul li a { font-family: system-ui, sans-serif; font-size: 12.5px; color: #666; text-decoration: none; display: block; padding: .22rem .6rem; border-left: 2px solid transparent; }
+  nav ul li a:hover { color: var(--text); }
+  nav ul li a.active { color: var(--text); border-left-color: var(--accent); font-weight: 600; }
+  main { flex: 1; max-width: 760px; padding: 4rem 3.5rem 7rem; }
+  .eyebrow { font-family: system-ui, sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin-bottom: .6rem; }
+  h1 { font-size: 2.4rem; line-height: 1.15; font-weight: 700; letter-spacing: -.025em; margin-bottom: .45rem; color: #0f0f0f; }
+  .dek { font-family: system-ui, sans-serif; font-size: 15.5px; color: #666; margin-bottom: 3rem; line-height: 1.55; }
+  h2 { font-size: 1.45rem; font-weight: 700; margin-top: 3.75rem; margin-bottom: 1.1rem; letter-spacing: -.015em; padding-bottom: .45rem; border-bottom: 1px solid var(--border); scroll-margin-top: 1.5rem; color: #0f0f0f; }
+  h3 { font-size: 1.05rem; font-weight: 700; margin-top: 2.25rem; margin-bottom: .6rem; color: #222; }
+  p { margin-bottom: 1.25rem; }
+  a { color: #1d4ed8; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:hover { color: #1e3a8a; }
+  ul.bullets { margin: .6rem 0 1.4rem 1.6rem; }
+  ul.bullets li { margin-bottom: .5rem; }
+  .lede { font-size: 1.15rem; line-height: 1.7; color: #222; border-left: 3px solid var(--accent); padding-left: 1.4rem; margin: 2.5rem 0 2rem; font-style: italic; }
+  .lede strong { font-style: normal; }
+  .note { background: #f0f2f5; padding: .9rem 1.3rem; margin: 1.75rem 0; font-family: system-ui, sans-serif; font-size: 13.5px; line-height: 1.7; color: #444; border-left: 2px solid #ccd0d9; }
+  .number { font-family: system-ui, sans-serif; font-size: 13px; color: #555; background: #f0f4f9; border: 1px solid #dde3ec; padding: .7rem 1.1rem; margin: 1.5rem 0 1.5rem; display: flex; gap: 1.2rem; flex-wrap: wrap; }
+  .number span { white-space: nowrap; }
+  .number strong { color: #1e3a5f; }
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0 2rem; font-family: system-ui, sans-serif; font-size: 12.5px; }
+  th { background: #eef2f7; text-align: left; padding: .55rem .85rem; font-weight: 600; color: #333; border-bottom: 1px solid #ccd; }
+  td { padding: .5rem .85rem; border-bottom: 1px solid #e5e9f0; vertical-align: top; color: #333; }
+  tr:last-child td { border-bottom: none; }
+  details { border-top: 1px solid var(--border); margin: .25rem 0; }
+  details summary { padding: .75rem 0; font-family: system-ui, sans-serif; font-size: 14px; font-weight: 600; color: #333; cursor: pointer; list-style: none; display: flex; align-items: center; gap: .55rem; user-select: none; }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::before { content: '▶'; font-size: 9px; color: #aaa; transition: transform .15s; flex-shrink: 0; }
+  details[open] summary::before { transform: rotate(90deg); }
+  details summary:hover { color: var(--accent); }
+  .details-body { padding: .5rem 0 1.25rem 1.1rem; font-family: system-ui, sans-serif; font-size: 13.5px; line-height: 1.75; color: #444; }
+  .details-body p { font-family: system-ui, sans-serif; font-size: 13.5px; margin-bottom: .85rem; }
+  .details-body ul { margin: .3rem 0 .85rem 1.4rem; }
+  .details-body ul li { margin-bottom: .35rem; }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav>
+  <a class="home" href="../index.html">← Portfolio</a>
+  <h5>On this page</h5>
+  <ul>
+    <li><a href="#question">The question</a></li>
+    <li><a href="#frame">Why VoI is the right frame</a></li>
+    <li><a href="#decisions">The decisions at stake</a></li>
+    <li><a href="#govt">The government channel</a></li>
+    <li><a href="#e2p">Evidence-to-policy</a></li>
+    <li><a href="#baseline">Baseline effectiveness</a></li>
+    <li><a href="#portfolio">Portfolio design</a></li>
+    <li><a href="#comparison">VoI vs. direct CEA</a></li>
+    <li><a href="#cruxes">Key cruxes</a></li>
+    <li><a href="#docs">Source documents</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="eyebrow">Fund to Fight Crime — Doleac</div>
+  <h1>A Value of Information Analysis</h1>
+  <p class="dek">Three research runs — a direct cost-effectiveness analysis, a VoI framework, and a deep dive on the government budget channel — evaluate Jennifer Doleac's proposed $5–10M pre-seed research fund for crime-reduction evidence in the Global South. The VoI frame changes the answer dramatically.</p>
+
+  <h2 id="question">The question</h2>
+
+  <p>Jennifer Doleac proposes a pre-seed R&D fund ($5–10M) to run rigorous evaluations of crime-reduction interventions in the Global South — detective training, DNA databases, domestic violence programs, mental health access, cash transfers combined with cognitive behavioral therapy for high-risk young men. The fund would generate 4–9 randomized evaluations in Latin American and Sub-Saharan African contexts where currently almost no rigorous evidence exists.</p>
+
+  <p>The standard philanthropic question is: how cost-effective are the interventions the fund would eventually scale? A direct cost-effectiveness analysis gives approximately <strong>$6,700 per DALY</strong> — borderline against a $5,000/DALY bar, not competitive with GiveWell's top charities at $50–100/DALY. On this framing, the fund is a reasonable but not exceptional philanthropic investment.</p>
+
+  <p>But this is the wrong question for a research fund. The right question is: <em>how much is it worth to learn which crime-reduction interventions work in the Global South?</em> The fund doesn't deliver crime reduction. It generates evidence. Its value comes from shifting how billions of dollars of existing spending — IDB lending, LAC government security budgets, other philanthropic allocations — are allocated across interventions. This is a Value of Information (VoI) problem, and the answer is substantially different.</p>
+
+  <h2 id="frame">Why VoI is the right frame for a research fund</h2>
+
+  <div class="lede">A research fund's value is not in the interventions it evaluates. It is in the decisions it changes. The standard CEA misidentifies the unit of analysis.</div>
+
+  <p>The <a href="https://www.york.ac.uk/che/pdf/claxtonnice.pdf">VoI framework</a> from health economics asks: what would a decision-maker pay for better information about which interventions work, relative to their current best guess? The answer has two components. The Expected Value of Perfect Information (EVPI) — what certainty would be worth — is the upper bound. The Expected Value of Sample Information (EVSI) — what this specific research program contributes given its specific evaluations — is what the fund actually generates.</p>
+
+  <p>The scaling mechanism is the key insight. Current investment in rigorous crime-reduction evidence for the Global South is approximately $8–15M per year globally, almost entirely focused on violence against women. The IDB has committed $4B in security/justice lending for 2026–2028 with no research line. Latin American governments collectively spend $60–80B per year on security with essentially zero rigorous evidence base. If the fund's evaluations shift even a small fraction of this toward more effective interventions, the information is worth far more than the direct DALY calculation from the interventions the fund itself evaluates.</p>
+
+  <p><a href="https://econpapers.repec.org/article/oupjeurec/v_3a18_3ay_3a2020_3ai_3a6_3ap_3a3045-3089..htm">Vivalt (2020)</a> is the critical empirical input: if a particular result is positive and significant in one context, there is a 61% chance the next study of the same intervention will be insignificant, and a 7% chance it will be significant in the opposite direction. Context-specific evidence is therefore extremely valuable. You cannot reliably predict what will work in Latin America from evidence generated in Chicago.</p>
+
+  <h2 id="decisions">The decisions at stake</h2>
+
+  <p>VoI analysis requires specifying a decision that the information would inform. The research identified four decisions, ordered by magnitude and confidence.</p>
+
+  <p><strong>IDB security/justice lending ($4B over 3 years).</strong> The IDB's operational pipeline for citizen security spans 8 countries with $1.42B approved or in preparation, targeting police modernization, violence prevention, digital transformation, justice systems, and correctional reform. Currently, project design proceeds with minimal rigorous evidence — the IDB's Office of Evaluation and Oversight has documented that citizen security projects generally lack rigorous impact evaluation. A single piece of evidence that shifted one country project from a less to a more effective intervention would directly influence projects in similar countries, since IDB project design draws on regional precedents. Estimated E2P: 20–30%, reflecting partial institutional receptivity.</p>
+
+  <p><strong>LAC government security budgets ($60–80B/year).</strong> Brazil spent R$142.81B (~$27.7B) on public security in 2024. Colombia's insecurity costs 19.7% of GDP. Mexico spends $7.6–13B per year. Essentially none of this is informed by rigorous evaluation. The government budget channel is empirically the largest in absolute terms, though evidence-to-policy conversion is lower than the IDB channel. Estimated E2P: 8% central, with a bimodal distribution (see below).</p>
+
+  <p><strong>Philanthropic allocations (~$500M/year).</strong> The FCDO What Works to Prevent Violence program focuses almost entirely on violence against women, with almost nothing on policing or street violence. Ford Foundation spends ~$60M/year on criminal justice. The Spotlight Initiative has committed ~$500M toward ending gender-based violence. All of these are currently allocated with minimal evidence on which designs work in Global South contexts. The GiveDirectly precedent — where rigorous cash transfer RCTs shifted hundreds of millions in aid allocation — demonstrates that evidence CAN change philanthropic behavior at scale.</p>
+
+  <p><strong>US criminal justice ($280B/year).</strong> Deeply discounted for cross-context transfer, but Doleac's track record at Arnold Ventures ($125M/year in US criminal justice research, with documented policy wins including Utah's RCT requirement law) makes this a real if speculative upside channel. Included at a 5% weight in the model.</p>
+
+  <div class="number">
+    <span><strong>$468/DALY</strong> central VoI estimate</span>
+    <span><strong>$90–4,200</strong> range</span>
+    <span><strong>vs. $6,700</strong> direct CEA</span>
+    <span><strong>$50–100</strong> GiveWell top charities</span>
+  </div>
+
+  <h2 id="govt">The government channel: larger than assumed</h2>
+
+  <p>The deepening research run on the government budget channel produced a result that revised the VoI upward: government budgets are empirically the largest channel at central estimates, not the IDB.</p>
+
+  <p>The revision rests on two findings. First, the influenceable budget is much larger than the IDB's $1.3B/year. Even if only 35–45% of the $60–80B total LAC security budget is susceptible to evidence-based reallocation (excluding military budgets, federally fixed expenditures, and domains where organized crime prevents any reform), the influenceable pool is $20–35B/year — more than fifteen times the annual IDB lending. Second, even a small shift in that pool dominates the calculation. The research estimated a 4% budget shift per major evidence event (based on historical cases like Colombia's scaling of cash+CBT programs and Cali's adoption of epidemiological approaches), which translates to $800M–$1.4B in reallocated spending per successful evaluation with sustained policy uptake.</p>
+
+  <p>The formal comparison: at central estimates, the government budget channel generates EVSI of ~$163M/year vs. ~$60M/year for the IDB channel — approximately 2.7x larger. Even at the pessimistic 3% E2P, the government channel remains larger than the IDB channel in absolute EVSI terms because the budget base is so much bigger.</p>
+
+  <h2 id="e2p">Evidence-to-policy: the critical parameter</h2>
+
+  <p>The single parameter that most determines the VoI estimate is evidence-to-policy elasticity (E2P): the probability that a well-executed RCT changes actual spending decisions. This parameter swings the $/DALY estimate from $292 (at 40% E2P) to $1,170 (at 10% E2P) while all other parameters are held constant.</p>
+
+  <p>The deepening research found that E2P for LAC government security budgets is <strong>bimodal</strong>, not normally distributed. It clusters near 3–5% (institutional inertia, no evidence champion, national/federal level, military involvement) OR near 30–60% (municipal government, evidence champion present, post-mano-dura-failure political window, small jurisdiction with concentrated decision-making). The mean (~8%) obscures this bimodality.</p>
+
+  <p>The practical implication is significant. The fund should not target the "average" government. It should target the 15–20% of the distribution that represents municipal governments in post-failure windows with potential evidence champions — where E2P is 30–60% — and invest explicitly in increasing the probability that champions exist when windows open.</p>
+
+  <p>The three LAC cities that achieved large, sustained violence reductions — Medellín under Fajardo (2004–2011), Cali under Guerrero (1992–2000), Bogotá under Mockus and Peñalosa (1995–2003) — all followed the same pattern: an outsider political champion who was an evidence-oriented technical person (mathematician, epidemiologist, philosopher), city-level adoption rather than national, timing after visible failure of traditional approaches, and evidence brought BY the champion rather than pushed TO an existing politician. This pattern is reproducible. The fund can increase the probability that it occurs by building evidence champion networks across LAC cities — training evidence-oriented people for government roles, supporting think tanks that recruit from and feed into municipal government, creating cross-city learning networks.</p>
+
+  <p>Crime's political salience creates a counterintuitive pattern. The standard story says: high salience → populist responses → evidence ignored. But the evidence shows a second-order mechanism: when mano dura visibly fails (which it does, consistently), a policy window opens for alternatives. The failure of El Salvador's previous approaches before Bukele, the failure of Rio de Janeiro's UPP program, the failure of Mexico's militarized strategy — each creates a window in which evidence-based alternatives become politically viable. The fund should monitor these windows and pre-position evidence so that it is available when the window opens.</p>
+
+  <h2 id="baseline">The baseline effectiveness finding</h2>
+
+  <p>The deepening research attacked the VoI model's most consequential undefended assumption: that current LAC security spending operates at 50% of optimal. The finding revised this substantially downward — and strengthened the case for the fund.</p>
+
+  <p>The data on LAC security budget composition is stark. Of Brazil's approximately $20B in state security spending in 2023, 80% went to police forces and 20% to the penitentiary system. The amount allocated to rehabilitation and prevention: 0.02% of the total. Northern Triangle countries show 52.6% to public security operations, 44.3% to justice services, and 3.1% to prevention, protection, human rights, and rehabilitation.</p>
+
+  <p>The problem is not merely that prevention is underfunded relative to policing — it is that the dominant spending categories may themselves be operating far below potential. <a href="https://www.aeaweb.org/articles?id=10.1257/aer.20150503">DiTella and Schargrodsky's Buenos Aires natural experiment</a> found policing can be highly effective, but <a href="https://pubsonline.informs.org/doi/10.1287/mnsc.2016.2602">Mastrobuoni's work on shift deployment</a> shows effectiveness depends almost entirely on <em>how</em> officers are deployed, not headcount. Most LAC police forces lack the data infrastructure and institutional incentives for evidence-based deployment — they operate with random patrol, salary-mass budgeting, and administrative overhead. The same police force, redeployed with evidence-based hotspot targeting, could be 2–5x more effective per dollar.</p>
+
+  <p>More damaging: approximately 43% of LAC prisoners are unconvicted (the Bolivia figure is 83%). The causal evidence from Brazil shows criminal conviction reduces earnings by 25% and increases subsequent criminal activity by 13 percentage points. Prisons function as crime-amplifying networks in many LAC contexts. If 15–20% of security budgets go to incarceration that is net-criminogenic at the margin, the current spending effectiveness is substantially below 50% of optimal — the research estimated a central value of approximately 35%, with a range of 25–45%.</p>
+
+  <p>This is a one-directional correction that strengthens the fund's case: the original model was too optimistic about current spending effectiveness, which means the value of evidence that redirects spending is approximately 30% higher than previously calculated.</p>
+
+  <h2 id="portfolio">Portfolio design implications from VoI</h2>
+
+  <p>VoI analysis changes which evaluations the fund should prioritize — and the answer is counterintuitive.</p>
+
+  <p>The highest-EVSI evaluations are not the ones with the best existing evidence. They are the ones where we know the least and the most money is at stake. <strong>Detective training and police management</strong> has zero rigorous evaluations anywhere in the world, yet police budgets represent 60–70% of LAC security spending. One well-powered evaluation of evidence-based deployment strategies — hotspot policing, shift scheduling, problem-oriented approaches — could produce information relevant to hundreds of billions of dollars of police spending across the region. <strong>DNA databases and forensic capacity</strong> have strong US quasi-experimental evidence (<a href="https://jenniferdoleac.com/wp-content/uploads/2015/03/Doleac_DNA_databases.pdf">Doleac 2017: 17% recidivism reduction</a>) but zero Global South evidence, and the IDB actively funds police technology modernization. <strong>Cash plus CBT</strong> for high-risk men — the most narratively compelling intervention, with several existing RCTs — has lower marginal VoI precisely because we already have fairly tight priors from Blattman's Liberia work and Heller's Chicago evidence.</p>
+
+  <p>The VoI ranking also implies that null results should be welcomed and funded. Showing that a popular, well-funded intervention doesn't work in LAC contexts — CCTV, which the IDB funds extensively, is a candidate — redirects large amounts of existing spending and has high EVSI even though it's unsexy. A fund optimizing information value should include null-seeking evaluations of the most expensive current approaches.</p>
+
+  <p><strong>Policy engagement is not overhead — it is a core VoI multiplier.</strong> The fund's value is EVSI × E2P. Spending 15–20% of the budget on policy briefs, IDB partnerships, government convenings, and evidence translation directly increases E2P and therefore proportionally increases the value of every dollar spent on evaluations. The fund's design should explicitly budget for evidence champion cultivation in LAC municipal governments — this is the investment most likely to shift E2P from 8% toward the 30–60% range of the bimodal distribution's high tail.</p>
+
+  <h2 id="comparison">VoI versus direct CEA</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Approach</th>
+        <th>Central $/DALY</th>
+        <th>What's valued</th>
+        <th>Key crux</th>
+        <th>Robustness</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Direct CEA (standalone)</td>
+        <td>~$6,700</td>
+        <td>Direct evaluations → policy adoption → crime reduction</td>
+        <td>Evidence-to-policy rate</td>
+        <td>Low — sensitive to multiple parameters</td>
+      </tr>
+      <tr>
+        <td>Direct CEA (enabling scaling grant)</td>
+        <td>~$61</td>
+        <td>Pre-seed → scaling grant → large-scale adoption</td>
+        <td>P(scaling grant awarded and executed)</td>
+        <td>Very low — highly speculative</td>
+      </tr>
+      <tr>
+        <td><strong>VoI (aggregate)</strong></td>
+        <td><strong>~$468</strong></td>
+        <td>Information generated → decisions improved</td>
+        <td>Evidence-to-policy elasticity</td>
+        <td>Moderate — robust to 3 of 5 key parameters</td>
+      </tr>
+      <tr>
+        <td>VoI (government budget channel only)</td>
+        <td>Dominates IDB channel 2.7x</td>
+        <td>Better-informed LAC security budgets</td>
+        <td>E2P at government level; budget shift size</td>
+        <td>Moderate — now empirically grounded</td>
+      </tr>
+      <tr>
+        <td>GiveWell top charities</td>
+        <td>$50–100</td>
+        <td>Proven health interventions</td>
+        <td>Room for more funding</td>
+        <td>High</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The VoI frame is the most appropriate for a research fund and gives the most defensible estimate at ~$468/DALY — approximately 14x better than the direct CEA standalone, approximately 5–9x worse than GiveWell top charities. Under optimistic-but-defensible assumptions (35% E2P, 7 actionable evaluations, evidence champion investment in municipal governments), it reaches ~$180/DALY, approaching cash-transfer territory.</p>
+
+  <p>The honest limits of the VoI approach are worth stating. It assumes that decision-makers respond to evidence — if IDB, governments, and funders fundamentally don't update on crime evidence, EVSI collapses toward zero. The bimodal E2P distribution means the model hinges on whether the fund can access the high-E2P tail (municipal champions in post-failure windows) rather than the low-E2P mass (national security ministries with military influence). And the "current effectiveness at 35% of optimal" assumption — while now empirically grounded and directionally confirmed — carries significant uncertainty.</p>
+
+  <h2 id="cruxes">Key cruxes</h2>
+
+  <table>
+    <thead>
+      <tr><th>Crux</th><th>If true</th><th>If false</th><th>Current assessment</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>E2P > 15% at the government budget level</strong></td>
+        <td>Government channel dominates; fund highly attractive</td>
+        <td>Only IDB channel survives; fund borderline</td>
+        <td>Bimodal: 3–5% for national/federal, 30–60% for municipal with champion. Weighted mean ~8% — but fund can shift this</td>
+      </tr>
+      <tr>
+        <td><strong>Detective training evaluations produce positive results</strong></td>
+        <td>Highest EVSI category delivers; information transforms police budgets</td>
+        <td>Police management is context-specific; results vary widely across contexts</td>
+        <td>Zero prior evidence — maximal uncertainty = maximal EVSI regardless of result direction</td>
+      </tr>
+      <tr>
+        <td><strong>Vivalt's external validity finding applies to LAC crime</strong></td>
+        <td>Context-specific evidence is extremely valuable; global evidence doesn't generalize</td>
+        <td>Chicago evidence translates; Local RCTs have low marginal value</td>
+        <td>Likely — LAC contexts differ from US in enforcement capacity, incarceration intensity, gang structure, and economic context</td>
+      </tr>
+      <tr>
+        <td><strong>Fund can cultivate evidence champions in LAC cities</strong></td>
+        <td>E2P shifts toward 30–60% in target cities; government channel unlocks</td>
+        <td>E2P is exogenous to fund; champion cultivation fails</td>
+        <td>Medellín/Cali/Bogotá pattern shows champions can be cultivated but are rare and require sustained investment</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <details>
+    <summary>Why the direct CEA understates the fund's value</summary>
+    <div class="details-body">
+      <p>The direct CEA treats the fund as if it were directly delivering crime-reduction services. It estimates the DALY burden from crime in the Global South, applies the fund's expected evidence-to-policy conversion rate, and calculates cost per averted DALY. The result (~$6,700/DALY) is borderline against a philanthropic bar of $5,000/DALY.</p>
+      <p>But the direct CEA has a fundamental misspecification: it values only the fund's own evaluations, not the decisions those evaluations inform. When GiveDirectly's rigorous cash transfer evidence shifted hundreds of millions in aid from program-based delivery to direct cash, the value of that research vastly exceeded the cost of running the evaluations that produced it. The analogous calculation for crime evidence — what would a 10% improvement in the effectiveness of $1.3B of annual IDB lending be worth — produces a very different answer.</p>
+      <p>Including DCYs (Doubled Consumption Years — the lost household production from homicide victims, roughly 10.7 DCYs per homicide in addition to the direct health loss of ~37 DALYs) improves the direct CEA somewhat, but not enough to close the gap with GiveWell. The VoI frame is the appropriate one for making the fund competitive.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>The meta-research opportunity: generating evidence on E2P itself</summary>
+    <div class="details-body">
+      <p>The single number that most changes the VoI estimate is E2P. The fund can generate evidence on this parameter through its own operations. By tracking which evaluations reach policymakers (through citation in IDB project documents, government policy papers, and legislative debates), how policymakers update their beliefs (following Vivalt's policymaker-survey methodology), and what budget changes follow (through longitudinal monitoring of government security allocations in evaluation countries), the fund can produce the first rigorous dataset on evidence-to-policy conversion in Global South criminal justice.</p>
+      <p>This meta-research would itself be highly valuable for future research funding decisions — it would tell subsequent funders whether and under what conditions crime evidence actually changes behavior. Allocating 5–8% of the fund's budget to this meta-research ($350–600K) is a high-return investment that both improves the fund's theory of change and generates a public good for the field.</p>
+    </div>
+  </details>
+
+  <h2 id="docs">Source documents</h2>
+
+  <ul class="bullets">
+    <li><a href="https://docs.google.com/document/d/154jqA0Z1vZjue0zaJulL6GLaXqQDCtKbOcsKI9H8z2w/edit">Fund to Fight Crime — VoI Analysis</a> (Google Doc)</li>
+    <li><a href="https://docs.google.com/document/d/1W25s4r9ksovuLomaNO5RVrVUp4eTPm4Pj74HeezbiD0/edit">VoI Summary</a></li>
+    <li><a href="https://docs.google.com/document/d/1pYrZjPGokaFy4h6dGd-clONx5r8uVTns9zJlvBNTQus/edit">Fund to Fight Crime — Direct CEA</a></li>
+    <li><a href="https://docs.google.com/document/d/1M1DHdbUgHaVd5hsbEIgum7Hu15rjto9ROBsNPpH5rGI/edit">CEA Summary</a></li>
+  </ul>
+
+</main>
+</div>
+
+<script>
+const navLinks = document.querySelectorAll('nav ul li a');
+const sections = document.querySelectorAll('main h2[id]');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`nav a[href="#${e.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>

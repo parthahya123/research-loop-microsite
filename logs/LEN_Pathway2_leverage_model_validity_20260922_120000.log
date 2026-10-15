@@ -1,0 +1,128 @@
+
+=== Launching: LEN_Pathway2_leverage_model_validity_20260922_120000 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+
+=== Launching: LEN_Pathway2_leverage_model_validity_20260922_120000 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+Phase 0 complete. Key findings:
+
+**CHAI claims a 2.15× permanent leverage multiplier** via non-binding "scenario probability shifting." The prior Aug-2026 deep CEA independently estimated **~0.3× (range 0.1–0.8×)** — roughly 5–20× smaller.
+
+Three critical facts emerged:
+
+1. **Pathway 2A (government domestic funding) has ZERO documented cases** — all 8+ early-adopter African countries fund LEN via Global Fund + PEPFAR, not domestic budgets. The only plausible 2A candidates are South Africa and Botswana, and even SA's money is redirected GF allocation, not new domestic budget.
+
+2. **Pathway 2B (donor leverage) faces an attribution problem** — PEPFAR + Global Fund + CIFF + Gates + Unitaid + Gilead are all already committed to LEN scale-up (3M people through 2028, 600k doses in 2026 fully reserved). CHAI is one of many actors; isolating its counterfactual contribution is difficult.
+
+3. **~2/3 of the $68/DALY headline is leverage-dependent** — removing it collapses to ~$165 (targeted catalytic) or ~$450–610 (large funder, direct channel).
+
+Output: `research/00_pathway2_mechanism.md` + updated `progress.json`. STOP.
+
+--- Iteration 2 / 8 ---
+Phase 0 complete. Key findings:
+
+**Pathway 2A (government domestic funding):** ZERO documented cases of CHAI TA unlocking domestic government budget for LEN. All 8+ early-adopter countries are funded by Global Fund + PEPFAR. Even South Africa's R513M ($29.2M) comes from its GF grant, not the National Treasury.
+
+**Pathway 2B (donor leverage):** Partially credible but massively overstated. PEPFAR committed Sep 2025 before most CHAI country TA began; GF named LEN a priority independently. CHAI is not mentioned in GF's own rollout announcement. CHAI is one of many actors (Gilead, Gates, CIFF, Unitaid, AVAC, UNAIDS).
+
+**CHAI's genuine value:** Market-shaping via PRICE (ARV reductions, Dr Reddy's generic deal, 150+ deals) — this is a different mechanism from the co-financing leverage claimed. The $2.15x permanent multiplier has no contractual backing and is ~5-20x larger than the defensible acceleration credit (~0.1-0.4x).
+
+**The headline $68/DALY collapses to $165-450+ without the leverage artifact.**
+
+Stopping after Phase 0 as instructed.
+
+--- Iteration 2 / 8 ---
+**Phase 1 complete.** Output written to `research/01_chai_leverage_evidence.md`, progress.json updated.
+
+**Key findings:**
+
+1. **CHAI's market-shaping track record is real** (ARV prices, pediatric DTG, LEN generic deal) — but operates through a PRICE/SUPPLY mechanism, not the co-financing DEMAND mechanism Pathway 2 claims. Wrong mechanism for the leverage claim.
+
+2. **Zero documented cases** of CHAI TA unlocking new domestic government budget allocation for LEN or any program.
+
+3. **GiveWell's own TSU assessment** found zero evidence of past leverage achievement. The 5.3:1 minimum threshold needed to clear bar is ambitious and untested.
+
+4. **Broader empirical literature is AGAINST the claim**: Lu et al. (2010) found $0.43–$1.14 crowding OUT per $1 of aid. Pre-COVID PEPFAR countries increased domestic spending LESS than non-PEPFAR countries (+118% vs +132%). Gavi co-financing works only because it's a binding contractual requirement.
+
+5. **LEN attribution**: 10+ major actors claiming credit; Gilead/PEPFAR/GF/Gates all committed independently of CHAI. CHAI is additional at the margin (acceleration), not decisive (causation).
+
+6. **Post-PEPFAR paradox**: The largest single donor is withdrawing, shrinking the pool CHAI can "leverage."
+
+**Bottom line**: The 2.15× multiplier is unsupported by any rigorous evidence. Honest credit is acceleration at ~0.1–0.4×, collapsing the headline from $68 to $165–450+/DALY.
+
+--- Iteration 3 / 8 ---
+**Phase 1 complete.** Key findings supplemented and confirmed:
+
+1. **CHAI's leverage track record splits into two categories**: Price/market-shaping (STRONG, documented, 150+ deals) vs. co-financing/budget leverage (ZERO evidence). Pathway 2 claims the latter but only has evidence for the former.
+
+2. **Closest empirical analogue (PEPFAR SFI)**: $47.8M investment claimed $393M mobilized (8.2:1), but the paper itself concedes "specific increases in HIV budgets could not be demonstrated." Best case (Vietnam) was health-system reform, not commodity procurement. amfAR data shows pre-COVID PEPFAR countries increased domestic spending LESS than non-PEPFAR countries.
+
+3. **Crowd-out literature**: Farag 2009 found strong substitution especially in low-income countries (the LEN target geography). The one pro-leverage paper (PLOS Medicine 2012) was RETRACTED. Gavi's co-financing works only because it's a binding contractual requirement — CHAI's Pathway 2 has no binding instrument.
+
+4. **LEN-specific**: 10+ major actors with redundant commitments. PEPFAR and GF committed independently. CHAI is additional at margin (acceleration), not decisive (causation).
+
+5. **Evaluation gap**: No rigorous third-party evaluation of CHAI budget leverage exists anywhere. GiveWell's PPM grant implicitly acknowledges CHAI can't yet rigorously measure its own impact.
+
+**Next phase**: Phase 2 (stress-testing the leverage multiplier with arithmetic). STOP.
+
+--- Iteration 3 / 8 ---
+**Phase 2 — Leverage Stress-Test: COMPLETE.** STOP.
+
+Key findings:
+
+1. **Break-even leverage for $100/DALY = 1.77x** — no empirical support. Far above Gavi's binding co-financing (~0.2-0.3x), which is the best-documented leverage mechanism in global health.
+
+2. **CHAI's 2.15x is 7-10x higher** than the best empirically documented leverage from binding mechanisms, and the evidence from non-binding mechanisms (PEPFAR voluntary) shows **negative leverage** (crowd-out).
+
+3. **Sensitivity grid**: At empirically-defensible leverage (0.3x), CE = ~$290-450/DALY. At prior run's acceleration credit (0.3x with compounding), $165. At zero leverage, $608.
+
+4. **Pathway 2A (govt domestic) = ~$0** contribution (zero documented cases). **Pathway 2B (donor)** realistic at 0.1-0.4x acceleration only.
+
+5. **Post-USAID**: Donor pool shrinking reduces 2B leverage to 0.05-0.2x, CE ~$300-600.
+
+**VERDICT**: The CE case stands or falls on unverified leverage. At empirically-defensible levels, $165-450/DALY = better than cash but NOT GiveWell-class. Fund as market-shaping bet, not DALY buy.
+
+--- Iteration 4 / 8 ---
+Phase 2 complete. Key findings added to the stress test:
+
+**Phase 2 Summary — Leverage Stress Test:**
+
+1. **Break-even leverage for GiveWell $100/DALY bar: 1.77x** — no empirical support from any non-binding health TA program
+2. **Best empirical HIV-specific leverage: 0.12:1** (Health Policy Planning 2021, 134 countries) — CHAI's 2.15x is **18x higher**
+3. **MDB blended finance overstatement: ~10x** (claimed 8:1 vs actual 0.75:1) — leverage claims are systematically inflated even with profit motive
+4. **Gavi post-transition: mixed** — BMC event-study shows infant mortality +7.59/1000 LB after withdrawal, even from the strongest binding mechanism
+5. **Evidence-supported CE range: $300-550/DALY** (central ~$400) after realistic leverage (0.05-0.3x) + attribution haircut (20-50%) + post-PEPFAR contraction
+6. **Only 3 of 24 sensitivity grid cells beat GiveWell bar** — all require assumptions unsupported by evidence
+
+Phase 3 (synthesis) is next. STOP.
+
+--- Iteration 4 / 8 ---
+progress.json already shows `done: true` and `3_synthesis: complete` — a concurrent process already finalized it. The synthesis and progress are both complete.
+
+**Phase 3 (synthesis) is DONE.** Run is complete (`done: true`). QA passed:
+- synthesis.md: 152 lines, 10 sections, verdict table, all inline-hyperlinked, bare URLs only in References (line 134+)
+- All key_numbers populated in progress.json
+- All 4 phases marked complete
+
+**HEADLINE VERDICT**: CHAI's 2.15x leverage claim is **unsupported** — 7-10x above the best empirical binding mechanism (Gavi ~0.2-0.3x), 18x above HIV-specific best empirical leverage (0.12x). Pathway 2A contributes **zero** (no domestic budget cases). Pathway 2B provides real but modest acceleration (0.1-0.4x). At empirically defensible leverage, CE is **$165-450/DALY** — better than cash, NOT GiveWell-class. Two-thirds of the $68 headline is an unverified leverage artifact. Fund as market-shaping bet (~$3-5M), not as $/DALY buy.
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: LEN_Pathway2_leverage_model_validity_20260922_120000 (iterations used: 4) ===
+Uploading to Google Docs...
+(Upload failed or not configured)
+Phase 3 synthesis **COMPLETE**. `done: true` set in progress.json.
+
+**Summary of findings:**
+
+- **2.15x leverage claim: NOT credible.** Zero empirical basis; 7-10x above best binding mechanism (Gavi ~0.2-0.3x); ~18x above HIV-specific empirical leverage (0.12:1)
+- **Pathway 2A (govt domestic funding): ~$0 contribution.** Zero documented cases of CHAI TA unlocking domestic LEN budget — all procurement is GF/PEPFAR-funded
+- **Pathway 2B (donor leverage): partial, modest.** CHAI provides real acceleration (generic deal, country TA) but major commitments were independent. Realistic credit: 0.1-0.4x acceleration
+- **CE at realistic leverage: $250-450/DALY** — better than cash, NOT GiveWell-class. Two-thirds of the $68 headline is unverified leverage artifact
+- **Recommendation: fund ~$3-5M as market-shaping bet**, not at $68/DALY headline. Gate on documented domestic budget allocation + measurable acceleration evidence
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: LEN_Pathway2_leverage_model_validity_20260922_120000 (iterations used: 4) ===
+Uploading to Google Docs...
+(Upload failed or not configured)

@@ -1,0 +1,22 @@
+
+=== Launching: NeoTest_GeneXpert_full_pricing_history_and_lessons_20260920_231155 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+<promise>DONE</promise>
+Done (DONE signal). Stopping.
+=== Completed: NeoTest_GeneXpert_full_pricing_history_and_lessons_20260920_231155 (iterations used: 1) ===
+Uploading to Google Docs...
+  Saved local copy: /Users/parthahya/tools/research_loop_tool/research_runs/NeoTest_GeneXpert_full_pricing_history_and_lessons_20260920_231155/full_document.md
+  Uploading full doc...
+  Found 10 tables to render
+  Inserted 10 empty tables
+  Filled 75 table rows
+  Applied table formatting (font 10pt, fit to page)
+Full doc created: https://docs.google.com/document/d/1whtn0uBlCNsd73-qHDkf1oKnWBSPoO0TxD71ktYSY6U/edit
+  Uploading summary doc...
+  Found 10 tables to render
+  Inserted 10 empty tables
+  Filled 75 table rows
+  Applied table formatting (font 10pt, fit to page)
+Summary doc created: https://docs.google.com/document/d/18m3TmpXbAyiYqxv3g3lEMikjenBGtC84G-2wffCj4U4/edit

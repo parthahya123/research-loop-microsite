@@ -1,0 +1,84 @@
+
+=== Launching: NeoTest_PSBI_global_effective_coverage_20260922_120000 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+**Phase 0 complete. STOP.**
+
+Key findings from Phase 0:
+
+1. **~8-9 countries** have adopted WHO PSBI simplified regimen into national policy (Bangladesh, DRC, Malawi, Nigeria, Pakistan, Ethiopia, Kenya, Tanzania, India)
+
+2. **ALL published coverage figures come from tiny pilot areas** covering <1% of national geography in each country:
+   - Nigeria: 2 LGAs of 774 (0.26%)
+   - Ethiopia: ~2-4 woredas of ~1,000 (~0.4%)
+   - Tanzania: 3 districts of ~169
+
+3. **Within-pilot coverage is high** (75-97%) but these are **intensively-supported research settings with dedicated Technical Support Units** — not routine health system performance
+
+4. **Ethiopia effective coverage of appropriate antibiotics** even within pilot sites: **32.6% baseline -> 61.8% after intensive intervention**. Gentamicin stockouts at **50-69% of health posts** even in pilot areas.
+
+5. **The 3.5% figure in the prompt is actually the case fatality rate** from Dada 2020, not an effective coverage rate. But the underlying point is correct: **effective PSBI coverage at national population level in any of these countries is presumptively near zero** outside the handful of pilot sites.
+
+6. **No evidence exists of routine national-level PSBI implementation** in any country. The NeoTest community arm assumes infrastructure that exists only in policy documents and small research enclaves.
+
+--- Iteration 2 / 8 ---
+**Phase 1 complete. STOP.**
+
+**Headline finding:** Nigeria's national population-level effective PSBI coverage is **~0.1%** (band 0.03-0.3%) — a **~1,000× gap** from the 95.5% within-pilot figure.
+
+Three decisive findings:
+
+1. **Nigeria's NCSAP 2025-2029 does not mention PSBI at all.** The flagship child survival plan for the next 5 years covers iCCM for malaria/pneumonia/diarrhea but completely omits neonatal sepsis community management. 78,146 CHIPS agents have been trained — none for PSBI.
+
+2. **The effective coverage cascade collapses at Step 3** (reaching a facility with PSBI capacity): only 2 of 774 LGAs (0.26%) have ever had PSBI implementation, and only 6.5% of PHCs operate 24 hours. Care-seeking (~40%) is the first major loss, but the near-zero PSBI infrastructure availability is the fatal step.
+
+3. **CGD's modeled 294k/yr community tests for Nigeria** would require functional PSBI infrastructure that serves ~0.1% of PSBI episodes nationally. Realistic community-arm volume: **~300-3,000 tests/yr**, not 294,000.
+
+Output: `research/01_nigeria_psbi_coverage.md` (126 lines, fully sourced). Next phase: Ethiopia, Uganda, Kenya, Tanzania coverage estimates.
+
+--- Iteration 3 / 8 ---
+**Phase 2 complete.** Key findings:
+
+**Country-by-country national effective PSBI coverage:**
+- **Ethiopia ~1-3%** — best case globally; 42k HEWs + national CBNC but only 15% guideline-compliant dual therapy after 4yr rollout; gentamicin availability 35%; CBNC fidelity 4.5% in routine system
+- **Uganda ~0%** — VHTs explicitly NOT authorized for PSBI treatment; policy makers excluded community neonatal sepsis treatment; iCCM covers ages 2-59 months, NOT neonates
+- **Kenya ~2-5%** — 107k CHPs but kits lack gentamicin/amoxicillin; PSBI in 2/47 counties; 70% referral acceptance = best in SSA
+- **Tanzania ~0.5-2%** — 3/169 councils with PSBI; 82% gentamicin in pilot (best drug availability); 28% referral acceptance
+- **DRC ~0.1-0.5%** — 1 province, expired research only
+- **Ghana ~0%** — no PSBI programme
+
+**Aggregate realistic community-arm: ~8,000-30,000 tests/yr** vs. CGD modeled ~400-500k = **overstated 15-60x**. The "pilot island" pattern is universal — every country has policy adoption + 2-4 tiny research sites + no routine scale-up. Gentamicin supply chain is the binding constraint across all countries.
+
+--- Iteration 4 / 8 ---
+**Phase 3 complete.** Key findings:
+
+1. **The Chevalier OFID model has NO parameter for effective PSBI coverage.** The community cohort is 5,000 infants who have *already presented* to a PSBI-capable health worker — everything upstream (care-seeking, facility reach, training, drug supply) is assumed 100% functional.
+
+2. **The CGD NeoTest volume projection assumes ~100% effective coverage** when converting national pSBI incidence → test volumes. Nigeria modeled at ~294k community tests/yr; realistic = 90-880.
+
+3. **New 2026 systematic review** (BMC Public Health, PMID 41462174, 16 studies, 15,406 infants) finds within-PSBI-pilot-site effective coverage pooled at **58% (38-78%)** — but these are within research-supported settings, not national scale.
+
+4. **Corrected community arm: ~900-3,400 tests/yr vs ~433,000 modeled = overstated 130-480x.** This is the single largest source of overstatement in the NeoTest CEA — larger than all other corrections combined.
+
+5. **Circular dependency**: POCT adds value only where PSBI infrastructure exists → PSBI infrastructure barely exists → $10M implementation fund is 100-1,000x too small to build it.
+
+Phase 3 file written to `research/03_cgd_model_psbi_assumption.md`. Progress.json updated. **STOP.** Next iteration: Phase 4 (Synthesis).
+
+--- Iteration 5 / 8 ---
+**Phase 4 (Synthesis) complete. Run is done.**
+
+synthesis.md: 260 lines, 41 hyperlinked citations, 12 sections. Key findings:
+
+- **Community arm overstated ~130-480x** (900-3,400 realistic tests/yr vs 433,000 modeled)
+- **Nigeria** (~72% of community volume): ~0.1% effective PSBI coverage; NCSAP 2025-29 doesn't even mention PSBI; 0 of 78k CHIPS agents trained in PSBI; 2 of 774 LGAs have pilot data
+- **Ethiopia** (best case): ~1-3% despite 42k HEWs + national CBNC programme
+- **Uganda**: ~0% — VHTs explicitly not authorized for neonatal PSBI treatment
+- **CGD model has no PSBI coverage parameter** — community cohort = 5,000 already-presenting infants, 100% upstream infrastructure assumed
+- **Circular dependency**: POCT needs PSBI infrastructure that doesn't exist; $10M implementation fund is 100-1000x too small to build it
+- **This is the single largest overstatement** in the NeoTest CEA — larger than TAM-denominator (~2x), DALYs/test (~2x), discounting (~1.5x), or adoption curve (~20x)
+- **Recommendation**: restructure as hospital/facility-only pull mechanism; gate community-arm disbursement on demonstrated >10% PSBI effective coverage
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: NeoTest_PSBI_global_effective_coverage_20260922_120000 (iterations used: 5) ===
+Uploading to Google Docs...
+(Upload failed or not configured)

@@ -1,0 +1,20 @@
+
+=== Launching: NeoTest_cgd_hta_appendix_b_prescribing_20260923_130000 ===
+=== Model: Opus 4.6 | Max iterations: 6 ===
+
+--- Iteration 1 / 6 ---
+Run is **COMPLETE**. All 4 phases done, `progress.json` has `done: true`, synthesis.md is 205 lines.
+
+**HEADLINE FINDING:** The Mode A net-harm objection is **RESOLVED** for TPP-grade devices. The prior f_cf = 0.87 was a denominator error — it included always-treated H-risk babies in the denominator. The correct grey-zone f_cf from WP744 is **~0.54**, supported by 3 independent sources (WP744 CJ params, Heys 2025 Neotree, clinical judgment accuracy literature).
+
+Key numbers:
+- **Break-even Se drops from 0.87 to 0.54** (simple) / 0.72 (WP744 full model) — a 33pp shift
+- **At Se=0.90 + f_cf=0.54: +0.226 DALYs/test** (vs +0.029 prior = 7.8x improvement)
+- **Se=0.85 flips** from net-harmful (-0.011) to net-positive (+0.188)
+- **Margin above break-even** expands from +3pp to +36pp at TPP
+- Mode A is now the **dominant value proposition** (75x Mode B), not the liability
+- **Remaining safeguard:** AMC gate on TPP-grade neonatal capillary sensitivity (Se >= 0.90) — sub-TPP devices (MeMed BV 37.5% cautionary) could still fall below WP744 min-sens 0.72
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: NeoTest_cgd_hta_appendix_b_prescribing_20260923_130000 (iterations used: 1) ===
+Uploading to Google Docs...
+(Upload failed or not configured)

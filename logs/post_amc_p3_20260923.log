@@ -1,0 +1,37 @@
+
+=== Launching: NeoTest_post_amc_market_sustainability_20260923_140000 ===
+=== Model: Opus 4.6 | Max iterations: 4 ===
+
+--- Iteration 1 / 4 ---
+The run is already complete — `synthesis.md` (240 lines, all 10 sections) is written and `progress.json` has `done: true` with all 4 phases marked complete. The synthesis was successfully written by the concurrent session that finalized the run.
+
+The run is done. All deliverables are in place:
+- `research/00_india_government_procurement.md` — Phase 0
+- `research/01_multilateral_procurement.md` — Phase 1  
+- `research/02_manufacturer_economics.md` — Phase 2
+- `synthesis.md` — 240 lines, 10 sections, fully cited, bare URLs only in §10 References
+- `progress.json` — `done: true`, 74 key_numbers, 4 phase notes
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: NeoTest_post_amc_market_sustainability_20260923_140000 (iterations used: 1) ===
+Uploading to Google Docs...
+(Upload failed or not configured)
+l** (~50-65% volume) but slow (~2036-2040 at scale) and requires dedicated NHM programme funding
+- **Multilateral channels structurally weak** — Global Fund and PEPFAR both excluded by mandate; UNICEF is agent-not-payer; Unitaid offers only a time-limited bridge
+- **Manufacturer viable at $5/2.5M/yr** ($4-7M operating income); marginal at $3
+- **The fix costs the funder $0** — these are contractual provisions, not additional spending. The tail-price cap is the single most important structural fix the AMC currently lacks.
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: NeoTest_post_amc_market_sustainability_20260923_140000 (iterations used: 1) ===
+Uploading to Google Docs...
+(Upload failed or not configured)
+**Run is COMPLETE.** All phases done, `progress.json` has `done: true`, synthesis.md is 239 lines with 10 sections, all inline-hyperlink-cited, bare URLs confined to References (line 215+).
+
+**Headline verdict:** A self-sustaining post-AMC market IS achievable at $3.50-5.00/test, but **ONLY if the AMC contract embeds the missing tail-price leg** (binding ceiling + 2nd source + pooled procurement). Without these contractual provisions (which cost the funder $0), the default outcome is GeneXpert-style pricing at $8-12/test — defeating the AMC's access purpose.
+
+Three key findings:
+1. **No multilateral procurement engine** — Global Fund and PEPFAR structurally excluded; total multilateral volume only 350k-1.2M tests/yr ($1.5-6M)
+2. **India government procurement is real but slow** — NEDL is advisory not mandate; ~2036-2040 at scale; Indian manufacturing is the decisive price lever
+3. **Manufacturer viable at $5/test** (74% GM at 2.5M/yr) but will charge $8-12 without constraints — the tail-price cap is the fatal missing leg
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: NeoTest_post_amc_market_sustainability_20260923_140000 (iterations used: 1) ===
+Uploading to Google Docs...
+(Upload failed or not configured)

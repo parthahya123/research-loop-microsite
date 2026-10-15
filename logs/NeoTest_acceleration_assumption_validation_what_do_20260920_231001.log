@@ -1,0 +1,68 @@
+
+=== Launching: NeoTest_acceleration_assumption_validation_what_do_20260920_231001 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+Phase 2 complete. Key findings for the malaria RDT case:
+
+- **Clock 1 (R&D) = 0 years** — RDTs were invented in the 1990s, ~15 years before the pull mechanisms launched
+- **Clock 2 (first-LMIC-availability) = ~0 years** (strict) / **~3–5 years** (quality-assured standard-of-care) — RDTs were already sold in LMIC markets; the mechanism made *quality-assured* RDTs the standard
+- **Clock 3 (rollout) = ~3–5 years** — driven by the 2010 WHO universal-testing mandate + Global Fund procurement scaling (36%→84% testing rates, ~3.1B RDTs sold 2010–2020)
+
+The malaria RDT case is fundamentally different from NeoTest: it pulled an **existing technology** to scale through **policy mandate + multi-supplier competition + quality transparency**. It offers no support for NeoTest's R&D/invention acceleration claim, but supports ~3–5 years of scale-up acceleration when a strong demand mandate exists.
+
+Next iteration will tackle Phase 3 (MenAfriVac).
+
+--- Iteration 2 / 8 ---
+Phases 3 (MenAfriVac) and 4 (GeneXpert) are now complete. 
+
+**Summary of progress this iteration:**
+
+- **Phase 3 — MenAfriVac**: Written. MenAfriVac is the strongest acceleration precedent (~10 years genuine invention, or effectively infinite/"never" counterfactual) but the **least transferable** to NeoTest because it was built by **push funding** ($70M PDP grant), not a pull mechanism. The ~10-year number is driven by a "never" counterfactual (no monovalent MenA conjugate would have been developed for Africa), which doesn't apply to NeoTest's "sooner" counterfactual.
+
+- **Phase 4 — GeneXpert**: Written. GeneXpert is the **cautionary case** and the most structurally analogous to NeoTest (both diagnostics, single-supplier risk). The buy-down mechanism accelerated **rollout by ~2–4 years** but did **not create the product** (>$252M in push funding did that). Key lessons: price stuck at ~2–3× cost for 11 years without competition/ceiling; placement ≠ utilization (~12% capacity in some settings); push, not pull, creates diagnostics.
+
+Next phase (5) will assemble the empirical distribution across all four cases + additional pulls, and survey counterfactual methodologies.
+
+--- Iteration 3 / 8 ---
+Phase 5 is complete. The distribution analysis shows:
+
+- **Pull-only median composite acceleration: 3 years** (mean 3.4, max 6)
+- **NeoTest's 7-year claim exceeds the maximum** of the pull-only distribution
+- R&D acceleration from pull mechanisms: **0 in every case** (except MenAfriVac, which was push-funded)
+- Defensible central estimate for a pull accelerating a novel diagnostic: **~2–4 years**
+
+The Python script (`accel_distribution.py`) and results JSON are written. Progress updated to Phase 6. Stopping here for this iteration.
+
+--- Iteration 4 / 8 ---
+Phase 6 complete. Now I need to stop here per the instructions — one phase per iteration. But looking at the progress, Phase 7 (synthesis) is the final deliverable. Let me check the instructions again... The prompt says "Do bounded work each iteration, persist it, then stop" and "one phase per iteration." So I should stop now.
+
+Phase 6 (NeoTest Assessment) is complete. Key findings:
+
+- **Clock 1 (R&D): 0 years** — no pull precedent has accelerated invention; CARB-X already funds candidates with push capital
+- **Clock 2 (first-LMIC): 2–3 years** (range 1–5) — the pull can compress price-negotiation and procurement routing, but cannot compress clinical evidence generation or WHO-PQ category creation
+- **Clock 3 (rollout): 1–2 years** (range 0–3) — no Gavi-equivalent delivery platform exists for diagnostics
+- **Composite: ~3 years** (range 1–5) — equals the pull-only median from the cross-case distribution
+- **7 years exceeds the pull-only maximum** (6 years, HPV vaccine with Gavi platform) and is **2× the precedent-calibrated central estimate**
+- Replacing 7yr with 3yr worsens $/DALY by ~2.3×
+
+Next iteration will produce the final synthesis (Phase 7, 600–1000 lines).
+
+--- Iteration 5 / 8 ---
+<promise>DONE</promise>
+Done (DONE signal). Stopping.
+=== Completed: NeoTest_acceleration_assumption_validation_what_do_20260920_231001 (iterations used: 5) ===
+Uploading to Google Docs...
+  Saved local copy: /Users/parthahya/tools/research_loop_tool/research_runs/NeoTest_acceleration_assumption_validation_what_do_20260920_231001/full_document.md
+  Uploading full doc...
+  Found 8 tables to render
+  Inserted 8 empty tables
+  Filled 58 table rows
+  Applied table formatting (font 10pt, fit to page)
+Full doc created: https://docs.google.com/document/d/1rxWLAuxTURtUGTjweMJpRQV0yQ0nqrtcy6WSbbwSdlc/edit
+  Uploading summary doc...
+  Found 8 tables to render
+  Inserted 8 empty tables
+  Filled 58 table rows
+  Applied table formatting (font 10pt, fit to page)
+Summary doc created: https://docs.google.com/document/d/1Bmfol3BnRyEnW7hrnr2v73ltnkPwTv74NmphG7xD1rg/edit

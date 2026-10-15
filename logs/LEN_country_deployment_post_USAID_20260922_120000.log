@@ -1,0 +1,93 @@
+
+=== Launching: LEN_country_deployment_post_USAID_20260922_120000 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+
+=== Launching: LEN_country_deployment_post_USAID_20260922_120000 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+**Phase 0 complete.** Key findings written to `research/00_pepfar_current_state.md`.
+
+**Headline findings:**
+
+1. **PEPFAR prevention spending cut 51%** FY24->FY25; 1,714 HIV sites closed; >25% of PrEP implementing partners permanently stopped
+2. **CDC exit imminent** (Sep 30, 2026) — 120 awards serving 8.7M patients expire with no replacement mechanism ready
+3. **LEN-specific carve-out survives** — PEPFAR+GF expanded to 3M people target through 2028; GF produces 600-700k person-years for 2026; 6-9 SSA countries with active rollouts
+4. **Generic LEN at $40/py targeted for 2027** via 6 Gilead licensees (Dr. Reddy's lead, supported by Unitaid-CHAI-Wits RHI)
+5. **THE PARADOX**: Commodity procurement is improving (LEN supply through GF mechanism) but delivery infrastructure is degrading (sites closing, HCWs lost, data systems collapsing). The binding constraint has shifted from "can we buy the drug?" to "can we get it to people?"
+
+Ready for Phase 1 on next iteration.
+
+--- Iteration 2 / 8 ---
+**Phase 1 complete.** Key findings:
+
+- **9 countries** have received LEN PrEP deliveries (~191,620 doses by mid-2026, 14% of 2026 target)
+- **Tier 1 viable** for CHAI TA: **South Africa** (strongest — R1.3B committed, 345K target, local manufacturing bid) + **Kenya** (highest global LEN uptake but 80% oral PrEP collapse, 90% donor-dependent)
+- **Tier 2 constrained**: Nigeria (8-state rollout, fragmented), Uganda (demand>supply, some domestic commitment), Zambia (early adopter, fragile)
+- **Tier 3 fragile**: Zimbabwe (rejected US MOU), Mozambique (extreme ~90% PEPFAR dependency, 14% ART start decline), Eswatini/Lesotho (small)
+- **Central finding**: LEN commodity is reaching countries via GF procurement (this works). The broken piece is **delivery infrastructure** — the very clinics, health workers, community outreach, and data systems that PEPFAR funded and that LEN needs to reach people. Kenya's 80% PrEP collapse is the canary.
+- Only **South Africa** has a credible domestic financing plan for LEN at scale.
+
+STOP. Ready for Phase 2 on next iteration.
+
+--- Iteration 2 / 8 ---
+**Phase 1 complete.** Key findings:
+
+- **191,620 doses delivered** across 9 countries (14% of 2026 target); **66,000 initiated**; ~900 sites active
+- **Only South Africa** (Tier 1) has a credible domestic funding model (R1.3B assembled from govt + GF $29M + CIFF; 360 clinics; presidential launch)
+- **Kenya** is the sharpest warning: 80% PrEP uptake collapse + simultaneous PEPFAR (-46% of HIV budget) and GF (-18.2%) funding cuts; 41,547 PEPFAR-salaried HCWs at risk
+- **Mozambique** (Tier 4) already showing supply interruptions and 14% ART start decline
+- **Annualized initiation pace ~132K/yr** vs 3M-by-2028 target = needs **~20x acceleration** — implausible without delivery infrastructure that is currently degrading
+- **Central paradox confirmed**: LEN commodity availability (GF procurement) is AHEAD of schedule; delivery capacity (clinics, HCWs, community outreach) is BEHIND and deteriorating
+- Generic LEN at $40/py in 2027 changes procurement economics but NOT delivery economics
+
+Next phase: Phase 2 — CHAI's role in post-USAID landscape. STOP.
+
+--- Iteration 3 / 8 ---
+**Phase 2 complete.** Key findings:
+
+1. **Commodity funding is covered** — GF+PEPFAR reserved 100% of 2026 LEN supply; CIFF ($150M), Gates (>$80M), Unitaid (~$68M) provide catalytic backing; generic entry on track for late 2027/early 2028.
+
+2. **Delivery funding is NOT covered** — this is the binding constraint. PEPFAR's logistics backbone (warehousing, distribution, data systems) winds down Sep 2026. European donors are CUTTING not filling (-58% France, -40% UK, -70% Netherlands). US+GF = 86% of all international HIV funding.
+
+3. **CHAI's positioning is correct but limited** — market shaping / generic acceleration (Dr. Reddy's deal) is high-additionality and infrastructure-independent. Country regulatory TA is well-timed (WHO PQ in 36 days enabled rapid national approvals). But CHAI does TA, not delivery — and the delivery infrastructure gap is what will constrain LEN reach.
+
+4. **The "two clocks" collision** — LEN commodity arriving + PEPFAR delivery infrastructure departing = collision in late 2026. CE model reach must be severely haircut. Current pace (~132K/yr annualized) needs ~20x acceleration to hit 3M by 2028.
+
+STOP. Phase 3 (synthesis) is next iteration.
+
+--- Iteration 3 / 8 ---
+**Run is COMPLETE.** Both `synthesis.md` (194 lines) and `progress.json` (`done: true`) were already finalized by a concurrent process. I verified:
+
+- All 4 phases complete (0-3)
+- Synthesis covers all required sections: country deployment list, CE model comparison, post-PEPFAR landscape adequacy assessment, key risks, funding gap analysis
+
+**Headline findings:**
+
+- **CE model reach haircut: ~40-60%** vs pre-2025 assumptions
+- **Only South Africa** has credible domestic financing + delivery capacity for at-scale LEN deployment
+- **The binding constraint shifted** from commodity procurement (on track) to delivery infrastructure (collapsing)
+- **"Two clocks" collision**: LEN commodity arriving while PEPFAR delivery infrastructure departing — collision course late 2026 (CDC exit Sep 2026)
+- **CHAI correctly positioned** on market-shaping/generic-acceleration (infrastructure-independent, highest additionality) but **weakest on delivery reach** — TA requires an attachable health system
+- **66K initiated mid-2026 vs 3M-by-2028 target** = needs ~20x acceleration; SA alone = ~35-50% of realistic volume
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: LEN_country_deployment_post_USAID_20260922_120000 (iterations used: 3) ===
+Uploading to Google Docs...
+(Upload failed or not configured)
+Run complete. Synthesis: 194 lines, `done: true`.
+
+**HEADLINE:** LEN commodity pipeline is on track (GF procurement, $40/py generic 2027, WHO PQ cleared in 36 days). But delivery infrastructure is **collapsing** — the binding constraint has shifted from "can we get the drug?" to "can we inject it?"
+
+**Key numbers:**
+- 66K initiated mid-2026 vs 3M-by-2028 target = **2.2% on trajectory**, needs ~20x acceleration
+- Only **South Africa** has credible domestic financing + delivery capacity (~40-50% of realistic volume)
+- **Recommended CE model reach haircut: ~40-60%** vs pre-2025 assumptions
+- CHAI's highest additionality = **market-shaping/generic-acceleration** (infrastructure-independent)
+- CHAI's weakest assumption = **delivery reach in Tier 3-4 countries** where PEPFAR infrastructure is collapsing (Kenya PrEP -80%, Mozambique ART starts -14%)
+- The "two clocks" collision: LEN commodity arriving + CDC exit Sep 2026 = acute crisis in late 2026
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: LEN_country_deployment_post_USAID_20260922_120000 (iterations used: 3) ===
+Uploading to Google Docs...
+(Upload failed or not configured)

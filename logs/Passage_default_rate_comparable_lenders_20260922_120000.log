@@ -1,0 +1,63 @@
+
+=== Launching: Passage_default_rate_comparable_lenders_20260922_120000 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+
+=== Launching: Passage_default_rate_comparable_lenders_20260922_120000 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+Phase 0 complete. Key findings:
+
+**No true comparable exists** for Passage's specific risk niche. Here's the landscape:
+
+- **Domestic Canadian floor**: 6.7-8% (OSFI/OSAP) — but these borrowers have income-based repayment, tax intercept, and government backstop that Passage borrowers entirely lack
+- **Private career colleges** (Passage's partner institution type): 7.4% OSAP default even WITH safety nets — the highest-default institution category in Ontario
+- **Windmill** (newcomers in Canada): ~3% default, but $10K loans at 6.7% to already-landed immigrants — 6x smaller loan, half the rate, no visa risk
+- **MPOWER/Prodigy** (international students, no cosigner): **Do not publish default data** — lenders with good numbers advertise them
+- **Malengo/Chancen eG** (African students → Germany): Claims ~0% default, but uses income-share agreements (structurally prevents default in low-income periods), tiny cohort (~250), most not yet in repayment
+- **Kenya HELB**: 32-35% default — but graduates face 67% unemployment vs near-certain nursing employment for Passage grads
+- **US for-profit colleges**: 52% default at 12 years even WITH federal safety nets
+
+The silence from MPOWER and Prodigy is itself informative. Passage's 10% base case sits between the domestic floor (6.7-8%) and the private-career-college risk class (7.4%+ without safety nets). The next phase will assess Passage-specific risk factors that could push defaults higher.
+
+--- Iteration 2 / 8 ---
+**Phase 1 complete.** Output written to `research/01_passage_risk_factors.md`. Key findings:
+
+1. **Year 2 clinical crunch is the #1 default risk**: Payment-to-income ratio hits 102-203% during heavy clinical placement (payment literally exceeds income). The 8-10% "affordable" threshold is exceeded by 10-25×.
+
+2. **Post-graduation is manageable**: At ~$60K/yr LPN salary, payment/income is ~29% — stressful but survivable given near-certain employment (12.8% LPN vacancy rate, 98% grad employment rate).
+
+3. **No safety nets**: Passage is the ONLY lender in the comparison table with zero grace period, zero income-based repayment, and full P+I from Month 1 of study. Every comparable with <10% default has some form of income-contingent relief.
+
+4. **Cross-border collection effectively impossible**: Recovery on a borrower who returns to Uganda/Malawi/Burundi/Madagascar ≈ $0. Non-completers (3.8%) alone account for most of the claimed 4% loss rate.
+
+5. **Implied central default rate: ~15% (range 12-19%)** — above Passage's 10% base case, below 25% pessimistic. The Year 2 crunch is the discrete mechanism that pushes 10% toward 15-20%.
+
+--- Iteration 3 / 8 ---
+**Phase 2 complete.** Key findings:
+
+1. **Money-return breakeven: 32.5% default** — at Phase 1's central estimate of ~15%, the money comes back with a comfortable 26% surplus
+2. **GiveWell $40/DCY bar broken at 42.2% default** (base DCYs) — even under worst-case DCY assumptions (90), you need ~38% default to breach
+3. **The case is remarkably default-resilient** because the 11.95% APR simultaneously creates default risk (high payments) AND absorbs defaults (large interest surplus per performing loan) — a self-hedging structure
+4. **Combined stress tests all pass**: 30% default + pessimistic income = still surplus; 20% default + no remittances = large surplus
+5. **The ONE scenario that breaks it**: systemic immigration policy failure collapsing BOTH cost recovery AND DCY generation simultaneously — not idiosyncratic credit risk
+
+Next phase: **Phase 3 — Synthesis**. STOP.
+
+--- Iteration 4 / 8 ---
+Phase 3 synthesis complete. `done: true`.
+
+**Headline findings:**
+
+- **Central default estimate: ~15%** (range 12-19%), above Passage's 10% base but below 25% pessimistic
+- **10% is defensible as a conditional best case** (full employment assumption), not as an unconditional central
+- **The case is remarkably robust**: money comes back up to 32.5% default; GiveWell bar holds to ~42%
+- **Year 2 clinical crunch is the discrete default mechanism** — payment/income ratio of 102-203% during clinical placement creates forced arrears that compound
+- **Top structural fix**: clinical placement payment pause (estimated -3-5pp default reduction, near-zero cost to financial model)
+- **Default risk is NOT the decision-relevant risk** — the 11.95% APR self-hedges credit defaults up to extraordinary levels; only correlated systemic failure (immigration policy + nursing market) breaks both sides simultaneously
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: Passage_default_rate_comparable_lenders_20260922_120000 (iterations used: 4) ===
+Uploading to Google Docs...
+(Upload failed or not configured)

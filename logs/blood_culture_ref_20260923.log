@@ -1,0 +1,29 @@
+
+=== Launching: NeoTest_blood_culture_reference_standard_20260923_140000 ===
+=== Model: Opus 4.6 | Max iterations: 6 ===
+
+--- Iteration 1 / 6 ---
+**Status: Phases 0, 1, and 2 are all complete.** All three research files exist and progress.json is updated.
+
+**Next iteration** should execute Phase 3 — write `synthesis.md` and set `done: true`.
+
+**Key findings so far:**
+
+1. **Blood culture sensitivity ~30-40% in LMIC neonates** (BARNARDS 25.1% culture-pos, NeoOBS 17.7%, ANISA culture:modeled ~12%). 50-80% of truly bacterially infected neonates have negative cultures.
+
+2. **No consensus CRS exists.** 128 definitions across 80 RCTs. WHO TPP is **silent on reference standard** — the single most exploitable gap in NeoTest AMC design.
+
+3. **NeoSep-SAA's 92% Se is against clinical judgment** (broadest standard). Against a stringent CRS: projected ~77-87% Se (central ~82%) — **fails the non-hospital TPP minimum of ≥90%**. SAA meta-analysis pooled Se=0.85 also fails non-hospital threshold.
+
+4. **Three gaming risks** + model misalignment (UChicago model uses true-bacterial-prevalence denominator, milestone reference undefined). **Six AMC milestone fixes** needed: pre-locked CRS, independent adjudication, neonatal-capillary validation, culture-neg subgroup sizing, LCA secondary, prohibit clinical-only validation.
+
+--- Iteration 2 / 6 ---
+Phase 3 (synthesis) complete. `done: true` set in progress.json.
+
+**Summary**: synthesis.md written — 182 lines, 12 sections, all claims inline-hyperlink-cited, 26 bare URLs confined to References section.
+
+**Headline**: The WHO TPP's silence on reference standard is the single most exploitable gap in the NeoTest AMC. NeoSep-SAA's 92% Se against clinical diagnosis is expected to collapse to ~82% (77-87%) under a stringent CRS, failing the non-hospital TPP >= 90% minimum. The same test passes or fails depending entirely on which reference standard the AMC specifies. Six concrete milestone language changes recommended — the most critical being a pre-locked CRS definition and independent adjudication committee, both of which cost nothing to implement and protect $20M in milestone capital.
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: NeoTest_blood_culture_reference_standard_20260923_140000 (iterations used: 2) ===
+Uploading to Google Docs...
+(Upload failed or not configured)

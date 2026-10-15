@@ -1,0 +1,102 @@
+
+=== Launching: LEN_retention_continuation_500k_data_20260922_120000 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+
+=== Launching: LEN_retention_continuation_500k_data_20260922_120000 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+Phase 0 complete. Key findings:
+
+**Trial retention** (~93% at 12mo in PURPOSE 1) is a ceiling, not a forecast. The best structural comparator — **cabotegravir (CAB-LA) real-world in the US** — shows **72-75% at 12 months**, a ~20pp drop from trial conditions. Oral PrEP in SSA retains only **50-65% at 12 months** (meta-analysis pooled discontinuation 47.5% in SSA).
+
+**Critical gap: No real-world LEN retention data exists yet.** As of Sep 2026, ~66,000 people have been initiated across 9 African countries (191,620 doses delivered), but the earliest cohorts (Zambia/Eswatini Dec 2025) are only just reaching their 6-month return window. No second-dose return rates have been published. Supply constraints (Gilead manufacturing) may force discontinuation independent of patient willingness — Mozambique is already seeing uptake decline due to limited drug availability, and South Africa has reserved 10,000 doses specifically for returning clients.
+
+The twice-yearly dosing advantage (2 visits/year vs 6 for CAB-LA vs 12+ for oral) is the strongest theoretical argument for higher retention, but it remains empirically unproven at scale.
+
+STOP — one phase per iteration.
+
+--- Iteration 2 / 8 ---
+Phase 1 complete. Key findings:
+
+- **No 12-month real-world LEN retention data exists** (Sep 2026)
+- Best early signal: Zambia/Eswatini **"up to 85%" second-injection return** (small cohorts, conference data)
+- SA 55K initiated in 3 months but first returns not due until Dec 2026
+- PURPOSE OLE: 92-96% through 52 weeks, but trial conditions
+- CAB-LA real-world US: 72-75% at 12 months (LEN should do better due to fewer visits)
+- Thembisa SA model assumed conservative **6-month** / optimistic **12-month** mean duration for women
+- **Best CE estimate: ~75% 12-month retention (range 60-85%)**
+- Supply-driven discontinuation is a distinct risk (Mozambique already declining)
+- PK tail provides ~19-week buffer beyond scheduled 26-week visit
+
+STOP — Phase 1 written and progress.json updated. Ready for Phase 2 on next iteration.
+
+--- Iteration 2 / 8 ---
+Phase 1 complete. Here's the summary:
+
+## Phase 1 Complete — Key Findings
+
+**No 12-month real-world LEN retention data exists yet** (Sep 2026). The earliest cohorts are only ~9 months post-first-dose. What we have:
+
+1. **Best real-world signal: ~85% on-time second-dose return** from Zambia/Eswatini (AIDS 2026 conference) and SA's LEN4PrEP study (N=1,544) — but early, small, selected cohorts
+
+2. **EClinicalMedicine 2026 meta-analysis** (46 studies, 22,945 people): 6-monthly LAI 12mo adherence 93.0% (CI 91.6-94.3) vs 2-monthly 88.1% — but **trial-dominated**, not real-world
+
+3. **Mongu District Zambia CAB-LA vs oral PrEP** (programmatic data): CAB-LA 7% discontinuation vs oral 50% (aHR 2.14, p=0.001) — strongest African real-world signal that injectables crush oral on retention
+
+4. **Supply constraint is a distinct retention risk**: 191K doses = 14% of 2026 plan; Mozambique already declining; generics at $40/yr not until 2027
+
+5. **98.5% chose LEN over oral** when offered choice in SA — strong demand signal
+
+**Best estimate for CE model: ~75% at 12 months (range 60-85%)** — higher than oral PrEP SSA (~50-65%) but lower than trial ceiling (~93%). The PK tail extending protection ~19 weeks beyond the scheduled visit provides additional buffer.
+
+Next phase = Phase 2 (CE impact of retention uncertainty). STOP.
+
+--- Iteration 3 / 8 ---
+Phase 2 complete. Key findings:
+
+1. **PK tail compresses year-1 sensitivity**: Even at 50% retention, year-1 effective protection is ~0.94 PY (vs 1.00 at 100%) because a single dose protects for ~45 weeks. Year-1 retention matters far less than it appears.
+
+2. **Multi-year horizon is where retention bites hard**: Over 10 years, 50% vs 75% retention → ~2x variation in cumulative effective PY and $/DALY. The US model shows the extreme case: 6-month vs 2-year duration = 1% vs 37% infections averted (37x gap).
+
+3. **LEN cannot beat oral PrEP on cost per effective PY** at $40 vs $8/yr — the CE case rests entirely on reaching people who won't take pills at all (incremental reach, not substitution efficiency).
+
+4. **Counter-intuitive SA finding**: Optimistic (longer duration) LEN is LESS cost-effective per DALY than conservative, because marginal person-time comes from lower-risk individuals.
+
+5. **CHAI's leveraged position insulates it**: At ~100x leverage, even if retention halves, CHAI $/DALY only doubles from ~$43 to ~$80-90 — still fundable.
+
+6. **Break-even**: ~50-60% retention at $500/DALY (SA); ~70-75% at $200/DALY. The 75% central estimate keeps LEN cost-effective in SA but borderline in lower-incidence settings.
+
+Phase 2 written to `research/02_ce_retention_impact.md`, progress.json updated. STOP — ready for Phase 3 (synthesis) on next iteration.
+
+--- Iteration 3 / 8 ---
+Phase 3 (synthesis) is complete. `done: true` set in progress.json.
+
+**Summary of synthesis.md (7 sections, all inline-hyperlink-cited):**
+
+- **Best estimate:** 75% 12-month real-world LEN retention (range 60-85%). No 12-month data exists — earliest Q1-Q2 2027.
+- **PK tail compresses year-1 sensitivity:** 50-100% retention → only ~6% variation in effective person-years. But multi-year compounding → ~2x variation over a decade.
+- **LEN cannot beat oral PrEP on $/effective-PY** at $40 vs $4-8/yr — the CE case rests entirely on incremental reach to people who won't take pills.
+- **CHAI TA ($43/DALY) is relatively insensitive** to retention within plausible range due to ~100x leverage. Even halved retention → ~$80-90/DALY, still cheap. Fatal mode = <40% retention via supply collapse + ISR.
+- **Three sharpened conditions:** gate on 12mo SA data (Q2 2027), monitor supply continuity, model multi-year trajectory not year-1.
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: LEN_retention_continuation_500k_data_20260922_120000 (iterations used: 3) ===
+Uploading to Google Docs...
+(Upload failed or not configured)
+Synthesis QA passes:
+
+- **164 lines** — shorter than typical but content-complete for a 4-phase run (not 7-phase)
+- **7 sections + exec summary + references** — all present
+- **20 cited sources** with inline hyperlinks throughout
+- **Zero bare URLs** outside markdown link syntax
+- **Key findings all stated**: 75% central (60-85%), PK tail ~6% year-1 variation, multi-year ~2x compounding, NEMLC counter-intuitive result, LEN can't beat oral on $/effective-PY, CHAI $43→$80-90 if retention halves, 3 sharpened conditions
+- **Absorptive ceiling** referenced (unchanged ~$5M/yr)
+- **Verdict** clear: funding rec unchanged, conditions sharpened
+
+The run is complete. Progress.json shows `done:true`, all 4 phases complete, synthesis written. My Phase 2 enrichment with NEMLC Table 1-5 data (duration assumptions, R27,567 vs R64,087 counter-intuitive result, price thresholds, budget impact) is captured in `research/02_ce_retention_impact.md` and the key finding is correctly summarized in synthesis §3.
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: LEN_retention_continuation_500k_data_20260922_120000 (iterations used: 3) ===
+Uploading to Google Docs...
+(Upload failed or not configured)

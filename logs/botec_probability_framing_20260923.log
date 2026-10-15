@@ -1,0 +1,29 @@
+
+=== Launching: NeoTest_botec_probability_framing_20260923_140000 ===
+=== Model: Opus 4.6 | Max iterations: 6 ===
+
+--- Iteration 1 / 6 ---
+Here's the summary of the completed run:
+
+## NeoTest Probability Framing — Run Complete
+
+**VERDICT: Structured probability should be PRIMARY; pure acceleration should be the pessimistic SENSITIVITY.**
+
+### Key findings across all phases:
+
+**Phase 0** — P(product reaches LMIC without AMC) ≈ 0.10-0.25. Historical base rate of commercial-only LMIC neonatal POC diagnostics at scale: **0/N (zero precedents)**. The BOTEC's P(never) = 0.74 is at the generous/low end; bottom-up gives ~0.97.
+
+**Phase 1** — Structured probability improves $/DALY by **~41%** at the recommended 4%/4%/30yr cell ($38.89 vs $65.50 pre-correction; ~$152 vs ~$256 post-correction). MC P50: **$49.90** (structured) vs **$83.96** (pure-accel). At tighter P_without=0.10, improvement grows to ~53%.
+
+**Phase 2** — Structured probability is the unambiguously correct framing:
+- GiveWell uses probability-weighted counterfactuals (same structure)
+- Berndt/Kremer 2007 (foundational AMC paper) uses exactly the SP formula
+- No double-counting: SP integrates acceleration + probability uplift in one formula
+- Pure acceleration has no academic foundation for non-existent products
+- The BOTEC's own P_with=0.65/P_without=0.25 **requires** SP; pure acceleration contradicts its stated beliefs
+
+**Phase 3** — Synthesis written. The framing fix is the **2nd-largest lever** (~$78 swing) but the benefit engine (DALYs/test, ~$262 swing) dominates. Fix both — but the framing fix is unambiguous while the benefit engine remains contested. The qualitative verdict (fund as market-shaping/option-value, not GiveWell-class DALY buy) holds under both framings.
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: NeoTest_botec_probability_framing_20260923_140000 (iterations used: 1) ===
+Uploading to Google Docs...
+(Upload failed or not configured)

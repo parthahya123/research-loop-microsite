@@ -1,0 +1,22 @@
+
+=== Launching: NeoTest_longterm_neurodevelopmental_outcomes_in_ne_20260920_231115 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+<promise>DONE</promise>
+Done (DONE signal). Stopping.
+=== Completed: NeoTest_longterm_neurodevelopmental_outcomes_in_ne_20260920_231115 (iterations used: 1) ===
+Uploading to Google Docs...
+  Saved local copy: /Users/parthahya/tools/research_loop_tool/research_runs/NeoTest_longterm_neurodevelopmental_outcomes_in_ne_20260920_231115/full_document.md
+  Uploading full doc...
+  Found 16 tables to render
+  Inserted 16 empty tables
+  Filled 81 table rows
+  Applied table formatting (font 10pt, fit to page)
+Full doc created: https://docs.google.com/document/d/1kN7UlBpUPndV3bFwmhFCplf12F0FJ2pdEOYqiLYJ2Dk/edit
+  Uploading summary doc...
+  Found 16 tables to render
+  Inserted 16 empty tables
+  Filled 81 table rows
+  Applied table formatting (font 10pt, fit to page)
+Summary doc created: https://docs.google.com/document/d/1ECFhS0_AoQWf5B_QSxtUlmOIhnP-uRw2mJQ5VsBgRvU/edit

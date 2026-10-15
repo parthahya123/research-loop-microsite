@@ -1,0 +1,103 @@
+
+=== Launching: Passage_company_risk_financial_health_20260922_120000 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+
+=== Launching: Passage_company_risk_financial_health_20260922_120000 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+**Phase 0 complete. STOP.**
+
+## Summary of findings:
+
+**Passage** is a ~3.5-year-old venture-backed startup (founded Feb 2023) by Martin Basiri (ApplyBoard co-founder), with a C$40M seed round from Drive Capital and others. It lends at **11.95% fixed APR**, up to **C$65K/student**, for international students in healthcare/trades/STEM programs at Canadian colleges like George Brown.
+
+**Critical findings:**
+1. **Very early stage** — first student cohorts arriving 2025-2026, so the loan portfolio has at most ~1-1.5 years of repayment history on a 48-month loan
+2. **Key metrics not disclosed** — total students funded, portfolio balance, and financials are all unpublished; the "6% >90-day delinquency" from the concept note is unverifiable and based on a young, small sample
+3. **$50M = massive scale-up** — likely 5-10x current portfolio for an organization with minimal lending track record
+4. **Key-person risk HIGH** on Basiri — rest of leadership team has minimal public profile
+5. **Net margin thin** — ~$2-3M/yr at $50M scale after defaults and operating costs; "2-year runway" confirms Passage is not yet self-sustaining
+6. **Lending ≠ tech platform** — ApplyBoard success doesn't transfer to credit risk management expertise
+
+--- Iteration 2 / 8 ---
+**Phase 0 complete.** Key findings:
+
+1. **Very early stage:** Passage is ~3.5 years old (founded Feb 2023), first student cohorts arrived 2024-2025. Portfolio size and balance are NOT publicly disclosed — likely hundreds to low thousands of loans with only ~1-1.5 years of repayment history.
+
+2. **6% >90-day-late claim is LOW CONFIDENCE:** Unverifiable, based on a young/small sample, and >90-day-late ≠ default. The portfolio hasn't been tested through a full 48-month loan cycle or adverse conditions.
+
+3. **Thin margins:** At $50M portfolio, gross interest income ~$6M/yr. After estimated ops costs ($3-5M) and credit losses (~$1.5M at 3% true default), net margin is only ~$0.5-2.5M/yr. The 2-year runway confirms the company is NOT yet self-sustaining.
+
+4. **Lending expertise gap:** No CRO or CCO in the 6-person C-suite. Basiri's background is tech platforms (ApplyBoard), not consumer lending. HIGH key-person risk.
+
+5. **Investor base is VC, not impact/lending:** Drive Capital and 5 other VCs. Omidyar/Acumen/USAID involvement could NOT be verified in public sources.
+
+6. **Colleges are independent:** 27 accredited Canadian public institutions — students could complete programs even if Passage fails (important for Phase 1).
+
+Output: `research/00_track_record.md` written. `progress.json` updated. STOPPING per instructions — execute next phase on next iteration.
+
+--- Iteration 2 / 8 ---
+**Phase 1 complete.** Key findings:
+
+1. **No evidence of portfolio ring-fencing** — loans likely sit on Passage Inc.'s balance sheet, meaning philanthropic capital competes with all other creditors in bankruptcy
+2. **Precedents are concerning**: Vemo Education's exit killed Purdue's ISA program; portfolio survived but required an institutional backstop (Purdue Research Foundation) that Passage lacks
+3. **Third-party servicing is technically feasible** (Nelnet Canada services 2.4M borrowers) but loss of Passage's wraparound services would degrade repayment rates
+4. **2-year runway is dangerously thin** for managing $50M of philanthropy — net margin at scale is ~$0-1.5M/yr, barely breakeven
+5. **PGWP policy = existential correlated risk** hitting all borrowers simultaneously — the scenario most likely to cause both portfolio default spike AND Passage operational failure
+6. **Distressed portfolio recovery estimated at 30-60% of face value** — Renaissance faces probable 40-70% capital loss if Passage fails
+7. **College programs are independent** of Passage (one bright spot) — students could finish degrees even if Passage ceases operations
+
+**Must-have conditions for Renaissance:** Ring-fenced SPV, disclosed creditor priority waterfall, backup servicer agreement pre-identified.
+
+STOP. Ready for Phase 2 on next iteration.
+
+--- Iteration 3 / 8 ---
+**Phase 2 complete.** Key findings:
+
+1. **Governance gaps are SEVERE**: No board of directors disclosed, no audited financials published, no governance committees. Compare to Windmill (14 board members, 5 committees, audited financials, 20yr track record).
+
+2. **No prudential regulator** — this is UNFIXABLE. Passage sits in a Canadian fintech regulatory gap: OSFI covers banks, FSRA covers mortgage brokers, neither covers private student lenders. Renaissance would effectively be its own prudential supervisor.
+
+3. **All standard co-funder protections are absent** from publicly available materials (no board seat, no SPV, no reporting, no triggers).
+
+4. **Student education is protected** (college programs are independent), but living cost disbursements and wraparound services would stop on Passage failure.
+
+5. **Private student loans are dischargeable in bankruptcy** with NO 7-year waiting period — borrowers who return home become uncollectable.
+
+6. **12 specific governance conditions recommended**, with the **ring-fenced SPV** as the single most important pre-condition. Without it, Renaissance's $30M is unsecured exposure to a 3.5-year-old startup. With it, Renaissance owns the portfolio directly and Passage is merely the servicer.
+
+Next phase is **Phase 3: Synthesis**. STOP.
+
+--- Iteration 3 / 8 ---
+Phase 3 synthesis complete. `done: true`.
+
+**HEADLINE:** FUND-WITH-CONDITIONS. P(org failure within 5yr) ~25-40%. The SPV is everything — without it, probable 40-70% loss on failure; with it, manageable 20-40%. CE model needs a ~9-15% haircut for company risk. 12 non-negotiable governance conditions specified, led by the ring-fenced SPV. The 2-year runway is not a dealbreaker if mitigated by a 12-month operating reserve requirement. The unfixable gap is the absence of any prudential regulator — Renaissance would be its own supervisor.
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: Passage_company_risk_financial_health_20260922_120000 (iterations used: 3) ===
+Uploading to Google Docs...
+(Upload failed or not configured)
+All phases complete. Here's the summary:
+
+**Run: Passage Company Risk & Financial Health — COMPLETE**
+
+**Verdict: FUND-WITH-CONDITIONS (strict)**
+
+Key findings across all 4 phases:
+
+- **P(organizational failure within 5yr): ~25-40%** — driven by thin margins ($0-1.5M/yr net at $50M), 2-year runway, single-founder dependency, and PGWP correlated risk
+- **Without SPV:** probable 40-70% loss in base failure scenario (recovery 30-60% of face value)
+- **With SPV:** manageable 20-40% loss (recovery 60-80%) — the SPV improves expected recovery by ~$5-10M on a $30M commitment
+- **Governance gaps: SEVERE but FIXABLE** — no disclosed board, no audited financials, no prudential regulator, no ring-fencing. Windmill comparator has 14-person board, 5 committees, published audits
+- **Regulatory gap: UNFIXABLE** — Canada does not require non-bank consumer lenders to be licensed, audited, or prudentially supervised. Renaissance must be its own prudential supervisor
+- **Bridging Finance ($1.3B loss, 34-42% recovery)** is the decisive Canadian precedent for private lenders operating without adequate governance
+- **CE model needs ~9-15% haircut** for company risk alone, plus the PGWP correlated tail is unpriced
+- **12 non-negotiable governance conditions** recommended, with the ring-fenced SPV as the single most important
+
+Files: `research/00_track_record.md`, `research/01_organizational_risk.md`, `research/02_governance_safeguards.md`, `synthesis.md`, `progress.json` (done:true).
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: Passage_company_risk_financial_health_20260922_120000 (iterations used: 3) ===
+Uploading to Google Docs...
+(Upload failed or not configured)

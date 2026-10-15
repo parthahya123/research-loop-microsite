@@ -1,0 +1,36 @@
+
+=== Launching: NeoTest_india_sncu_physicians_prescribing_20260923_140000 ===
+=== Model: Opus 4.6 | Max iterations: 4 ===
+
+--- Iteration 1 / 4 ---
+**Phase 3 (Synthesis) complete. Run done.**
+
+### Summary of findings:
+
+**The "10% vs 0.80" conflict is a denominator artifact.** Agarwal's "only 10% of SNCU babies get antibiotics" and the BOTEC's f_cf ~0.80 are both correct — they measure different populations. The five-district data directly confirms: 40% of all admissions get abx, 50.8% are suspected, so f_cf among suspected = 40%/50.8% = **0.79** — matching the BOTEC.
+
+**Akhil is partially right**: Within the grey zone (ICMR Tier 2, ~40-50% of SNCU admissions), f_cf is genuinely lower at **0.30-0.60** vs 0.80. But:
+- The BOTEC's denominator is danger-sign-presenting (Tier 1), not grey zone
+- The correction REFRAMES value from pure de-escalation to dual mechanism (rule-in grey zone + de-escalation Tier 1)
+- NNF Rec 6 explicitly supports POCT-gated initiation in the grey zone
+- NNF Rec 9 constrains the de-escalation channel (says don't stop based on negative biomarkers for culture-neg probable sepsis)
+
+**Synthesis**: 203 lines, 10 sections, 11 references, all inline-hyperlinked. Filed at `synthesis.md`, `progress.json` set `done: true`.
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: NeoTest_india_sncu_physicians_prescribing_20260923_140000 (iterations used: 1) ===
+Uploading to Google Docs...
+(Upload failed or not configured)
+Run is **COMPLETE** (`done: true`, all 4 phases finished, synthesis.md = 203 lines / 10 sections).
+
+**HEADLINE VERDICT**: Akhil is **PARTIALLY RIGHT** — grey-zone f_cf at India district SNCUs is ~0.30-0.60 (central ~0.45), genuinely lower than the BOTEC's ~0.80. But the apparent "10% vs 80%" disagreement is a **DENOMINATOR ARTIFACT**: Agarwal's 10% = all SNCU admissions; BOTEC's 0.80 = danger-sign-presenting subset. Five-district data confirms f_cf among clinically-suspected = 79% = the BOTEC's number.
+
+**Key findings**:
+- Grey zone = ~40-50% of India SNCU admissions (Apollo + Liesl Lloyd converging), formally defined by ICMR STW Tier 2
+- f_cf varies by population: Tier 1 (danger-sign) ~0.90-0.95 | Tier 2 (grey zone) ~0.30-0.60 | all-admission ~0.10-0.50
+- NNF Rec 6 **supports** NeoTest for initiation-gating in the grey zone; NNF Rec 9 **constrains** de-escalation value (don't stop based on negative biomarkers)
+- Maheshwara analogue: rapid dx cut empiric initiation 95%->70%, de-escalation 20%->50%, mortality fell 15%->10%
+- Correction **reframes** NeoTest value from single-mechanism (de-escalation) to dual (rule-in grey zone + de-escalation Tier 1) but does not flip sign at TPP-grade sensitivity
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: NeoTest_india_sncu_physicians_prescribing_20260923_140000 (iterations used: 1) ===
+Uploading to Google Docs...
+(Upload failed or not configured)

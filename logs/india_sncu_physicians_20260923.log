@@ -1,0 +1,27 @@
+
+=== Launching: NeoTest_india_sncu_physicians_prescribing_20260923_140000 ===
+=== Model: Opus 4.6 | Max iterations: 6 ===
+
+--- Iteration 1 / 6 ---
+Phase 2 complete. `progress.json` updated — Phase 2 added to `phases_complete`, `current_phase` set to `3_synthesis`, 7 new notes and 8 new key_numbers added.
+
+**STOP.** Phase 2 (grey-zone characterisation) is done. Next iteration: Phase 3 (synthesis.md).
+
+--- Iteration 2 / 6 ---
+Run is **COMPLETE**. All phases done, `progress.json` has `done: true`, synthesis.md is 203 lines with 11 references.
+
+**Headline findings:**
+
+1. **The 10% vs 0.80 "disagreement" is a denominator artifact.** Agarwal's 10% = all SNCU admissions; BOTEC's 0.80 = danger-sign-presenting subset. Five-district data derives f_cf among suspected = 40%/50.8% = **0.79**, confirming the BOTEC.
+
+2. **Akhil is partially right.** Grey-zone (ICMR Tier 2) f_cf at district SNCUs is **0.30-0.60** (central ~0.45) — genuinely lower than 0.80. But this is a *different population* with a different test value proposition (rule-in, not de-escalation).
+
+3. **Grey zone = ~40-50% of SNCU admissions** (Apollo + Liesl Lloyd converging). ICMR STW formally defines it as Tier 2 (observe without treating).
+
+4. **NNF guideline tension:** Rec 6 supports initiation-gating in the grey zone (treat only if lab positive). Rec 9 works against de-escalation (don't stop based on negative biomarkers). Net: NeoTest's India value is primarily initiation-gating, not early stopping.
+
+5. **Adherence asymmetry confirmed:** Clinicians readily start on positive results but <10% stop by 72h on negative screens. De-escalation channel faces behavioral resistance.
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: NeoTest_india_sncu_physicians_prescribing_20260923_140000 (iterations used: 2) ===
+Uploading to Google Docs...
+(Upload failed or not configured)

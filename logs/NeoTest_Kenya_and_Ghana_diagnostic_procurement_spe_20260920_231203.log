@@ -1,0 +1,22 @@
+
+=== Launching: NeoTest_Kenya_and_Ghana_diagnostic_procurement_spe_20260920_231203 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+<promise>DONE</promise>
+Done (DONE signal). Stopping.
+=== Completed: NeoTest_Kenya_and_Ghana_diagnostic_procurement_spe_20260920_231203 (iterations used: 1) ===
+Uploading to Google Docs...
+  Saved local copy: /Users/parthahya/tools/research_loop_tool/research_runs/NeoTest_Kenya_and_Ghana_diagnostic_procurement_spe_20260920_231203/full_document.md
+  Uploading full doc...
+  Found 10 tables to render
+  Inserted 10 empty tables
+  Filled 52 table rows
+  Applied table formatting (font 10pt, fit to page)
+Full doc created: https://docs.google.com/document/d/1doAY7ybuCUqa8KDROpmWdPWLq4jOU1r7GLPV-APO1vU/edit
+  Uploading summary doc...
+  Found 10 tables to render
+  Inserted 10 empty tables
+  Filled 52 table rows
+  Applied table formatting (font 10pt, fit to page)
+Summary doc created: https://docs.google.com/document/d/1EIEuuMCnYJfG86MVbJ8C7kH1XQ7zGMi_A_BWTTj2mSw/edit

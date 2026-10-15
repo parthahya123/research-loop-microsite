@@ -1,0 +1,29 @@
+
+=== Launching: NeoTest_AMR_benefit_quantification_what_is_the_act_20260920_231016 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+All QA checks pass:
+- **Line count**: 625 (≥600 ✓)
+- **Bare URLs**: All 42 bare URLs at lines 502+ (References starts line 499 ✓)
+- **Sections**: All 11 present (§1-10 + References ✓)
+- **Model output cited**: 0.00036, 36x, tornado rankings all present ✓
+- **progress.json**: `done: true`, `6_synthesis: "complete"`, synthesis.md added to files map ✓
+
+<promise>DONE</promise>
+Done (DONE signal). Stopping.
+=== Completed: NeoTest_AMR_benefit_quantification_what_is_the_act_20260920_231016 (iterations used: 1) ===
+Uploading to Google Docs...
+  Saved local copy: /Users/parthahya/tools/research_loop_tool/research_runs/NeoTest_AMR_benefit_quantification_what_is_the_act_20260920_231016/full_document.md
+  Uploading full doc...
+  Found 6 tables to render
+  Inserted 6 empty tables
+  Filled 46 table rows
+  Applied table formatting (font 10pt, fit to page)
+Full doc created: https://docs.google.com/document/d/1WL3P-FM_lGyzqJXWRJNz_NoPdT6OViuDxUiuJ0UPHDU/edit
+  Uploading summary doc...
+  Found 6 tables to render
+  Inserted 6 empty tables
+  Filled 46 table rows
+  Applied table formatting (font 10pt, fit to page)
+Summary doc created: https://docs.google.com/document/d/1XWy3KcI3PlTRcJMbi1-t3blLHCeH3XSw83uZdZYppU8/edit

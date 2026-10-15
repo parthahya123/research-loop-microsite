@@ -1,0 +1,22 @@
+
+=== Launching: NeoTest_AMC_facility_governance_and_administration_20260920_231219 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: NeoTest_AMC_facility_governance_and_administration_20260920_231219 (iterations used: 1) ===
+Uploading to Google Docs...
+  Saved local copy: /Users/parthahya/tools/research_loop_tool/research_runs/NeoTest_AMC_facility_governance_and_administration_20260920_231219/full_document.md
+  Uploading full doc...
+  Found 10 tables to render
+  Inserted 10 empty tables
+  Filled 69 table rows
+  Applied table formatting (font 10pt, fit to page)
+Full doc created: https://docs.google.com/document/d/11-lK8-1GcJsve-5NefE2ylhmJYgYvNB404KSxdQEDG0/edit
+  Uploading summary doc...
+  Found 10 tables to render
+  Inserted 10 empty tables
+  Filled 69 table rows
+  Applied table formatting (font 10pt, fit to page)
+Summary doc created: https://docs.google.com/document/d/12sShvhBoY0uOFYqFo3ZyeVElhSKS4fO9GGErVPoM8J4/edit

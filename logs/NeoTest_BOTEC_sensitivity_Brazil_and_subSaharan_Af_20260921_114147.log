@@ -1,0 +1,29 @@
+
+=== Launching: NeoTest_BOTEC_sensitivity_Brazil_and_subSaharan_Af_20260921_114147 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+All criteria met:
+- synthesis.md: 600 lines
+- All in-text claims hyperlink-cited
+- Bare URLs only in References (≥ line 549)
+- All 7 phases (0_frame through 6_synthesis): complete
+- progress.json: `done: true`, `key_numbers` fully populated
+
+<promise>DONE</promise>
+Done (DONE signal). Stopping.
+=== Completed: NeoTest_BOTEC_sensitivity_Brazil_and_subSaharan_Af_20260921_114147 (iterations used: 1) ===
+Uploading to Google Docs...
+  Saved local copy: /Users/parthahya/tools/research_loop_tool/research_runs/NeoTest_BOTEC_sensitivity_Brazil_and_subSaharan_Af_20260921_114147/full_document.md
+  Uploading full doc...
+  Found 15 tables to render
+  Inserted 15 empty tables
+  Filled 86 table rows
+  Applied table formatting (font 10pt, fit to page)
+Full doc created: https://docs.google.com/document/d/1r1jZFNRyalltXw4Aqqf7cbSE5-9K_1gVOBJg1OTMQhk/edit
+  Uploading summary doc...
+  Found 15 tables to render
+  Inserted 15 empty tables
+  Filled 86 table rows
+  Applied table formatting (font 10pt, fit to page)
+Summary doc created: https://docs.google.com/document/d/1FEXzBKTF0rqDkE3i5JKxITaTyqcb5aOfHsJ5uJd1ifc/edit

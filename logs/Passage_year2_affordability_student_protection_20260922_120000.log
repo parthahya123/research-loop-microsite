@@ -1,0 +1,126 @@
+
+=== Launching: Passage_year2_affordability_student_protection_20260922_120000 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+
+=== Launching: Passage_year2_affordability_student_protection_20260922_120000 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+**Phase 0 complete.** Key findings:
+
+1. **Loan payment verified: CAD $1,058/month** — starts Month 1 of study, not post-graduation (unlike Canada Student Loans or Windmill)
+
+2. **The $56/month figure from the concept note is the OPTIMISTIC CEILING**, requiring: living disbursement continues all 20 months + rent at $500 + near-zero miscellaneous. The Passage FAQ says "12 [disbursements]: once a month for a year" — if this means Year 1 only, Year 2 has a ~$1,300/month deficit that is structurally impossible to bridge during unpaid clinical placement.
+
+3. **Clinical placements are 32-40 hrs/week unpaid** with rotating shifts (day/evening/night). Students can legally work 24 hrs/week off-campus but realistically only 8-16 hrs due to schedule conflicts, yielding ~$780/month at minimum wage.
+
+4. **The decisive unknown is disbursement duration** (12 vs 20 months). This alone swings Year 2 from "extremely tight but survivable" to "structurally impossible without family support or debt."
+
+5. **Domestic students have protections international students lack**: deferred repayment, Repayment Assistance Program (RAP), provincial grants. Passage students have none.
+
+Output written to `research/00_year2_cashflow_reality.md`. STOPPING — ready for next phase.
+
+--- Iteration 2 / 8 ---
+
+**Phase 0 Summary — Year 2 Cash Flow: How Bad Is the Crunch?**
+
+The crunch is **severe and structurally real**. Key findings:
+
+- **Monthly loan payment**: CAD $1,058 (verified), due from Month 1 of study — unlike domestic loans or Windmill which defer repayment
+- **Clinical placement**: Unpaid, 32-40h/week in Terms 3-5, with an intensive 8-week full-time capstone practicum in Term 5
+- **Realistic part-time work**: 8-16h/week during clinical (not the legal 24h max) = ~$779-1,039/month at AB minimum wage
+- **Living costs** (Edmonton/Calgary, shared room): ~$1,575/month
+
+**Two scenarios hinge on one critical unknown** — does the living-cost disbursement (~$1,700/month) run 12 months or 20?
+
+| Scenario | Monthly Deficit | Severity |
+|----------|----------------|----------|
+| Disbursement continues (20 months) | -$29 to -$415 | **Food insecurity** — $1.87/day for food at concept note's $56 residual |
+| Disbursement stops (12 months) | -$1,074 to -$1,854 | **Catastrophic** — impossible without external support |
+
+The concept note's $56/month figure is the **optimistic ceiling**, requiring $500 rent (extreme shared housing), zero miscellaneous expenses, and continued disbursement. The student's actual available funds represent only **21-31% of IRCC's own minimum living expense requirement**.
+
+The structural comparator is Windmill Microlending (~$94/month interest-only during study vs Passage's $1,058 full payment). Passage's in-study repayment requirement is the **root cause** of the Year 2 crunch.
+
+--- Iteration 2 / 8 ---
+**Phase 1 complete.** Output written to `research/01_protection_mechanisms.md`.
+
+Key findings:
+
+1. **Passage has NO documented protection mechanisms** — no deferral, grace period, forbearance, or hardship fund. This is the most rigid product in the Canadian student lending landscape, serving the population with the least safety net.
+
+2. **Interest-only during 8-month clinical = best reform**: Cuts monthly payment from $1,058 to $539, freeing $519/month. Costs the student $4,315 in extra lifetime interest (paid during LPN employment). Costs Passage only $4,149/student in deferred principal.
+
+3. **Full payment pause** is more generous (frees $1,058/mo) but more costly ($9,522 extra lifetime interest, $8,464 cash flow hole per student).
+
+4. **Single highest-impact/zero-cost fix**: Confirm that the $1,700/month living cost disbursement runs for all 20 program months, not just 12. If it stops after Year 1, Year 2 is structurally impossible.
+
+5. **Windmill comparison is devastating**: 5.95% vs 11.95%, interest-only during study vs full P+I from Month 1 — Passage charges 2x the rate with zero of the protections.
+
+6. **ISA would eliminate the crunch by construction** but is structurally incompatible with Passage's for-profit model serving international students (enforcement risk if student returns home).
+
+STOP. Ready for Phase 2 on next iteration.
+
+--- Iteration 3 / 8 ---
+**Phase 1 complete.** Key findings:
+
+1. **Passage has NO documented payment protection** — no deferral, no grace period, no forbearance, no hardship mechanism. This is the most rigid structure in the Canadian student lending landscape.
+
+2. **Every comparator lender offers in-study relief**: Windmill (interest-only up to 27mo), MPOWER (interest-only + 24mo forbearance), Canada Student Loans ($0 during study + RAP).
+
+3. **Best reform = interest-only during 8-month clinical**: frees CAD $519/month, costs student ~$2,000-4,300 lifetime extra interest, costs Passage only ~$4,150 deferred principal per student (recovered post-graduation, and Passage actually earns MORE total interest).
+
+4. **Highest priority first question**: Does disbursement run 12 or 20 months? If only 12, mandating 20-month disbursement costs Passage $0 incremental and eliminates the catastrophic scenario.
+
+5. **ISA would eliminate the crunch by construction** but is structurally incompatible with Passage's for-profit international-student model (revenue timing, enforcement, revenue gap).
+
+Progress updated. Ready for Phase 2 on next iteration.
+
+--- Iteration 3 / 8 ---
+**Phase 2 complete.** Key findings:
+
+1. **CFNU 2025 national survey** (N=3,751): 28% of Canadian nursing students considered dropping out due to finances; 63% reported negative academic impact; 72% reported health impact. These are students WITH government protections — Passage's international students have none.
+
+2. **Mid-clinical dropout costs Passage ~$26,630 net** per student (already disbursed ~$47K minus ~$16K payments minus $4.5K collateral). Interest-only deferral costs only $4,149 in deferred cash flow. **Break-even: prevents 1 dropout per 6.4 students offered deferral** — easily achievable given 28%+ consideration rates.
+
+3. **Cross-border enforcement is essentially impossible** — if a defaulting international student leaves Canada, Passage recovers only payments-to-date + collateral (35-47% recovery).
+
+4. **CE model recommendation**: add +2-5pp to the 10% base default rate (central +3pp → 13%). If disbursement stops at 12 months, +10-15pp → 20-25%.
+
+5. **Payment deferral during clinical is NPV-positive for Passage** and should be a grant condition from Renaissance.
+
+Output: `research/02_graduation_repayment_impact.md`. STOP.
+
+--- Iteration 4 / 8 ---
+Done. Synthesis complete, `progress.json` set to `done: true`.
+
+**Headline findings:**
+
+1. **Year 2 crunch is real and severe** — the $56/month figure is an optimistic ceiling; central deficit is ~$150-400/month even with continuous disbursement, and ~$1,300/month catastrophic if disbursement stops at 12 months.
+
+2. **Passage has zero protection mechanisms** — no deferral, grace period, forbearance, or hardship fund. Most rigid terms in Canadian student lending, applied to the population with the least safety net.
+
+3. **CE model adjustment: +3pp central** (10% → 13% default rate), band +2-5pp. If disbursement stops at 12 months: +10-15pp (→ 20-25%).
+
+4. **Two recommended grant conditions:**
+   - **Priority 1**: Confirm/mandate 20-month disbursement (zero cost, eliminates worst case)
+   - **Priority 2**: Interest-only during 8-month clinical (frees $519/month, costs Passage ~$4,150 in temporarily deferred principal, is revenue-positive, pays for itself at 1-in-6.4 prevention rate)
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: Passage_year2_affordability_student_protection_20260922_120000 (iterations used: 3) ===
+Uploading to Google Docs...
+(Upload failed or not configured)
+**Phase 3 (synthesis) complete.** `done: true` in progress.json. Synthesis.md is 273 lines with sources and what-we-don't-know table added.
+
+**Headline findings:**
+
+1. **Year 2 crunch is real and severe** — $56/month is optimistic ceiling; central deficit ~$200-400/month even with continued disbursement; catastrophic ~$1,300/month if disbursement stops at 12 months
+2. **Passage has NO payment protection** — the only lender in the comparison requiring full P+I from Month 1 of study
+3. **CE model: +3pp default adjustment** (10% → 13% central); +10-15pp if disbursement stops at 12mo
+4. **Interest-only during clinical = highest-ROI fix** — costs Passage $4,149/student (temporary), pays for itself at 1 dropout prevented per 6.4 students, is revenue-positive for Passage
+5. **Two grant conditions recommended**: (1) confirm/mandate 20-month disbursement, (2) implement IO during clinical placement
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: Passage_year2_affordability_student_protection_20260922_120000 (iterations used: 4) ===
+Uploading to Google Docs...
+(Upload failed or not configured)

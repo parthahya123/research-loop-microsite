@@ -1,0 +1,486 @@
+================================================================================
+DISABILITY WEIGHTS FOR WHEELCHAIR USERS IN LMICs
+Deep Research Investigation — August 2026
+================================================================================
+
+EXECUTIVE SUMMARY
+-----------------
+No direct, LMIC-specific disability weight for wheelchair users exists anywhere
+in the published literature. This is not a gap at the margin — it is a void at
+the center of the cost-effectiveness case for wheelchair provision. The entire
+evidence chain rests on proxy values derived from UK powered-wheelchair QALY
+data and GBD health states that do not map cleanly to "mobility-impaired person
+receives a manual wheelchair in an LMIC." A purpose-built study would cost
+~$150K-$350K, take 12-18 months, and could reduce the $/DALY uncertainty band
+from ~7x to ~2x. The value of information is extremely high relative to cost.
+
+================================================================================
+1. EXISTING GBD DISABILITY WEIGHTS FOR MOBILITY IMPAIRMENT
+================================================================================
+
+The GBD uses a fixed set of ~230 health states with disability weights (DWs)
+derived from lay population surveys. DWs are on a 0-1 scale (0 = full health,
+1 = death). The key values for mobility-related conditions:
+
+SPINAL CORD INJURY (GBD 2013/2019):
+  - Treated, below neck level:    0.296  (UI: 0.198-0.414)
+  - Treated, at neck level:       0.589  (UI: 0.415-0.748)
+  - Untreated, below neck level:  0.623  (UI: 0.434-0.785)
+  - Untreated, at neck level:     0.732  (UI: 0.544-0.871)
+
+MOTOR IMPAIRMENT (generic, GBD 2013):
+  - Mild:      0.010  (UI: 0.006-0.016)
+  - Moderate:  0.061  (UI: 0.040-0.089)
+  - Severe:    0.402  (UI: 0.268-0.545)
+
+MUSCULOSKELETAL, LEGS (GBD 2013/2019):
+  - Moderate:  0.079  (UI: 0.054-0.110)
+  - Severe:    0.165  (UI: 0.112-0.232)
+
+AMPUTATION (GBD):
+  - Long-term, lower limb (traumatic):  ~0.300
+
+KEY INSIGHT: The commonly cited ~0.406 baseline for paraplegia/severe mobility
+impairment is consistent with GBD "severe motor impairment" (0.402) or midway
+between "treated SCI below neck" (0.296) and "untreated SCI below neck" (0.623).
+Neither state precisely describes "LMIC person with mobility impairment who
+could benefit from a wheelchair but doesn't have one."
+
+CRITICAL GAP: GBD health states describe symptoms and functional limitations
+via lay vignettes — they do NOT describe "person with X condition who receives
+Y intervention." There is no GBD health state for "wheelchair user" nor for
+"person who needs a wheelchair but lacks one." The DW reduction from wheelchair
+provision must be INFERRED, not measured.
+
+The lay descriptions used in GBD paired comparisons are brief, non-clinical
+statements like: "has major difficulty walking, standing, lifting and carrying
+heavy things." They do not specify whether the person has or lacks assistive
+technology.
+
+================================================================================
+2. QALY/UTILITY STUDIES FOR WHEELCHAIR USERS IN LMICs
+================================================================================
+
+FINDING: There are NO preference-based utility studies (EQ-5D, SF-6D, HUI)
+specifically measuring QALYs for manual wheelchair users in LMIC settings.
+
+The closest evidence:
+
+a) NIGERIA (2016): Olaleye et al. measured SF-36 in 41 SCI patients vs. 40
+   controls. SCI patients had significantly lower HRQoL across all domains.
+   No utility/QALY conversion reported. 51.3% were "more or less satisfied"
+   with their wheelchair; only 2.6% "very satisfied."
+
+b) JAPAN (2019): EQ-5D-5L in SCI patients showed utility improvement from
+   acute to discharge: 0.325 → 0.580 for mid/lower thoracic SCI.
+   (High-income country, not LMIC.)
+
+c) THAILAND: Wheelchair users with air-filled cushions had mean utility 4x
+   higher than foam cushion users (0.131 vs 0.032 on EQ-5D).
+   (Middle-income country but small sample, specific to cushion type.)
+
+d) ETHIOPIA: EQ-5D studies exist in the country but none specific to
+   wheelchair users or mobility device recipients.
+
+e) UGANDA (2024): Cross-sectional QoL study of traumatic SCI patients exists
+   but did not use preference-based utility instruments amenable to QALY
+   calculation.
+
+f) UK POWERED WHEELCHAIR DATA: The ~0.27 QALYs/year gain used in the current
+   CEA comes from UK studies of powered (not manual) wheelchairs, in a
+   high-income context with paved infrastructure, accessible buildings, and
+   support services. Adjusting this to ~0.19 for LMIC manual wheelchairs is
+   a reasonable direction but entirely judgment-based.
+
+BOTTOM LINE: The QALY gain from wheelchair provision in LMICs is genuinely
+unmeasured. Every number in use is a proxy or expert assumption.
+
+================================================================================
+3. GBD DISABILITY WEIGHT METHODOLOGY
+================================================================================
+
+HOW DWs ARE DERIVED:
+The GBD disability weights come from a specific measurement approach developed
+by Salomon, Vos, Haagsma et al. (Lancet, 2012; Lancet Global Health, 2015):
+
+Step 1: HEALTH STATE DESCRIPTIONS
+  - Brief lay descriptions (2-3 sentences) of each health state
+  - Non-clinical language focused on functional consequences
+  - Example for severe motor impairment: describes difficulty walking,
+    standing, lifting, carrying heavy things
+
+Step 2: PAIRED COMPARISON SURVEYS
+  - Respondents see two health state vignettes side by side
+  - Asked: "Which person do you consider healthier overall?"
+  - Binary choice — simple for lay respondents with any literacy level
+
+Step 3: POPULATION HEALTH EQUIVALENCE (PHE) QUESTIONS
+  - Used to anchor the scale (web-based surveys only)
+  - Asks respondents to compare health benefits of two hypothetical programs
+  - Used to map paired comparison results onto 0-1 scale
+
+Step 4: STATISTICAL ANALYSIS
+  - Probit regression on paired comparison data
+  - Cardinal values estimated from ordinal rankings
+  - PHE data provides scale anchoring
+
+SURVEY IMPLEMENTATION FOR GBD 2010:
+  - Household surveys in 5 countries: Bangladesh, Indonesia, Peru, Tanzania, USA
+  - Face-to-face interviews (LMIC countries), telephone (USA)
+  - Conducted Oct 2009 - June 2010
+  - Total: 13,902 household survey respondents + 16,328 web respondents
+  - 108 health states evaluated
+  - Correlations between individual surveys and pooled data: r ≥ 0.9
+    (except Bangladesh at r = 0.75)
+
+FOR GBD 2013 UPDATE:
+  - Added web-based surveys in 4 European countries
+    (Hungary, Italy, Netherlands, Sweden)
+  - 30,660 respondents in European survey alone
+  - Updated to 235 health states with revised lay descriptions
+
+KEY FINDING ON CROSS-CULTURAL VALIDITY:
+The GBD 2010 study found that "comparative assessments of different disabling
+sequelae, as revealed in paired comparisons, are similar in samples that vary
+with respect to cultural, educational, environmental, and demographic
+circumstances." This is important — it suggests a smaller LMIC-specific study
+could produce results broadly consistent with GBD values, but would capture
+any context-specific divergence.
+
+However, critics note (Voigt & King, BMC 2014) that some LMIC household
+survey results DID diverge meaningfully (Bangladesh r=0.75), and that the
+claim of "common values" may overstate cross-cultural agreement.
+
+================================================================================
+4. PUBLISHED ECONOMIC EVALUATIONS OF WHEELCHAIR PROVISION
+================================================================================
+
+SYSTEMATIC REVIEW FINDING (Boggs et al., 2021):
+"Only two full health economic analyses of wheelchair interventions have been
+conducted and both focused on powered wheelchair provision."
+
+This is the most damning finding. In the entire global literature, there are
+only 2 full CEAs for wheelchairs, both for powered chairs in high-income
+settings. There is NO published cost-per-DALY or cost-per-QALY analysis for
+manual wheelchair provision in any LMIC.
+
+Identified studies and related evidence:
+
+a) SHORE (2017): "The long-term impact of wheelchair delivery on the lives
+   of people with disabilities in three countries" — measured impacts but
+   not a formal CEA with $/DALY.
+
+b) INDONESIA STUDIES:
+   - Pratiwi et al. (2019): "The economic impacts of wheelchair use: Evidence
+     from Central Java, Indonesia" — measured economic gains of wheelchair
+     users via cross-sectional survey. Not a formal CEA.
+   - Borg et al. (2020): "Exploratory investigation of the outcomes of
+     wheelchair provision through two service models in Indonesia" — compared
+     WHO 8-step model vs. waiting list. Women receiving wheelchairs via WHO
+     approach had better QoL. No formal CEA.
+
+c) TAJIKISTAN (2020): Borg, Khasnabis et al. "Sustainable and equitable
+   provision of wheelchairs in low- and middle-income countries: an economic
+   assessment of the models for wheelchair provision in Tajikistan."
+   - Compared wheelchair importation vs. local production models
+   - Focused on supply-chain economics, NOT health outcome CEA
+   - Published under AT2030 programme
+
+d) UK MOTABILITY/FRONTIER ECONOMICS (2023): "The Value of a Wheelchair"
+   - Social Return on Investment (SROI) approach
+   - Found annual benefits of £15,200 per user per year
+   - UK context, powered + manual chairs, not $/DALY framework
+
+e) COMMUNITY-BASED DISABILITY REHABILITATION (various):
+   - One study found $224/DALY averted for a comprehensive disability
+     rehabilitation programme (includes but is not limited to wheelchairs)
+   - Not wheelchair-specific
+
+THERE IS NO PUBLISHED $/DALY FOR MANUAL WHEELCHAIR PROVISION IN AN LMIC.
+
+================================================================================
+5. WHAT WOULD IT TAKE TO GENERATE A PROPER DISABILITY WEIGHT STUDY?
+================================================================================
+
+OPTION A: GBD-COMPATIBLE PAIRED COMPARISON STUDY (GOLD STANDARD)
+-----------------------------------------------------------------
+Design: Household paired comparison survey in 2-3 LMIC countries
+
+Methodology:
+  - Write lay vignettes for wheelchair-relevant health states:
+    * "Severe mobility impairment, no wheelchair"
+    * "Severe mobility impairment, with appropriate manual wheelchair"
+    * "Moderate mobility impairment, no wheelchair"
+    * "Moderate mobility impairment, with appropriate manual wheelchair"
+  - Include ~20-30 GBD reference health states for anchoring
+  - Paired comparison format identical to GBD methodology
+  - Face-to-face household interviews in LMIC communities
+
+Sample size:
+  - GBD used ~2,500-3,000 per country for household surveys
+  - European DW studies used ~7,500-8,000 per country (web-based)
+  - Minimum viable: ~500-1,000 per country, 2 countries = 1,000-2,000 total
+  - This is adequate because you're estimating DWs for 4-6 specific states,
+    not the full 230+ state GBD set
+
+Estimated cost:
+  - Survey design + vignette development: $30K-$50K
+  - Fieldwork (2 countries, ~1,000 respondents each): $50K-$100K
+    ($25-$50 per completed household interview in LMICs)
+  - Analysis + writing: $30K-$50K
+  - PI time + overhead: $40K-$80K
+  - Total: $150K-$280K
+  - Timeline: 12-18 months
+
+Precedent: The India study (Mathur et al., 2022, Frontiers in Public Health)
+conducted a disability weights measurement study with 2,055 community members
+in two Indian states (Odisha and Telangana) for 14 health states. This was
+done at modest cost using visual analog scale and card sort methods.
+
+OPTION B: EQ-5D UTILITY STUDY (FASTER, MORE DIRECTLY USEFUL FOR CEA)
+---------------------------------------------------------------------
+Design: Before-after or cross-sectional study measuring EQ-5D in wheelchair
+recipients in 2-3 LMIC countries
+
+Methodology:
+  - Administer EQ-5D-5L to:
+    * People awaiting wheelchair provision (baseline)
+    * People who received wheelchairs 3-12 months ago (comparison)
+  - Alternatively: prospective cohort, EQ-5D at baseline + 3mo + 12mo
+  - Country-specific EQ-5D value sets now exist for: Ethiopia, Kenya,
+    Indonesia, India, Nigeria, Bangladesh, and others
+
+Sample size:
+  - For detecting a 0.1 utility difference with 80% power: ~130-170 per group
+  - Across 2-3 countries: 400-1,000 total participants
+
+Estimated cost:
+  - Study design + ethical approval: $20K-$30K
+  - Fieldwork: $40K-$80K (piggybacked on existing wheelchair programs)
+  - Analysis: $20K-$30K
+  - Total: $80K-$150K
+  - Timeline: 12-18 months (6 months if cross-sectional only)
+
+This directly produces a QALY gain estimate usable in CEAs.
+
+OPTION C: HYBRID (BOTH OPTIONS COMBINED)
+-----------------------------------------
+Run an EQ-5D study within wheelchair programs AND a paired comparison
+community survey with wheelchair-specific vignettes.
+  - Total cost: $200K-$350K
+  - Produces BOTH GBD-compatible DW AND CEA-ready QALY estimates
+  - Maximum credibility and usefulness
+  - This is the recommended approach.
+
+WHO HAS DONE SIMILAR STUDIES?
+  - Salomon et al. (GBD DW team) — gold standard methodology, Harvard/IHME
+  - Haagsma et al. (European DW study) — 30,660 respondents, Erasmus MC
+  - Mathur et al. (India DW study 2022) — modest-scale LMIC implementation
+  - Kim et al. (South Korea DW study) — 2,728 household + 3,188 web
+  - Neethling et al. (South Africa, 2016) — DW household survey in low
+    socioeconomic setting, compared to GBD 2010 values
+
+================================================================================
+6. KEY RESEARCHERS AND INSTITUTIONS
+================================================================================
+
+DISABILITY WEIGHTS METHODOLOGY:
+  - Joshua Salomon (Harvard T.H. Chan School of Public Health)
+    jsalomon@hsph.harvard.edu — Led GBD DW studies 2010 and 2013
+  - Theo Vos (IHME, University of Washington)
+    tvos@uw.edu — Senior GBD researcher, DW methodology
+  - Juanita Haagsma (Erasmus MC, Rotterdam)
+    j.haagsma@erasmusmc.nl — Led European DW studies (30,660 respondents)
+
+DISABILITY/WHEELCHAIR IN LMICs:
+  - Hannah Kuper (LSHTM, London)
+    Director, International Centre for Evidence in Disability
+    Co-founder, Missing Billion Initiative
+    Key person at intersection of disability measurement and LMIC policy
+  - David Boggs (LSHTM)
+    PhD on assistive technology economics; led systematic review finding
+    only 2 full wheelchair CEAs exist globally
+  - Nora Groce (UCL)
+    Director, UCL International Disability Research Centre (formerly
+    Leonard Cheshire Research Centre)
+    Focus on disability economics and policy in LMICs
+
+WHO/GATE:
+  - Chapal Khasnabis (WHO)
+    Head (a.i.), Access to Assistive Technology and Medical Devices Unit
+    Led GATE initiative, wheelchair guidelines, Tajikistan economic assessment
+  - WHO Rehabilitation Programme team (Rehabilitation 2030 initiative)
+
+AT/WHEELCHAIR SECTOR:
+  - ATscale (Global Partnership for Assistive Technology)
+    Published investment case for AT (9:1 ROI)
+    Focus on wheelchairs, hearing aids, prosthetics, eyeglasses
+  - Motivation (international wheelchair NGO)
+    Implements WHO 8-step wheelchair service model
+  - AT2030 Programme (led by Global Disability Innovation Hub)
+    Funded wheelchair economic studies including Tajikistan
+
+INDIA-SPECIFIC:
+  - Mathur et al. (Frontiers, 2022) — conducted India DW measurement study
+    with 2,055 respondents in Odisha and Telangana
+
+RECOMMENDED COLLABORATION PATH:
+1. Commission study through LSHTM (Kuper/Boggs team) for LMIC fieldwork
+   and wheelchair domain expertise
+2. Engage Haagsma or Salomon as methodological advisors for DW measurement
+   design compatible with GBD framework
+3. Partner with Motivation or similar wheelchair NGO for access to
+   pre/post wheelchair recipients in LMIC sites
+4. Coordinate with WHO GATE team for policy relevance and endorsement
+
+================================================================================
+7. THE "ANALOGUE INTERVENTION" QUESTION
+================================================================================
+
+How does disability weight evidence compare for other assistive technologies?
+
+SPECTACLES/EYEGLASSES:
+  - GBD has well-established DWs for vision impairment by severity:
+    * Mild: 0.004, Moderate: 0.031, Severe: 0.184, Blindness: 0.187
+  - Published cost per DALY averted:
+    * Reading glasses/presbyopia: ~$197/DALY averted
+    * Eye camps in India: $143/DALY averted (ICER)
+    * Vision centers: $262/DALY averted
+  - KEY LESSON: Vision correction has the most mature CEA evidence base
+    among assistive technologies, partly because DWs for "uncorrected" and
+    "corrected" vision are well-established in GBD.
+
+HEARING AIDS:
+  - GBD DWs for hearing loss exist by severity level
+  - Published cost per DALY: ~$720-$900 (India study)
+  - BUT: "Evidence from LMICs remains limited, and uncertainty persists
+    regarding locally valid utility estimates" (Lancet eClinMedicine, 2021)
+  - KEY LESSON: Even hearing aids — much more studied than wheelchairs —
+    face the same LMIC utility evidence gap.
+
+PROSTHETICS (LOWER LIMB):
+  - GBD DWs for amputation: ~0.300 (long-term, lower limb)
+  - "No studies on prosthetic cost-effectiveness have been conducted in
+    LMICs, despite prosthetic needs being greatest in resource-austere
+    settings" (Cost Analyses of Prosthetic Devices, 2021)
+  - KEY LESSON: The evidence desert is even worse for prosthetics than
+    for wheelchairs.
+
+OVERALL PATTERN:
+  - Spectacles: Good DW evidence → good CEAs → clear case for provision
+  - Hearing aids: Moderate DW evidence → some CEAs → evidence gaps in LMICs
+  - Wheelchairs: Poor DW evidence → almost no CEAs → no LMIC-specific data
+  - Prosthetics: Poor DW evidence → no LMIC CEAs → complete evidence void
+
+The spectacles pathway shows what's possible: once you have credible DWs for
+the "with" and "without" states, the CEA becomes straightforward and the
+investment case becomes defensible. Wheelchairs are where spectacles were
+20+ years ago — the intervention obviously works, but the numbers to prove
+it to funders haven't been generated.
+
+================================================================================
+8. VALUE OF INFORMATION ANALYSIS
+================================================================================
+
+CURRENT STATE:
+  - DW reduction from wheelchair provision: estimated 18-28%
+  - This translates to a DW change of roughly 0.073-0.114 (from ~0.406 base)
+  - Tornado sensitivity: ~$90/DALY swing on this single parameter
+  - Pessimistic $/DALY is 7x base case, largely from DW uncertainty
+  - The entire viability of wheelchair provision as a cost-effective
+    intervention hinges on this parameter
+
+WHAT A STUDY WOULD DO:
+  - Narrow the DW reduction estimate from ±10pp to ±3-4pp
+  - Reduce the $/DALY range from ~7x (base to pessimistic) to ~2x
+  - Make the investment case either clearly compelling or clearly not
+  - Inform ALL wheelchair provision programs globally, not just one
+
+VALUE OF INFORMATION CALCULATION (ILLUSTRATIVE):
+  - ATscale estimates ~100M people need wheelchairs globally
+  - Even focusing on the ~2-5M wheelchairs distributed annually in LMICs
+  - If better DW data shifts $50M-$500M in funding decisions over 10 years
+    (either toward or away from wheelchair provision)
+  - A $200K-$350K study has an expected VOI ratio of ~150:1 to 1,400:1
+  - Even at the lowest estimate, this is among the highest-VOI research
+    investments available in global health
+
+WHAT IF THE STUDY SHOWS THE DW GAIN IS SMALL?
+  - This is also extremely valuable information
+  - If the real QALY gain is 0.05 instead of 0.19, wheelchair provision
+    at $500/chair is ~$200/DALY — still potentially cost-effective
+  - If the real QALY gain is 0.02, $/DALY exceeds $500 and resources
+    should be redirected to spectacles or hearing aids
+  - Knowing the answer either way beats guessing
+
+================================================================================
+9. RECOMMENDED MINIMUM VIABLE STUDY
+================================================================================
+
+DESIGN: Hybrid cross-sectional + paired comparison in 2 LMIC countries
+
+COMPONENTS:
+  A) EQ-5D-5L cross-sectional study
+     - 200 wheelchair users (received chair 6-24 months ago) per country
+     - 200 people awaiting wheelchair provision per country
+     - Countries: Kenya + India (both have EQ-5D-5L value sets)
+     - Piggybacked on existing wheelchair programs (Motivation, ICRC, etc.)
+     - Primary endpoint: utility difference between groups
+     - Secondary: WHODAS 2.0, participation measures
+
+  B) Paired comparison community survey
+     - 500 general population respondents per country
+     - 4-6 wheelchair-specific vignettes + 20 GBD reference states
+     - Face-to-face household interviews
+     - GBD-compatible methodology (probit regression)
+     - Primary endpoint: DW estimates for wheelchair-relevant states
+
+BUDGET:
+  Component A: $80K-$120K
+  Component B: $70K-$120K
+  Overhead/coordination: $30K-$50K
+  TOTAL: $180K-$290K
+
+TIMELINE: 14-18 months (3 months design, 6 months fieldwork, 5 months analysis)
+
+OUTPUTS:
+  1. First LMIC-specific QALY estimate for wheelchair provision
+  2. First GBD-compatible DW for wheelchair-relevant mobility states in LMICs
+  3. Publishable in Lancet Global Health or similar
+  4. Directly usable in CEA models for all wheelchair funders globally
+  5. Potential for adoption into GBD DW revisions
+
+WHO SHOULD RUN IT:
+  - PI: Hannah Kuper or David Boggs (LSHTM) — LMIC wheelchair expertise
+  - Methodological advisor: Juanita Haagsma (Erasmus MC) — DW methods
+  - Country leads: Established LSHTM/GDI Hub partners in Kenya and India
+  - Wheelchair program partners: Motivation International, ICRC, or JAWS
+
+================================================================================
+10. SUMMARY OF KEY FINDINGS
+================================================================================
+
+1. NO LMIC-SPECIFIC DW FOR WHEELCHAIR USERS EXISTS. Period.
+
+2. The GBD DW system does not have a health state for "mobility-impaired
+   person with/without a wheelchair." The closest proxies are "severe motor
+   impairment" (0.402) and "treated SCI below neck" (0.296).
+
+3. Only 2 full health economic analyses of wheelchair interventions exist
+   globally, both for powered chairs in rich countries.
+
+4. The evidence base is worse than for hearing aids and far worse than for
+   spectacles, despite wheelchairs being a higher-burden intervention.
+
+5. A credible DW study is feasible for $180K-$290K in 14-18 months.
+
+6. The value of information ratio is extremely high (~150:1 to 1,400:1)
+   given the magnitude of funding decisions this parameter influences.
+
+7. The study design exists, the methodology is proven, the researchers are
+   identifiable, and the cost is trivial relative to the decisions it would
+   inform. The only thing missing is a funder.
+
+================================================================================
+END OF REPORT
+================================================================================

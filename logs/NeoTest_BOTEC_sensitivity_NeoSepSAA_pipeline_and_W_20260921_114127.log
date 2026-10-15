@@ -1,0 +1,22 @@
+
+=== Launching: NeoTest_BOTEC_sensitivity_NeoSepSAA_pipeline_and_W_20260921_114127 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+<promise>DONE</promise>
+Done (DONE signal). Stopping.
+=== Completed: NeoTest_BOTEC_sensitivity_NeoSepSAA_pipeline_and_W_20260921_114127 (iterations used: 1) ===
+Uploading to Google Docs...
+  Saved local copy: /Users/parthahya/tools/research_loop_tool/research_runs/NeoTest_BOTEC_sensitivity_NeoSepSAA_pipeline_and_W_20260921_114127/full_document.md
+  Uploading full doc...
+  Found 12 tables to render
+  Inserted 12 empty tables
+  Filled 88 table rows
+  Applied table formatting (font 10pt, fit to page)
+Full doc created: https://docs.google.com/document/d/1ksv_dkNXIEU9bYZEg67hIZFd7wPgS30uakh04vACQp4/edit
+  Uploading summary doc...
+  Found 12 tables to render
+  Inserted 12 empty tables
+  Filled 88 table rows
+  Applied table formatting (font 10pt, fit to page)
+Summary doc created: https://docs.google.com/document/d/1w8EbP_KwT3cT-sQslNvZkhMb3ytOSZtE_A4UDHxwcpg/edit

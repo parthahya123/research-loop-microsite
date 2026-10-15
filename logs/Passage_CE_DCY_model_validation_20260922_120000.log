@@ -1,0 +1,132 @@
+
+=== Launching: Passage_CE_DCY_model_validation_20260922_120000 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+
+=== Launching: Passage_CE_DCY_model_validation_20260922_120000 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+**Phase 0 complete.** Key findings:
+
+- **$60K base case**: Defensible for an established full-time LPN (national median $62.6K). Slightly high as a lifetime average once you account for income ramp and immigrant penalty.
+- **$72.5K optimistic**: Achievable only in high-wage provinces (SK/BC) or with regular overtime. Not a population average.
+- **$45K pessimistic**: Realistic for year 1-2 and recent IEHP arrivals ($45.5K mean).
+- **Key risk**: New graduates earn $48-52K, not $60K. Recent African IEHP arrivals earn $45.5K. Black nurses face a documented racial wage gap. Part-time start risk (30-50% of new grads) further depresses year-1 effective income.
+- **Net DCY impact**: Income ramp + immigrant penalty reduces lifetime average to ~$56-58K, a **3-7% DCY reduction** — modest by itself but compounds with remittance/spillover adjustments.
+
+Output written to `research/00_canadian_lpn_income.md`. Progress updated. Stopping — ready for next phase on command.
+
+--- Iteration 2 / 8 ---
+**Phase 1 complete.** Key findings:
+
+- **9% remittance rate** is at the high end of plausible for early career but overstated as a 40-year flat rate. Malengo uses 8%; global average including non-remitters is ~5%.
+- **Revised lifetime average: ~7%** (declining from ~10% early career to ~4% late career)
+- **2-household assumption is generous** — effective coverage is ~1.3 equivalent households, not 2.0
+- **Combined remittance adjustment: ~-49% on remittance DCYs**, translating to **~-20-25% on total DCYs** (165 → 124-132)
+- **Loan repayment at 11.95% competes directly with remittances** in years 1-7, likely depressing actual remittance rates further
+- **Uganda corridor** has some data support; **Malawi/Burundi/Madagascar corridors from Canada** are tiny and essentially undocumented
+
+STOP. Phase 1 written to `research/01_remittance_rate.md`, progress.json updated.
+
+--- Iteration 2 / 8 ---
+**Phase 1 complete.** Key findings:
+
+**The 9% remittance rate is ABOVE every Canada-specific datapoint:**
+- StatCan SIMT 2017: SSA remitters in Canada average **4.5%** of a $60K income (CAD $2,710/yr)
+- StatCan LSIC 2008: remitters send **7.5% in year 2**, declining to **5.9% by year 4** — and this is the EARLY-CAREER PEAK
+- Malengo students send 13-19% but at very low incomes (~EUR 880/mo); as income rises, the share falls
+- A flat 9% over 40 years ignores well-documented remittance decay
+
+**Revised estimate**: ~7% lifetime average (generous), combined with the 2-household adjustment (effective ~1.3 not 2.0), reduces remittance-channel DCYs by ~49%, cutting total DCYs/migrant by **~20-25%** (165 → 124-132).
+
+Progress updated. STOP — ready for next phase instruction.
+
+--- Iteration 3 / 8 ---
+**Phase 2 complete.** Written to `research/02_spillover_multiplier.md`, progress.json updated.
+
+**Key findings:**
+
+- The 1.65x spillover multiplier is the **most contestable parameter** in the entire model — it transplants a rural Kenyan cash-transfer experiment (concentrated $1000 lump sums = >15% of local GDP) to individual nurse remittances (~$450/mo to 1-2 households in urban/peri-urban SSA)
+- **Five structural problems**: (1) cash transfers ≠ remittances (concentrated vs dispersed), (2) rural Kenya ≠ urban Uganda/Malawi (import leakage), (3) fiscal multiplier literature gives lower numbers, (4) multiplier should apply only to local consumption share (~60%), (5) 40-year temporal decay is unmodeled
+- GiveWell's own adjustments for Uganda/Malawi (60% internal x 70-75% external validity) imply an effective spillover of only ~0.13x, not 0.65x
+- Oxford Economics estimates remittance output multiplier at just **0.4** (vs 0.65 implied)
+- **Revised central estimate: 1.25x** (generous), with 1.0x as a defensible conservative bound
+- Spillover adjustment alone: -8 to -16% of DCYs
+- **Cumulative after Phases 0-2: ~99-119 DCYs** (down from 165)
+
+STOP — one phase per iteration.
+
+--- Iteration 3 / 8 ---
+**Phase 2 complete.** Key findings:
+
+**The 1.65x spillover multiplier is the MOST CONTESTABLE parameter in the model.** Five problems:
+
+1. **Cash transfers ≠ remittances**: Egger studied a concentrated $1,000 lump sum = >15% of local GDP in rural Kenya. Passage remittances are ~$450/mo to 1-2 households — no localized demand shock. A 2026 World Development paper directly states "local multiplier effects of remittances are usually more contested" than cash transfers.
+
+2. **Rural Kenya ≠ urban SSA**: The multiplier rides on 76% MPC-local in a closed rural economy. Urban/peri-urban recipients in Kampala/Lilongwe face 40-55% local content (import leakage collapses the mechanism by ~half).
+
+3. **Remittance-specific estimates are lower**: Oxford Economics estimates remittance output multiplier at 0.4 (→ total ~1.4x). World Bank review of 23 studies finds modal range 1.0-2.0x.
+
+4. **GiveWell's own adjustments imply ~1.10-1.20x for Uganda/Malawi** (60% internal validity × 70-75% external = effective spillover addition of only ~0.13x, not 0.65x).
+
+5. **40-year extrapolation from 18-month measurement** with zero evidence on long-run steady-state remittance multipliers.
+
+**Revised central estimate: 1.25x** (generous). Combined with Phase 1 remittance rate + household adjustments: **cumulative DCYs ~99-119** (down from 165).
+
+STOP. Next iteration: Phase 3 (counterfactual income and attribution).
+
+--- Iteration 4 / 8 ---
+**Phase 3 complete.** Key findings:
+
+**Counterfactual income (2x GNI PPP):** DEFENSIBLE. Malengo control group earns ~1.33x GNI early-career but trajectory rises. Uganda nursing wages in PPP terms can reach 2-4x GNI. This is the least sensitive parameter — counterfactual uncertainty moves DCYs only ~3-8%.
+
+**Attribution (96%):** REASONABLE for Canada LPN pathway from these four countries. Self-migration rate to Canada likely ~2-5% (vs Malengo's 4% to Germany). Canada has lower language barriers but high financial/credential barriers. Revised to 93-95%.
+
+**Would-have-migrated (15%):** NOT double-counting with attribution — conceptually distinct (wouldn't reach Canada but would migrate somewhere). Could be 15-20%, but alternative destinations pay less than Canada so effective discount is smaller than raw figure suggests.
+
+**Cumulative DCY estimate after all 4 phases: 92-115 DCYs/migrant** (down from 165 published). The dominant reductions come from remittance rate (Phase 1, -20-25%) and spillover multiplier (Phase 2, -8-16%), not counterfactual/attribution (Phase 3, -3-7%).
+
+Phase 4 (synthesis) is next. STOP.
+
+--- Iteration 4 / 8 ---
+**Phase 3 already complete.** Key findings:
+
+- **Counterfactual income (2× GNI PPP)**: Defensible. Malengo control group earns ~1.33× GNI but that's early-career; lifetime trajectory plausibly reaches 2×. This is the LEAST sensitive parameter (~3-8% DCY impact).
+- **Attribution (96%)**: Reasonable for Canada LPN pathway from UG/MW/BI/MG. Self-migration rate ~2-5%. Revised to ~93-95%.
+- **Would-have-migrated (15%)**: Could be 15-20%, but alternative destinations pay less than Canada so effective discount is smaller. No real double-counting with attribution.
+- **Combined Phase 3 adjustment**: ~3-7% additional DCY reduction.
+
+**Cumulative revised DCYs after all 4 phases: ~92-115** (down from 165 published). The dominant drivers of reduction are remittance rate (Phase 1, ~20-25%) and spillover multiplier (Phase 2, ~8-16%), NOT counterfactual/attribution (Phase 3, ~3-7%).
+
+Next iteration: Phase 4 (synthesis). STOP.
+
+--- Iteration 5 / 8 ---
+Phase 4 (Synthesis) complete. `done: true`.
+
+**Headlines:**
+
+- **165 → ~103 DCYs/migrant** (central revised, -38%; range 92-115)
+- Migrant-only floor: ~38-44 DCYs (stripping all remittance/spillover)
+- **Overstatement concentrates in the remittance channel**: spillover multiplier (1.65x→1.25x), remittance rate (9%→7%), and households (2.0→1.3) together account for ~85% of the downward revision
+- Destination income, counterfactual, and attribution are all **defensible** — modest adjustments only
+- **The CE case is a bet on loan repayment**, not on DCY magnitude: at near-zero net cost (loans repaid), even 30 DCYs/migrant clears the bar; at $5K net cost, the revised $49/DCY is marginal vs the ~$40 GiveWell bar; at $10K net cost, it fails
+- Rec: **fund but re-price** — anchor headline to ~100-110, collect actual remittance data, price on revolving fund economics
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: Passage_CE_DCY_model_validation_20260922_120000 (iterations used: 4) ===
+Uploading to Google Docs...
+(Upload failed or not configured)
+Phase 4 (synthesis) complete. progress.json already shows `done: true` with all key numbers populated.
+
+**Summary of synthesis:**
+
+- **Published: 165 DCYs/migrant** — overstated ~30-44%
+- **Revised central: ~103 DCYs** (range 92-115)
+- **Migrant-only floor: ~44 DCYs** (no remittance/spillover)
+- **Top 3 drivers of reduction**: remittance rate (9%→7%), effective households (2.0→1.3), spillover multiplier (1.65x→1.25x) — all in the remittance channel
+- **CE verdict**: FUND BUT RE-PRICE — the case is a bet on loan repayment economics ($0 net cost → any DCY count wins), not on DCY magnitude. At $5K net cost per migrant, revised central = $49/DCY (just above GiveWell $40 bar — thin margin).
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: Passage_CE_DCY_model_validation_20260922_120000 (iterations used: 5) ===
+Uploading to Google Docs...
+(Upload failed or not configured)

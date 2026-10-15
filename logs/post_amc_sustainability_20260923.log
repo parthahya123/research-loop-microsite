@@ -1,0 +1,56 @@
+
+=== Launching: NeoTest_post_amc_market_sustainability_20260923_140000 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+**Phase 1 complete.** Key findings:
+
+1. **Global Fund = structural NO** — mandate limited to HIV/TB/malaria, 8th replenishment ($12.64B) made no scope expansion. Cannot procure neonatal diagnostics.
+
+2. **PEPFAR = structural NO** — HIV-only mandate, under existential political threat with ~47% cuts.
+
+3. **UNICEF = only multilateral with mandate** — has operational POC diagnostic procurement capability (445k HIV POC tests in 2019) and an active newborn health programme. But UNICEF is a procurement *agent* not a *payer* — realistic post-AMC volume 100-500k tests/yr only IF external funder pays.
+
+4. **Unitaid = most promising** for a time-limited market-shaping bridge ($10-30M/3-5yr), but this is transitional not permanent.
+
+5. **WHO-PQ is the gateway** to all multilateral procurement. First-of-category neonatal-sepsis dx PQ realistic ~2035 — meaning multilateral channels come online late.
+
+6. **Total realistic multilateral post-AMC volume: 350k-1.2M tests/yr ($1.5-6M/yr)** = only 15-48% of the projected 2.5M/yr market. The malaria RDT comparator shows NeoTest lacks all 3 drivers of post-pull market sustainability (WHO mandate, Global Fund funding, 20+ competing suppliers).
+
+**STOP.** Next iteration: Phase 2 (manufacturer cost structure and tail pricing).
+
+--- Iteration 2 / 8 ---
+**Phase 2 complete.** Key findings:
+
+1. **SAA-LFA COGS: ~$1.30 at 2.5M/yr** (range $1.00-1.60), ~$0.75 floor at 10M+/yr. This is 3-5x a malaria RDT due to smaller volume + more expensive SAA antibody pairs + immature supply chain.
+
+2. **$5/test is commercially viable** at any volume ≥500k/yr (60%+ gross margin). $3.50 viable from ≥1M/yr (49-63% GM). $3.00 is the minimum viable price at 1M/yr (40% GM).
+
+3. **GeneXpert pricing risk is HIGH and NeoTest is WORSE positioned** — smaller volume, no advocacy pressure, no alternative platform, no multilateral buyer power, no reputational lever. Without constraints, expect $6-10/test post-AMC.
+
+4. **The AMC copies the Gavi PCV $7 headline but OMITS the binding tail-price cap** — the fatal missing leg. Gavi's $3.50/dose cap was a contractual obligation; NeoTest has nothing. PNEUMOSIL's 43% price cut came from a second source, not the cap alone.
+
+5. **Recommended fix:** $5.00 binding ceiling stepping to $3.50 on volume/competition trigger, MPP-style license deposit, route through pooled procurer. This is the one structural fix that costs nothing and determines whether post-AMC price lands at $3.50-5 or $6-10.
+
+Phase 2 file written to `research/02_manufacturer_economics.md` (207 lines). Progress.json updated. STOP — ready for Phase 3 (synthesis) next iteration.
+
+--- Iteration 3 / 8 ---
+**Phase 3 (synthesis) complete.** `done: true` in progress.json.
+
+### Summary
+
+**synthesis.md** — 335 lines, 12 sections, 61 inline-hyperlinked citations, bare URLs only in References (L295+).
+
+**Headline verdict:** Post-AMC market is **viable at $3.50-5.00/test** IF three design fixes are attached (binding tail cap + 2nd-source MPP license + pooled procurer routing). **Without these, the default is GeneXpert-style $6-10/test pricing** — NeoTest is worse-positioned than GeneXpert on all 5 price-discipline factors.
+
+**Key findings:**
+- **India government = 50-65% of post-AMC volume** but requires a dedicated NHM/FBNC programme line (NEDL is advisory only; SNCU budgets $4.2-12k/yr can't absorb $5k NeoTest)
+- **Global Fund + PEPFAR = structural NO** (mandate-excluded)
+- **UNICEF = agent not payer**; Unitaid = time-limited bridge
+- **Manufacturer viable** at $5/test and 2.5M/yr (74% GM, $4-7M operating income)
+- **Indian manufacturing is the decisive price lever** (COVID RAT: Rs 600 → Rs 50-100 in 18 months)
+- **The tail-price cap costs the funder $0** — it's a contractual provision, not additional spending, and is the single highest-value design fix available
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: NeoTest_post_amc_market_sustainability_20260923_140000 (iterations used: 3) ===
+Uploading to Google Docs...
+(Upload failed or not configured)

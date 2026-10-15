@@ -1,0 +1,36 @@
+
+=== Launching: NeoTest_botec_probability_framing_20260923_140000 ===
+=== Model: Opus 4.6 | Max iterations: 4 ===
+
+--- Iteration 1 / 4 ---
+**This run is already COMPLETE** — `done: true` in progress.json, all 4 phases finished, synthesis.md written (255 lines, 7 sections, fully cited).
+
+### Summary of findings:
+
+**Structured probability is the unambiguously correct primary framing.** The BOTEC's pure-acceleration framing ignores 75-90% of counterfactual probability mass where no product reaches LMICs at all.
+
+| Framing | $/DALY (4%/4%/30yr, post-correction) |
+|---|---|
+| Pure acceleration (current BOTEC) | ~$256 |
+| **Structured probability, P_without=0.25** | **~$152** (41% better) |
+| Structured probability, P_without=0.10 | ~$122 (52% better) |
+
+The improvement is large but does NOT flip the verdict — fund remains a market-shaping/AMR bet, not GiveWell-class. The benefit engine (DALYs/test) is the dominant lever (~$262 swing vs ~$78 for framing). Both should be corrected, but the framing fix is unambiguous while the benefit engine is contested.
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: NeoTest_botec_probability_framing_20260923_140000 (iterations used: 1) ===
+Uploading to Google Docs...
+(Upload failed or not configured)
+**Run COMPLETE.** The synthesis was already finalized by a concurrent process. Here's the summary:
+
+**Verdict:** Structured probability is the unambiguously correct primary framing. Pure acceleration should be demoted to pessimistic sensitivity.
+
+**Key numbers:**
+- Post-correction $/DALY drops from **~$256** (pure accel) to **~$152** (structured prob, P_without=0.25) — a **41% improvement**
+- At tighter P_without=0.10: **~$122** (~52% improvement)
+- Does **NOT flip** the qualitative verdict — still ~1.5x cash bar, ~3x GiveWell bar
+- Every authority (GiveWell, Founders Pledge STN, Berndt/Kremer 2007, Outterson/Rex 2025) uses the structured probability convention; pure acceleration has no academic foundation for non-existent products
+- Framing is the **2nd-largest lever** (~$78 swing) but dominated by benefit engine (~$262 swing from DALYs/test)
+Done (synthesis.md written + done=true). Stopping.
+=== Completed: NeoTest_botec_probability_framing_20260923_140000 (iterations used: 1) ===
+Uploading to Google Docs...
+(Upload failed or not configured)

@@ -1,0 +1,24 @@
+
+=== Launching: NeoTest_Nigeria_procurement_landscape_deepdive_bey_20260920_231055 ===
+=== Model: Opus 4.6 | Max iterations: 8 ===
+
+--- Iteration 1 / 8 ---
+All checks passed, progress.json updated.
+
+<promise>DONE</promise>
+Done (DONE signal). Stopping.
+=== Completed: NeoTest_Nigeria_procurement_landscape_deepdive_bey_20260920_231055 (iterations used: 1) ===
+Uploading to Google Docs...
+  Saved local copy: /Users/parthahya/tools/research_loop_tool/research_runs/NeoTest_Nigeria_procurement_landscape_deepdive_bey_20260920_231055/full_document.md
+  Uploading full doc...
+  Found 11 tables to render
+  Inserted 11 empty tables
+  Filled 56 table rows
+  Applied table formatting (font 10pt, fit to page)
+Full doc created: https://docs.google.com/document/d/1z2o1_6DBFZ4y5FwB06lROawZFdEkTEyBdrqmkjqRsg0/edit
+  Uploading summary doc...
+  Found 11 tables to render
+  Inserted 11 empty tables
+  Filled 56 table rows
+  Applied table formatting (font 10pt, fit to page)
+Summary doc created: https://docs.google.com/document/d/1E0lUSlJvfw8fcY8g_beYtniKDgj0NZVkvJKYNJQU9z4/edit
